@@ -27,5 +27,28 @@ void main() {
       expect(actualSubGoals.length, 1);
       //#endregion
     });
+
+    test('get complete percent', () async {
+      //#region Arrange(Given)
+      String title = "Get international job";
+      String desc = "I need is motivated everyday";
+
+      MainGoal mainGoal = MainGoal(title, desc);
+
+      String subGoalTitle = "Learn english";
+      String subGoalDesc = "";
+
+      SubGoal subGoal = SubGoal(subGoalTitle, subGoalDesc);
+      mainGoal.addSubGoal(subGoal);
+      //#endregion
+
+      //#region Act(When)
+      var completePercent = mainGoal.getCompletePercent();
+      //#endregion
+
+      //#region Assert(Then)
+      expect(completePercent, 0);
+      //#endregion
+    });
   });
 }
