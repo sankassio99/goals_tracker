@@ -42,5 +42,22 @@ void main() {
       expect(completePercent, 0);
       //#endregion
     });
+
+    test('get complete percent when has 2 completed tasks of 5', () async {
+      //#region Arrange(Given)
+      String subGoalTitle = "Learn english";
+      String subGoalDesc = "";
+
+      SubGoal subGoal = SubGoal(subGoalTitle, subGoalDesc);
+      //#endregion
+
+      //#region Act(When)
+      var completePercent = subGoal.getCompletePercent();
+      //#endregion
+
+      //#region Assert(Then)
+      expect(completePercent, 40);
+      //#endregion
+    });
   });
 }
