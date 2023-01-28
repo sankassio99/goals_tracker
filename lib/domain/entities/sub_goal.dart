@@ -13,7 +13,11 @@ class SubGoal extends Goal {
 
   @override
   double getCompletePercentage() {
-    double completePercentage = 0;
+    _calculatePercentage();
+    return completePercentage;
+  }
+
+  void _calculatePercentage() {
     var completedTasks = 0;
 
     if (tasks.isNotEmpty) {
@@ -24,8 +28,6 @@ class SubGoal extends Goal {
       }
       completePercentage = ((completedTasks / tasks.length) * 100);
     }
-
-    return completePercentage;
   }
 
   void addTask(Task task) {
