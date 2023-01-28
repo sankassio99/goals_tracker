@@ -50,10 +50,12 @@ void main() {
 
       SubGoal subGoal = SubGoal(subGoalTitle, subGoalDesc);
 
+      var task1 = Task("title");
+      var task2 = Task("title");
+
       List<Task> tasks = [
-        Task("title"),
-        Task("title"),
-        Task("title"),
+        task1,
+        task2,
         Task("title"),
         Task("title"),
         Task("title"),
@@ -62,6 +64,9 @@ void main() {
       for (var task in tasks) {
         subGoal.addTask(task);
       }
+
+      task1.markAsCompleted();
+      task2.markAsCompleted();
 
       //#endregion
 

@@ -22,7 +22,7 @@ class SubGoal extends Goal {
           completedTasks++;
         }
       }
-      completePercent = ((tasks.length / completedTasks) * 100).round();
+      completePercent = ((completedTasks / tasks.length) * 100).round();
     }
 
     return completePercent;
