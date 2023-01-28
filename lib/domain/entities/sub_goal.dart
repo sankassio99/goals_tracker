@@ -13,8 +13,19 @@ class SubGoal extends Goal {
 
   @override
   int getCompletePercent() {
-    // TODO: implement getCompletePercent
-    throw UnimplementedError();
+    var completePercent = 0;
+    var completedTasks = 0;
+
+    if (tasks.isNotEmpty) {
+      for (var task in tasks) {
+        if (task.completeStatus) {
+          completedTasks++;
+        }
+      }
+      completePercent = ((tasks.length / completedTasks) * 100).round();
+    }
+
+    return completePercent;
   }
 
   void addTask(Task task) {
