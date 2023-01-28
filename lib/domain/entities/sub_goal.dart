@@ -2,12 +2,11 @@ import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 
 class SubGoal extends Goal {
-  List<Task> tasks;
+  List<Task> tasks = [];
 
   SubGoal(
     super.title,
     super.desc, {
-    this.tasks = const [],
     super.completePercent,
     super.completeStutus,
   });
@@ -16,5 +15,13 @@ class SubGoal extends Goal {
   int getCompletePercent() {
     // TODO: implement getCompletePercent
     throw UnimplementedError();
+  }
+
+  void addTask(Task task) {
+    tasks.add(task);
+  }
+
+  List<Task> getTasks() {
+    return tasks;
   }
 }
