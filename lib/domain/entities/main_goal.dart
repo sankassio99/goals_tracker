@@ -17,4 +17,11 @@ class MainGoal extends Goal {
     // TODO: implement getCompletePercent
     throw UnimplementedError();
   }
+
+  void addSubGoal(SubGoal subGoal) {
+    // TODO: implement getCompletePercent
+    throw UnimplementedError();
+  }
+
+  getSubGoals() {}
 }
