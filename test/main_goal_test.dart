@@ -28,7 +28,7 @@ void main() {
       //#endregion
     });
 
-    test('get complete percent', () async {
+    test('get complete percent by subgoals percent', () async {
       //#region Arrange(Given)
       String title = "Get international job";
       String desc = "I need is motivated everyday";
@@ -38,8 +38,13 @@ void main() {
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal = SubGoal(subGoalTitle, subGoalDesc);
-      mainGoal.addSubGoal(subGoal);
+      SubGoal subGoal1 = SubGoal(subGoalTitle, subGoalDesc);
+      subGoal1.completePercent = 50.0;
+      mainGoal.addSubGoal(subGoal1);
+
+      SubGoal subGoal2 = SubGoal(subGoalTitle, subGoalDesc);
+      subGoal1.completePercent = 10.0;
+      mainGoal.addSubGoal(subGoal2);
       //#endregion
 
       //#region Act(When)
@@ -47,7 +52,7 @@ void main() {
       //#endregion
 
       //#region Assert(Then)
-      expect(completePercent, 0);
+      expect(completePercent, 30);
       //#endregion
     });
   });
