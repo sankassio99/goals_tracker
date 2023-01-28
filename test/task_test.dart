@@ -18,5 +18,22 @@ void main() {
       expect(task.completeStatus, isTrue);
       //#endregion
     });
+
+    test('Mark as not completed', () async {
+      //#region Arrange(Given)
+      String title = "Group class";
+      Task task = Task(title);
+
+      task.markAsCompleted();
+      //#endregion
+
+      //#region Act(When)
+      task.markOff();
+      //#endregion
+
+      //#region Assert(Then)
+      expect(task.completeStatus, isFalse);
+      //#endregion
+    });
   });
 }

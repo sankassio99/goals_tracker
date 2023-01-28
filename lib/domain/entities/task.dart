@@ -9,4 +9,6 @@ class Task {
   void markAsCompleted() {
     isCompleted = true;
   }
+
+  void markOff() {}
 }
