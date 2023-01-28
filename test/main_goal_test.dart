@@ -5,7 +5,7 @@ import 'package:goals_tracker/domain/entities/sub_goal.dart';
 void main() {
   setUp(() async {});
   group('Main Goal should', () {
-    test('add new subgoal and list all goals', () async {
+    test('add new subgoal and list all', () async {
       //#region Arrange(Given)
       String title = "Get international job";
       String desc = "I need is motivated everyday";
