@@ -1,7 +1,7 @@
 abstract class Goal {
   String title;
   String desc;
-  int completePercent;
+  double completePercent;
   bool completeStutus;
 
   Goal(
@@ -11,5 +11,5 @@ abstract class Goal {
     this.completeStutus = false,
   });
 
-  int getCompletePercent();
+  double getCompletePercent();
 }
