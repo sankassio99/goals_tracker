@@ -7,16 +7,17 @@ class MainGoal extends Goal {
   MainGoal(
     super.title,
     super.desc, {
-    super.completePercent,
-    super.completeStutus,
+    super.completePercentage,
+    super.isCompleted,
   });
 
   @override
-  double getCompletePercent() {
-    return calculatePercent();
+  double getCompletePercentage() {
+    _calculatePercent();
+    return completePercentage;
   }
 
-  double calculatePercent() {
+  void _calculatePercent() {
     var subGoalsCompletePercent = 0.0;
     var subGoalsTotalPercent = 0.0;
 
@@ -24,13 +25,12 @@ class MainGoal extends Goal {
       subGoalsTotalPercent = subGoals.length * 100;
 
       for (var subGoal in subGoals) {
-        subGoalsCompletePercent += subGoal.completePercent;
+        subGoalsCompletePercent += subGoal.completePercentage;
       }
 
-      completePercent =
+      completePercentage =
           ((subGoalsCompletePercent / subGoalsTotalPercent) * 100);
     }
-    return completePercent;
   }
 
   void addSubGoal(SubGoal subGoal) {

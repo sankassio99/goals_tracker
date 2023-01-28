@@ -35,11 +35,11 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      var completePercent = subGoal.getCompletePercent();
+      var completePercentage = subGoal.getCompletePercentage();
       //#endregion
 
       //#region Assert(Then)
-      expect(completePercent, 0);
+      expect(completePercentage, 0);
       //#endregion
     });
 
@@ -71,12 +71,11 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      // TODO : percent must be double
-      var completePercent = subGoal.getCompletePercent();
+      var completePercentage = subGoal.getCompletePercentage();
       //#endregion
 
       //#region Assert(Then)
-      expect(completePercent, 40);
+      expect(completePercentage, 40);
       //#endregion
     });
   });

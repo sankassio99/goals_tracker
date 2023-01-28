@@ -39,20 +39,20 @@ void main() {
       String subGoalDesc = "";
 
       SubGoal subGoal1 = SubGoal(subGoalTitle, subGoalDesc);
-      subGoal1.completePercent = 50.0;
+      subGoal1.completePercentage = 50.0;
       mainGoal.addSubGoal(subGoal1);
 
       SubGoal subGoal2 = SubGoal(subGoalTitle, subGoalDesc);
-      subGoal2.completePercent = 10.0;
+      subGoal2.completePercentage = 10.0;
       mainGoal.addSubGoal(subGoal2);
       //#endregion
 
       //#region Act(When)
-      var completePercent = mainGoal.getCompletePercent();
+      var completePercentage = mainGoal.getCompletePercentage();
       //#endregion
 
       //#region Assert(Then)
-      expect(completePercent, 30);
+      expect(completePercentage, 30);
       //#endregion
     });
   });

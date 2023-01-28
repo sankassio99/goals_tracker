@@ -1,15 +1,15 @@
 abstract class Goal {
   String title;
   String desc;
-  double completePercent;
-  bool completeStutus;
+  double completePercentage;
+  bool isCompleted;
 
   Goal(
     this.title,
     this.desc, {
-    this.completePercent = 0,
-    this.completeStutus = false,
+    this.completePercentage = 0,
+    this.isCompleted = false,
   });
 
-  double getCompletePercent();
+  double getCompletePercentage();
 }
