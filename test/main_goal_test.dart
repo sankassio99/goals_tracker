@@ -43,7 +43,7 @@ void main() {
       mainGoal.addSubGoal(subGoal1);
 
       SubGoal subGoal2 = SubGoal(subGoalTitle, subGoalDesc);
-      subGoal1.completePercent = 10.0;
+      subGoal2.completePercent = 10.0;
       mainGoal.addSubGoal(subGoal2);
       //#endregion
 

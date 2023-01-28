@@ -12,9 +12,25 @@ class MainGoal extends Goal {
   });
 
   @override
-  int getCompletePercent() {
-    // TODO: implement getCompletePercent
-    throw UnimplementedError();
+  double getCompletePercent() {
+    return calculatePercent();
+  }
+
+  double calculatePercent() {
+    var subGoalsCompletePercent = 0.0;
+    var subGoalsTotalPercent = 0.0;
+
+    if (subGoals.isNotEmpty) {
+      subGoalsTotalPercent = subGoals.length * 100;
+
+      for (var subGoal in subGoals) {
+        subGoalsCompletePercent += subGoal.completePercent;
+      }
+
+      completePercent =
+          ((subGoalsCompletePercent / subGoalsTotalPercent) * 100);
+    }
+    return completePercent;
   }
 
   void addSubGoal(SubGoal subGoal) {
