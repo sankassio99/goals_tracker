@@ -49,9 +49,24 @@ void main() {
       String subGoalDesc = "";
 
       SubGoal subGoal = SubGoal(subGoalTitle, subGoalDesc);
+
+      List<Task> tasks = [
+        Task("title"),
+        Task("title"),
+        Task("title"),
+        Task("title"),
+        Task("title"),
+        Task("title"),
+      ];
+
+      for (var task in tasks) {
+        subGoal.addTask(task);
+      }
+
       //#endregion
 
       //#region Act(When)
+      // TODO : percent must be double
       var completePercent = subGoal.getCompletePercent();
       //#endregion
 
