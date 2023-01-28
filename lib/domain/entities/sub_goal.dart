@@ -12,7 +12,7 @@ class SubGoal extends Goal {
     super.title,
     super.desc,
     super.completePercent,
-    super.compleStutus,
+    super.completeStutus,
   );
 
   @override
