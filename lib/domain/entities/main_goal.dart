@@ -13,7 +13,7 @@ class MainGoal extends Goal {
   );
 
   @override
-  getCompletePercent() {
+  int getCompletePercent() {
     // TODO: implement getCompletePercent
     throw UnimplementedError();
   }

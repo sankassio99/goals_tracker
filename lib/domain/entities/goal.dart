@@ -6,5 +6,5 @@ abstract class Goal {
 
   Goal(this.title, this.desc, this.completePercent, this.compleStutus);
 
-  getCompletePercent();
+  int getCompletePercent();
 }
