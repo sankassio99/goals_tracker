@@ -1,12 +1,12 @@
 class Task {
   String title;
-  bool completeStatus;
+  bool isCompleted;
 
-  Task(this.title, {this.completeStatus = false});
+  Task(this.title, {this.isCompleted = false});
 
-  bool get isCompleted => completeStatus;
+  bool get completeStatus => isCompleted;
 
   void markAsCompleted() {
-    completeStatus = true;
+    isCompleted = true;
   }
 }

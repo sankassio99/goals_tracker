@@ -15,7 +15,7 @@ void main() {
       //#endregion
 
       //#region Assert(Then)
-      expect(task.isCompleted, isTrue);
+      expect(task.completeStatus, isTrue);
       //#endregion
     });
   });
