@@ -10,5 +10,7 @@ class Task {
     isCompleted = true;
   }
 
-  void markOff() {}
+  void markOff() {
+    isCompleted = false;
+  }
 }
