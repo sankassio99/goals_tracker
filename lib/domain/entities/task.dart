@@ -6,5 +6,7 @@ class Task {
 
   bool get isCompleted => completeStatus;
 
-  void markAsCompleted() {}
+  void markAsCompleted() {
+    completeStatus = true;
+  }
 }
