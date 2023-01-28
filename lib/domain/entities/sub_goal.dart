@@ -5,12 +5,12 @@ class SubGoal extends Goal {
   List<Task> tasks;
 
   SubGoal(
-    this.tasks,
     super.title,
-    super.desc,
+    super.desc, {
+    this.tasks = const [],
     super.completePercent,
     super.completeStutus,
-  );
+  });
 
   @override
   int getCompletePercent() {

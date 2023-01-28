@@ -5,12 +5,11 @@ class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
 
   MainGoal(
-    this.subGoals,
     super.title,
-    super.desc,
+    super.desc, {
     super.completePercent,
     super.completeStutus,
-  );
+  });
 
   @override
   int getCompletePercent() {
@@ -19,9 +18,10 @@ class MainGoal extends Goal {
   }
 
   void addSubGoal(SubGoal subGoal) {
-    // TODO: implement getCompletePercent
-    throw UnimplementedError();
+    subGoals.add(subGoal);
   }
 
-  getSubGoals() {}
+  List<SubGoal> getSubGoals() {
+    return subGoals;
+  }
 }

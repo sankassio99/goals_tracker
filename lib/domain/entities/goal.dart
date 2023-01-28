@@ -4,7 +4,12 @@ abstract class Goal {
   int completePercent;
   bool completeStutus;
 
-  Goal(this.title, this.desc, this.completePercent, this.completeStutus);
+  Goal(
+    this.title,
+    this.desc, {
+    this.completePercent = 0,
+    this.completeStutus = false,
+  });
 
   int getCompletePercent();
 }

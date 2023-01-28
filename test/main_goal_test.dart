@@ -7,22 +7,15 @@ void main() {
   group('Main Goal should', () {
     test('add new subgoal and list all goals', () async {
       //#region Arrange(Given)
-      List<SubGoal> subGoals = [];
       String title = "Get international job";
       String desc = "I need is motivated everyday";
-      int completePercent = 0;
-      bool completeStutus = false;
 
-      MainGoal mainGoal =
-          MainGoal(subGoals, title, desc, completePercent, completeStutus);
+      MainGoal mainGoal = MainGoal(title, desc);
 
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
-      int subGoalCompletePercent = 0;
-      bool subGoalCompleteStutus = false;
 
-      SubGoal subGoal = SubGoal([], subGoalTitle, subGoalDesc,
-          subGoalCompletePercent, subGoalCompleteStutus);
+      SubGoal subGoal = SubGoal(subGoalTitle, subGoalDesc);
       //#endregion
 
       //#region Act(When)
