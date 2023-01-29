@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:goals_tracker/main.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 
 void main() {
   testWidgets('When is loaded must be show a title and button to add new goals',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const HomePageWidget());
+    await tester.pumpWidget(const MyApp());
 
     // act
     await tester.pumpAndSettle();

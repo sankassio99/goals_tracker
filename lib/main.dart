@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
+import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MainGoalPageWidget(),
+      home: HomePageWidget(),
     );
   }
 }
