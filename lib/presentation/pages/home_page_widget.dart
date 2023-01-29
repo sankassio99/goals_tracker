@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 class HomePageWidget extends StatelessWidget {
   const HomePageWidget({super.key});
@@ -28,11 +29,11 @@ class HomePageWidget extends StatelessWidget {
               ElevatedButton(
                 key: const Key("addNewGoalButton"),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //       builder: (context) => const SecondRoute()),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MainGoalPageWidget()),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(88, 36),

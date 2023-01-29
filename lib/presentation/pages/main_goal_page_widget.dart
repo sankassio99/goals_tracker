@@ -11,8 +11,6 @@ class MainGoalPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<MainGoalViewModel>(context);
-
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: const MyAppBar(),
