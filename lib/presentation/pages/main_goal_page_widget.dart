@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
-
-class MainGoalViewModel extends ChangeNotifier {
-  
-}
+import 'package:goals_tracker/presentation/components/my_app_bar.dart';
+import 'package:goals_tracker/presentation/models/main_goal_view_model.dart';
+import 'package:provider/provider.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
@@ -12,6 +11,8 @@ class MainGoalPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final model = Provider.of<MainGoalViewModel>(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: const MyAppBar(),
@@ -75,42 +76,4 @@ class MainGoalPageWidget extends StatelessWidget {
       ),
     );
   }
-}
-
-class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MyAppBar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.black12,
-      automaticallyImplyLeading: false,
-      leading: IconButton(
-        icon: const Icon(
-          Icons.arrow_back_rounded,
-          color: Colors.black12,
-          size: 20,
-        ),
-        onPressed: () {
-          print('IconButton pressed ...');
-        },
-      ),
-      title: const Text(
-        'Page Title',
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.black12,
-        ),
-      ),
-      actions: [],
-      centerTitle: false,
-      elevation: 0,
-    );
-  }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => const Size(200, 40);
 }
