@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:goals_tracker/main.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
+import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 void main() {
   testWidgets('When is loaded must be show a title and button to add new goals',
@@ -24,11 +26,18 @@ void main() {
       'When add main goal button is clicked must be redirect to new maingoal page created',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const HomePageWidget());
+    await tester.pumpWidget(const MyApp());
 
     // act
+    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
+
+    await tester.tap(buttonFinder);
+
+    await tester.pumpAndSettle();
 
     // assert
+    var mainGoalPageFinder = find.byType(MainGoalPageWidget);
+    expect(mainGoalPageFinder, findsOneWidget);
   });
 
   testWidgets(
