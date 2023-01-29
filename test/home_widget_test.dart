@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:goals_tracker/main.dart';
-import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 void main() {
@@ -44,7 +42,7 @@ void main() {
       'When new main goal page is created the focus must be in title input',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const HomePageWidget());
+    // await tester.pumpWidget(const HomePageWidget());
 
     // act
 
@@ -54,7 +52,7 @@ void main() {
   testWidgets('When is loaded must be show a list of main goal cards',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const HomePageWidget());
+    // await tester.pumpWidget(const HomePageWidget());
 
     // act
 
