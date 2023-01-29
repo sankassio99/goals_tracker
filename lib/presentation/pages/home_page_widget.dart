@@ -28,7 +28,11 @@ class HomePageWidget extends StatelessWidget {
               ElevatedButton(
                 key: const Key("addNewGoalButton"),
                 onPressed: () {
-                  print('Button pressed ...');
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //       builder: (context) => const SecondRoute()),
+                  // );
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(88, 36),
