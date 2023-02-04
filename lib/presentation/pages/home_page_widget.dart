@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 class HomePageWidget extends StatelessWidget {
@@ -33,11 +34,7 @@ class HomePageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  Container(
-                    width: 400,
-                    height: 100,
-                    color: Colors.amber,
-                  ),
+                  GoalListWidget(),
                   Center(
                     child: ElevatedButton(
                       key: const Key("addNewGoalButton"),
