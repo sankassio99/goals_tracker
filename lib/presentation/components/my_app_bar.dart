@@ -11,6 +11,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: Colors.black12,
       automaticallyImplyLeading: false,
       leading: IconButton(
+        key: const Key("backIconButton"),
         icon: const Icon(
           Icons.arrow_back_rounded,
           color: Colors.black12,
@@ -21,6 +22,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       title: const Text(
+        key: const Key("pageTitleAppBar"),
         'Page Title',
         style: TextStyle(
           fontSize: 16,
