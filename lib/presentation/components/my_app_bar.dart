@@ -18,12 +18,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           size: 20,
         ),
         onPressed: () {
-          print('IconButton pressed ...');
+          Navigator.pop(context);
         },
       ),
       title: const Text(
         key: const Key("pageTitleAppBar"),
-        'Page Title',
+        'Back',
         style: TextStyle(
           fontSize: 16,
           color: Colors.black12,
