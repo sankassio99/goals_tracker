@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
-class HeaderGoalWidget extends StatefulWidget {
-  const HeaderGoalWidget({Key? key}) : super(key: key);
+class HeaderGoalWidget extends StatelessWidget {
+  var editMode = false.obs;
+  FocusNode focusNode = FocusNode();
 
-  @override
-  _HeaderGoalWidgetState createState() => _HeaderGoalWidgetState();
-}
+  HeaderGoalWidget({required RxBool editMode});
 
-class _HeaderGoalWidgetState extends State<HeaderGoalWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,8 +26,8 @@ class _HeaderGoalWidgetState extends State<HeaderGoalWidget> {
               children: [
                 Row(
                   mainAxisSize: MainAxisSize.max,
-                  children: const [
-                    Padding(
+                  children: [
+                    const Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
                       child: Icon(
                         Icons.wind_power,
@@ -36,9 +35,18 @@ class _HeaderGoalWidgetState extends State<HeaderGoalWidget> {
                         size: 24,
                       ),
                     ),
-                    Text(
-                      'Title main goal',
-                    ),
+                    Container(
+                      width: 300,
+                      height: 40,
+                      child: Obx(
+                        () => TextField(
+                          key: const Key("titleInput"),
+                          readOnly: editMode.value,
+                          focusNode: focusNode,
+                          autofocus: true,
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 const Text(
