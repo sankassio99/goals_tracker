@@ -24,7 +24,18 @@ ThemeData themeConfig() {
     // Define the default brightness and colors.
     brightness: Brightness.light,
     primaryColor: const Color(0xFF928163),
-    secondaryHeaderColor: const Color(0xFF928163),
+    colorScheme: const ColorScheme(
+        brightness: Brightness.light,
+        primary: Color(0xff14181b),
+        onPrimary: Color(0xfff1f4f8),
+        secondary: Color(0xff14181b),
+        onSecondary: Color.fromARGB(255, 102, 99, 146),
+        error: Color(0xFF928163),
+        onError: Color(0xFF928163),
+        background: Color(0xfff1f4f8),
+        onBackground: Color.fromARGB(255, 254, 214, 140),
+        surface: Color(0xFF928163),
+        onSurface: Color.fromARGB(255, 119, 0, 8)),
 
     // Define the default font family.
     fontFamily: 'Poppins',
@@ -33,13 +44,26 @@ ThemeData themeConfig() {
     // Define the default `TextTheme`. Use this to specify the default
     // text styling for headlines, titles, bodies of text, and more.
     textTheme: const TextTheme(
-        displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-        titleLarge: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-        bodyMedium: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-        headlineLarge: TextStyle(
-          fontSize: 34.0,
-          fontWeight: FontWeight.w600,
-          color: Colors.black87,
-        )),
+      headlineLarge: TextStyle(
+        fontSize: 34.0,
+        fontWeight: FontWeight.w600,
+        color: Colors.black87,
+      ),
+      headlineSmall: TextStyle(
+        fontSize: 18.0,
+        fontWeight: FontWeight.w700,
+        color: Colors.black87,
+      ),
+      bodySmall: TextStyle(
+        fontSize: 13.0,
+        fontWeight: FontWeight.w500,
+        color: Colors.black54,
+      ),
+      bodyMedium: TextStyle(
+        fontSize: 16.0,
+        fontWeight: FontWeight.w500,
+        color: Colors.black87,
+      ),
+    ),
   );
 }

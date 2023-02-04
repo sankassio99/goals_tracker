@@ -38,14 +38,16 @@ class GoalCardWidget extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Text(
-                    key: Key("goalCardTitle"),
+                    key: const Key("goalCardTitle"),
                     'Sub goald title 1',
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Text(
-                    key: Key("goalCardPercentage"),
+                    key: const Key("goalCardPercentage"),
                     '55% complete',
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),

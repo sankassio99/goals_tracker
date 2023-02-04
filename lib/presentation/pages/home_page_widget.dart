@@ -15,7 +15,6 @@ class HomePageWidget extends StatelessWidget {
           child: Center(
             child: Container(
               width: 400,
-              color: Colors.white,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,34 +25,51 @@ class HomePageWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   GoalListWidget(),
-                  Center(
-                    child: ElevatedButton(
-                      key: const Key("addNewGoalButton"),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MainGoalPageWidget(
-                                    isCreatedNow: true.obs,
-                                  )),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(390, 40),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(2)),
-                        ),
-                      ),
-                      child: const Text('Add goal'),
-                    ),
-                  ),
                 ],
               ),
             ),
           ),
         ),
       ),
+      persistentFooterButtons: [
+        Center(
+          child: ElevatedButton(
+            key: const Key("addNewGoalButton"),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => MainGoalPageWidget(
+                          isCreatedNow: true.obs,
+                        )),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+              minimumSize: const Size(400, 60),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(2)),
+              ),
+              textStyle: Theme.of(context).textTheme.bodyMedium,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Icon(
+                  key: Key("goalCardIcon"),
+                  Icons.add,
+                  color: Colors.black87,
+                  size: 24,
+                ),
+                Text(
+                  'Add goal',
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
