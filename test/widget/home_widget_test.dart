@@ -55,14 +55,4 @@ void main() {
     var hasFocus = titleInputWidget.focusNode!.hasPrimaryFocus;
     expect(hasFocus, isTrue);
   });
-
-  testWidgets('When is loaded must be show a list of main goal cards',
-      (WidgetTester tester) async {
-    // arrange
-    // await tester.pumpWidget(const HomePageWidget());
-
-    // act
-
-    // assert
-  });
 }
