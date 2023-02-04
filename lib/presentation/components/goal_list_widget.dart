@@ -19,10 +19,10 @@ class GoalListWidget extends StatelessWidget {
             child: Row(
               mainAxisSize: MainAxisSize.max,
               children: [
-                Text(
-                  'Sub goals',
-                  textAlign: TextAlign.start,
-                ),
+                // Text(
+                //   'Sub goals',
+                //   textAlign: TextAlign.start,
+                // ),
               ],
             ),
           ),

@@ -8,13 +8,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.black12,
       automaticallyImplyLeading: false,
       leading: IconButton(
         key: const Key("backIconButton"),
         icon: const Icon(
           Icons.arrow_back_rounded,
-          color: Colors.black12,
+          color: Colors.black87,
           size: 20,
         ),
         onPressed: () {
@@ -26,7 +25,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         'Back',
         style: TextStyle(
           fontSize: 16,
-          color: Colors.black12,
+          color: Colors.black87,
         ),
       ),
       actions: [],

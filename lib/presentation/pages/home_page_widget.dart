@@ -11,7 +11,7 @@ class HomePageWidget extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
+          padding: const EdgeInsets.fromLTRB(8.0, 24, 8.0, 0),
           child: Center(
             child: Container(
               width: 400,
@@ -20,19 +20,10 @@ class HomePageWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Your Goals",
-                    key: Key("homeTitle"),
-                    style: TextStyle(
-                      fontSize: 22.0,
-                    ),
-                  ),
-                  const Divider(
-                    height: 10,
-                    thickness: 1,
-                    indent: 50,
-                    endIndent: 50,
-                    color: Colors.black12,
+                    key: const Key("homeTitle"),
+                    style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   GoalListWidget(),
                   Center(
