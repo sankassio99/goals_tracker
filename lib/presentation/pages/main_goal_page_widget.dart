@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:provider/provider.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
@@ -11,6 +13,8 @@ class MainGoalPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<MainGoalController>(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: const MyAppBar(),
