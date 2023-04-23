@@ -7,6 +7,8 @@ import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:provider/provider.dart';
 
+import '../components/bottom_button.dart';
+
 class MainGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
   RxBool? isCreatedNow = false.obs;
@@ -61,7 +63,11 @@ class MainGoalPageWidget extends StatelessWidget {
           ),
         ),
       ),
-      persistentFooterButtons: [const BottomButton()],
+      persistentFooterButtons: [
+        BottomButton(
+          action: () => print("coco"),
+        )
+      ],
     );
   }
 }

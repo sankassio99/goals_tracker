@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 class BottomButton extends StatelessWidget {
-  const BottomButton({
+  final Function action;
+
+  BottomButton({
     super.key,
+    required this.action,
   });
 
   @override
@@ -11,7 +13,7 @@ class BottomButton extends StatelessWidget {
     return Center(
       child: ElevatedButton(
         key: const Key("addNewGoalButton"),
-        onPressed: null,
+        onPressed: () => action.call(),
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(400, 60),
           padding: const EdgeInsets.symmetric(horizontal: 16),
