@@ -33,7 +33,7 @@ class HeaderGoalWidget extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                       child: Icon(
                         Icons.wind_power,
                         color: Colors.black87,
@@ -41,17 +41,26 @@ class HeaderGoalWidget extends StatelessWidget {
                       ),
                     ),
                     Focus(
-                      onFocusChange: (value) => onInputFocusChange.call(value),
+                      onFocusChange: (value) {
+                        onInputFocusChange.call(value);
+                      },
                       child: Container(
                         width: 300,
                         height: 40,
                         child: Obx(
                           () => TextField(
-                            key: const Key("titleInput"),
-                            readOnly: editMode.value,
-                            autofocus: true,
-                            controller: textController,
-                          ),
+                              key: const Key("titleInput"),
+                              readOnly: editMode.value,
+                              autofocus: true,
+                              controller: textController,
+                              decoration: const InputDecoration(
+                                  hintText: 'Goal name',
+                                  border: InputBorder.none),
+                              style: const TextStyle(
+                                color: Colors.black87,
+                                fontSize: 25,
+                                fontWeight: FontWeight.w800,
+                              )),
                         ),
                       ),
                     )
