@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:provider/provider.dart';
-
 import '../components/bottom_button.dart';
 
 class HomePageWidget extends StatelessWidget {
@@ -36,7 +35,7 @@ class HomePageWidget extends StatelessWidget {
       ),
       persistentFooterButtons: [
         BottomButton(
-          action: () => controller.goToMainGoal(context),
+          action: () => controller.addNewGoal(context),
         ),
       ],
     );

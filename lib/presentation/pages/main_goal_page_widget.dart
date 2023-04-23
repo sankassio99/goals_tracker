@@ -4,7 +4,6 @@ import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
-import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../components/bottom_button.dart';
