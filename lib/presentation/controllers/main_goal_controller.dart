@@ -1,11 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:goals_tracker/application/usecases/update_goal.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
+import '../../domain/entities/main_goal.dart';
 
 class MainGoalController extends ChangeNotifier {
-  MainGoalController() {
-    print("initialized");
+  final UpdateGoal _updateGoal;
+  late GoalModel _currentGoal;
+
+  MainGoalController(this._updateGoal);
+
+  onInputFocusChange(bool focusIn) {
+    if (!focusIn) {
+      var goal = MainGoal(
+        _currentGoal.id,
+        _currentGoal.name.text,
+        _currentGoal.description,
+      );
+      _updateGoal.execute(goal);
+    }
   }
-  void printSome(String s) {
-    print(s);
+
+  void setCurrentGoal(GoalModel goalModel) {
+    _currentGoal = goalModel;
   }
-  // Add methods for handling user interactions and updating the model
 }

@@ -4,9 +4,14 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
   var editMode = false.obs;
-  FocusNode focusNode = FocusNode();
+  late void Function(bool) onInputFocusChange;
+  final TextEditingController textController;
 
-  HeaderGoalWidget({required RxBool editMode});
+  HeaderGoalWidget({
+    required this.onInputFocusChange,
+    required editMode,
+    required this.textController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +40,18 @@ class HeaderGoalWidget extends StatelessWidget {
                         size: 24,
                       ),
                     ),
-                    Container(
-                      width: 300,
-                      height: 40,
-                      child: Obx(
-                        () => TextField(
-                          key: const Key("titleInput"),
-                          readOnly: editMode.value,
-                          focusNode: focusNode,
-                          autofocus: true,
+                    Focus(
+                      onFocusChange: (value) => onInputFocusChange.call(value),
+                      child: Container(
+                        width: 300,
+                        height: 40,
+                        child: Obx(
+                          () => TextField(
+                            key: const Key("titleInput"),
+                            readOnly: editMode.value,
+                            autofocus: true,
+                            controller: textController,
+                          ),
                         ),
                       ),
                     )

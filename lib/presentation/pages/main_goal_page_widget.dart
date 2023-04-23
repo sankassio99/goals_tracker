@@ -4,6 +4,7 @@ import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:provider/provider.dart';
 
 import '../components/bottom_button.dart';
@@ -11,12 +12,14 @@ import '../components/bottom_button.dart';
 class MainGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
   RxBool? isCreatedNow = false.obs;
+  GoalModel goalModel;
 
-  MainGoalPageWidget({super.key, this.isCreatedNow});
+  MainGoalPageWidget({this.isCreatedNow, required this.goalModel});
 
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<MainGoalController>(context);
+    controller.setCurrentGoal(goalModel);
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
@@ -45,7 +48,12 @@ class MainGoalPageWidget extends StatelessWidget {
                       decoration: const BoxDecoration(
                         color: Colors.white,
                       ),
-                      child: HeaderGoalWidget(editMode: isCreatedNow!),
+                      child: HeaderGoalWidget(
+                        editMode: isCreatedNow!,
+                        onInputFocusChange: (value) =>
+                            controller.onInputFocusChange(value),
+                        textController: goalModel.name,
+                      ),
                     ),
                   ),
                   const Divider(

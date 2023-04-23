@@ -5,6 +5,7 @@ class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
 
   MainGoal(
+    super.id,
     super.title,
     super.desc, {
     super.completePercentage,
