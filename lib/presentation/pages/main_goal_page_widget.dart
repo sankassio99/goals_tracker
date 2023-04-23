@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:provider/provider.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
@@ -52,30 +54,14 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  // SubGoalsListWidget(),
-                  ElevatedButton(
-                    onPressed: () {
-                      print('Button pressed ...');
-                    },
-                    // icon: const Icon(
-                    //   Icons.add_circle,
-                    //   size: 15,
-                    // ),
-                    style: ElevatedButton.styleFrom(
-                      minimumSize: Size(88, 36),
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(2)),
-                      ),
-                    ),
-                    child: const Text('Add subgoal'),
-                  ),
+                  GoalListWidget()
                 ],
               ),
             ),
           ),
         ),
       ),
+      persistentFooterButtons: [const BottomButton()],
     );
   }
 }
