@@ -10,12 +10,14 @@ void main() {
       String title = "Get international job";
       String desc = "I need is motivated everyday";
 
-      MainGoal mainGoal = MainGoal(title, desc);
+      String mainGoalId = "random";
+      MainGoal mainGoal = MainGoal(mainGoalId, title, desc);
 
+      String id = "random";
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal = SubGoal(subGoalTitle, subGoalDesc);
+      SubGoal subGoal = SubGoal(id, subGoalTitle, subGoalDesc);
       //#endregion
 
       //#region Act(When)
@@ -33,16 +35,19 @@ void main() {
       String title = "Get international job";
       String desc = "I need is motivated everyday";
 
-      MainGoal mainGoal = MainGoal(title, desc);
+      String mainGoalId = "random";
+      MainGoal mainGoal = MainGoal(mainGoalId, title, desc);
 
+      String subGoalId = "random";
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal1 = SubGoal(subGoalTitle, subGoalDesc);
+      SubGoal subGoal1 = SubGoal(subGoalId, subGoalTitle, subGoalDesc);
       subGoal1.completePercentage = 50.0;
       mainGoal.addSubGoal(subGoal1);
 
-      SubGoal subGoal2 = SubGoal(subGoalTitle, subGoalDesc);
+      String subGoal2Id = "random";
+      SubGoal subGoal2 = SubGoal(subGoal2Id, subGoalTitle, subGoalDesc);
       subGoal2.completePercentage = 10.0;
       mainGoal.addSubGoal(subGoal2);
       //#endregion
