@@ -13,7 +13,7 @@ class MainGoalController extends ChangeNotifier {
     if (!focusIn) {
       var goal = MainGoal(
         _currentGoal.id,
-        _currentGoal.name.text,
+        _currentGoal.name,
         _currentGoal.description,
       );
       _updateGoal.execute(goal);

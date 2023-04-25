@@ -6,7 +6,6 @@ import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:provider/provider.dart';
-
 import '../components/bottom_button.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
@@ -52,7 +51,7 @@ class MainGoalPageWidget extends StatelessWidget {
                         editMode: isCreatedNow!,
                         onInputFocusChange: (value) =>
                             controller.onInputFocusChange(value),
-                        textController: goalModel.name,
+                        textController: goalModel.nameController,
                       ),
                     ),
                   ),
@@ -63,7 +62,7 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  GoalListWidget()
+                  GoalListWidget(goals: [])
                 ],
               ),
             ),

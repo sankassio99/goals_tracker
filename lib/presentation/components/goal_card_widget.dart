@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalCardWidget extends StatelessWidget {
+  final GoalModel model;
+  const GoalCardWidget({super.key, required this.model});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -41,7 +45,7 @@ class GoalCardWidget extends StatelessWidget {
                 children: [
                   Text(
                     key: const Key("goalCardTitle"),
-                    'Sub goald title 1',
+                    model.name,
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Text(

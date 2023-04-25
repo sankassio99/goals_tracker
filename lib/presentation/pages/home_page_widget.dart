@@ -26,7 +26,7 @@ class HomePageWidget extends StatelessWidget {
                     key: const Key("homeTitle"),
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
-                  GoalListWidget(),
+                  GoalListWidget(goals: controller.goalList),
                 ],
               ),
             ),

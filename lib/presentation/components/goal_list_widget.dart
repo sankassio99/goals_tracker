@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalListWidget extends StatelessWidget {
+  final List<GoalModel> goals;
+
+  GoalListWidget({required this.goals, super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,12 +20,6 @@ class GoalListWidget extends StatelessWidget {
             padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              children: [
-                // Text(
-                //   'Sub goals',
-                //   textAlign: TextAlign.start,
-                // ),
-              ],
             ),
           ),
           ListView(
@@ -29,16 +27,7 @@ class GoalListWidget extends StatelessWidget {
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                child: GoalCardWidget(),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
-                child: GoalCardWidget(),
-              ),
-            ],
+            children: goals.map((goal) => GoalCardWidget(model: goal)).toList(),
           ),
         ],
       ),
