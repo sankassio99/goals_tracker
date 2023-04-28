@@ -9,7 +9,9 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: GoalListWidget(),
+          body: GoalListWidget(
+            goals: const [],
+          ),
         ),
       ),
     );
