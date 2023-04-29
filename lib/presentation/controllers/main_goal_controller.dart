@@ -11,13 +11,18 @@ class MainGoalController extends ChangeNotifier {
 
   onInputFocusChange(bool focusIn) {
     if (!focusIn) {
-      var goal = MainGoal(
-        _currentGoal.id,
-        _currentGoal.name,
-        _currentGoal.description,
-      );
-      _updateGoal.execute(goal);
+      updateGoal();
     }
+  }
+
+  void updateGoal() {
+    var goal = MainGoal(
+      _currentGoal.id,
+      _currentGoal.name,
+      _currentGoal.description,
+    );
+
+    _updateGoal.execute(goal);
   }
 
   void setCurrentGoal(GoalModel goalModel) {

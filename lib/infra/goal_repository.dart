@@ -10,18 +10,20 @@ class GoalRepository implements IGoalRepository {
 
   @override
   void save(Goal goal) {
-    print("SALVANDO AQUI");
+    print("SAVING NEW GOAL");
     goalsData.add(goal);
   }
 
   @override
   Future<List<Goal>> getAll() async {
-    print("BUSCANDO TODOS");
+    print("GETTING ALL");
     return goalsData;
   }
 
   @override
   void update(Goal goal) {
-    print("BUSCANDO TODOS");
+    print("UPDATING GOAL");
+    var goalIndex = goalsData.indexWhere((data) => data.id == goal.id);
+    goalsData[goalIndex] = goal;
   }
 }
