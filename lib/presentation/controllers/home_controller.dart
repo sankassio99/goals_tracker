@@ -8,11 +8,12 @@ import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 class HomeController extends ChangeNotifier {
   AddNewGoal _addNewGoal;
   GetGoals _getGoals;
-  List<GoalModel> goalList = List.empty();
+  List<GoalModel> goalList = [];
 
   HomeController(this._addNewGoal, this._getGoals);
 
   getAllGoals() async {
+    goalList = [];
     var goals = await _getGoals.getAll();
     for (var goal in goals) {
       goalList.add(
@@ -27,6 +28,8 @@ class HomeController extends ChangeNotifier {
     var goalId = _addNewGoal.execute();
     var newGoal = GoalModel(goalId);
     goToMainGoal(context, newGoal);
+
+    getAllGoals();
   }
 
   void goToMainGoal(BuildContext context, GoalModel newGoal) {
