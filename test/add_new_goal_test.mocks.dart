@@ -45,4 +45,12 @@ class MockIGoalRepository extends _i1.Mock implements _i2.IGoalRepository {
         ),
         returnValue: _i4.Future<List<_i3.Goal>>.value(<_i3.Goal>[]),
       ) as _i4.Future<List<_i3.Goal>>);
+  @override
+  void update(_i3.Goal? goal) => super.noSuchMethod(
+        Invocation.method(
+          #update,
+          [goal],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

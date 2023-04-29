@@ -19,4 +19,9 @@ class GoalRepository implements IGoalRepository {
     print("BUSCANDO TODOS");
     return goalsData;
   }
+
+  @override
+  void update(Goal goal) {
+    print("BUSCANDO TODOS");
+  }
 }

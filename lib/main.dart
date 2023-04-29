@@ -11,7 +11,7 @@ import 'package:provider/provider.dart';
 void main() {
   var goalRepository = GoalRepository();
   var addNewGoal = AddNewGoal(goalRepository);
-  var updateGoal = UpdateGoal();
+  var updateGoal = UpdateGoal(goalRepository);
   var getGoals = GetGoals(goalRepository);
   runApp(
     MultiProvider(
