@@ -11,7 +11,7 @@ class HomeController extends ChangeNotifier {
   List<GoalModel> goalList = List.empty();
 
   HomeController(this._addNewGoal, this._getGoals) {
-    var goals = _getGoals.execute();
+    var goals = _getGoals.getAll();
     for (var goal in goals) {
       goalList.add(
         GoalModel(goal.id, description: goal.desc, title: goal.title),

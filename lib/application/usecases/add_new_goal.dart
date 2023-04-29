@@ -1,4 +1,3 @@
-import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:uuid/uuid.dart';
 
@@ -11,7 +10,9 @@ class AddNewGoal {
   String execute() {
     var uuid = const Uuid().v4.toString();
     var emptyGoal = MainGoal(uuid, "", "");
+
     goalRepository.save(emptyGoal);
+
     return uuid;
   }
 }

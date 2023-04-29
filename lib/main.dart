@@ -12,7 +12,7 @@ void main() {
   var goalRepository = GoalRepository();
   var addNewGoal = AddNewGoal(goalRepository);
   var updateGoal = UpdateGoal();
-  var getGoals = GetGoals();
+  var getGoals = GetGoals(goalRepository);
   runApp(
     MultiProvider(
       providers: [
