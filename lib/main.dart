@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
+import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  var addNewGoal = AddNewGoal();
+  var goalRepository = GoalRepository();
+  var addNewGoal = AddNewGoal(goalRepository);
   var updateGoal = UpdateGoal();
   var getGoals = GetGoals();
   runApp(

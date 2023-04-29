@@ -28,8 +28,11 @@ class MockIGoalRepository extends _i1.Mock implements _i2.IGoalRepository {
   }
 
   @override
-  dynamic save(_i3.Goal? goal) => super.noSuchMethod(Invocation.method(
-        #save,
-        [goal],
-      ));
+  void save(_i3.Goal? goal) => super.noSuchMethod(
+        Invocation.method(
+          #save,
+          [goal],
+        ),
+        returnValueForMissingStub: null,
+      );
 }

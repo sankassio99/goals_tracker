@@ -9,10 +9,12 @@ import 'add_new_goal_test.mocks.dart';
 void main() {
   late AddNewGoal addNewGoal;
   late MockIGoalRepository goalRepositoryMock;
+
   setUp(() async {
     goalRepositoryMock = MockIGoalRepository();
     addNewGoal = AddNewGoal(goalRepositoryMock);
   });
+
   group('Add new goal use cases should', () {
     test('create a new goal and save on repository', () async {
       //#region Arrange(Given)
