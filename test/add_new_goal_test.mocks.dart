@@ -3,6 +3,8 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'dart:async' as _i4;
+
 import 'package:goals_tracker/application/adapters/igoal_repository.dart'
     as _i2;
 import 'package:goals_tracker/domain/entities/goal.dart' as _i3;
@@ -35,4 +37,12 @@ class MockIGoalRepository extends _i1.Mock implements _i2.IGoalRepository {
         ),
         returnValueForMissingStub: null,
       );
+  @override
+  _i4.Future<List<_i3.Goal>> getAll() => (super.noSuchMethod(
+        Invocation.method(
+          #getAll,
+          [],
+        ),
+        returnValue: _i4.Future<List<_i3.Goal>>.value(<_i3.Goal>[]),
+      ) as _i4.Future<List<_i3.Goal>>);
 }

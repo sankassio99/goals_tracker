@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
+import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:mockito/annotations.dart';
+import 'package:mockito/mockito.dart';
 import 'add_new_goal_test.mocks.dart';
 
 @GenerateMocks([IGoalRepository])
@@ -22,10 +24,13 @@ void main() {
       var goal2 = MainGoal("2", "Build muscles", "");
       goalRepositoryMock.save(goal1);
       goalRepositoryMock.save(goal2);
+
+      List<Goal> goalList = [goal1, goal2];
+      when(goalRepositoryMock.getAll()).thenAnswer((_) async => goalList);
       //#endregion
 
       //#region Act(When)
-      var goals = getGoals.getAll();
+      var goals = await getGoals.getAll();
       //#endregion
 
       //#region Assert(Then)

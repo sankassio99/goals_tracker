@@ -10,6 +10,8 @@ class HomePageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<HomeController>(context);
+    controller.getAllGoals();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(

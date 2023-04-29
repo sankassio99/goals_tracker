@@ -10,13 +10,17 @@ class HomeController extends ChangeNotifier {
   GetGoals _getGoals;
   List<GoalModel> goalList = List.empty();
 
-  HomeController(this._addNewGoal, this._getGoals) {
-    var goals = _getGoals.getAll();
+  HomeController(this._addNewGoal, this._getGoals);
+
+  getAllGoals() async {
+    var goals = await _getGoals.getAll();
     for (var goal in goals) {
       goalList.add(
         GoalModel(goal.id, description: goal.desc, title: goal.title),
       );
     }
+
+    notifyListeners();
   }
 
   void addNewGoal(BuildContext context) {
