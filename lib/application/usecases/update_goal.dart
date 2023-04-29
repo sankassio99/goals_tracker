@@ -7,6 +7,6 @@ class UpdateGoal {
   UpdateGoal(this.goalRepository);
 
   void execute(Goal goal) {
-    print("Updating goal: " + goal.id);
+    goalRepository.update(goal);
   }
 }

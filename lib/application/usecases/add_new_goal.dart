@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:uuid/uuid.dart';
 
