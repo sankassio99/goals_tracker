@@ -10,15 +10,16 @@ class GoalCardWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 80,
+      margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
       decoration: BoxDecoration(
         color: Colors.white,
-        boxShadow: const [
-          BoxShadow(
-            blurRadius: 4,
-            color: Color(0x33000000),
-            offset: Offset(0, 2),
-          )
-        ],
+        // boxShadow: const [
+        //   BoxShadow(
+        //     blurRadius: 4,
+        //     color: Color(0x33000000),
+        //     offset: Offset(0, 2),
+        //   )
+        // ],
         borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(

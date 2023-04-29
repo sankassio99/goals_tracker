@@ -16,20 +16,17 @@ class HomePageWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 24, 8.0, 0),
           child: Center(
-            child: Container(
-              width: 400,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Your Goals",
-                    key: const Key("homeTitle"),
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  GoalListWidget(goals: controller.goalList),
-                ],
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Your Goals",
+                  key: const Key("homeTitle"),
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+                GoalListWidget(goals: controller.goalList),
+              ],
             ),
           ),
         ),
