@@ -18,7 +18,7 @@ class BottomButton extends StatelessWidget {
           minimumSize: const Size(400, 60),
           padding: const EdgeInsets.symmetric(horizontal: 16),
           shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(2)),
+            borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           textStyle: Theme.of(context).textTheme.bodyMedium,
         ),
@@ -29,11 +29,13 @@ class BottomButton extends StatelessWidget {
             Icon(
               key: Key("goalCardIcon"),
               Icons.add,
-              color: Colors.black87,
+              color: Colors.white,
               size: 24,
             ),
             Text(
               'Add goal',
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ],
         ),

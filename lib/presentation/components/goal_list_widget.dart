@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
+import 'package:goals_tracker/presentation/controllers/goal_list_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:provider/provider.dart';
 
 class GoalListWidget extends StatelessWidget {
   final List<GoalModel> goals;
@@ -9,6 +11,8 @@ class GoalListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<GoalListController>(context);
+
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(),
@@ -27,7 +31,12 @@ class GoalListWidget extends StatelessWidget {
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            children: goals.map((goal) => GoalCardWidget(model: goal)).toList(),
+            children: goals
+                .map((goal) => GoalCardWidget(
+                      model: goal,
+                      onTap: () => controller.goalDetails(context, goal.id),
+                    ))
+                .toList(),
           ),
         ],
       ),

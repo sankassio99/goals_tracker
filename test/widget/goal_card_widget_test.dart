@@ -13,6 +13,7 @@ void main() {
         home: Scaffold(
           body: GoalCardWidget(
             model: model,
+            onTap: () {},
           ),
         ),
       ),

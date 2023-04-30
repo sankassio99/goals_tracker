@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
+import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
+import 'package:goals_tracker/presentation/controllers/goal_list_controller.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
@@ -13,6 +15,7 @@ void main() {
   var addNewGoal = AddNewGoal(goalRepository);
   var updateGoal = UpdateGoal(goalRepository);
   var getGoals = GetGoals(goalRepository);
+  var getGoalDetails = GetGoalDetails(goalRepository);
   runApp(
     MultiProvider(
       providers: [
@@ -23,6 +26,8 @@ void main() {
           ),
         ),
         ChangeNotifierProvider(create: (_) => MainGoalController(updateGoal)),
+        ChangeNotifierProvider(
+            create: (_) => GoalListController(getGoalDetails)),
       ],
       child: MyApp(),
     ),
