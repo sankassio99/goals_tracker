@@ -51,8 +51,7 @@ class HeaderGoalWidget extends StatelessWidget {
                         child: Obx(
                           () => TextField(
                               key: const Key("titleInput"),
-                              readOnly: !editMode.value,
-                              autofocus: true,
+                              autofocus: editMode.value,
                               controller: textController,
                               decoration: const InputDecoration(
                                   hintText: 'Goal name',
