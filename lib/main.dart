@@ -11,7 +11,7 @@ import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  var goalRepository = GoalRepository();
+  var goalRepository = GoalRepositoryMemory();
   var addNewGoal = AddNewGoal(goalRepository);
   var updateGoal = UpdateGoal(goalRepository);
   var getGoals = GetGoals(goalRepository);
