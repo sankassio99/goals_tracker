@@ -4,10 +4,10 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
   final RxBool editMode;
-  late final void Function(bool) onInputFocusChange;
+  final void Function(bool) onInputFocusChange;
   final TextEditingController textController;
 
-  HeaderGoalWidget({
+  const HeaderGoalWidget({
     super.key,
     required this.onInputFocusChange,
     required this.editMode,
