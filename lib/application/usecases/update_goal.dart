@@ -9,7 +9,6 @@ class UpdateGoal extends Observable {
 
   void execute(Goal goal) {
     goalRepository.update(goal);
-
     notify("updateGoal", null);
   }
 }

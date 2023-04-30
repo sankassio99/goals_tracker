@@ -8,6 +8,7 @@ class GetGoalDetails {
 
   Future<Goal> get(String id) async {
     var goal = goalRepository.getById(id);
+
     return goal;
   }
 }

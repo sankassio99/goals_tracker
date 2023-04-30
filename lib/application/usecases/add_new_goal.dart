@@ -12,6 +12,7 @@ class AddNewGoal {
   String execute() {
     var uuidGenerated = uuid.v1().toString();
     var emptyGoal = MainGoal(uuidGenerated, "", "");
+
     goalRepository.save(emptyGoal);
 
     return uuidGenerated;

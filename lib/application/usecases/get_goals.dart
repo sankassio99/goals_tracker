@@ -8,6 +8,7 @@ class GetGoals {
 
   Future<List<Goal>> getAll() async {
     var goals = await goalRepository.getAll();
+
     return goals;
   }
 }
