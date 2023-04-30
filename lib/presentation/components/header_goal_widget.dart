@@ -91,7 +91,7 @@ class HeaderGoalWidget extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.87,
                 lineHeight: 24,
                 animation: true,
-                progressColor: Colors.blue,
+                progressColor: Theme.of(context).colorScheme.onSecondary,
                 backgroundColor: Color(0xFFF1F4F8),
                 center: const Text(
                   '50%',

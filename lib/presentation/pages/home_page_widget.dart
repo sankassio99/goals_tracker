@@ -20,10 +20,20 @@ class HomePageWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  "Your Goals",
-                  key: const Key("homeTitle"),
-                  style: Theme.of(context).textTheme.headlineLarge,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 24.0),
+                  child: Text(
+                    "Your Goals",
+                    key: const Key("homeTitle"),
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                ),
+                const Divider(
+                  height: 10,
+                  thickness: 1,
+                  indent: 50,
+                  endIndent: 50,
+                  color: Colors.black12,
                 ),
                 GoalListWidget(goals: controller.goalList),
               ],
