@@ -9,12 +9,13 @@ class HeaderGoalWidget extends StatelessWidget {
 
   HeaderGoalWidget({
     required this.onInputFocusChange,
-    required editMode,
+    required this.editMode,
     required this.textController,
   });
 
   @override
   Widget build(BuildContext context) {
+    print(editMode);
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -50,7 +51,7 @@ class HeaderGoalWidget extends StatelessWidget {
                         child: Obx(
                           () => TextField(
                               key: const Key("titleInput"),
-                              readOnly: editMode.value,
+                              readOnly: !editMode.value,
                               autofocus: true,
                               controller: textController,
                               decoration: const InputDecoration(
@@ -67,7 +68,7 @@ class HeaderGoalWidget extends StatelessWidget {
                   ],
                 ),
                 const Text(
-                  'Sollicitant homines non sunt nisi quam formae rerum principiis opiniones. Mors enim est terribilis ',
+                  'Tap to type goal description',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     color: Colors.black87,
