@@ -23,6 +23,7 @@ void main() {
           create: (_) => HomeController(
             addNewGoal,
             getGoals,
+            updateGoal,
           ),
         ),
         ChangeNotifierProvider(create: (_) => MainGoalController(updateGoal)),
