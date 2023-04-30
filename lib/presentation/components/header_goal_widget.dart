@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
-  var editMode = false.obs;
-  late void Function(bool) onInputFocusChange;
+  final RxBool editMode;
+  late final void Function(bool) onInputFocusChange;
   final TextEditingController textController;
 
   HeaderGoalWidget({
+    super.key,
     required this.onInputFocusChange,
     required this.editMode,
     required this.textController,
@@ -15,7 +16,6 @@ class HeaderGoalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(editMode);
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
