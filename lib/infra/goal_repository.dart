@@ -26,4 +26,10 @@ class GoalRepository implements IGoalRepository {
     var goalIndex = goalsData.indexWhere((data) => data.id == goal.id);
     goalsData[goalIndex] = goal;
   }
+
+  @override
+  Future<Goal> getById(String id) {
+    print("GETTING BY ID");
+    throw UnimplementedError();
+  }
 }
