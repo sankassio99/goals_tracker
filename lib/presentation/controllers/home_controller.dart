@@ -25,7 +25,7 @@ class HomeController extends ChangeNotifier {
 
     for (var goal in goals) {
       goalList.add(
-        GoalModel(goal.id, description: goal.desc, title: goal.title),
+        GoalModel(goal.id, description: goal.desc, name: goal.title),
       );
     }
 

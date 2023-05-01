@@ -15,7 +15,7 @@ class GoalListController extends ChangeNotifier {
     var goalModel = GoalModel(
       goal.id,
       description: goal.desc,
-      title: goal.title,
+      name: goal.title,
     );
     _goToMainGoal(context, goalModel);
   }

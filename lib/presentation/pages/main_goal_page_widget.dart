@@ -49,9 +49,12 @@ class MainGoalPageWidget extends StatelessWidget {
                       ),
                       child: HeaderGoalWidget(
                         editMode: isCreatedNow!,
-                        onInputFocusChange: (value) =>
+                        titleFocusNode: (value) =>
                             controller.onInputFocusChange(value),
-                        textController: goalModel.nameController,
+                        titleTextController: goalModel.nameController,
+                        descFocusNode: (value) =>
+                            controller.onInputFocusChange(value),
+                        descTextController: goalModel.descriptionController,
                       ),
                     ),
                   ),
