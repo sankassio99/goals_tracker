@@ -1,18 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:goals_tracker/application/adapters/igoal_repository.dart';
+import 'package:goals_tracker/application/adapters/isub_goal_repository.dart';
 import 'package:goals_tracker/application/usecases/add_subgoal.dart';
-import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'add_new_goal_test.mocks.dart';
 
-@GenerateMocks([IGoalRepository])
+import 'add_sub_goal_test.mocks.dart';
+
+@GenerateMocks([ISubGoalRepository])
 void main() {
   late AddSubgoal addSubgoal;
-  late MockIGoalRepository goalRepositoryMock;
+  late MockISubGoalRepository goalRepositoryMock;
 
   setUp(() async {
-    goalRepositoryMock = MockIGoalRepository();
+    goalRepositoryMock = MockISubGoalRepository();
     addSubgoal = AddSubgoal(goalRepositoryMock);
   });
 
@@ -21,13 +22,6 @@ void main() {
         () async {
       //#region Arrange(Given)
       String mainGoalId = "111100000";
-      var mainGoal = MainGoal(
-        mainGoalId,
-        "Get international job",
-        "I need is motivated everyday",
-      );
-      when(goalRepositoryMock.getById(mainGoalId))
-          .thenAnswer((_) async => mainGoal);
       //#endregion
 
       //#region Act(When)
@@ -37,13 +31,12 @@ void main() {
       //#region Assert(Then)
       expect(subGoalId, isNotNull);
 
-      var matcher = predicate<MainGoal>((savedGoal) {
-        expect(savedGoal.id, mainGoal.id);
-        expect(savedGoal.subGoals.length, 1);
+      var matcher = predicate<SubGoal>((savedGoal) {
+        expect(savedGoal.mainGoalId, mainGoalId);
         return true;
       });
 
-      verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+      verify(goalRepositoryMock.save(captureThat(matcher))).called(1);
       //#endregion
     });
   });

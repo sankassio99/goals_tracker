@@ -1,0 +1,35 @@
+import 'package:goals_tracker/application/adapters/isub_goal_repository.dart';
+import 'package:goals_tracker/domain/entities/sub_goal.dart';
+
+class SubGoalRepositoryMemory implements ISubGoalRepository {
+  late List<SubGoal> goalsData;
+
+  SubGoalRepositoryMemory() {
+    goalsData = [];
+  }
+
+  @override
+  void save(SubGoal goal) {
+    print("SAVING NEW GOAL");
+    goalsData.add(goal);
+  }
+
+  @override
+  Future<List<SubGoal>> getAll() async {
+    print("GETTING ALL");
+    return goalsData;
+  }
+
+  @override
+  void update(SubGoal goal) {
+    print("UPDATING GOAL");
+    var goalIndex = goalsData.indexWhere((data) => data.id == goal.id);
+    goalsData[goalIndex] = goal;
+  }
+
+  @override
+  Future<SubGoal> getById(String id) async {
+    print("GETTING BY ID");
+    return goalsData.firstWhere((data) => data.id == id);
+  }
+}

@@ -8,10 +8,11 @@ void main() {
     test('add new task and list all', () async {
       //#region Arrange(Given)
       String id = "random";
+      String mainGoalId = "random";
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal = SubGoal(id, subGoalTitle, subGoalDesc);
+      SubGoal subGoal = SubGoal(id, subGoalTitle, mainGoalId, subGoalDesc);
 
       String title = "Group class";
       Task task = Task(title);
@@ -30,10 +31,11 @@ void main() {
     test('get complete percent', () async {
       //#region Arrange(Given)
       String id = "random";
+      String mainGoalId = "random";
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal = SubGoal(id, subGoalTitle, subGoalDesc);
+      SubGoal subGoal = SubGoal(id, subGoalTitle, mainGoalId, subGoalDesc);
       //#endregion
 
       //#region Act(When)
@@ -48,10 +50,11 @@ void main() {
     test('get complete percent when has 2 completed tasks of 5', () async {
       //#region Arrange(Given)
       String id = "random";
+      String mainGoalId = "random";
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal = SubGoal(id, subGoalTitle, subGoalDesc);
+      SubGoal subGoal = SubGoal(id, subGoalTitle, mainGoalId, subGoalDesc);
 
       var task1 = Task("title");
       var task2 = Task("title");

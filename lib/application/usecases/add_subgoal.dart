@@ -1,22 +1,18 @@
-import 'package:goals_tracker/application/adapters/igoal_repository.dart';
-import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/application/adapters/isub_goal_repository.dart';
 import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:uuid/uuid.dart';
 
 class AddSubgoal {
-  late final IGoalRepository _goalRepository;
+  late final ISubGoalRepository _goalRepository;
   Uuid uuid = const Uuid();
 
   AddSubgoal(this._goalRepository);
 
   Future<String> execute(String mainGoalId) async {
-    MainGoal mainGoal = await _goalRepository.getById(mainGoalId) as MainGoal;
     var uuidGenerated = uuid.v1().toString();
-    var subGoal = SubGoal(uuidGenerated, "Tap to edit", "");
+    var subGoal = SubGoal(uuidGenerated, "Tap to edit", mainGoalId, "");
 
-    mainGoal.addSubGoal(subGoal);
-
-    _goalRepository.update(mainGoal);
+    _goalRepository.save(subGoal);
 
     return uuidGenerated;
   }

@@ -2,11 +2,13 @@ import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 
 class SubGoal extends Goal {
+  String mainGoalId;
   List<Task> tasks = [];
 
   SubGoal(
     super.id,
     super.title,
+    this.mainGoalId,
     super.desc, {
     super.completePercentage,
     super.isCompleted,

@@ -17,7 +17,7 @@ void main() {
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal = SubGoal(id, subGoalTitle, subGoalDesc);
+      SubGoal subGoal = SubGoal(id, subGoalTitle, mainGoalId, subGoalDesc);
       //#endregion
 
       //#region Act(When)
@@ -42,12 +42,14 @@ void main() {
       String subGoalTitle = "Learn english";
       String subGoalDesc = "";
 
-      SubGoal subGoal1 = SubGoal(subGoalId, subGoalTitle, subGoalDesc);
+      SubGoal subGoal1 =
+          SubGoal(subGoalId, subGoalTitle, mainGoalId, subGoalDesc);
       subGoal1.completePercentage = 50.0;
       mainGoal.addSubGoal(subGoal1);
 
       String subGoal2Id = "random";
-      SubGoal subGoal2 = SubGoal(subGoal2Id, subGoalTitle, subGoalDesc);
+      SubGoal subGoal2 =
+          SubGoal(subGoal2Id, subGoalTitle, mainGoalId, subGoalDesc);
       subGoal2.completePercentage = 10.0;
       mainGoal.addSubGoal(subGoal2);
       //#endregion

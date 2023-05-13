@@ -5,6 +5,7 @@ import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
+import 'package:goals_tracker/infra/sub_goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/goal_list_controller.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
@@ -13,8 +14,9 @@ import 'package:provider/provider.dart';
 
 void main() {
   var goalRepository = GoalRepositoryMemory();
+  var subGoalRepository = SubGoalRepositoryMemory();
   var addNewGoal = AddNewGoal(goalRepository);
-  var addSubgoal = AddSubgoal(goalRepository);
+  var addSubgoal = AddSubgoal(subGoalRepository);
   var updateGoal = UpdateGoal(goalRepository);
   var getGoals = GetGoals(goalRepository);
   var getGoalDetails = GetGoalDetails(goalRepository);

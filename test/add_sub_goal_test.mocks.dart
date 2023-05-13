@@ -5,9 +5,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:goals_tracker/application/adapters/igoal_repository.dart'
+import 'package:goals_tracker/application/adapters/isub_goal_repository.dart'
     as _i3;
-import 'package:goals_tracker/domain/entities/goal.dart' as _i2;
+import 'package:goals_tracker/domain/entities/sub_goal.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -21,8 +21,8 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeGoal_0 extends _i1.SmartFake implements _i2.Goal {
-  _FakeGoal_0(
+class _FakeSubGoal_0 extends _i1.SmartFake implements _i2.SubGoal {
+  _FakeSubGoal_0(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -31,16 +31,17 @@ class _FakeGoal_0 extends _i1.SmartFake implements _i2.Goal {
         );
 }
 
-/// A class which mocks [IGoalRepository].
+/// A class which mocks [ISubGoalRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIGoalRepository extends _i1.Mock implements _i3.IGoalRepository {
-  MockIGoalRepository() {
+class MockISubGoalRepository extends _i1.Mock
+    implements _i3.ISubGoalRepository {
+  MockISubGoalRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  void save(_i2.Goal? goal) => super.noSuchMethod(
+  void save(_i2.SubGoal? goal) => super.noSuchMethod(
         Invocation.method(
           #save,
           [goal],
@@ -48,29 +49,29 @@ class MockIGoalRepository extends _i1.Mock implements _i3.IGoalRepository {
         returnValueForMissingStub: null,
       );
   @override
-  _i4.Future<List<_i2.Goal>> getAll() => (super.noSuchMethod(
+  _i4.Future<List<_i2.SubGoal>> getAll() => (super.noSuchMethod(
         Invocation.method(
           #getAll,
           [],
         ),
-        returnValue: _i4.Future<List<_i2.Goal>>.value(<_i2.Goal>[]),
-      ) as _i4.Future<List<_i2.Goal>>);
+        returnValue: _i4.Future<List<_i2.SubGoal>>.value(<_i2.SubGoal>[]),
+      ) as _i4.Future<List<_i2.SubGoal>>);
   @override
-  _i4.Future<_i2.Goal> getById(String? id) => (super.noSuchMethod(
+  _i4.Future<_i2.SubGoal> getById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getById,
           [id],
         ),
-        returnValue: _i4.Future<_i2.Goal>.value(_FakeGoal_0(
+        returnValue: _i4.Future<_i2.SubGoal>.value(_FakeSubGoal_0(
           this,
           Invocation.method(
             #getById,
             [id],
           ),
         )),
-      ) as _i4.Future<_i2.Goal>);
+      ) as _i4.Future<_i2.SubGoal>);
   @override
-  void update(_i2.Goal? goal) => super.noSuchMethod(
+  void update(_i2.SubGoal? goal) => super.noSuchMethod(
         Invocation.method(
           #update,
           [goal],
