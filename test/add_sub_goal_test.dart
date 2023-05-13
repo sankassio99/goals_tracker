@@ -31,10 +31,12 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      await addSubgoal.execute(mainGoalId);
+      var subGoalId = await addSubgoal.execute(mainGoalId);
       //#endregion
 
       //#region Assert(Then)
+      expect(subGoalId, isNotNull);
+
       var matcher = predicate<MainGoal>((savedGoal) {
         expect(savedGoal.id, mainGoal.id);
         expect(savedGoal.subGoals.length, 1);

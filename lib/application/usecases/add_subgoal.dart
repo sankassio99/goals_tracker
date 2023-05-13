@@ -9,7 +9,7 @@ class AddSubgoal {
 
   AddSubgoal(this._goalRepository);
 
-  Future<void> execute(String mainGoalId) async {
+  Future<String> execute(String mainGoalId) async {
     MainGoal mainGoal = await _goalRepository.getById(mainGoalId) as MainGoal;
     var uuidGenerated = uuid.v1().toString();
     var subGoal = SubGoal(uuidGenerated, "", "");
@@ -17,5 +17,7 @@ class AddSubgoal {
     mainGoal.addSubGoal(subGoal);
 
     _goalRepository.save(mainGoal);
+
+    return uuidGenerated;
   }
 }
