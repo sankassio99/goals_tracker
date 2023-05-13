@@ -7,7 +7,7 @@ class GetSubGoals {
   GetSubGoals(this.subGoalRepository);
 
   Future<List<SubGoal>> getAllByMainGoal(String mainGoalId) async {
-    var goals = await subGoalRepository.getAll();
+    var goals = await subGoalRepository.getAllByMainGoalId(mainGoalId);
 
     return goals;
   }
