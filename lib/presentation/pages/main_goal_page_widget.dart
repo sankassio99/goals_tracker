@@ -65,7 +65,7 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  GoalListWidget(goals: controller.subGoalList)
+                  GoalListWidget(goals: controller.currentGoal.subGoals)
                 ],
               ),
             ),

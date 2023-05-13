@@ -12,6 +12,7 @@ class GoalListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<GoalListController>(context);
+    print(goals.length);
 
     return Container(
       width: double.infinity,

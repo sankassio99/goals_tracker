@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/domain/entities/sub_goal.dart';
 
 class GoalModel {
   String id;
@@ -7,9 +6,21 @@ class GoalModel {
   final TextEditingController _description = TextEditingController(text: "");
   List<GoalModel> subGoals = [];
 
-  GoalModel(this.id, {String description = "", String name = ""}) {
+  GoalModel(
+    this.id, {
+    String description = "",
+    String name = "",
+  }) {
     _name.text = name;
     _description.text = description;
+  }
+
+  addSubGoal(GoalModel value) {
+    subGoals.add(value);
+  }
+
+  setSubGoalList(List<GoalModel> subGoals) {
+    this.subGoals = subGoals;
   }
 
   String get name => _name.text;

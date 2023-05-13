@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/add_subgoal.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
@@ -8,14 +7,12 @@ import '../../domain/entities/main_goal.dart';
 class MainGoalController extends ChangeNotifier {
   final UpdateGoal _updateGoal;
   final AddSubgoal _addSubgoal;
-  late GoalModel _currentGoal;
-  List<GoalModel> subGoalList = [];
+  late GoalModel currentGoal;
 
   MainGoalController(this._updateGoal, this._addSubgoal);
 
   void setCurrentGoal(GoalModel goalModel) {
-    _currentGoal = goalModel;
-    subGoalList = goalModel.subGoals;
+    currentGoal = goalModel;
   }
 
   onInputFocusChange(bool focusIn) {
@@ -32,19 +29,19 @@ class MainGoalController extends ChangeNotifier {
 
   MainGoal _mapMainGoal() {
     var goal = MainGoal(
-      _currentGoal.id,
-      _currentGoal.name,
-      _currentGoal.description,
+      currentGoal.id,
+      currentGoal.name,
+      currentGoal.description,
     );
 
     return goal;
   }
 
   addSubGoal() async {
-    var subGoalId = await _addSubgoal.execute(_currentGoal.id);
+    var subGoalId = await _addSubgoal.execute(currentGoal.id);
 
-    subGoalList.add(
-      GoalModel(subGoalId, description: "", name: "New Sub Goal"),
+    currentGoal.subGoals.add(
+      GoalModel(subGoalId, description: "", name: "Tap to edit"),
     );
 
     notifyListeners();
