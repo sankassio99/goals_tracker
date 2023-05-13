@@ -31,7 +31,7 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      addSubgoal.execute(mainGoalId);
+      await addSubgoal.execute(mainGoalId);
       //#endregion
 
       //#region Assert(Then)
