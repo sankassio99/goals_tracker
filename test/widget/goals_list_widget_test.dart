@@ -11,6 +11,7 @@ void main() {
         home: Scaffold(
           body: GoalListWidget(
             goals: const [],
+            onGoalTap: () => null,
           ),
         ),
       ),

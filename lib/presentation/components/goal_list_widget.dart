@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
-import 'package:goals_tracker/presentation/controllers/goal_list_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
-import 'package:provider/provider.dart';
 
 class GoalListWidget extends StatelessWidget {
   final List<GoalModel> goals;
+  final Function onGoalTap;
 
-  GoalListWidget({required this.goals, super.key});
+  GoalListWidget({
+    required this.goals,
+    required this.onGoalTap,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<GoalListController>(context);
-    print(goals.length);
-
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(),
@@ -35,7 +35,7 @@ class GoalListWidget extends StatelessWidget {
             children: goals
                 .map((goal) => GoalCardWidget(
                       model: goal,
-                      onTap: () => controller.goalDetails(context, goal.id),
+                      onTap: () => onGoalTap(context, goal),
                     ))
                 .toList(),
           ),

@@ -38,13 +38,13 @@ class HomeController extends ChangeNotifier {
     goToMainGoal(context, newGoal);
   }
 
-  void goToMainGoal(BuildContext context, GoalModel newGoal) {
+  void goToMainGoal(BuildContext context, GoalModel goalModel) {
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => MainGoalPageWidget(
           isCreatedNow: true.obs,
-          goalModel: newGoal,
+          goalModel: goalModel,
         ),
       ),
     );

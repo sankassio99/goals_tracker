@@ -35,7 +35,10 @@ class HomePageWidget extends StatelessWidget {
                   endIndent: 50,
                   color: Colors.black12,
                 ),
-                GoalListWidget(goals: controller.goalList),
+                GoalListWidget(
+                  goals: controller.goalList,
+                  onGoalTap: controller.goToMainGoal,
+                ),
               ],
             ),
           ),
