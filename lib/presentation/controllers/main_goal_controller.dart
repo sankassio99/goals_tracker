@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/add_subgoal.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:goals_tracker/presentation/pages/sub_goal_page_widget.dart';
 import '../../domain/entities/main_goal.dart';
 
 class MainGoalController extends ChangeNotifier {
@@ -45,5 +47,17 @@ class MainGoalController extends ChangeNotifier {
     );
 
     notifyListeners();
+  }
+
+  void goToSubGoal(BuildContext context, GoalModel goalModel) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SubGoalPageWidget(
+          isCreatedNow: false.obs,
+          goalModel: goalModel,
+        ),
+      ),
+    );
   }
 }

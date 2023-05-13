@@ -67,7 +67,7 @@ class MainGoalPageWidget extends StatelessWidget {
                   ),
                   GoalListWidget(
                     goals: controller.currentGoal.subGoals,
-                    onGoalTap: () => null,
+                    onGoalTap: controller.goToSubGoal,
                   )
                 ],
               ),

@@ -8,12 +8,12 @@ import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:provider/provider.dart';
 import '../components/bottom_button.dart';
 
-class SubMainGoalPageWidget extends StatelessWidget {
+class SubGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
   RxBool? isCreatedNow = false.obs;
   final GoalModel goalModel;
 
-  SubMainGoalPageWidget({this.isCreatedNow, required this.goalModel});
+  SubGoalPageWidget({this.isCreatedNow, required this.goalModel});
 
   @override
   Widget build(BuildContext context) {

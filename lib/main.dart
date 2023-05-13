@@ -8,6 +8,7 @@ import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/infra/sub_goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/controllers/sub_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -31,6 +32,7 @@ void main() {
         ),
         ChangeNotifierProvider(
             create: (_) => MainGoalController(updateGoal, addSubgoal)),
+        ChangeNotifierProvider(create: (_) => SubGoalController()),
       ],
       child: MyApp(),
     ),
