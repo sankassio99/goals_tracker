@@ -43,7 +43,7 @@ void main() {
         return true;
       });
 
-      verify(goalRepositoryMock.save(captureThat(matcher))).called(1);
+      verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
       //#endregion
     });
   });

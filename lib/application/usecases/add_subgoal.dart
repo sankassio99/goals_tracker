@@ -16,7 +16,7 @@ class AddSubgoal {
 
     mainGoal.addSubGoal(subGoal);
 
-    _goalRepository.save(mainGoal);
+    _goalRepository.update(mainGoal);
 
     return uuidGenerated;
   }
