@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
   final RxBool editMode;

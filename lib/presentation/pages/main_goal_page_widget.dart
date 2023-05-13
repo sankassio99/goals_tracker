@@ -65,7 +65,7 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  GoalListWidget(goals: [])
+                  GoalListWidget(goals: controller.subGoalList)
                 ],
               ),
             ),
@@ -74,7 +74,8 @@ class MainGoalPageWidget extends StatelessWidget {
       ),
       persistentFooterButtons: [
         BottomButton(
-          action: () => print("coco"),
+          label: "Add sub goal",
+          action: () => controller.addSubGoal(),
         )
       ],
     );

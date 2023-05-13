@@ -5,7 +5,7 @@ class GoalModel {
   String id;
   final TextEditingController _name = TextEditingController(text: "");
   final TextEditingController _description = TextEditingController(text: "");
-  List<SubGoal> subGoals = List.empty();
+  List<GoalModel> subGoals = [];
 
   GoalModel(this.id, {String description = "", String name = ""}) {
     _name.text = name;

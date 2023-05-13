@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
+import 'package:goals_tracker/application/usecases/add_subgoal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
@@ -13,6 +14,7 @@ import 'package:provider/provider.dart';
 void main() {
   var goalRepository = GoalRepositoryMemory();
   var addNewGoal = AddNewGoal(goalRepository);
+  var addSubgoal = AddSubgoal(goalRepository);
   var updateGoal = UpdateGoal(goalRepository);
   var getGoals = GetGoals(goalRepository);
   var getGoalDetails = GetGoalDetails(goalRepository);
@@ -26,7 +28,8 @@ void main() {
             updateGoal,
           ),
         ),
-        ChangeNotifierProvider(create: (_) => MainGoalController(updateGoal)),
+        ChangeNotifierProvider(
+            create: (_) => MainGoalController(updateGoal, addSubgoal)),
         ChangeNotifierProvider(
             create: (_) => GoalListController(getGoalDetails)),
       ],

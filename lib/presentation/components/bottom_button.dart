@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class BottomButton extends StatelessWidget {
   final Function action;
+  final String label;
 
   BottomButton({
     super.key,
     required this.action,
+    required this.label,
   });
 
   @override
@@ -25,15 +27,15 @@ class BottomButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            Icon(
+          children: [
+            const Icon(
               key: Key("goalCardIcon"),
               Icons.add,
               color: Colors.white,
               size: 24,
             ),
             Text(
-              'Add goal',
+              label,
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
