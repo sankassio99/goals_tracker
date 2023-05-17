@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
@@ -36,6 +37,29 @@ void main() {
 
       //#region Act(When)
       await homeController.getAllGoals();
+      //#endregion
+
+      //#region Assert(Then)
+      expect(called, 1);
+      //#endregion
+    });
+
+    test('add new goal', () async {
+      //#region Arrange(Given)
+      var startingGoalListLength = homeController.goalList.length;
+      var called = 0;
+      homeController.addListener(() {
+        expect(
+          homeController.goalList.length,
+          greaterThan(startingGoalListLength),
+        );
+        called++;
+      });
+      var newGoal = MainGoal("id1", "aaa", "desc");
+      //#endregion
+
+      //#region Act(When)
+      homeController.addNewGoal();
       //#endregion
 
       //#region Assert(Then)

@@ -32,10 +32,11 @@ class HomeController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addNewGoal(BuildContext context) {
+  void addNewGoal() {
     var goalId = _addNewGoal.execute();
     var newGoal = GoalModel(goalId);
-    goToMainGoal(context, newGoal);
+    goalList.add(newGoal);
+    notifyListeners();
   }
 
   void goToMainGoal(BuildContext context, GoalModel goalModel) {
