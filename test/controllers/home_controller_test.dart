@@ -24,17 +24,22 @@ void main() {
     test('list all main goals', () async {
       //#region Arrange(Given)
       var startingGoalList = homeController.goalList;
+      var called = 0;
       homeController.addListener(() {
-        expect(homeController.goalList.length,
-            greaterThan(startingGoalList.length));
+        expect(
+          homeController.goalList.length,
+          greaterThan(startingGoalList.length),
+        );
+        called++;
       });
       //#endregion
 
       //#region Act(When)
-      homeController.getAllGoals();
+      await homeController.getAllGoals();
       //#endregion
 
       //#region Assert(Then)
+      expect(called, 1);
       //#endregion
     });
   });
