@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
@@ -6,14 +5,16 @@ import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 void main() {
   late HomeController homeController;
+  late UpdateGoal updateGoal;
 
   setUp(() async {
     var goalRepository = GoalRepositoryMemory();
     var addNewGoal = AddNewGoal(goalRepository);
-    var updateGoal = UpdateGoal(goalRepository);
+    updateGoal = UpdateGoal(goalRepository);
     var getGoals = GetGoals(goalRepository);
 
     goalRepository.save(MainGoal("id", "title", "desc"));
@@ -55,7 +56,6 @@ void main() {
         );
         called++;
       });
-      var newGoal = MainGoal("id1", "aaa", "desc");
       //#endregion
 
       //#region Act(When)
@@ -64,6 +64,26 @@ void main() {
 
       //#region Assert(Then)
       expect(called, 1);
+      //#endregion
+    });
+
+    test('update goal list when a goal is updated', () async {
+      //#region Arrange(Given)
+      var startingGoalListLength = homeController.goalList.length;
+      homeController.addListener(() {
+        expect(
+          homeController.goalList.length,
+          greaterThan(startingGoalListLength),
+        );
+      });
+      var goalModel = MainGoal("id", "", "");
+      //#endregion
+
+      //#region Act(When)
+      updateGoal.execute(goalModel);
+      //#endregion
+
+      //#region Assert(Then)
       //#endregion
     });
   });
