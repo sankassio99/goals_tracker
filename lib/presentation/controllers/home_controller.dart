@@ -37,12 +37,11 @@ class HomeController extends ChangeNotifier {
     var newGoal = GoalModel(goalId);
     goalList.add(newGoal);
     notifyListeners();
-    goToMainGoal(newGoal);
   }
 
-  void goToMainGoal(GoalModel goalModel) {
+  void goToMainGoal(BuildContext context, GoalModel goalModel) {
     Navigator.push(
-      Get.context!,
+      context,
       MaterialPageRoute(
         builder: (context) => MainGoalPageWidget(
           isCreatedNow: true.obs,

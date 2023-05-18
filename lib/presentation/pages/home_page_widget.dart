@@ -47,7 +47,7 @@ class HomePageWidget extends StatelessWidget {
       persistentFooterButtons: [
         BottomButton(
           label: "Add goal",
-          action: () => controller.addNewGoal(context),
+          action: () => controller.addNewGoal(),
         ),
       ],
     );
