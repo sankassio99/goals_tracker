@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
@@ -65,10 +66,7 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  GoalListWidget(
-                    goals: controller.currentGoal.subGoals,
-                    onGoalTap: controller.goToSubGoal,
-                  )
+                  GoalListWidget(goals: controller.currentGoal.subGoals)
                 ],
               ),
             ),

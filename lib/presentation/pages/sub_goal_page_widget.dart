@@ -65,10 +65,7 @@ class SubGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  GoalListWidget(
-                    goals: controller.currentGoal.subGoals,
-                    onGoalTap: () => null,
-                  )
+                  GoalListWidget(goals: controller.currentGoal.subGoals)
                 ],
               ),
             ),

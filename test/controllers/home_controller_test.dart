@@ -5,7 +5,6 @@ import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
-import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 void main() {
   late HomeController homeController;

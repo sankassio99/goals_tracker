@@ -4,11 +4,9 @@ import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalListWidget extends StatelessWidget {
   final List<GoalModel> goals;
-  final Function onGoalTap;
 
   GoalListWidget({
     required this.goals,
-    required this.onGoalTap,
     super.key,
   });
 
@@ -32,12 +30,7 @@ class GoalListWidget extends StatelessWidget {
             padding: EdgeInsets.zero,
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            children: goals
-                .map((goal) => GoalCardWidget(
-                      model: goal,
-                      onTap: () => onGoalTap(context, goal),
-                    ))
-                .toList(),
+            children: goals.map((goal) => GoalCardWidget(model: goal)).toList(),
           ),
         ],
       ),

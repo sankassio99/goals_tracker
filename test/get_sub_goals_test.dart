@@ -26,8 +26,8 @@ void main() {
       subGoalRepositoryMock.save(goal2);
 
       List<SubGoal> goalList = [goal1, goal2];
-      when(subGoalRepositoryMock.getAllByMainGoalId(mainGoalId))
-          .thenAnswer((_) async => goalList);
+      // when(subGoalRepositoryMock.getAllByMainGoalId(mainGoalId))
+      //     .thenAnswer((_) async => goalList);
       //#endregion
 
       //#region Act(When)

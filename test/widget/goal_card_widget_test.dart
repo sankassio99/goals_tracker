@@ -11,10 +11,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: GoalCardWidget(
-            model: model,
-            onTap: () {},
-          ),
+          body: GoalCardWidget(model: model),
         ),
       ),
     );

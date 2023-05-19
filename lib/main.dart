@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/add_subgoal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
@@ -9,7 +10,9 @@ import 'package:goals_tracker/infra/sub_goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/controllers/sub_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
+import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -45,12 +48,30 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Flutter Demo',
       theme: themeConfig(),
-      home: HomePageWidget(),
+      routerConfig: router(),
     );
   }
+}
+
+router() {
+  return GoRouter(
+    initialLocation: '/home',
+    routes: [
+      GoRoute(
+        path: '/home',
+        builder: (context, state) => const HomePageWidget(),
+      ),
+      GoRoute(
+          path: '/mainGoalDetails',
+          builder: (context, state) {
+            var goalModel = state.extra as GoalModel;
+            return MainGoalPageWidget(goalModel: goalModel);
+          })
+    ],
+  );
 }
 
 ThemeData themeConfig() {

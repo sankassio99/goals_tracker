@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalCardWidget extends StatelessWidget {
   final GoalModel model;
-  final Function onTap;
-  const GoalCardWidget({super.key, required this.model, required this.onTap});
+  const GoalCardWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap.call(),
+      onTap: () => context.go("/mainGoalDetails", extra: model),
       child: Container(
         width: double.infinity,
         height: 80,
         margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
         decoration: BoxDecoration(
           color: Colors.white,
-          // boxShadow: const [
-          //   BoxShadow(
-          //     blurRadius: 4,
-          //     color: Color(0x33000000),
-          //     offset: Offset(0, 2),
-          //   )
-          // ],
           borderRadius: BorderRadius.circular(8),
         ),
         child: Padding(
