@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:provider/provider.dart';
 import '../components/bottom_button.dart';
+import '../components/goal_list_widget.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
@@ -58,7 +61,10 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  // GoalListWidget(goals: controller.currentGoal.subGoals)
+                  Consumer<MainGoalController>(
+                      builder: (context, controller, child) {
+                    return GoalListWidget(goals: controller.subGoals);
+                  }),
                 ],
               ),
             ),
@@ -68,7 +74,10 @@ class MainGoalPageWidget extends StatelessWidget {
       persistentFooterButtons: [
         BottomButton(
           label: "Add sub goal",
-          action: () => model.addSubGoal(),
+          action: () async {
+            Provider.of<MainGoalController>(context, listen: false)
+                .addSubGoal(model.id);
+          },
         )
       ],
     );

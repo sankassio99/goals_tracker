@@ -12,6 +12,7 @@ class MainGoalController extends ChangeNotifier {
   final AddSubgoal _addSubgoal;
   final GetGoalDetails _getGoalDetails;
   late GoalModel currentGoal;
+  List<GoalModel> subGoals = [];
 
   MainGoalController(this._updateGoal, this._addSubgoal, this._getGoalDetails);
 
@@ -41,10 +42,10 @@ class MainGoalController extends ChangeNotifier {
     return goal;
   }
 
-  addSubGoal() async {
-    var subGoalId = await _addSubgoal.execute(currentGoal.id);
+  addSubGoal(String goalId) async {
+    var subGoalId = await _addSubgoal.execute(goalId);
 
-    currentGoal.subGoals.add(
+    subGoals.add(
       GoalModel(subGoalId, description: "", name: "Tap to edit"),
     );
 
