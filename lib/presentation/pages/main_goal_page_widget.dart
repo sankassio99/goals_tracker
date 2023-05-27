@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
-import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
-import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
-import 'package:provider/provider.dart';
 import '../components/bottom_button.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
-  RxBool? isCreatedNow = false.obs;
-  GoalModel goalModel;
+  final GoalModel model;
 
-  MainGoalPageWidget({this.isCreatedNow, required this.goalModel});
+  MainGoalPageWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<MainGoalController>(context);
-    controller.setCurrentGoal(goalModel);
-
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: const MyAppBar(),
@@ -49,13 +41,13 @@ class MainGoalPageWidget extends StatelessWidget {
                         color: Colors.white,
                       ),
                       child: HeaderGoalWidget(
-                        editMode: isCreatedNow!,
+                        editMode: true.obs,
                         titleFocusNode: (value) =>
-                            controller.onInputFocusChange(value),
-                        titleTextController: goalModel.nameController,
+                            model.onInputFocusChange(value),
+                        titleTextController: model.nameController,
                         descFocusNode: (value) =>
-                            controller.onInputFocusChange(value),
-                        descTextController: goalModel.descriptionController,
+                            model.onInputFocusChange(value),
+                        descTextController: model.descriptionController,
                       ),
                     ),
                   ),
@@ -66,7 +58,7 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  GoalListWidget(goals: controller.currentGoal.subGoals)
+                  // GoalListWidget(goals: controller.currentGoal.subGoals)
                 ],
               ),
             ),
@@ -76,7 +68,7 @@ class MainGoalPageWidget extends StatelessWidget {
       persistentFooterButtons: [
         BottomButton(
           label: "Add sub goal",
-          action: () => controller.addSubGoal(),
+          action: () => model.addSubGoal(),
         )
       ],
     );

@@ -9,7 +9,8 @@ class GoalCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.go("/mainGoalDetails", extra: model),
+      onTap: () => context
+          .goNamed("mainGoalDetails", pathParameters: {'goalId': model.id}),
       child: Container(
         width: double.infinity,
         height: 80,

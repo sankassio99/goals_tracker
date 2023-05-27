@@ -15,8 +15,8 @@ class GoalModel {
     _description.text = description;
   }
 
-  addSubGoal(GoalModel value) {
-    subGoals.add(value);
+  addSubGoal() {
+    print("addsubgoal in goal model");
   }
 
   setSubGoalList(List<GoalModel> subGoals) {
@@ -30,4 +30,6 @@ class GoalModel {
   String get description => _description.text;
   set description(String description) => _description.text = description;
   TextEditingController get descriptionController => _description;
+
+  onInputFocusChange(bool value) {}
 }

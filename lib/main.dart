@@ -65,10 +65,13 @@ router() {
         builder: (context, state) => const HomePageWidget(),
       ),
       GoRoute(
-          path: '/mainGoalDetails',
+          name: "mainGoalDetails",
+          path: '/mainGoalDetails/:goalId',
           builder: (context, state) {
-            var goalModel = state.extra as GoalModel;
-            return MainGoalPageWidget(goalModel: goalModel);
+            var goalId = state.pathParameters['goalId']!;
+            return MainGoalPageWidget(
+              model: GoalModel(goalId),
+            );
           })
     ],
   );
