@@ -34,7 +34,8 @@ void main() {
           ),
         ),
         ChangeNotifierProvider(
-            create: (_) => MainGoalController(updateGoal, addSubgoal)),
+            create: (_) =>
+                MainGoalController(updateGoal, addSubgoal, getGoalDetails)),
         ChangeNotifierProvider(create: (_) => SubGoalController()),
       ],
       child: MyApp(),
@@ -66,11 +67,11 @@ router() {
       ),
       GoRoute(
           name: "mainGoalDetails",
-          path: '/mainGoalDetails/:goalId',
+          path: '/mainGoalDetails',
           builder: (context, state) {
-            var goalId = state.pathParameters['goalId']!;
+            var goalModel = state.extra as GoalModel;
             return MainGoalPageWidget(
-              model: GoalModel(goalId),
+              model: goalModel,
             );
           })
     ],

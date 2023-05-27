@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MyAppBar({
@@ -17,7 +18,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           size: 20,
         ),
         onPressed: () {
-          Navigator.pop(context);
+          context.go("/home");
         },
       ),
       title: const Text(

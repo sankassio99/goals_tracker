@@ -1,5 +1,6 @@
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
+import 'package:goals_tracker/domain/entities/main_goal.dart';
 
 class GoalRepositoryMemory implements IGoalRepository {
   late List<Goal> goalsData;
@@ -28,8 +29,8 @@ class GoalRepositoryMemory implements IGoalRepository {
   }
 
   @override
-  Future<Goal> getById(String id) async {
+  Future<MainGoal> getById(String id) async {
     print("GETTING BY ID");
-    return goalsData.firstWhere((data) => data.id == id);
+    return goalsData.firstWhere((data) => data.id == id) as MainGoal;
   }
 }
