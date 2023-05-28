@@ -19,8 +19,8 @@ class GoalListWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
+          const Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
             child: Row(
               mainAxisSize: MainAxisSize.max,
             ),

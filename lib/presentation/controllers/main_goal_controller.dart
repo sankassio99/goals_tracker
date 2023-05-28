@@ -45,7 +45,7 @@ class MainGoalController extends ChangeNotifier {
   addSubGoal(String goalId) async {
     var subGoalId = await _addSubgoal.execute(goalId);
 
-    subGoals.add(
+    currentGoal.subGoals.add(
       GoalModel(subGoalId, description: "", name: "Tap to edit"),
     );
 

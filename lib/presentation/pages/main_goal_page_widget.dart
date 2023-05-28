@@ -16,6 +16,8 @@ class MainGoalPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Provider.of<MainGoalController>(context, listen: false);
+    controller.setCurrentGoal(model);
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: const MyAppBar(),
@@ -63,7 +65,8 @@ class MainGoalPageWidget extends StatelessWidget {
                   ),
                   Consumer<MainGoalController>(
                       builder: (context, controller, child) {
-                    return GoalListWidget(goals: controller.subGoals);
+                    return GoalListWidget(
+                        goals: controller.currentGoal.subGoals);
                   }),
                 ],
               ),
