@@ -10,7 +10,7 @@ class SubGoalRepositoryMemory implements ISubGoalRepository {
 
   @override
   void save(SubGoal goal) {
-    print("SAVING NEW GOAL");
+    print("SAVING NEW SUB GOAL");
     goalsData.add(goal);
   }
 
@@ -31,5 +31,12 @@ class SubGoalRepositoryMemory implements ISubGoalRepository {
   Future<SubGoal> getById(String id) async {
     print("GETTING BY ID");
     return goalsData.firstWhere((data) => data.id == id);
+  }
+
+  @override
+  Future<List<SubGoal>> getByMainGoalId(String id) async {
+    print("GETTING BY MAIN GOAL ID");
+    var subGoals = goalsData.where((data) => data.mainGoalId == id).toList();
+    return subGoals;
   }
 }
