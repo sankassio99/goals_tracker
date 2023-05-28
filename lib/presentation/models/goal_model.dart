@@ -15,8 +15,8 @@ class GoalModel {
     _description.text = description;
   }
 
-  addSubGoal() {
-    print("addsubgoal in goal model");
+  addSubGoal(GoalModel subGoal) {
+    subGoals.add(subGoal);
   }
 
   setSubGoalList(List<GoalModel> subGoals) {

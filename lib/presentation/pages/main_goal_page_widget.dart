@@ -18,6 +18,7 @@ class MainGoalPageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var controller = Provider.of<MainGoalController>(context, listen: false);
     controller.setCurrentGoal(model);
+    controller.setCurrentSubGoals();
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: const MyAppBar(),
@@ -48,10 +49,10 @@ class MainGoalPageWidget extends StatelessWidget {
                       child: HeaderGoalWidget(
                         editMode: true.obs,
                         titleFocusNode: (value) =>
-                            model.onInputFocusChange(value),
+                            controller.onInputFocusChange(value),
                         titleTextController: model.nameController,
                         descFocusNode: (value) =>
-                            model.onInputFocusChange(value),
+                            controller.onInputFocusChange(value),
                         descTextController: model.descriptionController,
                       ),
                     ),

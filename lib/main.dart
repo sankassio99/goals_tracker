@@ -4,6 +4,7 @@ import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/add_subgoal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
+import 'package:goals_tracker/application/usecases/get_sub_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/infra/sub_goal_repository.dart';
@@ -23,6 +24,7 @@ void main() {
   var updateGoal = UpdateGoal(goalRepository);
   var getGoals = GetGoals(goalRepository);
   var getGoalDetails = GetGoalDetails(goalRepository);
+  GetSubGoals getSubGoals = GetSubGoals(subGoalRepository);
   runApp(
     MultiProvider(
       providers: [
@@ -34,8 +36,8 @@ void main() {
           ),
         ),
         ChangeNotifierProvider(
-            create: (_) =>
-                MainGoalController(updateGoal, addSubgoal, getGoalDetails)),
+            create: (_) => MainGoalController(
+                updateGoal, addSubgoal, getGoalDetails, getSubGoals)),
         ChangeNotifierProvider(create: (_) => SubGoalController()),
       ],
       child: MyApp(),
