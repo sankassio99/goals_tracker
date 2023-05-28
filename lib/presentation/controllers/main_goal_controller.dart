@@ -64,18 +64,6 @@ class MainGoalController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void goToSubGoal(BuildContext context, GoalModel goalModel) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SubGoalPageWidget(
-          isCreatedNow: false.obs,
-          goalModel: goalModel,
-        ),
-      ),
-    );
-  }
-
   Future<GoalModel> getGoalDetails(String goalId) async {
     var goal = await _getGoalDetails.get(goalId);
     return _mapToGoalModel(goal);

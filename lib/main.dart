@@ -14,6 +14,7 @@ import 'package:goals_tracker/presentation/controllers/sub_goal_controller.dart'
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
+import 'package:goals_tracker/presentation/pages/sub_goal_page_widget.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -74,6 +75,15 @@ router() {
             var goalModel = state.extra as GoalModel;
             return MainGoalPageWidget(
               model: goalModel,
+            );
+          }),
+      GoRoute(
+          name: "subGoalDetails",
+          path: '/subGoalDetails',
+          builder: (context, state) {
+            var goalModel = state.extra as GoalModel;
+            return SubGoalPageWidget(
+              goalModel: goalModel,
             );
           })
     ],

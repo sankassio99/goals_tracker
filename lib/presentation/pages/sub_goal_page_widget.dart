@@ -10,10 +10,9 @@ import '../components/bottom_button.dart';
 
 class SubGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
-  RxBool? isCreatedNow = false.obs;
   final GoalModel goalModel;
 
-  SubGoalPageWidget({this.isCreatedNow, required this.goalModel});
+  SubGoalPageWidget({required this.goalModel});
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +47,7 @@ class SubGoalPageWidget extends StatelessWidget {
                         color: Colors.white,
                       ),
                       child: HeaderGoalWidget(
-                        editMode: isCreatedNow!,
+                        editMode: false.obs,
                         titleFocusNode: (value) =>
                             controller.onInputFocusChange(value),
                         titleTextController: goalModel.nameController,
@@ -65,19 +64,12 @@ class SubGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  GoalListWidget(goals: controller.currentGoal.subGoals)
                 ],
               ),
             ),
           ),
         ),
       ),
-      persistentFooterButtons: [
-        BottomButton(
-          label: "Add sub goal",
-          action: () => null,
-        )
-      ],
     );
   }
 }

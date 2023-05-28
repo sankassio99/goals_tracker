@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
+import 'package:goals_tracker/presentation/components/sub_goal_card_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:provider/provider.dart';
@@ -66,8 +67,15 @@ class MainGoalPageWidget extends StatelessWidget {
                   ),
                   Consumer<MainGoalController>(
                       builder: (context, controller, child) {
-                    return GoalListWidget(
-                        goals: controller.currentGoal.subGoals);
+                    return ListView(
+                      key: const Key("goalCardsListView"),
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      children: controller.currentGoal.subGoals
+                          .map((goal) => SubGoalCardWidget(model: goal))
+                          .toList(),
+                    );
                   }),
                 ],
               ),
