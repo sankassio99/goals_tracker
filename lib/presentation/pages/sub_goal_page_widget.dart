@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/sub_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:provider/provider.dart';
-import '../components/bottom_button.dart';
 
 class SubGoalPageWidget extends StatelessWidget {
   final _unfocusNode = FocusNode();
   final GoalModel goalModel;
 
-  SubGoalPageWidget({required this.goalModel});
+  SubGoalPageWidget({super.key, required this.goalModel});
 
   @override
   Widget build(BuildContext context) {

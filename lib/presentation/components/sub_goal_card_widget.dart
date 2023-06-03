@@ -13,7 +13,7 @@ class SubGoalCardWidget extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 80,
-        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+        margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),

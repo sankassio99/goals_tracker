@@ -7,9 +7,9 @@ void main() {
       (WidgetTester tester) async {
     // arrange
     await tester.pumpWidget(
-      MaterialApp(
+      const MaterialApp(
         home: Scaffold(
-          body: GoalListWidget(goals: const []),
+          body: GoalListWidget(goals: []),
         ),
       ),
     );

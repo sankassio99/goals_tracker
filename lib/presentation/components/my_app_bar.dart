@@ -22,14 +22,14 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         },
       ),
       title: const Text(
-        key: const Key("pageTitleAppBar"),
+        key: Key("pageTitleAppBar"),
         'Back',
         style: TextStyle(
           fontSize: 16,
           color: Colors.black87,
         ),
       ),
-      actions: [],
+      actions: const [],
       centerTitle: false,
       elevation: 0,
     );

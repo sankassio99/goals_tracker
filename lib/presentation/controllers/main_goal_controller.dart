@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/add_subgoal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/get_sub_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
-import 'package:goals_tracker/presentation/pages/sub_goal_page_widget.dart';
 import '../../domain/entities/main_goal.dart';
 
 class MainGoalController extends ChangeNotifier {

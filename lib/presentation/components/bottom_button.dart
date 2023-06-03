@@ -4,7 +4,7 @@ class BottomButton extends StatelessWidget {
   final Function action;
   final String label;
 
-  BottomButton({
+  const BottomButton({
     super.key,
     required this.action,
     required this.label,
@@ -37,7 +37,7 @@ class BottomButton extends StatelessWidget {
             Text(
               label,
               style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ],
         ),

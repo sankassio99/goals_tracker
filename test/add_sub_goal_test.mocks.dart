@@ -57,6 +57,15 @@ class MockISubGoalRepository extends _i1.Mock
         returnValue: _i4.Future<List<_i2.SubGoal>>.value(<_i2.SubGoal>[]),
       ) as _i4.Future<List<_i2.SubGoal>>);
   @override
+  _i4.Future<List<_i2.SubGoal>> getByMainGoalId(String? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getByMainGoalId,
+          [id],
+        ),
+        returnValue: _i4.Future<List<_i2.SubGoal>>.value(<_i2.SubGoal>[]),
+      ) as _i4.Future<List<_i2.SubGoal>>);
+  @override
   _i4.Future<_i2.SubGoal> getById(String? id) => (super.noSuchMethod(
         Invocation.method(
           #getById,

@@ -5,7 +5,7 @@ import 'package:goals_tracker/presentation/models/goal_model.dart';
 class GoalListWidget extends StatelessWidget {
   final List<GoalModel> goals;
 
-  GoalListWidget({
+  const GoalListWidget({
     required this.goals,
     super.key,
   });
@@ -14,7 +14,7 @@ class GoalListWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(),
+      decoration: const BoxDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -8,7 +8,7 @@ import '../components/bottom_button.dart';
 class MainGoalPageWidget extends StatelessWidget {
   final GoalModel model;
 
-  MainGoalPageWidget({super.key, required this.model});
+  const MainGoalPageWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {

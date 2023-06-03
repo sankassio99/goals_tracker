@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
-import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
