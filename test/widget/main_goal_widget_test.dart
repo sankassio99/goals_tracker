@@ -141,7 +141,6 @@ void main() {
     await tester.pumpWidget(initMaterialApp());
 
     // act
-
     var addTaskButton = find.byKey(const Key("addTaskButton"));
     await tester.tap(addTaskButton);
 
