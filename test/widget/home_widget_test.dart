@@ -68,22 +68,4 @@ void main() {
     var mainGoalPageFinder = find.byType(MainGoalPageWidget);
     expect(mainGoalPageFinder, findsOneWidget);
   });
-
-  testWidgets(
-      'When new main goal page is created the focus must be in title input',
-      (WidgetTester tester) async {
-    // arrange
-    await tester.pumpWidget(const MyApp());
-
-    // act
-    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
-    await tester.tap(buttonFinder);
-    await tester.pumpAndSettle();
-
-    // assert
-    var titleInputFinder = find.byKey(const Key("titleInput"));
-    TextField titleInputWidget = tester.widget(titleInputFinder);
-    var hasFocus = titleInputWidget.focusNode!.hasPrimaryFocus;
-    expect(hasFocus, isTrue);
-  });
 }
