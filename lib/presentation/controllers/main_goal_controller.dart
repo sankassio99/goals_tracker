@@ -31,4 +31,8 @@ class MainGoalController extends GetxController {
   void updateGoal() {
     _updateGoal.execute(goalModel.value.toMainGoalEntity());
   }
+
+  void addTask() {
+    goalModel.value.addTask();
+  }
 }

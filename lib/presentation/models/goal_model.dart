@@ -7,6 +7,7 @@ class GoalModel {
   final TextEditingController _name = TextEditingController(text: "");
   final TextEditingController _description = TextEditingController(text: "");
   List<GoalModel> subGoals = [];
+  List<TaskModel> tasks = [];
 
   GoalModel(
     this.id, {
@@ -38,4 +39,16 @@ class GoalModel {
   Goal toMainGoalEntity() {
     return MainGoal(id, name, description);
   }
+
+  void addTask() {
+    tasks.add(TaskModel("Tap to edit"));
+  }
+}
+
+class TaskModel {
+  String name;
+  bool checked = false;
+  Icon icon = const Icon(Icons.task_alt);
+
+  TaskModel(this.name);
 }
