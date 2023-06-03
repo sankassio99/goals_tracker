@@ -21,6 +21,7 @@ class MainGoalController extends GetxController {
   getGoal(String goalId) async {
     var mainGoal = await _getGoalDetails.get(goalId);
     goalModel.value = _mapToGoalModel(mainGoal);
+    update();
   }
 
   GoalModel _mapToGoalModel(MainGoal goal) {

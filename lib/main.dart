@@ -32,9 +32,7 @@ class MyApp extends StatelessWidget {
             binding: HomeBinding()),
         GetPage(
           name: '/mainGoalDetails',
-          page: () => MainGoalPageWidget(
-            model: GoalModel(""),
-          ),
+          page: () => MainGoalPageWidget(),
         ),
       ],
     );
