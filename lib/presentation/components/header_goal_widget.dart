@@ -64,7 +64,11 @@ class HeaderGoalWidget extends StatelessWidget {
                   ],
                 ),
                 Focus(
-                  onFocusChange: (value) {},
+                  onFocusChange: (value) {
+                    if (!value) {
+                      controller.updateGoal();
+                    }
+                  },
                   child: TextField(
                       key: const Key("descInput"),
                       controller: model.descriptionController,
