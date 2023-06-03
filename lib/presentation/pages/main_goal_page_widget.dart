@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goals_tracker/presentation/components/bottom_button.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:flutter/scheduler.dart' show timeDilation;
 
 class MainGoalPageWidget extends StatelessWidget {
   final controller = Get.find<MainGoalController>();
@@ -52,6 +52,7 @@ class MainGoalPageWidget extends StatelessWidget {
                       endIndent: 50,
                       color: Colors.black12,
                     ),
+                    Tasks()
                   ],
                 ),
               ),
@@ -60,5 +61,24 @@ class MainGoalPageWidget extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
               child: const Icon(Icons.add), onPressed: () {}));
     });
+  }
+}
+
+class Tasks extends StatelessWidget {
+  const Tasks({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height - 500,
+      child: CheckboxListTile(
+        title: const Text('Animate Slowly'),
+        value: false,
+        onChanged: (value) {},
+        secondary: const Icon(Icons.task_alt),
+      ),
+    );
   }
 }
