@@ -4,11 +4,14 @@ import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 
+import '../add_new_goal_test.mocks.dart';
+
 void main() {
   late HomeController homeController;
+  late MockIGoalRepository goalRepository;
 
   setUp(() async {
-    var goalRepository = GoalRepositoryMemory();
+    goalRepository = MockIGoalRepository();
     var addNewGoal = AddNewGoal(goalRepository);
 
     goalRepository.save(MainGoal("id", "title", "desc"));
@@ -27,6 +30,26 @@ void main() {
 
       //#region Assert(Then)
       expect(homeController.goalList.length, 1);
+      //#endregion
+    });
+
+    test('load goals already saved', () async {
+      //#region Arrange(Given)
+      var goal1 = MainGoal("1", "title", "desc");
+      var goal2 = MainGoal("2", "title", "desc");
+      goalRepository.save(goal1);
+      goalRepository.save(goal2);
+
+      //#endregion
+      //#region Act(When)
+      homeController.loadGoals();
+
+      //#endregion
+      //#region Assert(Then)
+      expect(homeController.goalList.length, 2);
+      expect(homeController.goalList.first.id, goal1.id);
+      expect(homeController.goalList.last.id, goal2.id);
+
       //#endregion
     });
   });
