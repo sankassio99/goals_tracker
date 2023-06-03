@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
+import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
+import 'package:mockito/mockito.dart';
 
 import '../add_new_goal_test.mocks.dart';
 
@@ -13,10 +15,11 @@ void main() {
   setUp(() async {
     goalRepository = MockIGoalRepository();
     var addNewGoal = AddNewGoal(goalRepository);
+    var getGoals = GetGoals(goalRepository);
 
     goalRepository.save(MainGoal("id", "title", "desc"));
 
-    homeController = HomeController(addNewGoal);
+    homeController = HomeController(addNewGoal, getGoals);
   });
 
   group('Home controller should', () {
@@ -37,12 +40,13 @@ void main() {
       //#region Arrange(Given)
       var goal1 = MainGoal("1", "title", "desc");
       var goal2 = MainGoal("2", "title", "desc");
-      goalRepository.save(goal1);
-      goalRepository.save(goal2);
+      List<MainGoal> mainGoalList = [goal1, goal2];
+
+      when(goalRepository.getAll()).thenAnswer((_) async => mainGoalList);
 
       //#endregion
       //#region Act(When)
-      homeController.loadGoals();
+      await homeController.loadGoals();
 
       //#endregion
       //#region Assert(Then)

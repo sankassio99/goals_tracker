@@ -10,6 +10,7 @@ class HomePageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Rebuilded");
     return Scaffold(
       body: SafeArea(
         child: Padding(

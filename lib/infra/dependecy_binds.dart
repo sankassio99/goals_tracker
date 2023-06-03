@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
+import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
@@ -32,6 +33,7 @@ class HomeBinding extends Bindings {
     var goalRepository = Get.find<IGoalRepository>();
 
     var addNewGoal = AddNewGoal(goalRepository);
-    Get.lazyPut(() => HomeController(addNewGoal));
+    var getGoals = GetGoals(goalRepository);
+    Get.lazyPut(() => HomeController(addNewGoal, getGoals));
   }
 }
