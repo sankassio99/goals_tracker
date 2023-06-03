@@ -66,7 +66,7 @@ router() {
     routes: [
       GoRoute(
         path: '/home',
-        builder: (context, state) => const HomePageWidget(),
+        builder: (context, state) => HomePageWidget(),
       ),
       GoRoute(
           name: "mainGoalDetails",

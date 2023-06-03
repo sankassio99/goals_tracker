@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
-import 'package:goals_tracker/application/usecases/add_subgoal.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
-import 'package:goals_tracker/infra/sub_goal_repository.dart';
 import 'package:goals_tracker/main.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
-import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -27,20 +24,7 @@ void main() {
   testWidgets('When is loaded must be show a title and button to add new goals',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(
-      MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => HomeController(
-              addNewGoal,
-              getGoals,
-              updateGoal,
-            ),
-          ),
-        ],
-        child: Builder(builder: (_) => MyApp()),
-      ),
-    );
+    await tester.pumpWidget(const MyApp());
 
     // act
     await tester.pumpAndSettle();
@@ -57,7 +41,20 @@ void main() {
       'When add main goal button is clicked must be redirect to new maingoal page created',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(
+      MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => HomeController(
+              addNewGoal,
+              getGoals,
+              updateGoal,
+            ),
+          ),
+        ],
+        child: Builder(builder: (_) => const MyApp()),
+      ),
+    );
 
     // act
     var buttonFinder = find.byKey(const Key("addNewGoalButton"));

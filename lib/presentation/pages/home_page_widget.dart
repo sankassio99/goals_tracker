@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
-import 'package:goals_tracker/presentation/controllers/home_controller.dart';
-import 'package:provider/provider.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 import '../components/bottom_button.dart';
 
 class HomePageWidget extends StatelessWidget {
-  const HomePageWidget({super.key});
+  HomePageWidget({super.key});
+
+  List<GoalModel> goalsList = [];
 
   @override
   Widget build(BuildContext context) {
-    final controller = Provider.of<HomeController>(context);
-
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -35,7 +35,7 @@ class HomePageWidget extends StatelessWidget {
                   endIndent: 50,
                   color: Colors.black12,
                 ),
-                GoalListWidget(goals: controller.goalList),
+                GoalListWidget(goals: goalsList),
               ],
             ),
           ),
@@ -44,9 +44,13 @@ class HomePageWidget extends StatelessWidget {
       persistentFooterButtons: [
         BottomButton(
           label: "Add goal",
-          action: () => controller.addNewGoal(),
+          action: () => addNewGoal(),
         ),
       ],
     );
+  }
+
+  addNewGoal() {
+    goalsList.add(GoalModel("id"));
   }
 }
