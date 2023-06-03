@@ -19,10 +19,10 @@ class HomeController extends GetxController {
 
   Future<void> loadGoals() async {
     List<GoalModel> goalModelList = [];
-    var mainGoals = await _getGoals.getAll() as List<MainGoal>;
+    var mainGoals = await _getGoals.getAll();
 
     for (var mainGoal in mainGoals) {
-      goalModelList.add(_mapToGoalModel(mainGoal));
+      goalModelList.add(_mapToGoalModel(mainGoal as MainGoal));
     }
 
     goalList.value = goalModelList;

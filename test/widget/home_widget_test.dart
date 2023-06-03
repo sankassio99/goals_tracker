@@ -20,6 +20,9 @@ void main() {
 
     var myGoal = MainGoal("goalId", "title", "desc");
     when(goalRepositoryMock.getById(any)).thenAnswer((_) async => myGoal);
+
+    List<MainGoal> mainGoalList = [];
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
   });
 
   testWidgets('When is loaded must be show a title and button to add new goals',
@@ -77,10 +80,11 @@ void main() {
       'When user return from main goal page the goals already registred must be displayed',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    var goal1 = MainGoal("1", "title", "desc");
+    List<MainGoal> mainGoalList = [goal1];
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
 
-    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
-    await tester.tap(buttonFinder);
+    await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
 
     var goalCard = find.byType(GoalCardWidget);
@@ -96,38 +100,25 @@ void main() {
     var homePageFinder = find.byType(HomePageWidget);
 
     expect(homePageFinder, findsOneWidget);
-    expect(goalCard, findsOneWidget);
+    expect(goalCard, findsNWidgets(1));
   });
 
-  testWidgets(
-      'When user return from main goal page after update goal must show list updated',
+  testWidgets('When home widget loads must show all goals list saved',
       (WidgetTester tester) async {
     // arrange
+    var goal1 = MainGoal("1", "title", "desc");
+    var goal2 = MainGoal("2", "title", "desc");
+    List<MainGoal> mainGoalList = [goal1, goal2];
+
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
+
     await tester.pumpWidget(const MyApp());
-    var newTitle = "New Title";
-
-    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
-    await tester.tap(buttonFinder);
-    await tester.pumpAndSettle();
-
-    var goalCard = find.byType(GoalCardWidget);
-    await tester.tap(goalCard);
-    await tester.pumpAndSettle();
 
     // act
-    var inputTitle = find.byKey(const Key("titleInput"));
-    await tester.tap(inputTitle);
-    await tester.enterText(inputTitle, newTitle);
-
-    var backButton = find.byKey(const Key("backIconButton"));
-    await tester.tap(backButton);
     await tester.pumpAndSettle();
 
     // assert
-    var homePageFinder = find.byType(HomePageWidget);
-    expect(homePageFinder, findsOneWidget);
-
-    var goalCardTitle = find.text(newTitle);
-    expect(goalCardTitle, findsOneWidget);
+    var goalCard = find.byType(GoalCardWidget);
+    expect(goalCard, findsNWidgets(2));
   });
 }
