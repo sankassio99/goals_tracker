@@ -9,9 +9,11 @@ import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart
 class MainGoalBinding extends Bindings {
   @override
   void dependencies() {
-    var goalRepository = Get.isRegistered<IGoalRepository>()
-        ? Get.find<IGoalRepository>()
-        : GoalRepositoryMemory();
+    if (!Get.isRegistered<IGoalRepository>()) {
+      Get.lazyPut<IGoalRepository>(() => GoalRepositoryMemory());
+    }
+
+    var goalRepository = Get.find<IGoalRepository>();
 
     var getGoalDetails = GetGoalDetails(goalRepository);
 
@@ -22,9 +24,10 @@ class MainGoalBinding extends Bindings {
 class HomeBinding extends Bindings {
   @override
   void dependencies() {
-    var goalRepository = Get.isRegistered<IGoalRepository>()
-        ? Get.find<IGoalRepository>()
-        : GoalRepositoryMemory();
+    if (!Get.isRegistered<IGoalRepository>()) {
+      Get.lazyPut<IGoalRepository>(() => GoalRepositoryMemory());
+    }
+    var goalRepository = Get.find<IGoalRepository>();
 
     var addNewGoal = AddNewGoal(goalRepository);
     Get.lazyPut(() => HomeController(addNewGoal));

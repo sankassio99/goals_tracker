@@ -12,6 +12,7 @@ class MainGoalPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getGoal();
     return GetBuilder<MainGoalController>(builder: (controller) {
       return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,

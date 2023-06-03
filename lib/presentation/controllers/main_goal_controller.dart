@@ -9,17 +9,9 @@ class MainGoalController extends GetxController {
 
   MainGoalController(this._getGoalDetails);
 
-  @override
-  void onInit() {
+  getGoal() async {
     var goalId = Get.parameters['goalId'];
-    if (goalId != null) {
-      getGoal(goalId);
-    }
-    super.onInit();
-  }
-
-  getGoal(String goalId) async {
-    var mainGoal = await _getGoalDetails.get(goalId);
+    var mainGoal = await _getGoalDetails.get(goalId!);
     goalModel.value = _mapToGoalModel(mainGoal);
     update();
   }

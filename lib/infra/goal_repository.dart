@@ -13,7 +13,7 @@ class GoalRepositoryMemory implements IGoalRepository {
   @override
   void save(Goal goal) {
     // ignore: avoid_print
-    print("SAVING NEW GOAL");
+    print("SAVING NEW GOAL: " + goal.id);
     goalsData.add(goal);
   }
 
@@ -35,7 +35,7 @@ class GoalRepositoryMemory implements IGoalRepository {
   @override
   Future<MainGoal> getById(String id) async {
     // ignore: avoid_print
-    print("GETTING BY ID");
+    print("GETTING BY ID:" + id);
     return goalsData.firstWhere((data) => data.id == id) as MainGoal;
   }
 }
