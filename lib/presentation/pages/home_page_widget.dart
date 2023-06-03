@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import '../components/bottom_button.dart';
 
 class HomePageWidget extends StatelessWidget {
   HomePageWidget({super.key});
-
-  List<GoalModel> goalsList = [];
+  RxList<GoalModel> goalsList = <GoalModel>[].obs;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,21 @@ class HomePageWidget extends StatelessWidget {
                   endIndent: 50,
                   color: Colors.black12,
                 ),
-                GoalListWidget(goals: goalsList),
+                SizedBox(
+                  height: 400,
+                  child: Obx(
+                    () => ListView.builder(
+                      itemCount: goalsList.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 8),
+                          child: GoalCardWidget(model: goalsList[index]),
+                        );
+                      },
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
