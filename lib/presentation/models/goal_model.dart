@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:goals_tracker/domain/entities/goal.dart';
+import 'package:goals_tracker/domain/entities/main_goal.dart';
 
 class GoalModel {
   String id;
@@ -32,4 +34,8 @@ class GoalModel {
   TextEditingController get descriptionController => _description;
 
   onInputFocusChange(bool value) {}
+
+  Goal toMainGoalEntity() {
+    return MainGoal(id, name, description);
+  }
 }

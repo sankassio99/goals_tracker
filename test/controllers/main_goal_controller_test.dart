@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
+import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:mockito/mockito.dart';
@@ -16,18 +17,18 @@ void main() {
   setUp(() async {
     goalRepositoryMock = MockIGoalRepository();
     getGoalDetails = GetGoalDetails(goalRepositoryMock);
-
-    mainGoalController = MainGoalController(getGoalDetails);
-
+    var updateGoal = UpdateGoal(goalRepositoryMock);
     goalId = "1";
+
+    mainGoalController = MainGoalController(getGoalDetails, updateGoal);
+    Get.parameters = {"goalId": goalId};
+
     var myGoal = MainGoal(goalId, "title", "desc");
     when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
   });
   group('Main Goal Controller should', () {
     test('get Goal by param id on init', () async {
       //#region Arrange(Given)
-      const goalId = "1";
-      Get.parameters = {"goalId": goalId};
       //#endregion
 
       //#region Act(When)
@@ -43,6 +44,7 @@ void main() {
 
     test('update goal title', () async {
       //#region Arrange(Given)
+      await mainGoalController.getGoal();
       //#endregion
 
       //#region Act(When)
