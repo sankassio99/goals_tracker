@@ -98,4 +98,36 @@ void main() {
     expect(homePageFinder, findsOneWidget);
     expect(goalCard, findsOneWidget);
   });
+
+  testWidgets(
+      'When user return from main goal page after update goal must show list updated',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(const MyApp());
+    var newTitle = "New Title";
+
+    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
+    await tester.tap(buttonFinder);
+    await tester.pumpAndSettle();
+
+    var goalCard = find.byType(GoalCardWidget);
+    await tester.tap(goalCard);
+    await tester.pumpAndSettle();
+
+    // act
+    var inputTitle = find.byKey(const Key("titleInput"));
+    await tester.tap(inputTitle);
+    await tester.enterText(inputTitle, newTitle);
+
+    var backButton = find.byKey(const Key("backIconButton"));
+    await tester.tap(backButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var homePageFinder = find.byType(HomePageWidget);
+    expect(homePageFinder, findsOneWidget);
+
+    var goalCardTitle = find.text(newTitle);
+    expect(goalCardTitle, findsOneWidget);
+  });
 }
