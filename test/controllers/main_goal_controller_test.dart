@@ -59,5 +59,18 @@ void main() {
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
       //#endregion
     });
+
+    test('add task', () async {
+      //#region Arrange(Given)
+      //#endregion
+
+      //#region Act(When)
+      mainGoalController.addTask();
+
+      //#endregion
+      //#region Assert(Then)
+      expect(mainGoalController.goalModel.value.tasks.length, 1);
+      //#endregion
+    });
   });
 }
