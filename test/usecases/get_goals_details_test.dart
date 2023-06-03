@@ -4,7 +4,7 @@ import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'add_new_goal_test.mocks.dart';
+import '../add_new_goal_test.mocks.dart';
 
 @GenerateMocks([IGoalRepository])
 void main() {

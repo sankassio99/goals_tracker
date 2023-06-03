@@ -5,7 +5,7 @@ import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'add_sub_goal_test.mocks.dart';
+import '../add_sub_goal_test.mocks.dart';
 
 @GenerateMocks([ISubGoalRepository])
 void main() {
