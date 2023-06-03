@@ -1,15 +1,35 @@
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
+import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class MainGoalController extends GetxController {
-  var goalModel;
+  Rx<GoalModel> goalModel = Rx<GoalModel>(GoalModel("id"));
+  late final GetGoalDetails _getGoalDetails;
 
-  MainGoalController(GetGoalDetails getGoalDetails);
+  MainGoalController(this._getGoalDetails);
 
   @override
   void onInit() {
-    print("On initi called");
-    print(Get.parameters['goalId']);
+    var goalId = Get.parameters['goalId'];
+    if (goalId != null) {
+      getGoal(goalId);
+    }
     super.onInit();
+  }
+
+  getGoal(String goalId) async {
+    var mainGoal = await _getGoalDetails.get(goalId);
+    goalModel.value = _mapToGoalModel(mainGoal);
+  }
+
+  GoalModel _mapToGoalModel(MainGoal goal) {
+    var goalModel = GoalModel(
+      goal.id,
+      description: goal.desc,
+      name: goal.title,
+    );
+
+    return goalModel;
   }
 }

@@ -34,8 +34,9 @@ void main() {
       //#endregion
 
       //#region Assert(Then)
-      mainGoalController.goalModel;
-      expect(mainGoalController.goalModel, isNotNull);
+      mainGoalController.goalModel.listen((model) {
+        expect(model.id, goalId);
+      });
       //#endregion
     });
   });
