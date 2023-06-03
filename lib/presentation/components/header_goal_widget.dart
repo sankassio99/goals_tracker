@@ -3,11 +3,6 @@ import 'package:goals_tracker/presentation/components/progress_bar.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
-  // final RxBool editMode;
-  // final void Function(bool) titleFocusNode;
-  // final void Function(bool) descFocusNode;
-  // final TextEditingController titleTextController;
-  // final TextEditingController descTextController;
   final GoalModel model;
 
   const HeaderGoalWidget({
@@ -42,7 +37,10 @@ class HeaderGoalWidget extends StatelessWidget {
                       ),
                     ),
                     Focus(
-                      onFocusChange: (value) {},
+                      onFocusChange: (value) {
+                        print(value);
+                        print("Focus changed");
+                      },
                       child: SizedBox(
                         width: 300,
                         height: 40,

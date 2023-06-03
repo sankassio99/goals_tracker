@@ -85,4 +85,29 @@ void main() {
     TextField inputTitleWidget = tester.widget(inputTitle);
     expect(inputTitleWidget.controller!.text, title);
   });
+
+  testWidgets('When focus out title must update goal',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(initMaterialApp());
+    var newTitle = "Teste";
+
+    // act
+    var inputTitle = find.byKey(const Key("titleInput"));
+    await tester.tap(inputTitle);
+    await tester.enterText(inputTitle, newTitle);
+
+    var inputDesc = find.byKey(const Key("descInput"));
+    await tester.tap(inputDesc);
+
+    await tester.pumpAndSettle();
+
+    // assert
+    var matcher = predicate<MainGoal>((goal) {
+      expect(goal.id, goalId);
+      expect(goal.title, newTitle);
+      return true;
+    });
+    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+  });
 }
