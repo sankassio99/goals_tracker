@@ -10,18 +10,21 @@ class SubGoalRepositoryMemory implements ISubGoalRepository {
 
   @override
   void save(SubGoal goal) {
+    // ignore: avoid_print
     print("SAVING NEW SUB GOAL");
     goalsData.add(goal);
   }
 
   @override
   Future<List<SubGoal>> getAll() async {
+    // ignore: avoid_print
     print("GETTING ALL");
     return goalsData;
   }
 
   @override
   void update(SubGoal goal) {
+    // ignore: avoid_print
     print("UPDATING GOAL");
     var goalIndex = goalsData.indexWhere((data) => data.id == goal.id);
     goalsData[goalIndex] = goal;
@@ -29,12 +32,14 @@ class SubGoalRepositoryMemory implements ISubGoalRepository {
 
   @override
   Future<SubGoal> getById(String id) async {
+    // ignore: avoid_print
     print("GETTING BY ID");
     return goalsData.firstWhere((data) => data.id == id);
   }
 
   @override
   Future<List<SubGoal>> getByMainGoalId(String id) async {
+    // ignore: avoid_print
     print("GETTING BY MAIN GOAL ID");
     var subGoals = goalsData.where((data) => data.mainGoalId == id).toList();
     return subGoals;
