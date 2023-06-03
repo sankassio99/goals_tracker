@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 
@@ -7,7 +8,7 @@ class GoalModel {
   final TextEditingController _name = TextEditingController(text: "");
   final TextEditingController _description = TextEditingController(text: "");
   List<GoalModel> subGoals = [];
-  List<TaskModel> tasks = [];
+  RxList<TaskModel> tasks = RxList<TaskModel>();
 
   GoalModel(
     this.id, {

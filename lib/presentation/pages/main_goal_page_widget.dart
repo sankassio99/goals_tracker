@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
-import 'package:flutter/scheduler.dart' show timeDilation;
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
@@ -52,7 +51,7 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  Obx(() => Tasks(tasks: controller.goalModel.value.tasks))
+                  Tasks(tasks: controller.goalModel.value.tasks)
                 ],
               ),
             ),
@@ -69,9 +68,9 @@ class MainGoalPageWidget extends StatelessWidget {
 }
 
 class Tasks extends StatelessWidget {
-  List<TaskModel> tasks;
+  final RxList<TaskModel> tasks;
 
-  Tasks({
+  const Tasks({
     super.key,
     required this.tasks,
   });
@@ -81,18 +80,19 @@ class Tasks extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height - 500,
       child: SingleChildScrollView(
-        child: Column(
-          children: tasks
-              .map(
-                (task) => CheckboxListTile(
-                  key: const Key("taskItem"),
-                  title: const Text('Animate Slowly'),
-                  value: false,
-                  onChanged: (value) {},
-                  secondary: const Icon(Icons.task_alt),
-                ),
-              )
-              .toList(),
+        child: Obx(
+          () => Column(
+            children: tasks
+                .map(
+                  (task) => CheckboxListTile(
+                    title: const Text('Animate Slowly'),
+                    value: false,
+                    onChanged: (value) {},
+                    secondary: const Icon(Icons.task_alt),
+                  ),
+                )
+                .toList(),
+          ),
         ),
       ),
     );

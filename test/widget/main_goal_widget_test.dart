@@ -147,7 +147,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // assert
-    var tasks = find.byKey(const Key("taskItem"));
+    var tasks = find.byType(CheckboxListTile);
     expect(tasks, findsOneWidget);
   });
 }
