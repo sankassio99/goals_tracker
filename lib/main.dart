@@ -51,36 +51,6 @@ class HomeBinding extends Bindings {
   }
 }
 
-router() {
-  return GoRouter(
-    initialLocation: '/home',
-    routes: [
-      GoRoute(
-        path: '/home',
-        builder: (context, state) => HomePageWidget(),
-      ),
-      GoRoute(
-          name: "mainGoalDetails",
-          path: '/mainGoalDetails',
-          builder: (context, state) {
-            var goalModel = state.extra as GoalModel;
-            return MainGoalPageWidget(
-              model: goalModel,
-            );
-          }),
-      GoRoute(
-          name: "subGoalDetails",
-          path: '/subGoalDetails',
-          builder: (context, state) {
-            var goalModel = state.extra as GoalModel;
-            return SubGoalPageWidget(
-              goalModel: goalModel,
-            );
-          })
-    ],
-  );
-}
-
 ThemeData themeConfig() {
   return ThemeData(
     // Define the default brightness and colors.

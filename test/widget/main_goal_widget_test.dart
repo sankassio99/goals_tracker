@@ -58,12 +58,3 @@ class MainGoalBinding extends Bindings {
     Get.lazyPut(() => MainGoalController());
   }
 }
-
-class MainGoalController extends GetxController {
-  @override
-  void onInit() {
-    print("On initi called");
-    print(Get.parameters['goalId']);
-    super.onInit();
-  }
-}

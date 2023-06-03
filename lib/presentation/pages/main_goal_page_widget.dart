@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import '../components/bottom_button.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
   final GoalModel model;
+  final controller = Get.find<MainGoalController>();
 
-  const MainGoalPageWidget({super.key, required this.model});
+  MainGoalPageWidget({super.key, required this.model});
 
   @override
   Widget build(BuildContext context) {
