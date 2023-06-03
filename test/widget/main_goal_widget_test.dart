@@ -28,23 +28,33 @@ class MainGoalBindingFake extends Bindings {
 void main() {
   late MockIGoalRepository goalRepositoryMock;
   late Bindings bindingFake;
+  const String goalId = "1";
 
   setUp(() {
     goalRepositoryMock = MockIGoalRepository();
     bindingFake = MainGoalBindingFake(goalRepositoryMock);
+
+    var myGoal = MainGoal(goalId, "title", "desc");
+    when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
   });
+
+  GetMaterialApp initMaterialApp({String goalId = goalId}) {
+    return GetMaterialApp(
+      initialRoute: '/mainGoalDetails/$goalId',
+      getPages: [
+        GetPage(
+          name: '/mainGoalDetails/:goalId',
+          page: () => MainGoalPageWidget(),
+          binding: bindingFake,
+        ),
+      ],
+    );
+  }
 
   testWidgets('When Main Goal Page Widget is loaded must show header',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(
-      GetMaterialApp(
-        initialBinding: bindingFake,
-        home: Scaffold(
-          body: MainGoalPageWidget(),
-        ),
-      ),
-    );
+    await tester.pumpWidget(initMaterialApp());
     // act
 
     // assert
@@ -62,16 +72,7 @@ void main() {
     when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
 
     // arrange
-    await tester.pumpWidget(GetMaterialApp(
-      initialRoute: '/mainGoalDetails/$goalId',
-      getPages: [
-        GetPage(
-          name: '/mainGoalDetails/:goalId',
-          page: () => MainGoalPageWidget(),
-          binding: bindingFake,
-        ),
-      ],
-    ));
+    await tester.pumpWidget(initMaterialApp(goalId: goalId));
     // act
     await tester.pumpAndSettle();
     var inputTitle = find.byKey(const Key("titleInput"));
