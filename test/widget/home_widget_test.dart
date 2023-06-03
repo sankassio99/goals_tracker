@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-// import 'package:goals_tracker/application/usecases/add_new_goal.dart';
-// import 'package:goals_tracker/application/usecases/get_goals.dart';
-// import 'package:goals_tracker/application/usecases/update_goal.dart';
-// import 'package:goals_tracker/infra/goal_repository.dart';
+import 'package:get/get.dart';
+import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/main.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
+import 'package:mockito/mockito.dart';
+
+import '../add_new_goal_test.mocks.dart';
+import '../main_fake.dart';
 
 void main() {
-  // late AddNewGoal addNewGoal;
-  // late GetGoals getGoals;
-  // late UpdateGoal updateGoal;
+  late MockIGoalRepository goalRepositoryMock;
 
   setUp(() {
-    // var goalRepository = GoalRepositoryMemory();
-    // addNewGoal = AddNewGoal(goalRepository);
-    // updateGoal = UpdateGoal(goalRepository);
-    // getGoals = GetGoals(goalRepository);
+    Get.reset();
+    goalRepositoryMock = MockIGoalRepository();
+
+    var myGoal = MainGoal("goalId", "title", "desc");
+    when(goalRepositoryMock.getById(any)).thenAnswer((_) async => myGoal);
   });
 
   testWidgets('When is loaded must be show a title and button to add new goals',
@@ -40,7 +41,9 @@ void main() {
   testWidgets('When is add new goal must update goal list view with goal card',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyAppFake(
+      goalRepository: goalRepositoryMock,
+    ));
     var buttonFinder = find.byKey(const Key("addNewGoalButton"));
 
     // act
@@ -55,7 +58,9 @@ void main() {
   testWidgets('When a goal card is tapped must be redirect to main goal page',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyAppFake(
+      goalRepository: goalRepositoryMock,
+    ));
     var buttonFinder = find.byKey(const Key("addNewGoalButton"));
     await tester.tap(buttonFinder);
     await tester.pumpAndSettle();
@@ -74,7 +79,9 @@ void main() {
       'When user return from main goal page the goals already registred must be displayed',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyAppFake(
+      goalRepository: goalRepositoryMock,
+    ));
 
     var buttonFinder = find.byKey(const Key("addNewGoalButton"));
     await tester.tap(buttonFinder);

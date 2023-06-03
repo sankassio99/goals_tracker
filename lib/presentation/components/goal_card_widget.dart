@@ -9,7 +9,7 @@ class GoalCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed("mainGoalDetails"),
+      onTap: () => Get.toNamed("/mainGoalDetails/${model.id}"),
       child: Container(
         width: double.infinity,
         height: 80,

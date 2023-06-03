@@ -9,10 +9,10 @@ import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 class MyAppFake extends StatelessWidget {
-  final Bindings bindingFake;
-  const MyAppFake({super.key, required this.bindingFake});
+  final IGoalRepository goalRepository;
+  const MyAppFake({super.key, required this.goalRepository});
 
-  // This widget is the root of your application.
+  // This widget is the root of your application test.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -20,11 +20,14 @@ class MyAppFake extends StatelessWidget {
       initialRoute: '/home',
       getPages: [
         GetPage(
-            name: '/home', page: () => HomePageWidget(), binding: bindingFake),
+          name: '/home',
+          page: () => HomePageWidget(),
+          binding: HomeBindingFake(goalRepository),
+        ),
         GetPage(
           name: '/mainGoalDetails/:goalId',
           page: () => MainGoalPageWidget(),
-          binding: bindingFake,
+          binding: MainGoalBindingFake(goalRepository),
         ),
       ],
     );
