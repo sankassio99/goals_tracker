@@ -80,20 +80,18 @@ class Tasks extends StatelessWidget {
     return SizedBox(
       height: MediaQuery.of(context).size.height - 400,
       child: SingleChildScrollView(
-        child: Obx(
-          () => Column(
-            children: tasks
-                .map(
-                  (task) => CheckboxListTile(
-                    title: const Text('Animate Slowly'),
-                    value: false,
-                    onChanged: (value) {},
-                    secondary: const Icon(Icons.task_alt),
-                  ),
-                )
-                .toList(),
-          ),
-        ),
+        child: Obx(() => Column(
+              children: tasks
+                  .map(
+                    (task) => CheckboxListTile(
+                      title: const Text('Animate Slowly'),
+                      value: false,
+                      onChanged: (value) {},
+                      secondary: const Icon(Icons.task_alt),
+                    ),
+                  )
+                  .toList(),
+            )),
       ),
     );
   }
