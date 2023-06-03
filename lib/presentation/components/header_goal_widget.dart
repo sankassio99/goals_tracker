@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
   final GoalModel model;
+  final controller = Get.find<MainGoalController>();
 
-  const HeaderGoalWidget({
+  HeaderGoalWidget({
     super.key,
     required this.model,
   });
@@ -38,8 +41,9 @@ class HeaderGoalWidget extends StatelessWidget {
                     ),
                     Focus(
                       onFocusChange: (value) {
-                        print(value);
-                        print("Focus changed");
+                        if (!value) {
+                          controller.updateGoal();
+                        }
                       },
                       child: SizedBox(
                         width: 300,
