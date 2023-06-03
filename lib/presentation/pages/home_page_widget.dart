@@ -36,20 +36,16 @@ class HomePageWidget extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 400,
-                  child: Obx(
-                    () => ListView.builder(
-                      itemCount: controller.goalList.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 8),
-                          child:
-                              GoalCardWidget(model: controller.goalList[index]),
-                        );
-                      },
+                  child: SingleChildScrollView(
+                    child: Obx(
+                      () => Column(
+                        children: controller.goalList
+                            .map((element) => GoalCardWidget(model: element))
+                            .toList(),
+                      ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
