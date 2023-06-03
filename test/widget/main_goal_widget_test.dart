@@ -2,14 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
+import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../add_new_goal_test.mocks.dart';
-import '../main_fake.dart';
+
+class MainGoalBindingFake extends Bindings {
+  late IGoalRepository goalRepository;
+
+  MainGoalBindingFake(this.goalRepository);
+
+  @override
+  void dependencies() {
+    var getGoalDetails = GetGoalDetails(goalRepository);
+    Get.lazyPut(() => MainGoalController(getGoalDetails));
+  }
+}
 
 @GenerateMocks([IGoalRepository])
 void main() {
@@ -18,6 +31,7 @@ void main() {
   const String goalId = "1";
 
   setUp(() {
+    Get.reset();
     goalRepositoryMock = MockIGoalRepository();
     bindingFake = MainGoalBindingFake(goalRepositoryMock);
 
@@ -51,16 +65,15 @@ void main() {
 
   testWidgets('When Main Goal Page Widget is loaded must show goal title',
       (WidgetTester tester) async {
-    Get.reset();
-    var goalId = "1";
+    var goalId2 = "2";
     var title = "Buy new car";
     var desc = "Lorem ipsum";
-    var myGoal = MainGoal(goalId, title, desc);
+    var myGoal = MainGoal(goalId2, title, desc);
 
-    when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
+    when(goalRepositoryMock.getById(goalId2)).thenAnswer((_) async => myGoal);
 
     // arrange
-    await tester.pumpWidget(initMaterialApp(goalId: goalId));
+    await tester.pumpWidget(initMaterialApp(goalId: goalId2));
     // act
     await tester.pumpAndSettle();
     var inputTitle = find.byKey(const Key("titleInput"));
