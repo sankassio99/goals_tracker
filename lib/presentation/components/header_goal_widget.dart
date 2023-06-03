@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
-  final RxBool editMode;
-  final void Function(bool) titleFocusNode;
-  final void Function(bool) descFocusNode;
-  final TextEditingController titleTextController;
-  final TextEditingController descTextController;
+  // final RxBool editMode;
+  // final void Function(bool) titleFocusNode;
+  // final void Function(bool) descFocusNode;
+  // final TextEditingController titleTextController;
+  // final TextEditingController descTextController;
+  final GoalModel model;
 
   const HeaderGoalWidget({
     super.key,
-    required this.titleFocusNode,
-    required this.editMode,
-    required this.titleTextController,
-    required this.descTextController,
-    required this.descFocusNode,
+    required this.model,
   });
 
   @override
@@ -45,17 +43,14 @@ class HeaderGoalWidget extends StatelessWidget {
                       ),
                     ),
                     Focus(
-                      onFocusChange: (value) {
-                        titleFocusNode.call(value);
-                      },
+                      onFocusChange: (value) {},
                       child: SizedBox(
                         width: 300,
                         height: 40,
                         child: Obx(
                           () => TextField(
                               key: const Key("titleInput"),
-                              autofocus: editMode.value,
-                              controller: titleTextController,
+                              controller: model.nameController,
                               decoration: const InputDecoration(
                                   hintText: 'Goal name',
                                   border: InputBorder.none),
@@ -70,12 +65,10 @@ class HeaderGoalWidget extends StatelessWidget {
                   ],
                 ),
                 Focus(
-                  onFocusChange: (value) {
-                    descFocusNode.call(value);
-                  },
+                  onFocusChange: (value) {},
                   child: TextField(
                       key: const Key("descInput"),
-                      controller: descTextController,
+                      controller: model.descriptionController,
                       maxLines: 2,
                       decoration: const InputDecoration(
                         hintText: 'Tap to type goal description...',
