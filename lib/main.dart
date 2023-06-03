@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
-import 'package:goals_tracker/application/usecases/add_new_goal.dart';
-import 'package:goals_tracker/infra/goal_repository.dart';
-import 'package:goals_tracker/presentation/controllers/home_controller.dart';
-import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:goals_tracker/infra/dependecy_binds.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
-import 'package:goals_tracker/presentation/pages/sub_goal_page_widget.dart';
 
 void main() {
   runApp(
@@ -31,21 +26,12 @@ class MyApp extends StatelessWidget {
             page: () => HomePageWidget(),
             binding: HomeBinding()),
         GetPage(
-          name: '/mainGoalDetails',
+          name: '/mainGoalDetails/:goalId',
           page: () => MainGoalPageWidget(),
+          binding: MainGoalBinding(),
         ),
       ],
     );
-  }
-}
-
-class HomeBinding extends Bindings {
-  @override
-  void dependencies() {
-    var goalRepository = GoalRepositoryMemory();
-    var addNewGoal = AddNewGoal(goalRepository);
-
-    Get.lazyPut(() => HomeController(addNewGoal));
   }
 }
 
