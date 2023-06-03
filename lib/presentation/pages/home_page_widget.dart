@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
-import 'package:goals_tracker/presentation/components/goal_list_widget.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import '../components/bottom_button.dart';
 
+// ignore: must_be_immutable
 class HomePageWidget extends StatelessWidget {
   HomePageWidget({super.key});
   RxList<GoalModel> goalsList = <GoalModel>[].obs;

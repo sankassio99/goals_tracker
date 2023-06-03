@@ -27,22 +27,7 @@ void main() {
   var getGoalDetails = GetGoalDetails(goalRepository);
   GetSubGoals getSubGoals = GetSubGoals(subGoalRepository);
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (_) => HomeController(
-            addNewGoal,
-            getGoals,
-            updateGoal,
-          ),
-        ),
-        ChangeNotifierProvider(
-            create: (_) => MainGoalController(
-                updateGoal, addSubgoal, getGoalDetails, getSubGoals)),
-        ChangeNotifierProvider(create: (_) => SubGoalController()),
-      ],
-      child: MyApp(),
-    ),
+    MyApp(),
   );
 }
 
