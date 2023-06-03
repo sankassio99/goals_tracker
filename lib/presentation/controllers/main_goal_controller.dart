@@ -25,4 +25,6 @@ class MainGoalController extends GetxController {
 
     return goalModel;
   }
+
+  void updateGoal() {}
 }
