@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/main.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
@@ -9,14 +10,13 @@ import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/mockito.dart';
 
 import '../add_new_goal_test.mocks.dart';
-import '../main_fake.dart';
 
 void main() {
   late MockIGoalRepository goalRepositoryMock;
 
   setUp(() {
-    Get.reset();
     goalRepositoryMock = MockIGoalRepository();
+    Get.lazyPut<IGoalRepository>(() => goalRepositoryMock);
 
     var myGoal = MainGoal("goalId", "title", "desc");
     when(goalRepositoryMock.getById(any)).thenAnswer((_) async => myGoal);
@@ -41,9 +41,8 @@ void main() {
   testWidgets('When is add new goal must update goal list view with goal card',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(MyAppFake(
-      goalRepository: goalRepositoryMock,
-    ));
+    await tester.pumpWidget(const MyApp());
+
     var buttonFinder = find.byKey(const Key("addNewGoalButton"));
 
     // act
@@ -58,9 +57,8 @@ void main() {
   testWidgets('When a goal card is tapped must be redirect to main goal page',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(MyAppFake(
-      goalRepository: goalRepositoryMock,
-    ));
+    await tester.pumpWidget(const MyApp());
+
     var buttonFinder = find.byKey(const Key("addNewGoalButton"));
     await tester.tap(buttonFinder);
     await tester.pumpAndSettle();
@@ -79,9 +77,7 @@ void main() {
       'When user return from main goal page the goals already registred must be displayed',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(MyAppFake(
-      goalRepository: goalRepositoryMock,
-    ));
+    await tester.pumpWidget(const MyApp());
 
     var buttonFinder = find.byKey(const Key("addNewGoalButton"));
     await tester.tap(buttonFinder);
