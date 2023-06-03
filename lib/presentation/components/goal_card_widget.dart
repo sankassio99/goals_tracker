@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalCardWidget extends StatelessWidget {
@@ -9,11 +9,11 @@ class GoalCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.goNamed("mainGoalDetails", extra: model),
+      onTap: () => Get.toNamed("mainGoalDetails"),
       child: Container(
         width: double.infinity,
         height: 80,
-        margin: EdgeInsets.fromLTRB(0, 5, 0, 5),
+        margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8),

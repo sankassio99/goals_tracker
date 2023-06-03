@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:goals_tracker/application/usecases/add_new_goal.dart';
-import 'package:goals_tracker/application/usecases/get_goals.dart';
-import 'package:goals_tracker/application/usecases/update_goal.dart';
-import 'package:goals_tracker/infra/goal_repository.dart';
+// import 'package:goals_tracker/application/usecases/add_new_goal.dart';
+// import 'package:goals_tracker/application/usecases/get_goals.dart';
+// import 'package:goals_tracker/application/usecases/update_goal.dart';
+// import 'package:goals_tracker/infra/goal_repository.dart';
 import 'package:goals_tracker/main.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 void main() {
-  late AddNewGoal addNewGoal;
-  late GetGoals getGoals;
-  late UpdateGoal updateGoal;
+  // late AddNewGoal addNewGoal;
+  // late GetGoals getGoals;
+  // late UpdateGoal updateGoal;
 
   setUp(() {
-    var goalRepository = GoalRepositoryMemory();
-    addNewGoal = AddNewGoal(goalRepository);
-    updateGoal = UpdateGoal(goalRepository);
-    getGoals = GetGoals(goalRepository);
+    // var goalRepository = GoalRepositoryMemory();
+    // addNewGoal = AddNewGoal(goalRepository);
+    // updateGoal = UpdateGoal(goalRepository);
+    // getGoals = GetGoals(goalRepository);
   });
 
   testWidgets('When is loaded must be show a title and button to add new goals',

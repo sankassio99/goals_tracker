@@ -1,33 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
-import 'package:goals_tracker/application/usecases/add_subgoal.dart';
-import 'package:goals_tracker/application/usecases/get_goal_details.dart';
-import 'package:goals_tracker/application/usecases/get_goals.dart';
-import 'package:goals_tracker/application/usecases/get_sub_goals.dart';
-import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/infra/goal_repository.dart';
-import 'package:goals_tracker/infra/sub_goal_repository.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
-import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
-import 'package:goals_tracker/presentation/controllers/sub_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/sub_goal_page_widget.dart';
-import 'package:provider/provider.dart';
 
 void main() {
-  var goalRepository = GoalRepositoryMemory();
-  var subGoalRepository = SubGoalRepositoryMemory();
-  var addNewGoal = AddNewGoal(goalRepository);
-  var addSubgoal = AddSubgoal(subGoalRepository);
-  var updateGoal = UpdateGoal(goalRepository);
-  var getGoals = GetGoals(goalRepository);
-  var getGoalDetails = GetGoalDetails(goalRepository);
-  GetSubGoals getSubGoals = GetSubGoals(subGoalRepository);
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
@@ -37,11 +21,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: themeConfig(),
-      routerConfig: router(),
+      initialRoute: '/home',
+      getPages: [
+        GetPage(
+            name: '/home',
+            page: () => HomePageWidget(),
+            binding: HomeBinding()),
+        GetPage(
+          name: '/mainGoalDetails',
+          page: () => MainGoalPageWidget(
+            model: GoalModel(""),
+          ),
+        ),
+      ],
     );
+  }
+}
+
+class HomeBinding extends Bindings {
+  @override
+  void dependencies() {
+    var goalRepository = GoalRepositoryMemory();
+    var addNewGoal = AddNewGoal(goalRepository);
+
+    Get.lazyPut(() => HomeController(addNewGoal));
   }
 }
 

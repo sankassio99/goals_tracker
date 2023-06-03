@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
-import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import '../components/bottom_button.dart';
 
-// ignore: must_be_immutable
 class HomePageWidget extends StatelessWidget {
   HomePageWidget({super.key});
-  RxList<GoalModel> goalsList = <GoalModel>[].obs;
+  final controller = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +38,13 @@ class HomePageWidget extends StatelessWidget {
                   height: 400,
                   child: Obx(
                     () => ListView.builder(
-                      itemCount: goalsList.length,
+                      itemCount: controller.goalList.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 8, horizontal: 8),
-                          child: GoalCardWidget(model: goalsList[index]),
+                          child:
+                              GoalCardWidget(model: controller.goalList[index]),
                         );
                       },
                     ),
@@ -58,13 +58,9 @@ class HomePageWidget extends StatelessWidget {
       persistentFooterButtons: [
         BottomButton(
           label: "Add goal",
-          action: () => addNewGoal(),
+          action: () => controller.addNewGoal(),
         ),
       ],
     );
-  }
-
-  addNewGoal() {
-    goalsList.add(GoalModel("id"));
   }
 }
