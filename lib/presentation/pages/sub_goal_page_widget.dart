@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/sub_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
@@ -43,15 +41,6 @@ class SubGoalPageWidget extends StatelessWidget {
                       height: 199,
                       decoration: const BoxDecoration(
                         color: Colors.white,
-                      ),
-                      child: HeaderGoalWidget(
-                        editMode: false.obs,
-                        titleFocusNode: (value) =>
-                            controller.onInputFocusChange(value),
-                        titleTextController: goalModel.nameController,
-                        descFocusNode: (value) =>
-                            controller.onInputFocusChange(value),
-                        descTextController: goalModel.descriptionController,
                       ),
                     ),
                   ),

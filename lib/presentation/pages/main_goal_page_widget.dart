@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
@@ -38,12 +37,7 @@ class MainGoalPageWidget extends StatelessWidget {
                       color: Colors.white,
                     ),
                     child: HeaderGoalWidget(
-                      editMode: true.obs,
-                      titleFocusNode: (value) =>
-                          model.onInputFocusChange(value),
-                      titleTextController: model.nameController,
-                      descFocusNode: (value) => model.onInputFocusChange(value),
-                      descTextController: model.descriptionController,
+                      model: model,
                     ),
                   ),
                 ),

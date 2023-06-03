@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
@@ -47,21 +46,19 @@ class HeaderGoalWidget extends StatelessWidget {
                       child: SizedBox(
                         width: 300,
                         height: 40,
-                        child: Obx(
-                          () => TextField(
-                              key: const Key("titleInput"),
-                              controller: model.nameController,
-                              decoration: const InputDecoration(
-                                  hintText: 'Goal name',
-                                  border: InputBorder.none),
-                              style: const TextStyle(
-                                color: Colors.black87,
-                                fontSize: 25,
-                                fontWeight: FontWeight.w800,
-                              )),
-                        ),
+                        child: TextField(
+                            key: const Key("titleInput"),
+                            controller: model.nameController,
+                            decoration: const InputDecoration(
+                                hintText: 'Goal name',
+                                border: InputBorder.none),
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 25,
+                              fontWeight: FontWeight.w800,
+                            )),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Focus(
