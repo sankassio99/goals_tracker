@@ -20,4 +20,21 @@ void main() {
     var input = find.byKey(const Key("titleInput"));
     expect(input, findsOneWidget);
   });
+
+  testWidgets('When Header Goal Widget is loaded must show input description',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: HeaderGoalWidget(model: GoalModel("")),
+        ),
+      ),
+    );
+    // act
+
+    // assert
+    var input = find.byKey(const Key("descInput"));
+    expect(input, findsOneWidget);
+  });
 }
