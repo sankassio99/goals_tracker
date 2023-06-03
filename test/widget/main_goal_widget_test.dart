@@ -135,4 +135,20 @@ void main() {
     });
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
   });
+  testWidgets('When click in float action button must be added new task',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(initMaterialApp());
+
+    // act
+
+    var addTaskButton = find.byKey(const Key("addTaskButton"));
+    await tester.tap(addTaskButton);
+
+    await tester.pumpAndSettle();
+
+    // assert
+    var tasks = find.byKey(const Key("taskItem"));
+    expect(tasks, findsOneWidget);
+  });
 }
