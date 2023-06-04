@@ -26,4 +26,8 @@ class MainGoalController extends GetxController {
     goalModel.value.addTask();
     updateGoal();
   }
+
+  void onTaskCheck() {
+    updateGoal();
+  }
 }

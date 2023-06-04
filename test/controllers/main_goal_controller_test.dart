@@ -92,5 +92,22 @@ void main() {
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
       //#endregion
     });
+
+    test('update goal progress when task is checked', () async {
+      //#region Arrange(Given)
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+      mainGoalController.onTaskCheck();
+
+      //#endregion
+      //#region Assert(Then)
+      var progress =
+          mainGoalController.goalModel.value.completePercentage.value;
+      expect(progress, isNot(0));
+      //#endregion
+    });
   });
 }
