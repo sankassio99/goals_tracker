@@ -24,6 +24,8 @@ class MainGoalController extends GetxController {
 
   void addTask() {
     goalModel.value.addTask();
+    goalModel.value.updateProgress();
+
     updateGoal();
   }
 
