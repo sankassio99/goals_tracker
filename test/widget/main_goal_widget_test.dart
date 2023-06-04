@@ -270,6 +270,6 @@ void main() {
     // assert
     var progressBarFinder = find.byKey(const Key("progressBar"));
     LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
-    expect(progressBar.percent, 0.3);
+    expect(progressBar.percent, 0.33);
   });
 }
