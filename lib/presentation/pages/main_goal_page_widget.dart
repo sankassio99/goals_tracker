@@ -84,7 +84,7 @@ class TasksWidget extends StatelessWidget {
               children: tasks
                   .map(
                     (task) => CheckboxListTile(
-                      title: const Text('Animate Slowly'),
+                      title: Text(task.name),
                       value: task.checked.value,
                       onChanged: (value) {
                         task.checked.value = value ?? false;
