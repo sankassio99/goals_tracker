@@ -18,6 +18,7 @@ class ProgressBar extends StatelessWidget {
             color: Colors.white,
           ),
           child: LinearPercentIndicator(
+            key: const Key("progressBar"),
             percent: 0.7,
             width: MediaQuery.of(context).size.width * 0.87,
             lineHeight: 24,

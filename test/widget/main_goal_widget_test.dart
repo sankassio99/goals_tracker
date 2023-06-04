@@ -11,6 +11,7 @@ import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../add_new_goal_test.mocks.dart';
 
@@ -222,5 +223,31 @@ void main() {
       return true;
     });
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+  });
+
+  testWidgets('When check task must update progress bar percent',
+      (WidgetTester tester) async {
+    // arrange
+    var myTask1 = Task("myTask1");
+    var myTask2 = Task("myTask2");
+    mainGoal.tasks = [
+      myTask1,
+      myTask2,
+    ];
+
+    await tester.pumpWidget(initMaterialApp());
+    await tester.pumpAndSettle();
+
+    var progressBarFinder = find.byKey(const Key("progressBar"));
+    LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
+
+    // act
+    var taskItem = find.byKey(const Key("taskItemIcon"));
+    await tester.tap(taskItem.first);
+
+    await tester.pumpAndSettle();
+
+    // assert
+    expect(progressBar.percent, 0.5);
   });
 }
