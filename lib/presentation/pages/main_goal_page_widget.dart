@@ -85,6 +85,7 @@ class TasksWidget extends StatelessWidget {
                   .map(
                     (TaskModel task) => CheckboxListTile(
                       title: TextField(
+                          key: const Key("inputTask"),
                           controller: task.name,
                           decoration: const InputDecoration(
                               hintText: '', border: InputBorder.none)),

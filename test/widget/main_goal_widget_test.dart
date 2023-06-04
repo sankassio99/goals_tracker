@@ -170,4 +170,35 @@ void main() {
     var tasks = find.byType(CheckboxListTile);
     expect(tasks, findsOneWidget);
   });
+
+  testWidgets('When focus out task name must update goal',
+      (WidgetTester tester) async {
+    // arrange
+    var myId = "3";
+    var myGoal = MainGoal(myId, "title", "desc");
+    myGoal.tasks = [Task("title"), Task("title"), Task("title")];
+
+    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
+
+    await tester.pumpWidget(initMaterialApp(goalId: myId));
+    await tester.pumpAndSettle();
+
+    const newName = "Name edited";
+
+    // act
+    var inputTask = find.byKey(const Key("inputTask"));
+    await tester.enterText(inputTask.first, newName);
+
+    await tester.tap(inputTask.last);
+
+    await tester.pumpAndSettle();
+
+    // assert
+    var matcher = predicate<MainGoal>((goal) {
+      expect(goal.id, goalId);
+      expect(goal.tasks.first.title, myGoal.tasks.first.title);
+      return true;
+    });
+    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+  });
 }
