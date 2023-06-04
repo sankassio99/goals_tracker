@@ -17,10 +17,12 @@ class GoalModel {
     String description = "",
     String name = "",
     List<TaskModel>? taskList,
+    double? progress,
   }) {
     _name.text = name;
     _description.text = description;
     tasks.value = taskList ?? [];
+    completePercentage.value = progress ?? 0;
   }
 
   addSubGoal(GoalModel subGoal) {
@@ -51,6 +53,7 @@ class GoalModel {
       description: goal.desc,
       name: goal.title,
       taskList: tasks,
+      progress: goal.completePercentage,
     );
   }
 

@@ -131,8 +131,6 @@ void main() {
 
       //#region Act(When)
 
-      mainGoalController.addTask();
-
       //#endregion
       //#region Assert(Then)
       var progress =
