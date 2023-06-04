@@ -51,7 +51,7 @@ class MainGoalPageWidget extends StatelessWidget {
                     endIndent: 50,
                     color: Colors.black12,
                   ),
-                  Tasks(tasks: controller.goalModel.value.tasks)
+                  TasksWidget(tasks: controller.goalModel.value.tasks)
                 ],
               ),
             ),
@@ -67,10 +67,10 @@ class MainGoalPageWidget extends StatelessWidget {
   }
 }
 
-class Tasks extends StatelessWidget {
+class TasksWidget extends StatelessWidget {
   final RxList<TaskModel> tasks;
 
-  const Tasks({
+  const TasksWidget({
     super.key,
     required this.tasks,
   });

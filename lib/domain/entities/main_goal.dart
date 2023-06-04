@@ -1,8 +1,10 @@
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/sub_goal.dart';
+import 'package:goals_tracker/domain/entities/task.dart';
 
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
+  List<Task> tasks = [];
 
   MainGoal(
     super.id,
@@ -40,5 +42,17 @@ class MainGoal extends Goal {
 
   List<SubGoal> getSubGoals() {
     return subGoals;
+  }
+
+  void setTasks(List<Task> tasks) {
+    tasks = tasks;
+  }
+
+  void addTask(Task task) {
+    tasks.add(task);
+  }
+
+  List<Task> getTasks() {
+    return tasks;
   }
 }

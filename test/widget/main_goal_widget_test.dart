@@ -5,6 +5,7 @@ import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
@@ -84,6 +85,24 @@ void main() {
     // assert
     TextField inputTitleWidget = tester.widget(inputTitle);
     expect(inputTitleWidget.controller!.text, title);
+  });
+
+  testWidgets(
+      'When Main Goal Page Widget is loaded must show tasks already saved',
+      (WidgetTester tester) async {
+    // arrange
+    List<Task> tasks = [Task("title"), Task("title"), Task("title")];
+    var myGoal = MainGoal(goalId, "title", "desc");
+    myGoal.setTasks(tasks);
+
+    when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
+
+    // act
+    await tester.pumpWidget(initMaterialApp(goalId: goalId));
+
+    // assert
+    var tasksWidget = find.byType(CheckboxListTile);
+    expect(tasksWidget, findsNWidgets(3));
   });
 
   testWidgets('When focus out title must update goal',
