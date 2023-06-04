@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:mockito/mockito.dart';
 
@@ -13,6 +14,7 @@ void main() {
   late GetGoalDetails getGoalDetails;
   late MockIGoalRepository goalRepositoryMock;
   late String goalId;
+  late MainGoal myGoal;
 
   setUp(() async {
     goalRepositoryMock = MockIGoalRepository();
@@ -23,7 +25,7 @@ void main() {
     mainGoalController = MainGoalController(getGoalDetails, updateGoal);
     Get.parameters = {"goalId": goalId};
 
-    var myGoal = MainGoal(goalId, "title", "desc");
+    myGoal = MainGoal(goalId, "title", "desc");
     when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
   });
   group('Main Goal Controller should', () {
@@ -95,11 +97,20 @@ void main() {
 
     test('update goal progress when task is checked', () async {
       //#region Arrange(Given)
+      var myTask1 = Task("myTask1");
+      var myTask2 = Task("myTask2");
+      myGoal.tasks = [
+        myTask1,
+        myTask2,
+      ];
+      myTask1.markAsCompleted();
+
       await mainGoalController.getGoal();
 
       //#endregion
 
       //#region Act(When)
+
       mainGoalController.onTaskCheck();
 
       //#endregion

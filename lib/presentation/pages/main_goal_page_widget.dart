@@ -98,9 +98,10 @@ class TasksWidget extends StatelessWidget {
                       value: task.checked.value,
                       onChanged: (value) {
                         task.checked.value = value ?? false;
-                        controller.updateGoal();
+                        controller.onTaskCheck();
                       },
-                      secondary: const Icon(key: Key("taskItemIcon"),Icons.task_alt),
+                      secondary:
+                          const Icon(key: Key("taskItemIcon"), Icons.task_alt),
                     ),
                   )
                   .toList(),
