@@ -32,18 +32,19 @@ class MainGoalBindingFake extends Bindings {
 void main() {
   late MockIGoalRepository goalRepositoryMock;
   late Bindings bindingFake;
-  const String goalId = "1";
+  late MainGoal mainGoal;
 
   setUp(() {
     Get.reset();
     goalRepositoryMock = MockIGoalRepository();
     bindingFake = MainGoalBindingFake(goalRepositoryMock);
 
-    var myGoal = MainGoal(goalId, "title", "desc");
-    when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
+    mainGoal = MainGoal("111100000", "title", "desc");
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
   });
 
-  GetMaterialApp initMaterialApp({String goalId = goalId}) {
+  GetMaterialApp initMaterialApp({String goalId = "111100000"}) {
     return GetMaterialApp(
       initialRoute: '/mainGoalDetails/$goalId',
       getPages: [
@@ -124,7 +125,7 @@ void main() {
 
     // assert
     var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, goalId);
+      expect(goal.id, mainGoal.id);
       expect(goal.title, newTitle);
       return true;
     });
@@ -149,7 +150,7 @@ void main() {
 
     // assert
     var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, goalId);
+      expect(goal.id, mainGoal.id);
       expect(goal.desc, newDesc);
       return true;
     });
@@ -174,13 +175,9 @@ void main() {
   testWidgets('When focus out task name must update goal',
       (WidgetTester tester) async {
     // arrange
-    var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
-    myGoal.tasks = [Task("title"), Task("title"), Task("title")];
+    mainGoal.tasks = [Task("title"), Task("title"), Task("title")];
 
-    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
-
-    await tester.pumpWidget(initMaterialApp(goalId: myId));
+    await tester.pumpWidget(initMaterialApp());
     await tester.pumpAndSettle();
 
     const newName = "Name edited";
@@ -195,7 +192,7 @@ void main() {
 
     // // assert
     var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, myId);
+      expect(goal.id, mainGoal.id);
       expect(goal.tasks.first.title, newName);
       return true;
     });
