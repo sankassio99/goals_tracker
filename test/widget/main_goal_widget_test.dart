@@ -249,4 +249,27 @@ void main() {
     LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
     expect(progressBar.percent, 0.5);
   });
+
+  testWidgets('When add new task must update progress bar percent',
+      (WidgetTester tester) async {
+    // arrange
+    var myTask1 = Task("myTask1");
+    var myTask2 = Task("myTask2");
+    myTask2.markAsCompleted();
+    mainGoal.tasks = [myTask1, myTask2];
+
+    await tester.pumpWidget(initMaterialApp());
+    await tester.pumpAndSettle();
+
+    // act
+    var addTaskButton = find.byKey(const Key("addTaskButton"));
+    await tester.tap(addTaskButton);
+
+    await tester.pumpAndSettle();
+
+    // assert
+    var progressBarFinder = find.byKey(const Key("progressBar"));
+    LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
+    expect(progressBar.percent, 0.3);
+  });
 }
