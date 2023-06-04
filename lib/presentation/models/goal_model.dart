@@ -79,7 +79,7 @@ class GoalModel {
 
 class TaskModel {
   String name;
-  bool checked = false;
+  RxBool checked = false.obs;
   Icon icon = const Icon(Icons.task_alt);
 
   TaskModel(this.name);
