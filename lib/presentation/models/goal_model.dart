@@ -78,17 +78,20 @@ class GoalModel {
 }
 
 class TaskModel {
-  String name;
+  final TextEditingController name = TextEditingController(text: "");
   RxBool checked = false.obs;
   Icon icon = const Icon(Icons.task_alt);
 
-  TaskModel(this.name);
+  TaskModel(String name, {bool? isChecked}) {
+    this.name.text = name;
+    checked.value = isChecked ?? false;
+  }
 
   static toModel(Task task) {
-    return TaskModel(task.title);
+    return TaskModel(task.title, isChecked: task.isCompleted);
   }
 
   Task toTaskEntity() {
-    return Task(name);
+    return Task(name.text, isCompleted: checked.value);
   }
 }

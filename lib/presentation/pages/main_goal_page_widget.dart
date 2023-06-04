@@ -83,8 +83,11 @@ class TasksWidget extends StatelessWidget {
         child: Obx(() => Column(
               children: tasks
                   .map(
-                    (task) => CheckboxListTile(
-                      title: Text(task.name),
+                    (TaskModel task) => CheckboxListTile(
+                      title: TextField(
+                          controller: task.name,
+                          decoration: const InputDecoration(
+                              hintText: '', border: InputBorder.none)),
                       value: task.checked.value,
                       onChanged: (value) {
                         task.checked.value = value ?? false;
