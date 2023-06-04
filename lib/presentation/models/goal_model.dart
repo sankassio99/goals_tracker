@@ -10,6 +10,7 @@ class GoalModel {
   final TextEditingController _description = TextEditingController(text: "");
   List<GoalModel> subGoals = [];
   RxList<TaskModel> tasks = RxList<TaskModel>();
+  RxDouble completePercentage = 0.0.obs;
 
   GoalModel(
     this.id, {
@@ -37,8 +38,6 @@ class GoalModel {
   String get description => _description.text;
   set description(String description) => _description.text = description;
   TextEditingController get descriptionController => _description;
-
-  onInputFocusChange(bool value) {}
 
   void addTask() {
     tasks.add(TaskModel("Tap to edit"));
@@ -74,6 +73,20 @@ class GoalModel {
       newTasks.add(task.toTaskEntity());
     }
     return newTasks;
+  }
+
+  void updateProgress() {
+    var checkedTasks = _countCheckedTasks();
+    var progress = (checkedTasks / tasks.length).toStringAsFixed(2);
+    completePercentage.value = double.parse(progress);
+  }
+
+  int _countCheckedTasks() {
+    var checkedTasks = 0;
+    for (var task in tasks) {
+      if (task.checked.isTrue) checkedTasks++;
+    }
+    return checkedTasks;
   }
 }
 

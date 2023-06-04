@@ -28,13 +28,7 @@ class MainGoalController extends GetxController {
   }
 
   void onTaskCheck() {
-    var tasks = goalModel.value.tasks;
-    var checkedTasks = 0;
-    for (var task in tasks) {
-      if (task.checked.isTrue) checkedTasks++;
-    }
-    var progress = (checkedTasks / tasks.length).toStringAsFixed(2);
-    goalModel.value.completePercentage.value = double.parse(progress);
+    goalModel.value.updateProgress();
 
     updateGoal();
   }
