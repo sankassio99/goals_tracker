@@ -198,4 +198,28 @@ void main() {
     });
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
   });
+
+  testWidgets('When check task must update goal', (WidgetTester tester) async {
+    // arrange
+    var myTask = Task("myTask");
+    mainGoal.tasks = [myTask, Task("title2"), Task("title3")];
+
+    await tester.pumpWidget(initMaterialApp());
+    await tester.pumpAndSettle();
+
+    // act
+    var taskItem = find.byType(CheckboxListTile);
+    await tester.tap(taskItem.first);
+
+    await tester.pumpAndSettle();
+
+    // // assert
+    var matcher = predicate<MainGoal>((goal) {
+      expect(goal.id, mainGoal.id);
+      expect(goal.tasks.first.title, myTask.title);
+      expect(goal.tasks.first.isCompleted, myTask.isCompleted);
+      return true;
+    });
+    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+  });
 }
