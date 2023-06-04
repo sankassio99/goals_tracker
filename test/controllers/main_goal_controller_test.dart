@@ -72,5 +72,23 @@ void main() {
       expect(mainGoalController.goalModel.value.tasks.length, 1);
       //#endregion
     });
+
+    test('update goal when task is added', () async {
+      //#region Arrange(Given)
+      //#endregion
+
+      //#region Act(When)
+      mainGoalController.addTask();
+
+      //#endregion
+      //#region Assert(Then)
+      var matcher = predicate<MainGoal>((goal) {
+        expect(goal.id, goalId);
+        expect(goal.tasks.length, 1);
+        return true;
+      });
+      verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+      //#endregion
+    });
   });
 }
