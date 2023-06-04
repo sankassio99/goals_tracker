@@ -87,7 +87,7 @@ class HeaderGoalWidget extends StatelessWidget {
             ),
           ),
         ),
-        const ProgressBar(),
+        ProgressBar(goalModel: model),
       ],
     );
   }

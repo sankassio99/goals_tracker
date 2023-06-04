@@ -238,9 +238,6 @@ void main() {
     await tester.pumpWidget(initMaterialApp());
     await tester.pumpAndSettle();
 
-    var progressBarFinder = find.byKey(const Key("progressBar"));
-    LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
-
     // act
     var taskItem = find.byKey(const Key("taskItemIcon"));
     await tester.tap(taskItem.first);
@@ -248,6 +245,8 @@ void main() {
     await tester.pumpAndSettle();
 
     // assert
+    var progressBarFinder = find.byKey(const Key("progressBar"));
+    LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
     expect(progressBar.percent, 0.5);
   });
 }
