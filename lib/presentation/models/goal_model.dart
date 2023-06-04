@@ -14,9 +14,11 @@ class GoalModel {
     this.id, {
     String description = "",
     String name = "",
+    List<TaskModel>? taskList,
   }) {
     _name.text = name;
     _description.text = description;
+    tasks.value = taskList ?? [];
   }
 
   addSubGoal(GoalModel subGoal) {

@@ -91,14 +91,15 @@ void main() {
       'When Main Goal Page Widget is loaded must show tasks already saved',
       (WidgetTester tester) async {
     // arrange
-    List<Task> tasks = [Task("title"), Task("title"), Task("title")];
-    var myGoal = MainGoal(goalId, "title", "desc");
-    myGoal.setTasks(tasks);
+    var myId = "3";
+    var myGoal = MainGoal(myId, "title", "desc");
+    myGoal.tasks = [Task("title"), Task("title"), Task("title")];
 
-    when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
+    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
 
     // act
-    await tester.pumpWidget(initMaterialApp(goalId: goalId));
+    await tester.pumpWidget(initMaterialApp(goalId: myId));
+    await tester.pumpAndSettle();
 
     // assert
     var tasksWidget = find.byType(CheckboxListTile);
