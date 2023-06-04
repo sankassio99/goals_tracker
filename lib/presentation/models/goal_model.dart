@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/domain/entities/task.dart';
 
 class GoalModel {
   String id;
@@ -46,6 +47,25 @@ class GoalModel {
   void addTask() {
     tasks.add(TaskModel("Tap to edit"));
   }
+
+  static toModel(MainGoal goal) {
+    List<TaskModel> tasks = _mapToTaskModelList(goal);
+
+    return GoalModel(
+      goal.id,
+      description: goal.desc,
+      name: goal.title,
+      taskList: tasks,
+    );
+  }
+
+  static List<TaskModel> _mapToTaskModelList(MainGoal goal) {
+    List<TaskModel> tasks = [];
+    for (var task in goal.tasks) {
+      tasks.add(TaskModel.toModel(task));
+    }
+    return tasks;
+  }
 }
 
 class TaskModel {
@@ -54,4 +74,8 @@ class TaskModel {
   Icon icon = const Icon(Icons.task_alt);
 
   TaskModel(this.name);
+
+  static toModel(Task task) {
+    return TaskModel(task.title);
+  }
 }
