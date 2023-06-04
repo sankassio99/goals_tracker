@@ -208,7 +208,8 @@ void main() {
     await tester.pumpAndSettle();
 
     // act
-    var taskItem = find.byType(CheckboxListTile);
+    var taskItem = find.byKey(const Key("taskItemIcon"));
+
     await tester.tap(taskItem.first);
 
     await tester.pumpAndSettle();
@@ -217,7 +218,7 @@ void main() {
     var matcher = predicate<MainGoal>((goal) {
       expect(goal.id, mainGoal.id);
       expect(goal.tasks.first.title, myTask.title);
-      expect(goal.tasks.first.isCompleted, myTask.isCompleted);
+      expect(goal.tasks.first.isCompleted, !myTask.isCompleted);
       return true;
     });
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
