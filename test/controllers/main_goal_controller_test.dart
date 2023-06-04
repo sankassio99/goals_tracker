@@ -138,5 +138,26 @@ void main() {
       expect(progress, myGoal.completePercentage);
       //#endregion
     });
+
+    test('update goal progress when task is added', () async {
+      //#region Arrange(Given)
+      var initialProgress = 0.5;
+      myGoal.completePercentage = initialProgress;
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+
+      mainGoalController.addTask();
+
+      //#endregion
+      //#region Assert(Then)
+      var progress =
+          mainGoalController.goalModel.value.completePercentage.value;
+      expect(progress, isNot(initialProgress));
+      //#endregion
+    });
   });
 }
