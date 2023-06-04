@@ -75,6 +75,8 @@ void main() {
 
     test('update goal when task is added', () async {
       //#region Arrange(Given)
+      await mainGoalController.getGoal();
+
       //#endregion
 
       //#region Act(When)

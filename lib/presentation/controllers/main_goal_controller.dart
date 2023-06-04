@@ -18,10 +18,12 @@ class MainGoalController extends GetxController {
   }
 
   void updateGoal() {
-    _updateGoal.execute(goalModel.value.toMainGoalEntity());
+    var mainGoal = goalModel.value.toMainGoalEntity();
+    _updateGoal.execute(mainGoal);
   }
 
   void addTask() {
     goalModel.value.addTask();
+    updateGoal();
   }
 }

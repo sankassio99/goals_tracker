@@ -12,7 +12,8 @@ class MainGoal extends Goal {
     super.desc, {
     super.completePercentage,
     super.isCompleted,
-  });
+    List<Task>? taskList,
+  }) : tasks = taskList ?? [];
 
   @override
   double getCompletePercentage() {
@@ -42,10 +43,6 @@ class MainGoal extends Goal {
 
   List<SubGoal> getSubGoals() {
     return subGoals;
-  }
-
-  void setTasks(List<Task> tasks) {
-    tasks = tasks;
   }
 
   void addTask(Task task) {

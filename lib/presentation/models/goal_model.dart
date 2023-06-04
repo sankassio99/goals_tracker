@@ -40,16 +40,12 @@ class GoalModel {
 
   onInputFocusChange(bool value) {}
 
-  Goal toMainGoalEntity() {
-    return MainGoal(id, name, description);
-  }
-
   void addTask() {
     tasks.add(TaskModel("Tap to edit"));
   }
 
   static toModel(MainGoal goal) {
-    List<TaskModel> tasks = _mapToTaskModelList(goal);
+    List<TaskModel> tasks = _mapToTaskModelList(goal.tasks);
 
     return GoalModel(
       goal.id,
@@ -59,12 +55,25 @@ class GoalModel {
     );
   }
 
-  static List<TaskModel> _mapToTaskModelList(MainGoal goal) {
-    List<TaskModel> tasks = [];
-    for (var task in goal.tasks) {
-      tasks.add(TaskModel.toModel(task));
+  static List<TaskModel> _mapToTaskModelList(List<Task> tasks) {
+    List<TaskModel> newTasks = [];
+    for (var task in tasks) {
+      newTasks.add(TaskModel.toModel(task));
     }
-    return tasks;
+    return newTasks;
+  }
+
+  Goal toMainGoalEntity() {
+    var tasks = _mapToTaskListEntity();
+    return MainGoal(id, name, description, taskList: tasks);
+  }
+
+  List<Task> _mapToTaskListEntity() {
+    List<Task> newTasks = [];
+    for (var task in tasks) {
+      newTasks.add(task.toTaskEntity());
+    }
+    return newTasks;
   }
 }
 
@@ -77,5 +86,9 @@ class TaskModel {
 
   static toModel(Task task) {
     return TaskModel(task.title);
+  }
+
+  Task toTaskEntity() {
+    return Task(name);
   }
 }

@@ -7,7 +7,7 @@ class GetGoalDetails {
   GetGoalDetails(this.goalRepository);
 
   Future<MainGoal> get(String id) async {
-    var goal = goalRepository.getById(id);
+    var goal = await goalRepository.getById(id);
 
     return goal;
   }
