@@ -69,8 +69,9 @@ class MainGoalPageWidget extends StatelessWidget {
 
 class TasksWidget extends StatelessWidget {
   final RxList<TaskModel> tasks;
+  final controller = Get.find<MainGoalController>();
 
-  const TasksWidget({
+  TasksWidget({
     super.key,
     required this.tasks,
   });
@@ -84,11 +85,16 @@ class TasksWidget extends StatelessWidget {
               children: tasks
                   .map(
                     (TaskModel task) => CheckboxListTile(
-                      title: TextField(
-                          key: const Key("inputTask"),
-                          controller: task.name,
-                          decoration: const InputDecoration(
-                              hintText: '', border: InputBorder.none)),
+                      title: Focus(
+                        onFocusChange: (value) {
+                          if (!value) controller.updateGoal();
+                        },
+                        child: TextField(
+                            key: const Key("inputTask"),
+                            controller: task.name,
+                            decoration: const InputDecoration(
+                                hintText: '', border: InputBorder.none)),
+                      ),
                       value: task.checked.value,
                       onChanged: (value) {
                         task.checked.value = value ?? false;

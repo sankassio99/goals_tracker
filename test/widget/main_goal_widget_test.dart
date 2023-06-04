@@ -189,14 +189,14 @@ void main() {
     var inputTask = find.byKey(const Key("inputTask"));
     await tester.enterText(inputTask.first, newName);
 
-    await tester.tap(inputTask.last);
+    await tester.tapAt(const Offset(100, 100));
 
     await tester.pumpAndSettle();
 
-    // assert
+    // // assert
     var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, goalId);
-      expect(goal.tasks.first.title, myGoal.tasks.first.title);
+      expect(goal.id, myId);
+      expect(goal.tasks.first.title, newName);
       return true;
     });
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
