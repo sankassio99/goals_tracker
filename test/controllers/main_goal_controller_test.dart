@@ -120,5 +120,25 @@ void main() {
       expect(progress, isNot(0));
       //#endregion
     });
+
+    test('must load with progress percentage already saved', () async {
+      //#region Arrange(Given)
+      myGoal.completePercentage = 0.5;
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+
+      mainGoalController.addTask();
+
+      //#endregion
+      //#region Assert(Then)
+      var progress =
+          mainGoalController.goalModel.value.completePercentage.value;
+      expect(progress, myGoal.completePercentage);
+      //#endregion
+    });
   });
 }
