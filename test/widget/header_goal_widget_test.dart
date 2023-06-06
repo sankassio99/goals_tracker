@@ -84,4 +84,25 @@ void main() {
     TextField inputDescWidget = tester.widget(inputDesc);
     expect(inputDescWidget.controller!.text, description);
   });
+
+  testWidgets('When tap in icon must open modal icon picker',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: HeaderGoalWidget(model: GoalModel("")),
+        ),
+      ),
+    );
+
+    // act
+    var iconBtn = find.byKey(const Key("goalIconBtn"));
+    await tester.tap(iconBtn);
+    await tester.pumpAndSettle();
+
+    // assert
+    var iconPickerDialog = find.byKey(const Key("iconPickerDialog"));
+    expect(iconPickerDialog, findsOneWidget);
+  });
 }
