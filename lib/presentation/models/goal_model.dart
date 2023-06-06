@@ -15,7 +15,7 @@ class GoalModel {
   GoalModel(
     this.id, {
     String description = "",
-    String name = "",
+    String name = "Tap to edit",
     List<TaskModel>? taskList,
     double? progress,
   }) {
