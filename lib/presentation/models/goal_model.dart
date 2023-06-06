@@ -67,7 +67,13 @@ class GoalModel {
 
   Goal toMainGoalEntity() {
     var tasks = _mapToTaskListEntity();
-    return MainGoal(id, name, description, taskList: tasks);
+    return MainGoal(
+      id,
+      name,
+      description,
+      taskList: tasks,
+      completePercentage: completePercentage.value,
+    );
   }
 
   List<Task> _mapToTaskListEntity() {
