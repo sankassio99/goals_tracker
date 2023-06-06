@@ -22,19 +22,9 @@ class HomeController extends GetxController {
     var mainGoals = await _getGoals.getAll();
 
     for (var mainGoal in mainGoals) {
-      goalModelList.add(_mapToGoalModel(mainGoal as MainGoal));
+      goalModelList.add(GoalModel.toModel(mainGoal as MainGoal));
     }
 
     goalList.value = goalModelList;
-  }
-
-  GoalModel _mapToGoalModel(MainGoal goal) {
-    var goalModel = GoalModel(
-      goal.id,
-      description: goal.desc,
-      name: goal.title,
-    );
-
-    return goalModel;
   }
 }
