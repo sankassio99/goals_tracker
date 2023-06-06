@@ -31,4 +31,34 @@ void main() {
     expect(percentage, findsOneWidget);
     //#endregion
   });
+
+  testWidgets('Goal card should display current percentage value of goal',
+      (tester) async {
+    //#region Arrange(Given)
+    var model = GoalModel("");
+    const percentageValue = 0.2;
+    model.completePercentage.value = percentageValue;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: GoalCardWidget(model: model),
+        ),
+      ),
+    );
+
+    //#endregion
+
+    //#region Act(When)
+    //#endregion
+
+    //#region Assert(Then)
+    var percentage = find.byKey(const Key("goalCardPercentage"));
+    Text textWidget = tester.widget<Text>(percentage);
+
+    var expectedText =
+        "${(percentageValue * 100).toStringAsFixed(0)}% complete";
+    expect(textWidget.data, expectedText);
+    //#endregion
+  });
 }
