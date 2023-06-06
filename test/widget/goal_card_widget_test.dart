@@ -37,7 +37,6 @@ void main() {
     //#region Arrange(Given)
     var model = GoalModel("");
     const percentageValue = 0.2;
-    model.completePercentage.value = percentageValue;
 
     await tester.pumpWidget(
       MaterialApp(
@@ -50,6 +49,8 @@ void main() {
     //#endregion
 
     //#region Act(When)
+    model.completePercentage.value = percentageValue;
+    await tester.pumpAndSettle();
     //#endregion
 
     //#region Assert(Then)
