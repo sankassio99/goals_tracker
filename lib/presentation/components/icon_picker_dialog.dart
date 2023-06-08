@@ -18,12 +18,17 @@ class IconPickerDialog extends StatelessWidget {
     Icons.wind_power,
     Icons.account_tree_sharp,
     Icons.gamepad,
+    Icons.ballot,
+    Icons.games_rounded,
+    Icons.motorcycle,
+    Icons.food_bank,
   ];
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
       key: const Key("iconPickerDialog"),
+      backgroundColor: Colors.white,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -31,10 +36,17 @@ class IconPickerDialog extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Icon Picker Dialog"),
-                SizedBox(
+                Text(
+                  "Icon Picker Dialog",
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Container(
                   height: 200,
                   width: 200,
+                  alignment: Alignment.center,
                   child: GridView.count(
                     crossAxisCount: 4,
                     children: iconsData
@@ -49,9 +61,34 @@ class IconPickerDialog extends StatelessWidget {
                         .toList(),
                   ),
                 ),
-                TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text("Close"))
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: Text(
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          "Close",
+                        )),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text(
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.blue,
+                          ),
+                          "Confirm",
+                        )),
+                  ],
+                )
               ]),
         ),
       ),
