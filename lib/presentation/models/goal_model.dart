@@ -11,9 +11,11 @@ class GoalModel {
   List<GoalModel> subGoals = [];
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completePercentage = 0.0.obs;
+  IconData? icon;
 
   GoalModel(
     this.id, {
+    this.icon,
     String description = "",
     String name = "Tap to edit",
     List<TaskModel>? taskList,

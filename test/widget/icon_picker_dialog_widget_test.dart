@@ -71,4 +71,31 @@ void main() {
     expect(selectedIcon, findsOneWidget);
     //#endregion
   });
+
+  testWidgets('When dialog is loaded must show current icon selected',
+      (tester) async {
+    //#region Arrange(Given)
+    var model = GoalModel("", icon: Icons.wind_power);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: HeaderGoalWidget(model: model),
+        ),
+      ),
+    );
+    // open dialog
+    //#endregion
+
+    //#region Act(When)
+    var iconBtn = find.byKey(const Key("goalIconBtn"));
+    await tester.tap(iconBtn);
+    await tester.pumpAndSettle();
+    //#endregion
+
+    //#region Assert(Then)
+    var selectedIcon = find.byType(SelectedIcon);
+    SelectedIcon selectedIconWidget = tester.widget(selectedIcon);
+    expect(selectedIconWidget.iconData, model.icon);
+    //#endregion
+  });
 }

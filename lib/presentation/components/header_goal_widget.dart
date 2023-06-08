@@ -35,8 +35,9 @@ class HeaderGoalWidget extends StatelessWidget {
                     InkWell(
                       onTap: () => showDialog(
                           context: context,
-                          builder: (BuildContext context) =>
-                              IconPickerDialog()),
+                          builder: (BuildContext context) => IconPickerDialog(
+                                currentIcon: model.icon,
+                              )),
                       child: const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                         child: Icon(

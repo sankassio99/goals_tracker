@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class IconPickerDialog extends StatelessWidget {
+  final IconData? currentIcon;
+  final Rx<IconData> iconSelected = Icons.abc.obs;
+
   IconPickerDialog({
+    this.currentIcon,
     super.key,
   });
-
-  Rx<IconData> iconSelected = Icons.abc.obs;
 
   final List<IconData> iconsData = const [
     Icons.access_alarm,
@@ -29,6 +31,7 @@ class IconPickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    iconSelected.value = currentIcon ?? Icons.food_bank;
     return Dialog(
       key: const Key("iconPickerDialog"),
       backgroundColor: Colors.white,
@@ -117,7 +120,7 @@ class SelectedIcon extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(3.0),
       decoration:
-          BoxDecoration(color: Theme.of(context).colorScheme.onSecondary),
+          BoxDecoration(color: Theme.of(context).colorScheme.background),
       child: Icon(
         key: const Key("iconItemChoice"),
         iconData,
