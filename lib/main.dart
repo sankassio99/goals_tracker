@@ -49,7 +49,7 @@ ThemeData themeConfig() {
         error: Color(0xFF928163),
         onError: Color(0xFF928163),
         background: Color(0xfff1f4f8),
-        onBackground: Color.fromARGB(255, 254, 214, 140),
+        onBackground: Color.fromARGB(255, 183, 183, 183),
         surface: Color(0xFF928163),
         onSurface: Color.fromARGB(255, 119, 0, 8)),
 

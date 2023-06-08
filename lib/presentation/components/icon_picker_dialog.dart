@@ -119,8 +119,9 @@ class SelectedIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(3.0),
-      decoration:
-          BoxDecoration(color: Theme.of(context).colorScheme.background),
+      decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.onBackground,
+          borderRadius: BorderRadius.circular(5)),
       child: Icon(
         key: const Key("iconItemChoice"),
         iconData,
