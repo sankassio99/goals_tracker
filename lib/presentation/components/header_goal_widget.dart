@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
@@ -31,8 +32,8 @@ class HeaderGoalWidget extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    TextButton(
-                      onPressed: () => showDialog(
+                    InkWell(
+                      onTap: () => showDialog(
                           context: context,
                           builder: (BuildContext context) =>
                               const IconPickerDialog()),
@@ -96,114 +97,6 @@ class HeaderGoalWidget extends StatelessWidget {
         ),
         ProgressBar(goalModel: model),
       ],
-    );
-  }
-}
-
-class IconPickerDialog extends StatelessWidget {
-  const IconPickerDialog({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Dialog(
-      key: const Key("iconPickerDialog"),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SingleChildScrollView(
-          child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Icon Picker Dialog"),
-                SizedBox(
-                  height: 200,
-                  width: 200,
-                  child: GridView.count(
-                    crossAxisCount: 4,
-                    children: const [
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                      Icon(
-                        key: Key("iconItemChoice"),
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
-                      ),
-                    ],
-                  ),
-                ),
-                TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text("Close"))
-              ]),
-        ),
-      ),
     );
   }
 }
