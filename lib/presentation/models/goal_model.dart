@@ -15,7 +15,7 @@ class GoalModel {
 
   GoalModel(
     this.id, {
-    this.icon,
+    this.icon = Icons.wind_power,
     String description = "",
     String name = "Tap to edit",
     List<TaskModel>? taskList,
