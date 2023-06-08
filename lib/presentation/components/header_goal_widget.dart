@@ -36,7 +36,7 @@ class HeaderGoalWidget extends StatelessWidget {
                       onTap: () => showDialog(
                           context: context,
                           builder: (BuildContext context) =>
-                              const IconPickerDialog()),
+                              IconPickerDialog()),
                       child: const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                         child: Icon(

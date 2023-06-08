@@ -62,6 +62,8 @@ void main() {
     //#region Act(When)
     var firstIcon = find.byKey(const Key("iconItemChoice")).first;
     await tester.tap(firstIcon);
+    await tester.pumpAndSettle();
+
     //#endregion
 
     //#region Assert(Then)

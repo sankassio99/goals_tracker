@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class IconPickerDialog extends StatelessWidget {
-  const IconPickerDialog({
+  IconPickerDialog({
     super.key,
   });
+
+  Rx<IconData> iconSelected = Icons.abc.obs;
 
   final List<IconData> iconsData = const [
     Icons.access_alarm,
@@ -16,7 +19,7 @@ class IconPickerDialog extends StatelessWidget {
     Icons.money,
     Icons.map,
     Icons.wind_power,
-    Icons.account_tree_sharp,
+    Icons.monetization_on,
     Icons.gamepad,
     Icons.ballot,
     Icons.games_rounded,
@@ -47,18 +50,24 @@ class IconPickerDialog extends StatelessWidget {
                   height: 200,
                   width: 200,
                   alignment: Alignment.center,
-                  child: GridView.count(
-                    crossAxisCount: 4,
-                    children: iconsData
-                        .map(
-                          (iconData) => Icon(
+                  child: Obx(
+                    () => GridView.count(
+                      crossAxisCount: 4,
+                      children: iconsData.map((iconData) {
+                        if (iconSelected.value == iconData) {
+                          return SelectedIcon(iconData: iconData);
+                        }
+                        return InkWell(
+                          onTap: () => iconSelected.value = iconData,
+                          child: Icon(
                             key: const Key("iconItemChoice"),
                             iconData,
                             color: Colors.black87,
                             size: 24,
                           ),
-                        )
-                        .toList(),
+                        );
+                      }).toList(),
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -91,6 +100,29 @@ class IconPickerDialog extends StatelessWidget {
                 )
               ]),
         ),
+      ),
+    );
+  }
+}
+
+class SelectedIcon extends StatelessWidget {
+  final IconData iconData;
+  const SelectedIcon({
+    required this.iconData,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(3.0),
+      decoration:
+          BoxDecoration(color: Theme.of(context).colorScheme.onSecondary),
+      child: Icon(
+        key: const Key("iconItemChoice"),
+        iconData,
+        color: Colors.black87,
+        size: 24,
       ),
     );
   }
