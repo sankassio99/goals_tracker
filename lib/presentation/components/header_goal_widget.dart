@@ -31,12 +31,19 @@ class HeaderGoalWidget extends StatelessWidget {
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    const Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
-                      child: Icon(
-                        Icons.wind_power,
-                        color: Colors.black87,
-                        size: 24,
+                    TextButton(
+                      onPressed: () => showDialog(
+                          context: context,
+                          builder: (BuildContext context) =>
+                              const IconPickerDialog()),
+                      child: const Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
+                        child: Icon(
+                          key: Key("goalIconBtn"),
+                          Icons.wind_power,
+                          color: Colors.black87,
+                          size: 24,
+                        ),
                       ),
                     ),
                     Focus(
@@ -89,6 +96,30 @@ class HeaderGoalWidget extends StatelessWidget {
         ),
         ProgressBar(goalModel: model),
       ],
+    );
+  }
+}
+
+class IconPickerDialog extends StatelessWidget {
+  const IconPickerDialog({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(
+      key: const Key("iconPickerDialog"),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(children: [
+          const Text("This is a dialog"),
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("Close"))
+        ]),
+      ),
     );
   }
 }
