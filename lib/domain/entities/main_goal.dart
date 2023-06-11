@@ -5,6 +5,7 @@ import 'package:goals_tracker/domain/entities/task.dart';
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
+  String? icon;
 
   MainGoal(
     super.id,
@@ -12,6 +13,7 @@ class MainGoal extends Goal {
     super.desc, {
     super.completePercentage,
     super.isCompleted,
+    this.icon,
     List<Task>? taskList,
   }) : tasks = taskList ?? [];
 

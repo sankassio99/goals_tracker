@@ -164,7 +164,7 @@ void main() {
 
     test('update goal when icon is updated', () async {
       //#region Arrange(Given)
-      var goalModel = GoalModel("111001111");
+      var goalModel = GoalModel(goalId);
       mainGoalController.goalModel.value = goalModel;
 
       //#endregion
@@ -177,7 +177,7 @@ void main() {
       //#region Assert(Then)
       var matcher = predicate<MainGoal>((goal) {
         expect(goal.id, goalId);
-        expect(goal.icon, selectedIcon);
+        expect(goal.icon, selectedIcon.toString());
         return true;
       });
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);

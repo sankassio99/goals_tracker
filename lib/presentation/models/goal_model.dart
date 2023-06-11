@@ -75,6 +75,7 @@ class GoalModel {
       description,
       taskList: tasks,
       completePercentage: completePercentage.value,
+      icon: icon?.toString(),
     );
   }
 
@@ -98,6 +99,10 @@ class GoalModel {
       if (task.checked.isTrue) checkedTasks++;
     }
     return checkedTasks;
+  }
+
+  void changeIcon(IconData icon) {
+    this.icon = icon;
   }
 }
 
