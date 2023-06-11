@@ -1,3 +1,4 @@
+import 'package:flutter/src/widgets/icon_data.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
@@ -34,4 +35,6 @@ class MainGoalController extends GetxController {
 
     updateGoal();
   }
+
+  void updateIcon(IconData selectedIcon) {}
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
@@ -5,6 +6,7 @@ import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:mockito/mockito.dart';
 
 import '../add_new_goal_test.mocks.dart';
@@ -157,6 +159,28 @@ void main() {
       var progress =
           mainGoalController.goalModel.value.completePercentage.value;
       expect(progress, isNot(initialProgress));
+      //#endregion
+    });
+
+    test('update goal when icon is updated', () async {
+      //#region Arrange(Given)
+      var goalModel = GoalModel("111001111");
+      mainGoalController.goalModel.value = goalModel;
+
+      //#endregion
+
+      //#region Act(When)
+      var selectedIcon = Icons.abc;
+      mainGoalController.updateIcon(selectedIcon);
+
+      //#endregion
+      //#region Assert(Then)
+      var matcher = predicate<MainGoal>((goal) {
+        expect(goal.id, goalId);
+        expect(goal.icon, selectedIcon);
+        return true;
+      });
+      verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
       //#endregion
     });
   });

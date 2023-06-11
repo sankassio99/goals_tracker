@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class IconPickerDialog extends StatelessWidget {
   final IconData? currentIcon;
-  final Rx<IconData> iconSelected = Icons.abc.obs;
+  final Rx<IconData> selectedIcon = Icons.abc.obs;
 
   IconPickerDialog({
     this.currentIcon,
@@ -31,7 +31,7 @@ class IconPickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    iconSelected.value = currentIcon ?? Icons.food_bank;
+    selectedIcon.value = currentIcon ?? Icons.food_bank;
     return Dialog(
       key: const Key("iconPickerDialog"),
       backgroundColor: Colors.white,
@@ -57,11 +57,11 @@ class IconPickerDialog extends StatelessWidget {
                     () => GridView.count(
                       crossAxisCount: 4,
                       children: iconsData.map((iconData) {
-                        if (iconSelected.value == iconData) {
+                        if (selectedIcon.value == iconData) {
                           return SelectedIcon(iconData: iconData);
                         }
                         return InkWell(
-                          onTap: () => iconSelected.value = iconData,
+                          onTap: () => selectedIcon.value = iconData,
                           child: Icon(
                             key: const Key("iconItemChoice"),
                             iconData,
