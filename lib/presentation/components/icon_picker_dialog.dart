@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 
 class IconPickerDialog extends StatelessWidget {
   final IconData? currentIcon;
   final Rx<IconData> selectedIcon = Icons.abc.obs;
+  final controller = Get.find<MainGoalController>();
 
   IconPickerDialog({
     this.currentIcon,
@@ -90,8 +92,12 @@ class IconPickerDialog extends StatelessWidget {
                       width: 20,
                     ),
                     TextButton(
-                        onPressed: () => Navigator.pop(context),
+                        onPressed: () {
+                          controller.updateIcon(selectedIcon.value);
+                          Navigator.pop(context);
+                        },
                         child: const Text(
+                          key: Key("confirmIconChoice"),
                           style: TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.w500,

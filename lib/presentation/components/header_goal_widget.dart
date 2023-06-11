@@ -41,7 +41,7 @@ class HeaderGoalWidget extends StatelessWidget {
                       child: const Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
                         child: Icon(
-                          key: Key("goalIconBtn"),
+                          key: Key("goalIcon"),
                           Icons.wind_power,
                           color: Colors.black87,
                           size: 24,

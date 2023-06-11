@@ -97,7 +97,7 @@ void main() {
     );
 
     // act
-    var iconBtn = find.byKey(const Key("goalIconBtn"));
+    var iconBtn = find.byKey(const Key("goalIcon"));
     await tester.tap(iconBtn);
     await tester.pumpAndSettle();
 

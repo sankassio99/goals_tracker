@@ -32,7 +32,7 @@ void main() {
     //#endregion
 
     //#region Act(When)
-    var iconBtn = find.byKey(const Key("goalIconBtn"));
+    var iconBtn = find.byKey(const Key("goalIcon"));
     await tester.tap(iconBtn);
     await tester.pumpAndSettle();
     //#endregion
@@ -54,7 +54,7 @@ void main() {
       ),
     );
     // open dialog
-    var iconBtn = find.byKey(const Key("goalIconBtn"));
+    var iconBtn = find.byKey(const Key("goalIcon"));
     await tester.tap(iconBtn);
     await tester.pumpAndSettle();
     //#endregion
@@ -87,7 +87,7 @@ void main() {
     //#endregion
 
     //#region Act(When)
-    var iconBtn = find.byKey(const Key("goalIconBtn"));
+    var iconBtn = find.byKey(const Key("goalIcon"));
     await tester.tap(iconBtn);
     await tester.pumpAndSettle();
     //#endregion

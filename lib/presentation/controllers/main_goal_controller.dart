@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/icon_data.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
