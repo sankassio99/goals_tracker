@@ -36,7 +36,7 @@ class MainGoalController extends GetxController {
     updateGoal();
   }
 
-  void updateIcon(IconData selectedIcon) {
+  void updateIcon(Rx<IconData> selectedIcon) {
     goalModel.value.changeIcon(selectedIcon);
     updateGoal();
   }

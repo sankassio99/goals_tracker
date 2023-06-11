@@ -36,15 +36,18 @@ class HeaderGoalWidget extends StatelessWidget {
                       onTap: () => showDialog(
                           context: context,
                           builder: (BuildContext context) => IconPickerDialog(
-                                currentIcon: model.icon,
+                                currentIcon: model.icon.value,
                               )),
-                      child: const Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
-                        child: Icon(
-                          key: Key("goalIcon"),
-                          Icons.wind_power,
-                          color: Colors.black87,
-                          size: 24,
+                      child: Padding(
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
+                        child: Obx(
+                          () => Icon(
+                            key: const Key("goalIcon"),
+                            model.icon.value,
+                            color: Colors.black87,
+                            size: 24,
+                          ),
                         ),
                       ),
                     ),

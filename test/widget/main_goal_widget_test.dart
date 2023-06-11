@@ -273,8 +273,7 @@ void main() {
     expect(progressBar.percent, 0.33);
   });
 
-  testWidgets(
-      'When confirm Icon Picker Dialog must update current goal icon',
+  testWidgets('When confirm Icon Picker Dialog must update current goal icon',
       (WidgetTester tester) async {
     // arrange
     await tester.pumpWidget(initMaterialApp());
@@ -282,6 +281,7 @@ void main() {
 
     // act
     var iconBtn = find.byKey(const Key("goalIcon"));
+    await tester.ensureVisible(iconBtn);
     await tester.tap(iconBtn);
     await tester.pumpAndSettle();
 
@@ -298,6 +298,6 @@ void main() {
     var currentGoalIcon = find.byKey(const Key("goalIcon"));
     Icon currentIconWidget = tester.widget(currentGoalIcon);
 
-    expect(currentIconWidget, selectedIconWidget);
+    expect(currentIconWidget.icon, selectedIconWidget.icon);
   });
 }

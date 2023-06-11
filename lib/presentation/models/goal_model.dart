@@ -11,20 +11,21 @@ class GoalModel {
   List<GoalModel> subGoals = [];
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completePercentage = 0.0.obs;
-  IconData? icon;
+  Rx<IconData> icon = Rx<IconData>(Icons.abc_outlined);
 
   GoalModel(
     this.id, {
-    this.icon = Icons.wind_power,
     String description = "",
     String name = "Tap to edit",
     List<TaskModel>? taskList,
     double? progress,
+    IconData? iconData,
   }) {
     _name.text = name;
     _description.text = description;
     tasks.value = taskList ?? [];
     completePercentage.value = progress ?? 0;
+    icon.value = iconData ?? Icons.abc_outlined;
   }
 
   addSubGoal(GoalModel subGoal) {
@@ -101,8 +102,8 @@ class GoalModel {
     return checkedTasks;
   }
 
-  void changeIcon(IconData icon) {
-    this.icon = icon;
+  void changeIcon(Rx<IconData> icon) {
+    this.icon.value = icon.value;
   }
 }
 

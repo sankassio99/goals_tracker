@@ -93,7 +93,7 @@ class IconPickerDialog extends StatelessWidget {
                     ),
                     TextButton(
                         onPressed: () {
-                          controller.updateIcon(selectedIcon.value);
+                          controller.updateIcon(selectedIcon);
                           Navigator.pop(context);
                         },
                         child: const Text(

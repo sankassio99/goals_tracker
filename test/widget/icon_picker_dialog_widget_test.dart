@@ -75,7 +75,7 @@ void main() {
   testWidgets('When dialog is loaded must show current icon selected',
       (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("", icon: Icons.wind_power);
+    var model = GoalModel("", iconData: Icons.wind_power);
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
