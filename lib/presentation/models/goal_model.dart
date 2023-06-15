@@ -76,7 +76,7 @@ class GoalModel {
       description,
       taskList: tasks,
       completePercentage: completePercentage.value,
-      icon: icon?.toString(),
+      icon: icon.toString(),
     );
   }
 

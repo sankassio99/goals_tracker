@@ -170,7 +170,7 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      var selectedIcon = Icons.abc;
+      var selectedIcon = Icons.abc.obs;
       mainGoalController.updateIcon(selectedIcon);
 
       //#endregion
