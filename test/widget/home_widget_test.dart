@@ -121,4 +121,26 @@ void main() {
     var goalCard = find.byType(GoalCardWidget);
     expect(goalCard, findsNWidgets(2));
   });
+
+  testWidgets(
+      'When redirected to main goal page must be show the current goal icon',
+      (WidgetTester tester) async {
+    // arrange
+    var goal1 = MainGoal("1", "title", "desc", icon: Icons.abc.toString());
+    List<MainGoal> mainGoalList = [goal1];
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
+    await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
+
+    // act
+    var goalCard = find.byType(GoalCardWidget);
+    await tester.tap(goalCard);
+    await tester.pumpAndSettle();
+
+    // assert
+    var currentGoalIcon = find.byKey(const Key("goalIcon"));
+    Icon currentIconWidget = tester.widget(currentGoalIcon);
+
+    expect(currentIconWidget.icon.toString(), goal1.icon);
+  });
 }
