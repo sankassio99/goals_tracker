@@ -41,7 +41,8 @@ class HomePageWidget extends StatelessWidget {
                     child: Obx(
                       () => Column(
                         children: controller.goalList
-                            .map((element) => GoalCardWidget(model: element))
+                            .map(
+                                (goalModel) => GoalCardWidget(model: goalModel))
                             .toList(),
                       ),
                     ),

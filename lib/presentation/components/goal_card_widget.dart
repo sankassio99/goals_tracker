@@ -25,11 +25,11 @@ class GoalCardWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
                 child: Icon(
-                  key: Key("goalCardIcon"),
-                  Icons.playlist_add_check_rounded,
+                  key: const Key("goalCardIcon"),
+                  model.icon.value,
                   color: Colors.black87,
                   size: 34,
                 ),
