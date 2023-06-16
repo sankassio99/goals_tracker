@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
@@ -5,7 +6,7 @@ import 'package:goals_tracker/domain/entities/task.dart';
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
-  String? icon;
+  IconData? icon;
 
   MainGoal(
     super.id,

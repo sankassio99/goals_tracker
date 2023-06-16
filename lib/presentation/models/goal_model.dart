@@ -51,13 +51,12 @@ class GoalModel {
   static toModel(MainGoal goal) {
     List<TaskModel> tasks = _mapToTaskModelList(goal.tasks);
 
-    return GoalModel(
-      goal.id,
-      description: goal.desc,
-      name: goal.title,
-      taskList: tasks,
-      progress: goal.completePercentage,
-    );
+    return GoalModel(goal.id,
+        description: goal.desc,
+        name: goal.title,
+        taskList: tasks,
+        progress: goal.completePercentage,
+        iconData: goal.icon);
   }
 
   static List<TaskModel> _mapToTaskModelList(List<Task> tasks) {
@@ -76,7 +75,7 @@ class GoalModel {
       description,
       taskList: tasks,
       completePercentage: completePercentage.value,
-      icon: icon.toString(),
+      icon: icon.value,
     );
   }
 

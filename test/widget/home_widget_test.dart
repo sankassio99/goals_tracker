@@ -126,9 +126,12 @@ void main() {
       'When redirected to main goal page must be show the current goal icon',
       (WidgetTester tester) async {
     // arrange
-    var goal1 = MainGoal("1", "title", "desc", icon: Icons.abc.toString());
+    var goal1 = MainGoal("1", "title", "desc", icon: Icons.ac_unit);
     List<MainGoal> mainGoalList = [goal1];
+
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
+    when(goalRepositoryMock.getById(any)).thenAnswer((_) async => goal1);
+
     await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
 
@@ -141,6 +144,6 @@ void main() {
     var currentGoalIcon = find.byKey(const Key("goalIcon"));
     Icon currentIconWidget = tester.widget(currentGoalIcon);
 
-    expect(currentIconWidget.icon.toString(), goal1.icon);
+    expect(currentIconWidget.icon, goal1.icon);
   });
 }

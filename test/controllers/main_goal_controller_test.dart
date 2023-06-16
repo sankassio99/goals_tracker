@@ -177,7 +177,7 @@ void main() {
       //#region Assert(Then)
       var matcher = predicate<MainGoal>((goal) {
         expect(goal.id, goalId);
-        expect(goal.icon, selectedIcon.toString());
+        expect(goal.icon, selectedIcon.value);
         return true;
       });
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
