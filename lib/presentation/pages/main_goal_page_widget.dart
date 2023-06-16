@@ -20,12 +20,11 @@ class MainGoalPageWidget extends StatelessWidget {
         body: SafeArea(
           child: Container(
             width: double.infinity,
-            height: double.infinity,
+            height: 1000,
             decoration: const BoxDecoration(
               color: Colors.white,
             ),
-            child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
+            child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -79,34 +78,32 @@ class TasksWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height - 400,
-      child: SingleChildScrollView(
-        child: Obx(() => Column(
-              children: tasks
-                  .map(
-                    (TaskModel task) => CheckboxListTile(
-                      title: Focus(
-                        onFocusChange: (value) {
-                          if (!value) controller.updateGoal();
-                        },
-                        child: TextField(
-                            key: const Key("inputTask"),
-                            controller: task.name,
-                            decoration: const InputDecoration(
-                                hintText: '', border: InputBorder.none)),
-                      ),
-                      value: task.checked.value,
-                      onChanged: (value) {
-                        task.checked.value = value ?? false;
-                        controller.onTaskCheck();
+      width: double.infinity,
+      child: Obx(() => Column(
+            children: tasks
+                .map(
+                  (TaskModel task) => CheckboxListTile(
+                    title: Focus(
+                      onFocusChange: (value) {
+                        if (!value) controller.updateGoal();
                       },
-                      secondary:
-                          const Icon(key: Key("taskItemIcon"), Icons.task_alt),
+                      child: TextField(
+                          key: const Key("inputTask"),
+                          controller: task.name,
+                          decoration: const InputDecoration(
+                              hintText: '', border: InputBorder.none)),
                     ),
-                  )
-                  .toList(),
-            )),
-      ),
+                    value: task.checked.value,
+                    onChanged: (value) {
+                      task.checked.value = value ?? false;
+                      controller.onTaskCheck();
+                    },
+                    secondary:
+                        const Icon(key: Key("taskItemIcon"), Icons.task_alt),
+                  ),
+                )
+                .toList(),
+          )),
     );
   }
 }
