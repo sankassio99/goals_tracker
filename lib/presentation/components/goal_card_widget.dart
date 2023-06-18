@@ -15,8 +15,12 @@ class GoalCardWidget extends StatelessWidget {
         height: 80,
         margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
+          border: Border(
+            bottom: BorderSide(
+              color: Theme.of(context).colorScheme.background,
+              width: 2.0,
+            ),
+          ),
         ),
         child: Padding(
           padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),

@@ -39,11 +39,21 @@ class HomePageWidget extends StatelessWidget {
                   height: MediaQuery.of(context).size.height - 200,
                   child: SingleChildScrollView(
                     child: Obx(
-                      () => Column(
-                        children: controller.goalList
-                            .map(
-                                (goalModel) => GoalCardWidget(model: goalModel))
-                            .toList(),
+                      () => Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black12,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          children: controller.goalList
+                              .map((goalModel) =>
+                                  GoalCardWidget(model: goalModel))
+                              .toList(),
+                        ),
                       ),
                     ),
                   ),
