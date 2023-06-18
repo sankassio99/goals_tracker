@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class GoalModel {
   String id;
@@ -11,7 +12,8 @@ class GoalModel {
   List<GoalModel> subGoals = [];
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completePercentage = 0.0.obs;
-  Rx<IconData> icon = Rx<IconData>(Icons.abc_outlined);
+  Rx<PhosphorIconData> icon =
+      Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
 
   GoalModel(
     this.id, {
@@ -19,13 +21,13 @@ class GoalModel {
     String name = "Tap to edit",
     List<TaskModel>? taskList,
     double? progress,
-    IconData? iconData,
+    PhosphorIconData? iconData,
   }) {
     _name.text = name;
     _description.text = description;
     tasks.value = taskList ?? [];
     completePercentage.value = progress ?? 0;
-    icon.value = iconData ?? Icons.abc_outlined;
+    icon.value = iconData ?? PhosphorIcons.fill.notePencil;
   }
 
   addSubGoal(GoalModel subGoal) {
@@ -101,7 +103,7 @@ class GoalModel {
     return checkedTasks;
   }
 
-  void changeIcon(Rx<IconData> icon) {
+  void changeIcon(Rx<PhosphorIconData> icon) {
     this.icon.value = icon.value;
   }
 }

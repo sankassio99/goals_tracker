@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
-  IconData? icon;
+  PhosphorIconData? icon;
 
   MainGoal(
     super.id,

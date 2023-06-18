@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class IconPickerDialog extends StatelessWidget {
-  final IconData? currentIcon;
-  final Rx<IconData> selectedIcon = Icons.abc.obs;
+  final PhosphorIconData? currentIcon;
+  final Rx<PhosphorIconData> selectedIcon = PhosphorIcons.fill.notePencil.obs;
   final controller = Get.find<MainGoalController>();
 
   IconPickerDialog({
@@ -12,28 +13,33 @@ class IconPickerDialog extends StatelessWidget {
     super.key,
   });
 
-  final List<IconData> iconsData = const [
-    Icons.access_alarm,
-    Icons.account_tree_sharp,
-    Icons.safety_check,
-    Icons.laptop,
-    Icons.girl,
-    Icons.boy,
-    Icons.car_rental,
-    Icons.money,
-    Icons.map,
-    Icons.wind_power,
-    Icons.monetization_on,
-    Icons.gamepad,
-    Icons.ballot,
-    Icons.games_rounded,
-    Icons.motorcycle,
-    Icons.food_bank,
+  final List<PhosphorIconData> iconsData = [
+    PhosphorIcons.fill.notePencil,
+    PhosphorIcons.regular.airplaneTakeoff,
+    PhosphorIcons.regular.alien,
+    PhosphorIcons.regular.alignBottom,
+    PhosphorIcons.regular.anchor,
+    PhosphorIcons.regular.archive,
+    PhosphorIcons.regular.backpack,
+    PhosphorIcons.regular.basketball,
+    PhosphorIcons.regular.baseballCap,
+    PhosphorIcons.regular.batteryChargingVertical,
+    PhosphorIcons.regular.beerBottle,
+    PhosphorIcons.regular.bicycle,
+    PhosphorIcons.regular.bird,
+    PhosphorIcons.regular.boot,
+    PhosphorIcons.regular.books,
+    PhosphorIcons.regular.bookmarks,
+    PhosphorIcons.regular.brandy,
+    PhosphorIcons.regular.cake,
+    PhosphorIcons.regular.barbell,
+    PhosphorIcons.regular.appleLogo,
+    PhosphorIcons.regular.armchair,
   ];
 
   @override
   Widget build(BuildContext context) {
-    selectedIcon.value = currentIcon ?? Icons.food_bank;
+    selectedIcon.value = currentIcon ?? PhosphorIcons.fill.notePencil;
     return Dialog(
       key: const Key("iconPickerDialog"),
       backgroundColor: Colors.white,

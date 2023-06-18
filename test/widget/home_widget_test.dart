@@ -8,6 +8,7 @@ import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/mockito.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../add_new_goal_test.mocks.dart';
 
@@ -126,7 +127,8 @@ void main() {
       'When redirected to main goal page must be show the current goal icon',
       (WidgetTester tester) async {
     // arrange
-    var goal1 = MainGoal("1", "title", "desc", icon: Icons.ac_unit);
+    var goal1 =
+        MainGoal("1", "title", "desc", icon: PhosphorIcons.fill.notePencil);
     List<MainGoal> mainGoalList = [goal1];
 
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);

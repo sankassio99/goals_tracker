@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainGoalController extends GetxController {
   Rx<GoalModel> goalModel = Rx<GoalModel>(GoalModel("id"));
@@ -36,7 +36,7 @@ class MainGoalController extends GetxController {
     updateGoal();
   }
 
-  void updateIcon(Rx<IconData> selectedIcon) {
+  void updateIcon(Rx<PhosphorIconData> selectedIcon) {
     goalModel.value.changeIcon(selectedIcon);
     updateGoal();
   }

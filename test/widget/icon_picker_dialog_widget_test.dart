@@ -7,6 +7,7 @@ import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../add_new_goal_test.mocks.dart';
 
 void main() {
@@ -75,7 +76,7 @@ void main() {
   testWidgets('When dialog is loaded must show current icon selected',
       (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("", iconData: Icons.wind_power);
+    var model = GoalModel("", iconData: PhosphorIcons.fill.notePencil);
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(

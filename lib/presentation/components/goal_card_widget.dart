@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class GoalCardWidget extends StatelessWidget {
   final GoalModel model;
@@ -32,7 +33,7 @@ class GoalCardWidget extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
-                child: Icon(
+                child: PhosphorIcon(
                   key: const Key("goalCardIcon"),
                   model.icon.value,
                   color: Colors.black87,

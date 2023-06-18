@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
@@ -8,6 +7,7 @@ import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:mockito/mockito.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../add_new_goal_test.mocks.dart';
 
@@ -170,7 +170,7 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      var selectedIcon = Icons.abc.obs;
+      var selectedIcon = PhosphorIcons.fill.notePencil.obs;
       mainGoalController.updateIcon(selectedIcon);
 
       //#endregion
