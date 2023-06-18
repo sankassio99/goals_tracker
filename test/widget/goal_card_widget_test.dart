@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 void main() {
   testWidgets('Goal card should show icon, title and percentage of goal',
@@ -24,7 +25,7 @@ void main() {
     //#region Assert(Then)
     var icon = find.byKey(const Key("goalCardIcon"));
     var title = find.byKey(const Key("goalCardTitle"));
-    var percentage = find.byKey(const Key("goalCardPercentage"));
+    var percentage = find.byKey(const Key("progressBar"));
 
     expect(icon, findsOneWidget);
     expect(title, findsOneWidget);
@@ -54,12 +55,9 @@ void main() {
     //#endregion
 
     //#region Assert(Then)
-    var percentage = find.byKey(const Key("goalCardPercentage"));
-    Text textWidget = tester.widget<Text>(percentage);
-
-    var expectedText =
-        "${(percentageValue * 100).toStringAsFixed(0)}% complete";
-    expect(textWidget.data, expectedText);
+    var progressBarFinder = find.byKey(const Key("progressBar"));
+    LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
+    expect(progressBar.percent, percentageValue);
     //#endregion
   });
 }

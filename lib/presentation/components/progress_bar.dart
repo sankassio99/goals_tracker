@@ -16,7 +16,6 @@ class ProgressBar extends StatelessWidget {
     return Expanded(
       child: LayoutBuilder(
         builder: (context, constraints) {
-          print(constraints.maxWidth);
           return Obx(
             () => LinearPercentIndicator(
               key: const Key("progressBar"),
@@ -29,7 +28,7 @@ class ProgressBar extends StatelessWidget {
               progressColor: Theme.of(context).colorScheme.onSecondary,
               backgroundColor: Theme.of(context).colorScheme.background,
               center: Text(
-                (goalModel.completePercentage.value * 100).toString(),
+                "${goalModel.completePercentage.value * 100}%",
                 style: const TextStyle(
                   color: Colors.black87,
                 ),
