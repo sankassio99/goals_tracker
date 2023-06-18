@@ -13,7 +13,8 @@ class GoalCardWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.toNamed("/mainGoalDetails/${model.id}"),
       child: Container(
-        constraints: const BoxConstraints(minWidth: 100, maxWidth: 800),
+        constraints: BoxConstraints(
+            minWidth: 100, maxWidth: MediaQuery.of(context).size.width),
         height: 90,
         margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
         decoration: BoxDecoration(
@@ -45,7 +46,7 @@ class GoalCardWidget extends StatelessWidget {
                 child: LayoutBuilder(builder: (context, constrained) {
                   return Container(
                     constraints:
-                        const BoxConstraints(minWidth: 100, maxWidth: 400),
+                        const BoxConstraints(minWidth: 100, maxWidth: 600),
                     width: context.width * 0.7,
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
