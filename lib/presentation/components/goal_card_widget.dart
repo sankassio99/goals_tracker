@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/progress_bar.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalCardWidget extends StatelessWidget {
@@ -11,8 +12,8 @@ class GoalCardWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => Get.toNamed("/mainGoalDetails/${model.id}"),
       child: Container(
-        width: double.infinity,
-        height: 80,
+        constraints: const BoxConstraints(minWidth: 100, maxWidth: 800),
+        height: 90,
         margin: const EdgeInsets.fromLTRB(0, 5, 0, 5),
         decoration: BoxDecoration(
           border: Border(
@@ -40,24 +41,28 @@ class GoalCardWidget extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      key: const Key("goalCardTitle"),
-                      model.name,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                child: LayoutBuilder(builder: (context, constrained) {
+                  return Container(
+                    constraints:
+                        const BoxConstraints(minWidth: 100, maxWidth: 400),
+                    width: context.width * 0.7,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          key: const Key("goalCardTitle"),
+                          model.name,
+                          style: Theme.of(context).textTheme.headlineSmall,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        ProgressBar(goalModel: model),
+                      ],
                     ),
-                    Obx(
-                      () => Text(
-                        key: const Key("goalCardPercentage"),
-                        getPercentageProgress(),
-                        style: Theme.of(context).textTheme.bodySmall,
-                      ),
-                    ),
-                  ],
-                ),
+                  );
+                }),
               ),
             ],
           ),

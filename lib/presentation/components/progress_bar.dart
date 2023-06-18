@@ -14,19 +14,16 @@ class ProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(5, 0, 5, 0),
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: 30,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Obx(
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          print(constraints.maxWidth);
+          return Obx(
             () => LinearPercentIndicator(
               key: const Key("progressBar"),
               percent: goalModel.completePercentage.value,
-              width: MediaQuery.of(context).size.width * 0.87,
+              width: constraints.maxWidth == double.infinity
+                  ? 100.0
+                  : constraints.maxWidth - 20,
               lineHeight: 24,
               animation: true,
               progressColor: Theme.of(context).colorScheme.onSecondary,
@@ -40,8 +37,8 @@ class ProgressBar extends StatelessWidget {
               barRadius: const Radius.circular(8),
               padding: EdgeInsets.zero,
             ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }
