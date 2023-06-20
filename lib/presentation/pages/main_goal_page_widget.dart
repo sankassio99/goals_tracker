@@ -4,6 +4,7 @@ import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
   final controller = Get.find<MainGoalController>();
@@ -98,8 +99,12 @@ class TasksWidget extends StatelessWidget {
                       task.checked.value = value ?? false;
                       controller.onTaskCheck();
                     },
-                    secondary:
-                        const Icon(key: Key("taskItemIcon"), Icons.task_alt),
+                    secondary: Icon(
+                      key: const Key("taskItemIcon"),
+                      PhosphorIcons.regular.trash,
+                      color: Theme.of(context).colorScheme.error,
+                    ),
+                    controlAffinity: ListTileControlAffinity.leading,
                   ),
                 )
                 .toList(),
