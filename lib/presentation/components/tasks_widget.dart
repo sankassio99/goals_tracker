@@ -17,35 +17,51 @@ class TasksWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Obx(() => Column(
-            children: tasks
-                .map(
-                  (TaskModel task) => CheckboxListTile(
-                    title: Focus(
-                      onFocusChange: (value) {
-                        if (!value) controller.updateGoal();
+      child: Obx(
+        () => Column(
+          children: tasks
+              .asMap()
+              .map(
+                (int index, TaskModel task) => MapEntry(
+                  index,
+                  Dismissible(
+                    key: Key(index.toString()),
+                    onDismissed: (_) => print("deleted"),
+                    child: CheckboxListTile(
+                      title: Focus(
+                        onFocusChange: (value) {
+                          if (!value) controller.updateGoal();
+                        },
+                        child: TextFormField(
+                            key: const Key("inputTask"),
+                            controller: task.name,
+                            decoration: const InputDecoration(
+                              hintText: 'Tap to edit',
+                              border: InputBorder.none,
+                            )),
+                      ),
+                      value: task.checked.value,
+                      onChanged: (value) {
+                        task.checked.value = value ?? false;
+                        controller.onTaskCheck();
                       },
-                      child: TextField(
-                          key: const Key("inputTask"),
-                          controller: task.name,
-                          decoration: const InputDecoration(
-                              hintText: '', border: InputBorder.none)),
+                      secondary: InkWell(
+                        onTap: () => controller.onDeleteTask(index),
+                        child: Icon(
+                          key: const Key("taskItemIcon"),
+                          PhosphorIcons.regular.trash,
+                          color: Theme.of(context).colorScheme.error,
+                        ),
+                      ),
+                      controlAffinity: ListTileControlAffinity.leading,
                     ),
-                    value: task.checked.value,
-                    onChanged: (value) {
-                      task.checked.value = value ?? false;
-                      controller.onTaskCheck();
-                    },
-                    secondary: Icon(
-                      key: const Key("taskItemIcon"),
-                      PhosphorIcons.regular.trash,
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                    controlAffinity: ListTileControlAffinity.leading,
                   ),
-                )
-                .toList(),
-          )),
+                ),
+              )
+              .values
+              .toList(),
+        ),
+      ),
     );
   }
 }

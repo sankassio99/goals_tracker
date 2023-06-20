@@ -40,4 +40,10 @@ class MainGoalController extends GetxController {
     goalModel.value.changeIcon(selectedIcon);
     updateGoal();
   }
+
+  onDeleteTask(int index) {
+    goalModel.value.tasks.removeAt(index);
+    goalModel.value.updateProgress();
+    updateGoal();
+  }
 }

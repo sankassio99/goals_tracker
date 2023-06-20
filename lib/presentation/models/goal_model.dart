@@ -47,7 +47,7 @@ class GoalModel {
   TextEditingController get descriptionController => _description;
 
   void addTask() {
-    tasks.add(TaskModel("Tap to edit"));
+    tasks.add(TaskModel(""));
   }
 
   static toModel(MainGoal goal) {
