@@ -18,7 +18,7 @@ class GoalModel {
   GoalModel(
     this.id, {
     String description = "",
-    String name = "Tap to edit",
+    String name = "",
     List<TaskModel>? taskList,
     double? progress,
     PhosphorIconData? iconData,

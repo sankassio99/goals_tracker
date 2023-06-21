@@ -10,7 +10,7 @@ class AddSubgoal {
 
   Future<String> execute(String mainGoalId) async {
     var uuidGenerated = uuid.v1().toString();
-    var subGoal = SubGoal(uuidGenerated, "Tap to edit", mainGoalId, "");
+    var subGoal = SubGoal(uuidGenerated, "", mainGoalId, "");
 
     _goalRepository.save(subGoal);
 
