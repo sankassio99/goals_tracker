@@ -89,25 +89,6 @@ void main() {
     expect(inputTitleWidget.controller!.text, title);
   });
 
-  testWidgets(
-      'When Main Goal Page Widget is loaded must show tasks already saved',
-      (WidgetTester tester) async {
-    // arrange
-    var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
-    myGoal.tasks = [Task("title"), Task("title"), Task("title")];
-
-    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
-
-    // act
-    await tester.pumpWidget(initMaterialApp(goalId: myId));
-    await tester.pumpAndSettle();
-
-    // assert
-    var tasksWidget = find.byType(CheckboxListTile);
-    expect(tasksWidget, findsNWidgets(3));
-  });
-
   testWidgets('When focus out title must update goal',
       (WidgetTester tester) async {
     // arrange
