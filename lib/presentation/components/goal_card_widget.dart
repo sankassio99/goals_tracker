@@ -54,7 +54,7 @@ class GoalCardWidget extends StatelessWidget {
                       children: [
                         Text(
                           key: const Key("goalCardTitle"),
-                          model.name,
+                          (model.name == "" ? "Tap to edit" : model.name),
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
                         const SizedBox(
