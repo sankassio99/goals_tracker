@@ -46,7 +46,14 @@ class TasksWidget extends StatelessWidget {
                         controller.onTaskCheck();
                       },
                       secondary: InkWell(
-                        onTap: () => controller.onDeleteTask(index),
+                        onTap: () {
+                          controller.onDeleteTask(index);
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: const Text('Task deleted!'),
+                            backgroundColor:
+                                Theme.of(context).colorScheme.background,
+                          ));
+                        },
                         child: Icon(
                           key: const Key("taskItemIcon"),
                           PhosphorIcons.regular.trash,
