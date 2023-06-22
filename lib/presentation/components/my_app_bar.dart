@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final List<Widget>? widget;
+
   const MyAppBar({
+    this.widget,
     super.key,
   });
 
@@ -30,19 +32,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: Colors.black87,
         ),
       ),
-      actions: [
-        IconButton(
-          icon: Icon(
-            PhosphorIcons.regular.gear,
-            color: Colors.white,
-          ),
-          tooltip: 'Edit',
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('This is a snackbar')));
-          },
-        ),
-      ],
+      actions: widget,
       centerTitle: false,
       elevation: 0,
     );

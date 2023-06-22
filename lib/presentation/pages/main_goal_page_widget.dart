@@ -4,6 +4,7 @@ import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/components/tasks_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
   final controller = Get.find<MainGoalController>();
@@ -16,7 +17,21 @@ class MainGoalPageWidget extends StatelessWidget {
     return GetBuilder<MainGoalController>(builder: (controller) {
       return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
-        appBar: const MyAppBar(),
+        appBar: MyAppBar(
+          widget: [
+            IconButton(
+              icon: Icon(
+                PhosphorIcons.regular.gear,
+                color: Colors.white,
+              ),
+              tooltip: 'Edit',
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text('This is a snackbar')));
+              },
+            ),
+          ],
+        ),
         body: SafeArea(
           child: Container(
             width: double.infinity,
