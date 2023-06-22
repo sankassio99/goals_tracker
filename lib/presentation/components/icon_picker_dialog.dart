@@ -4,11 +4,43 @@ import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class IconPickerDialog extends StatelessWidget {
+  final Rx<PhosphorIconData> currentIcon;
+  final controller = Get.find<MainGoalController>();
+
+  IconPickerDialog({
+    required this.currentIcon,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => showDialog<String>(
+          context: context,
+          builder: (BuildContext context) => PickerDialog(
+                currentIcon: currentIcon.value,
+              )),
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
+        child: Obx(
+          () => Icon(
+            key: const Key("goalIcon"),
+            currentIcon.value,
+            color: Colors.black87,
+            size: 24,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class PickerDialog extends StatelessWidget {
   final PhosphorIconData? currentIcon;
   final Rx<PhosphorIconData> selectedIcon = PhosphorIcons.fill.notePencil.obs;
   final controller = Get.find<MainGoalController>();
 
-  IconPickerDialog({
+  PickerDialog({
     this.currentIcon,
     super.key,
   });
@@ -40,10 +72,10 @@ class IconPickerDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     selectedIcon.value = currentIcon ?? PhosphorIcons.fill.notePencil;
-    return Dialog(
+    return AlertDialog(
       key: const Key("iconPickerDialog"),
       backgroundColor: Colors.white,
-      child: Padding(
+      content: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
           child: Column(
@@ -81,41 +113,31 @@ class IconPickerDialog extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextButton(
-                        onPressed: () => Navigator.pop(context),
-                        child: Text(
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          "Close",
-                        )),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    TextButton(
-                        onPressed: () {
-                          controller.updateIcon(selectedIcon);
-                          Navigator.pop(context);
-                        },
-                        child: const Text(
-                          key: Key("confirmIconChoice"),
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.blue,
-                          ),
-                          "Confirm",
-                        )),
-                  ],
-                )
               ]),
         ),
       ),
+      actions: [
+        TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              style: Theme.of(context).textTheme.bodyMedium,
+              "Close",
+            )),
+        TextButton(
+            onPressed: () {
+              controller.updateIcon(selectedIcon);
+              Navigator.pop(context);
+            },
+            child: const Text(
+              key: Key("confirmIconChoice"),
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.blue,
+              ),
+              "Confirm",
+            )),
+      ],
     );
   }
 }

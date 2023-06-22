@@ -34,24 +34,8 @@ class HeaderGoalWidget extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      InkWell(
-                        onTap: () => showDialog(
-                            context: context,
-                            builder: (BuildContext context) => IconPickerDialog(
-                                  currentIcon: model.icon.value,
-                                )),
-                        child: Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0, 0, 10, 10),
-                          child: Obx(
-                            () => Icon(
-                              key: const Key("goalIcon"),
-                              model.icon.value,
-                              color: Colors.black87,
-                              size: 24,
-                            ),
-                          ),
-                        ),
+                      IconPickerDialog(
+                        currentIcon: model.icon,
                       ),
                       Focus(
                         onFocusChange: (value) {
