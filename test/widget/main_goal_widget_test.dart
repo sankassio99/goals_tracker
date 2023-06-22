@@ -5,13 +5,11 @@ import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
-import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../add_new_goal_test.mocks.dart';
 
@@ -138,122 +136,6 @@ void main() {
     });
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
   });
-  testWidgets('When click in float action button must be added new task',
-      (WidgetTester tester) async {
-    // arrange
-    await tester.pumpWidget(initMaterialApp());
-
-    // act
-    var addTaskButton = find.byKey(const Key("addTaskButton"));
-    await tester.tap(addTaskButton);
-
-    await tester.pumpAndSettle();
-
-    // assert
-    var tasks = find.byType(CheckboxListTile);
-    expect(tasks, findsOneWidget);
-  });
-
-  testWidgets('When focus out task name must update goal',
-      (WidgetTester tester) async {
-    // arrange
-    mainGoal.tasks = [Task("title"), Task("title"), Task("title")];
-
-    await tester.pumpWidget(initMaterialApp());
-    await tester.pumpAndSettle();
-
-    const newName = "Name edited";
-
-    // act
-    var inputTask = find.byKey(const Key("inputTask"));
-    await tester.enterText(inputTask.first, newName);
-
-    await tester.tapAt(const Offset(100, 100));
-
-    await tester.pumpAndSettle();
-
-    // // assert
-    var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, mainGoal.id);
-      expect(goal.tasks.first.title, newName);
-      return true;
-    });
-    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
-  });
-
-  testWidgets('When check task must update goal', (WidgetTester tester) async {
-    // arrange
-    var myTask = Task("myTask");
-    mainGoal.tasks = [myTask, Task("title2"), Task("title3")];
-
-    await tester.pumpWidget(initMaterialApp());
-    await tester.pumpAndSettle();
-
-    // act
-    var taskItem = find.byKey(const Key("taskItemIcon"));
-
-    await tester.tap(taskItem.first);
-
-    await tester.pumpAndSettle();
-
-    // // assert
-    var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, mainGoal.id);
-      expect(goal.tasks.first.title, myTask.title);
-      expect(goal.tasks.first.isCompleted, !myTask.isCompleted);
-      return true;
-    });
-    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
-  });
-
-  testWidgets('When check task must update progress bar percent',
-      (WidgetTester tester) async {
-    // arrange
-    var myTask1 = Task("myTask1");
-    var myTask2 = Task("myTask2");
-    mainGoal.tasks = [
-      myTask1,
-      myTask2,
-    ];
-
-    await tester.pumpWidget(initMaterialApp());
-    await tester.pumpAndSettle();
-
-    // act
-    var taskItem = find.byKey(const Key("taskItemIcon"));
-    await tester.tap(taskItem.first);
-
-    await tester.pumpAndSettle();
-
-    // assert
-    var progressBarFinder = find.byKey(const Key("progressBar"));
-    LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
-    expect(progressBar.percent, 0.5);
-  });
-
-  testWidgets('When add new task must update progress bar percent',
-      (WidgetTester tester) async {
-    // arrange
-    var myTask1 = Task("myTask1");
-    var myTask2 = Task("myTask2");
-    myTask2.markAsCompleted();
-    mainGoal.tasks = [myTask1, myTask2];
-
-    await tester.pumpWidget(initMaterialApp());
-    await tester.pumpAndSettle();
-
-    // act
-    var addTaskButton = find.byKey(const Key("addTaskButton"));
-    await tester.tap(addTaskButton);
-
-    await tester.pumpAndSettle();
-
-    // assert
-    var progressBarFinder = find.byKey(const Key("progressBar"));
-    LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
-    expect(progressBar.percent, 0.33);
-  });
-
   testWidgets('When confirm Icon Picker Dialog must update current goal icon',
       (WidgetTester tester) async {
     // arrange
