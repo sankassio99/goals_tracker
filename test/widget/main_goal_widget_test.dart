@@ -10,6 +10,7 @@ import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../add_new_goal_test.mocks.dart';
 
@@ -178,5 +179,32 @@ void main() {
     // assert
     var settingsDialog = find.byKey(const Key("settingsDialog"));
     expect(settingsDialog, findsOneWidget);
+  });
+
+  testWidgets('When open dialog settings goal must load goal data',
+      (WidgetTester tester) async {
+    // arrange
+    var myGoal = MainGoal(
+      "1",
+      "Buy a new car",
+      "Lorem ipsum",
+      icon: PhosphorIcons.regular.alien,
+    );
+
+    when(goalRepositoryMock.getById(myGoal.id)).thenAnswer((_) async => myGoal);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    // act
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    // assert
+    var title = find.text(myGoal.title);
+    var desc = find.text(myGoal.desc);
+
+    expect(title, findsOneWidget);
+    expect(desc, findsOneWidget);
   });
 }
