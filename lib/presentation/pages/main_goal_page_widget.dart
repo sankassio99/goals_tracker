@@ -92,25 +92,28 @@ class GoalSettingsDialog extends StatelessWidget {
     return Dialog.fullscreen(
       key: const Key("settingsDialog"),
       child: Scaffold(
-        appBar: MyAppBar(actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text(
-              "Save",
-              style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.bold,
+        appBar: MyAppBar(
+          title: "Goals settings",
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                "READY",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onSecondary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          )
-        ]),
+            )
+          ],
+        ),
         body: const Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('This is a fullscreen dialog.'),
+            Text(''),
           ],
         ),
       ),
