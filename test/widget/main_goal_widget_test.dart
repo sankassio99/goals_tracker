@@ -163,4 +163,20 @@ void main() {
 
     expect(currentIconWidget.icon, selectedIconWidget.icon);
   });
+
+  testWidgets(
+      'When tap in settings icon in app bar must open dialog settings goal',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(initMaterialApp());
+
+    // act
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    // assert
+    var settingsDialog = find.byKey(const Key("settingsDialog"));
+    expect(settingsDialog, findsOneWidget);
+  });
 }
