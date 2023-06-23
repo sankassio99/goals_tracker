@@ -5,12 +5,12 @@ import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/presentation/components/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../add_new_goal_test.mocks.dart';
 
@@ -39,7 +39,8 @@ void main() {
     goalRepositoryMock = MockIGoalRepository();
     bindingFake = MainGoalBindingFake(goalRepositoryMock);
 
-    mainGoal = MainGoal("111100000", "title", "desc");
+    mainGoal = MainGoal(
+        "111100000", "Goals Tracker App", "Finish until the end of the year");
     when(goalRepositoryMock.getById(mainGoal.id))
         .thenAnswer((_) async => mainGoal);
   });
@@ -184,14 +185,9 @@ void main() {
   testWidgets('When open dialog settings goal must load goal data',
       (WidgetTester tester) async {
     // arrange
-    var myGoal = MainGoal(
-      "1",
-      "Buy a new car",
-      "Lorem ipsum",
-      icon: PhosphorIcons.regular.alien,
-    );
 
-    when(goalRepositoryMock.getById(myGoal.id)).thenAnswer((_) async => myGoal);
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
 
     await tester.pumpWidget(initMaterialApp());
 
@@ -201,10 +197,12 @@ void main() {
     await tester.pumpAndSettle();
 
     // assert
-    var title = find.text(myGoal.title);
-    var desc = find.text(myGoal.desc);
+    FormFieldWidget title = tester.widget(find.byKey(const Key("goalName")));
+    FormFieldWidget description =
+        tester.widget(find.byKey(const Key("goalDescription")));
 
-    expect(title, findsOneWidget);
-    expect(desc, findsOneWidget);
+    expect(title.controller.text, mainGoal.title);
+    expect(description.controller.text, mainGoal.desc);
+    // expect(desc, findsOneWidget);
   });
 }

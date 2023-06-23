@@ -29,7 +29,8 @@ class MainGoalPageWidget extends StatelessWidget {
               tooltip: 'Edit',
               onPressed: () => showDialog(
                 context: context,
-                builder: (BuildContext context) => const GoalSettingsDialog(),
+                builder: (BuildContext context) =>
+                    GoalSettingsDialog(goalModel: controller.goalModel.value),
               ),
             ),
           ],

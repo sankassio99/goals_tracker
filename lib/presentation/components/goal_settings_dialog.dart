@@ -3,10 +3,14 @@ import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class GoalSettingsDialog extends StatelessWidget {
+  final GoalModel goalModel;
+
   const GoalSettingsDialog({
+    required this.goalModel,
     super.key,
   });
 
@@ -60,15 +64,17 @@ class GoalSettingsDialog extends StatelessWidget {
                 ]),
               ),
               FormFieldWidget(
+                key: const Key("goalName"),
                 label: "Name",
-                controller: TextEditingController(text: ""),
+                controller: goalModel.nameController,
               ),
               const SizedBox(
                 height: 18,
               ),
               FormFieldWidget(
+                key: const Key("goalDescription"),
                 label: "Description",
-                controller: TextEditingController(text: ""),
+                controller: goalModel.descriptionController,
               ),
             ],
           ),
