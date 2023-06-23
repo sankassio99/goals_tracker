@@ -34,7 +34,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         key: const Key("pageTitleAppBar"),
         (title ?? ""),
         style: const TextStyle(
-          fontSize: 16,
+          fontSize: 18,
           color: Colors.black87,
           fontWeight: FontWeight.bold,
         ),

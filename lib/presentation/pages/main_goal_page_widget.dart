@@ -104,12 +104,12 @@ class GoalSettingsDialog extends StatelessWidget {
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSecondary,
                   fontWeight: FontWeight.bold,
+                  fontSize: 16,
                 ),
               ),
             )
           ],
         ),
-        // ignore: prefer_const_constructors
         body: Padding(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
           child: Column(
@@ -117,7 +117,17 @@ class GoalSettingsDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FormFieldWidget(),
+              FormFieldWidget(
+                label: "Name",
+                controller: TextEditingController(text: ""),
+              ),
+              const SizedBox(
+                height: 18,
+              ),
+              FormFieldWidget(
+                label: "Description",
+                controller: TextEditingController(text: ""),
+              ),
             ],
           ),
         ),
@@ -127,7 +137,12 @@ class GoalSettingsDialog extends StatelessWidget {
 }
 
 class FormFieldWidget extends StatelessWidget {
+  final String label;
+  final TextEditingController controller;
+
   const FormFieldWidget({
+    required this.label,
+    required this.controller,
     super.key,
   });
 
@@ -139,28 +154,31 @@ class FormFieldWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
           child: Text(
-            'Name',
+            label,
             style: TextStyle(
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).colorScheme.onSecondary),
           ),
         ),
         TextField(
-          key: Key("titleInput"),
+          controller: controller,
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.onSecondary, width: 3.0),
-              borderRadius: BorderRadius.all(
+                color: Theme.of(context).colorScheme.onSecondary,
+                width: 2.5,
+              ),
+              borderRadius: const BorderRadius.all(
                 Radius.circular(13.0),
               ),
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: Theme.of(context).colorScheme.onBackground,
-                width: 3.0,
+                width: 2.5,
               ),
-              borderRadius: BorderRadius.all(
+              borderRadius: const BorderRadius.all(
                 Radius.circular(13.0),
               ),
             ),
