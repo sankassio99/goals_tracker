@@ -18,7 +18,7 @@ class MainGoalPageWidget extends StatelessWidget {
       return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         appBar: MyAppBar(
-          widget: [
+          actions: [
             IconButton(
               key: const Key("goalSettings"),
               icon: Icon(
@@ -28,21 +28,7 @@ class MainGoalPageWidget extends StatelessWidget {
               tooltip: 'Edit',
               onPressed: () => showDialog(
                 context: context,
-                builder: (BuildContext context) => Dialog.fullscreen(
-                  key: const Key("settingsDialog"),
-                  child: Column(
-                    children: [
-                      const Text('This is a fullscreen dialog.'),
-                      const SizedBox(height: 15),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Close'),
-                      ),
-                    ],
-                  ),
-                ),
+                builder: (BuildContext context) => GoalSettingsDialog(),
               ),
             ),
           ],
@@ -93,5 +79,48 @@ class MainGoalPageWidget extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class GoalSettingsDialog extends StatelessWidget {
+  const GoalSettingsDialog({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Dialog.fullscreen(
+      key: const Key("settingsDialog"),
+      child: Scaffold(
+        appBar: MyAppBar(actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text(
+              "Save",
+              style: TextStyle(
+                color: Colors.black87,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          )
+        ]),
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('This is a fullscreen dialog.'),
+            const SizedBox(height: 15),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

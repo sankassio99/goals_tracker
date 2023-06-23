@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final List<Widget>? widget;
+  final List<Widget>? actions;
 
   const MyAppBar({
-    this.widget,
+    this.actions,
     super.key,
   });
 
@@ -32,7 +32,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
           color: Colors.black87,
         ),
       ),
-      actions: widget,
+      actions: actions,
       centerTitle: false,
       elevation: 0,
     );
