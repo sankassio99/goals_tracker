@@ -109,14 +109,69 @@ class GoalSettingsDialog extends StatelessWidget {
             )
           ],
         ),
-        body: const Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(''),
-          ],
+        // ignore: prefer_const_constructors
+        body: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              FormFieldWidget(),
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+class FormFieldWidget extends StatelessWidget {
+  const FormFieldWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
+          child: Text(
+            'Name',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).colorScheme.onSecondary),
+          ),
+        ),
+        TextField(
+          key: Key("titleInput"),
+          decoration: InputDecoration(
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.onSecondary, width: 3.0),
+              borderRadius: BorderRadius.all(
+                Radius.circular(13.0),
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).colorScheme.onBackground,
+                width: 3.0,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(13.0),
+              ),
+            ),
+          ),
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            fontSize: 16,
+            fontWeight: FontWeight.w800,
+          ),
+        ),
+      ],
     );
   }
 }
