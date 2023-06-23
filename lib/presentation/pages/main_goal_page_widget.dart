@@ -23,12 +23,12 @@ class MainGoalPageWidget extends StatelessWidget {
               key: const Key("goalSettings"),
               icon: Icon(
                 PhosphorIcons.regular.gear,
-                color: Colors.white,
+                color: Colors.black87,
               ),
               tooltip: 'Edit',
               onPressed: () => showDialog(
                 context: context,
-                builder: (BuildContext context) => GoalSettingsDialog(),
+                builder: (BuildContext context) => const GoalSettingsDialog(),
               ),
             ),
           ],
@@ -106,18 +106,11 @@ class GoalSettingsDialog extends StatelessWidget {
             ),
           )
         ]),
-        body: Column(
+        body: const Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('This is a fullscreen dialog.'),
-            const SizedBox(height: 15),
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('Close'),
-            ),
+            Text('This is a fullscreen dialog.'),
           ],
         ),
       ),
