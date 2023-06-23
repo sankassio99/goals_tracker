@@ -49,7 +49,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 width: double.infinity,
                 child: Column(children: [
                   IconPickerDialog(
-                    currentIcon: PhosphorIcons.bold.airplane.obs,
+                    currentIcon: goalModel.icon,
                   ),
                   const SizedBox(
                     height: 5,

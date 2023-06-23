@@ -23,7 +23,7 @@ class MainGoalPageWidget extends StatelessWidget {
             IconButton(
               key: const Key("goalSettings"),
               icon: Icon(
-                PhosphorIcons.regular.gear,
+                PhosphorIcons.bold.gear,
                 color: Colors.black87,
               ),
               tooltip: 'Edit',

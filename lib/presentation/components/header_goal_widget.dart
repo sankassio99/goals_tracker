@@ -34,8 +34,11 @@ class HeaderGoalWidget extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      IconPickerDialog(
-                        currentIcon: model.icon,
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 8, 11.5),
+                        child: IconPickerDialog(
+                          currentIcon: model.icon,
+                        ),
                       ),
                       Focus(
                         onFocusChange: (value) {
