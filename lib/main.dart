@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
           binding: MainGoalBinding(),
         ),
       ],
+      debugShowCheckedModeBanner: false,
     );
   }
 }
