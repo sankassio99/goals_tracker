@@ -20,15 +20,30 @@ class MainGoalPageWidget extends StatelessWidget {
         appBar: MyAppBar(
           widget: [
             IconButton(
+              key: const Key("goalSettings"),
               icon: Icon(
                 PhosphorIcons.regular.gear,
                 color: Colors.white,
               ),
               tooltip: 'Edit',
-              onPressed: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('This is a snackbar')));
-              },
+              onPressed: () => showDialog(
+                context: context,
+                builder: (BuildContext context) => Dialog.fullscreen(
+                  key: const Key("settingsDialog"),
+                  child: Column(
+                    children: [
+                      const Text('This is a fullscreen dialog.'),
+                      const SizedBox(height: 15),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Close'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ],
         ),
