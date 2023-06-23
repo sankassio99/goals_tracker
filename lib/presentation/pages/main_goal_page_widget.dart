@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
+import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/components/tasks_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
@@ -117,6 +119,25 @@ class GoalSettingsDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 80,
+                width: double.infinity,
+                child: Column(children: [
+                  IconPickerDialog(
+                    currentIcon: PhosphorIcons.bold.airplane.obs,
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "Change Icon",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onSecondary),
+                  ),
+                ]),
+              ),
               FormFieldWidget(
                 label: "Name",
                 controller: TextEditingController(text: ""),
@@ -132,64 +153,6 @@ class GoalSettingsDialog extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class FormFieldWidget extends StatelessWidget {
-  final String label;
-  final TextEditingController controller;
-
-  const FormFieldWidget({
-    required this.label,
-    required this.controller,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
-          child: Text(
-            label,
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.onSecondary),
-          ),
-        ),
-        TextField(
-          controller: controller,
-          decoration: InputDecoration(
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onSecondary,
-                width: 2.5,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(13.0),
-              ),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onBackground,
-                width: 2.5,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(13.0),
-              ),
-            ),
-          ),
-          style: TextStyle(
-            color: Theme.of(context).colorScheme.primary,
-            fontSize: 16,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ],
     );
   }
 }

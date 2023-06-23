@@ -26,7 +26,7 @@ class TasksWidget extends StatelessWidget {
                   index,
                   Dismissible(
                     key: Key(index.toString()),
-                    onDismissed: (_) => print("deleted"),
+                    onDismissed: (_) {},
                     child: CheckboxListTile(
                       title: Focus(
                         onFocusChange: (value) {

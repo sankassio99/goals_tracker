@@ -20,15 +20,12 @@ class IconPickerDialog extends StatelessWidget {
           builder: (BuildContext context) => PickerDialog(
                 currentIcon: currentIcon.value,
               )),
-      child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 10),
-        child: Obx(
-          () => Icon(
-            key: const Key("goalIcon"),
-            currentIcon.value,
-            color: Colors.black87,
-            size: 24,
-          ),
+      child: Obx(
+        () => Icon(
+          key: const Key("goalIcon"),
+          currentIcon.value,
+          color: Colors.black87,
+          size: 24,
         ),
       ),
     );
