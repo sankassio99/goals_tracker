@@ -6,9 +6,11 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class IconPickerDialog extends StatelessWidget {
   final Rx<PhosphorIconData> currentIcon;
   final controller = Get.find<MainGoalController>();
+  final double? size;
 
   IconPickerDialog({
     required this.currentIcon,
+    this.size,
     super.key,
   });
 
@@ -25,7 +27,7 @@ class IconPickerDialog extends StatelessWidget {
           key: const Key("goalIcon"),
           currentIcon.value,
           color: Colors.black87,
-          size: 24,
+          size: size ?? 24,
         ),
       ),
     );

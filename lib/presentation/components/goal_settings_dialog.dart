@@ -48,6 +48,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 child: Column(children: [
                   IconPickerDialog(
                     currentIcon: goalModel.icon,
+                    size: 40,
                   ),
                   const SizedBox(
                     height: 5,
@@ -65,6 +66,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 key: const Key("goalName"),
                 label: "Name",
                 controller: goalModel.nameController,
+                maxLines: 1,
               ),
               const SizedBox(
                 height: 18,

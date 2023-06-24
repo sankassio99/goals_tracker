@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class FormFieldWidget extends StatelessWidget {
   final String label;
   final TextEditingController controller;
+  final int? maxLines;
 
   const FormFieldWidget({
     required this.label,
     required this.controller,
+    this.maxLines,
     super.key,
   });
 
@@ -27,7 +29,9 @@ class FormFieldWidget extends StatelessWidget {
         ),
         TextField(
           controller: controller,
+          maxLines: maxLines,
           decoration: InputDecoration(
+            contentPadding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 color: Theme.of(context).colorScheme.outlineVariant,
