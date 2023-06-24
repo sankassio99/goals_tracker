@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalSettingsDialog extends StatelessWidget {
   final GoalModel goalModel;
+  final controller = Get.find<MainGoalController>();
 
-  const GoalSettingsDialog({
+  GoalSettingsDialog({
     required this.goalModel,
     super.key,
   });
@@ -23,6 +26,7 @@ class GoalSettingsDialog extends StatelessWidget {
             TextButton(
               key: const Key("readyEditing"),
               onPressed: () {
+                controller.updateGoal();
                 Navigator.pop(context);
               },
               child: Text(
