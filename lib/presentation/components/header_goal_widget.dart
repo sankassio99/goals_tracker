@@ -33,6 +33,7 @@ class HeaderGoalWidget extends StatelessWidget {
                 children: [
                   Row(
                     mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 8, 11.5),
