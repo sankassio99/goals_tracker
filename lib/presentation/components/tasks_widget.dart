@@ -15,7 +15,8 @@ class TasksWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      color: Colors.white,
       width: double.infinity,
       child: Obx(
         () => Column(

@@ -5,6 +5,7 @@ import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/components/tasks_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainGoalPageWidget extends StatelessWidget {
@@ -62,14 +63,12 @@ class MainGoalPageWidget extends StatelessWidget {
                   HeaderGoalWidget(
                     model: controller.goalModel.value,
                   ),
-                  const Divider(
-                    height: 10,
-                    thickness: 1,
-                    indent: 50,
-                    endIndent: 50,
-                    color: Colors.black12,
-                  ),
-                  TasksWidget(tasks: controller.goalModel.value.tasks)
+                  LayoutBuilder(builder: (context, constraints) {
+                    return SizedBox(
+                        width: context.width,
+                        height: context.height,
+                        child: GoalTabBar(model: controller.goalModel.value));
+                  }),
                 ],
               ),
             ),
@@ -82,5 +81,37 @@ class MainGoalPageWidget extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class GoalTabBar extends StatelessWidget {
+  final GoalModel model;
+  const GoalTabBar({super.key, required this.model});
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          toolbarHeight: 0,
+          automaticallyImplyLeading: false,
+          bottom: TabBar(
+            dividerColor: Theme.of(context).colorScheme.outline,
+            tabs: [
+              Tab(icon: Icon(PhosphorIcons.bold.check)),
+              Tab(icon: Icon(PhosphorIcons.bold.calendar)),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: [
+            TasksWidget(tasks: model.tasks),
+            Icon(PhosphorIcons.bold.calendar),
+          ],
+        ),
+      ),
+    );
   }
 }
