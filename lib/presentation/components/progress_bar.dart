@@ -13,32 +13,27 @@ class ProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          return Obx(
-            () => LinearPercentIndicator(
-              key: const Key("progressBar"),
-              percent: goalModel.completePercentage.value,
-              width: constraints.maxWidth == double.infinity
-                  ? 100.0
-                  : constraints.maxWidth - 20,
-              lineHeight: 24,
-              animation: true,
-              progressColor: Theme.of(context).colorScheme.onSecondary,
-              backgroundColor: Theme.of(context).colorScheme.background,
-              center: Text(
-                "${goalModel.completePercentage.value * 100}%",
-                style: const TextStyle(
-                  color: Colors.black87,
-                ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Obx(
+          () => LinearPercentIndicator(
+            key: const Key("progressBar"),
+            percent: goalModel.completePercentage.value,
+            lineHeight: 24,
+            animation: true,
+            progressColor: Theme.of(context).colorScheme.onSecondary,
+            backgroundColor: Theme.of(context).colorScheme.background,
+            center: Text(
+              "${goalModel.completePercentage.value * 100}%",
+              style: const TextStyle(
+                color: Colors.black87,
               ),
-              barRadius: const Radius.circular(8),
-              padding: EdgeInsets.zero,
             ),
-          );
-        },
-      ),
+            barRadius: const Radius.circular(8),
+            padding: const EdgeInsets.symmetric(vertical: 0.0),
+          ),
+        );
+      },
     );
   }
 }

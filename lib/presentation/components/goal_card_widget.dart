@@ -26,14 +26,14 @@ class GoalCardWidget extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
+          padding: const EdgeInsets.fromLTRB(18, 0, 24, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+              Expanded(
+                flex: 1,
                 child: PhosphorIcon(
                   key: const Key("goalCardIcon"),
                   model.icon.value,
@@ -41,42 +41,26 @@ class GoalCardWidget extends StatelessWidget {
                   size: 34,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-                child: LayoutBuilder(builder: (context, constrained) {
-                  return Container(
-                    constraints:
-                        const BoxConstraints(minWidth: 100, maxWidth: 600),
-                    width: context.width * 0.7,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          key: const Key("goalCardTitle"),
-                          (model.name == "" ? "Tap to edit" : model.name),
-                          style: Theme.of(context).textTheme.headlineSmall,
-                        ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        ProgressBar(goalModel: model),
-                      ],
+              Expanded(
+                flex: 6,
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      key: const Key("goalCardTitle"),
+                      (model.name == "" ? "Tap to edit" : model.name),
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                  );
-                }),
-              ),
+                    SizedBox(height: 36, child: ProgressBar(goalModel: model)),
+                  ],
+                ),
+              )
             ],
           ),
         ),
       ),
     );
-  }
-
-  String getPercentageProgress() {
-    const suffix = "% complete";
-    var percentage = model.completePercentage.value * 100;
-    var percentageText = percentage.toStringAsFixed(0);
-    return "$percentageText$suffix";
   }
 }
