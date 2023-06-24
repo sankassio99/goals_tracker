@@ -49,7 +49,7 @@ class GoalDescWidget extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: const BoxDecoration(
-        color: Colors.amber,
+        color: Colors.white,
       ),
       child: Focus(
         onFocusChange: (value) {
@@ -89,7 +89,7 @@ class GoalTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
@@ -111,7 +111,9 @@ class GoalTitleWidget extends StatelessWidget {
                 key: const Key("titleInput"),
                 controller: model.nameController,
                 decoration: const InputDecoration(
-                    hintText: 'Goal name', border: InputBorder.none),
+                  hintText: 'Goal name',
+                  border: InputBorder.none,
+                ),
                 style: const TextStyle(
                   color: Colors.black87,
                   fontSize: 25,
