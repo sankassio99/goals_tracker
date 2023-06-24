@@ -36,7 +36,7 @@ class HeaderGoalWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 8, 11.5),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
                         child: IconPickerDialog(
                           currentIcon: model.icon,
                         ),
@@ -48,9 +48,10 @@ class HeaderGoalWidget extends StatelessWidget {
                           }
                         },
                         child: SizedBox(
-                          width: 300,
-                          height: 40,
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: 48,
                           child: TextField(
+                              maxLines: 1,
                               key: const Key("titleInput"),
                               controller: model.nameController,
                               decoration: const InputDecoration(
