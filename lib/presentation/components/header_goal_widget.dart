@@ -49,7 +49,7 @@ class HeaderGoalWidget extends StatelessWidget {
                         },
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width * 0.8,
-                          height: 48,
+                          height: 40,
                           child: TextField(
                               maxLines: 1,
                               key: const Key("titleInput"),
