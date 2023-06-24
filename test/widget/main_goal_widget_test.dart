@@ -237,6 +237,36 @@ void main() {
       return true;
     });
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
-    // expect(desc, findsOneWidget);
+  });
+
+  testWidgets(
+      'When come back from dialog settings the goal must be with new title value',
+      (WidgetTester tester) async {
+    // arrange
+
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    var newTitle = "New name";
+
+    // act
+    var titleInput = find.byKey(const Key("goalName"));
+    await tester.enterText(titleInput, newTitle);
+    await tester.pumpAndSettle();
+
+    var readyButton = find.byKey(const Key("readyEditing"));
+    await tester.tap(readyButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    TextField title = tester.widget(find.byKey(const Key("titleInput")));
+
+    expect(title.controller?.text, newTitle);
   });
 }
