@@ -21,6 +21,7 @@ class GoalSettingsDialog extends StatelessWidget {
           title: "Goals settings",
           actions: [
             TextButton(
+              key: const Key("readyEditing"),
               onPressed: () {
                 Navigator.pop(context);
               },

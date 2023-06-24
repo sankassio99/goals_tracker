@@ -205,4 +205,38 @@ void main() {
     expect(description.controller.text, mainGoal.desc);
     // expect(desc, findsOneWidget);
   });
+
+  testWidgets('When tap in ready button on dialog settings must update goal',
+      (WidgetTester tester) async {
+    // arrange
+
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    var newTitle = "New name";
+
+    // act
+    var titleInput = find.byKey(const Key("goalName"));
+    await tester.enterText(titleInput, newTitle);
+    await tester.pumpAndSettle();
+
+    var readyButton = find.byKey(const Key("readyEditing"));
+    await tester.tap(readyButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var matcher = predicate<MainGoal>((goal) {
+      expect(goal.id, mainGoal.id);
+      expect(goal.title, newTitle);
+      return true;
+    });
+    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+    // expect(desc, findsOneWidget);
+  });
 }
