@@ -59,18 +59,8 @@ class MainGoalPageWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 213,
-                      decoration: const BoxDecoration(
-                        color: Colors.white,
-                      ),
-                      child: HeaderGoalWidget(
-                        model: controller.goalModel.value,
-                      ),
-                    ),
+                  HeaderGoalWidget(
+                    model: controller.goalModel.value,
                   ),
                   const Divider(
                     height: 10,

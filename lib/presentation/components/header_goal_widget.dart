@@ -16,19 +16,26 @@ class HeaderGoalWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-              flex: 1,
-              child: GoalTitleWidget(model: model, controller: controller)),
-          Expanded(
-              flex: 3,
-              child: GoalDescWidget(controller: controller, model: model)),
-          Expanded(flex: 1, child: ProgressBar(goalModel: model)),
-        ],
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: 213,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Padding(
+        padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Expanded(
+                flex: 1,
+                child: GoalTitleWidget(model: model, controller: controller)),
+            Expanded(
+                flex: 3,
+                child: GoalDescWidget(controller: controller, model: model)),
+            Expanded(flex: 1, child: ProgressBar(goalModel: model)),
+          ],
+        ),
       ),
     );
   }
@@ -46,11 +53,8 @@ class GoalDescWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
       child: Focus(
         onFocusChange: (value) {
           if (!value) {
@@ -62,6 +66,7 @@ class GoalDescWidget extends StatelessWidget {
             controller: model.descriptionController,
             maxLines: null,
             decoration: const InputDecoration(
+              fillColor: Colors.white,
               hintText: 'Tap to type goal description...',
               border: InputBorder.none,
             ),
