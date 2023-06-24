@@ -40,48 +40,50 @@ class GoalSettingsDialog extends StatelessWidget {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 80,
-                width: double.infinity,
-                child: Column(children: [
-                  IconPickerDialog(
-                    currentIcon: goalModel.icon,
-                    size: 40,
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Text(
-                    "Change Icon",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.onSecondary),
-                  ),
-                ]),
-              ),
-              FormFieldWidget(
-                key: const Key("goalName"),
-                label: "Name",
-                controller: goalModel.nameController,
-                maxLines: 1,
-              ),
-              const SizedBox(
-                height: 18,
-              ),
-              FormFieldWidget(
-                key: const Key("goalDescription"),
-                label: "Description",
-                controller: goalModel.descriptionController,
-              ),
-            ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 80,
+                  width: double.infinity,
+                  child: Column(children: [
+                    IconPickerDialog(
+                      currentIcon: goalModel.icon,
+                      size: 40,
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Text(
+                      "Change Icon",
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onSecondary),
+                    ),
+                  ]),
+                ),
+                FormFieldWidget(
+                  key: const Key("goalName"),
+                  label: "Name",
+                  controller: goalModel.nameController,
+                  maxLines: 1,
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                FormFieldWidget(
+                  key: const Key("goalDescription"),
+                  label: "Description",
+                  controller: goalModel.descriptionController,
+                ),
+              ],
+            ),
           ),
         ),
       ),
