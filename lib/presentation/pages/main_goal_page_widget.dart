@@ -19,6 +19,17 @@ class MainGoalPageWidget extends StatelessWidget {
       return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         appBar: MyAppBar(
+          leading: IconButton(
+            key: const Key("backIconButton"),
+            icon: Icon(
+              PhosphorIcons.bold.arrowLeft,
+              color: Colors.black87,
+              size: 20,
+            ),
+            onPressed: () {
+              Get.toNamed("/home");
+            },
+          ),
           actions: [
             IconButton(
               key: const Key("goalSettings"),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
@@ -18,18 +17,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.onPrimary,
       automaticallyImplyLeading: false,
-      leading: leading ??
-          IconButton(
-            key: const Key("closeIconButton"),
-            icon: Icon(
-              PhosphorIcons.bold.x,
-              color: Colors.black87,
-              size: 20,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+      leading: leading,
       title: Text(
         key: const Key("pageTitleAppBar"),
         (title ?? ""),

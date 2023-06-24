@@ -93,7 +93,7 @@ void main() {
     await tester.pumpAndSettle();
 
     // act
-    var backButton = find.byKey(const Key("closeIconButton"));
+    var backButton = find.byKey(const Key("backIconButton"));
     await tester.tap(backButton);
     await tester.pumpAndSettle();
 
