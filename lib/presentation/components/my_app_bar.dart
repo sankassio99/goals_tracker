@@ -30,6 +30,13 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: actions,
       centerTitle: true,
       elevation: 0,
+      bottom: PreferredSize(
+        preferredSize: const Size.fromHeight(4.0),
+        child: Container(
+          color: Theme.of(context).colorScheme.outline,
+          height: 2.0,
+        ),
+      ),
     );
   }
 

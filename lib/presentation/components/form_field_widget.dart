@@ -30,7 +30,7 @@ class FormFieldWidget extends StatelessWidget {
           decoration: InputDecoration(
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onSecondary,
+                color: Theme.of(context).colorScheme.outlineVariant,
                 width: 2.5,
               ),
               borderRadius: const BorderRadius.all(
@@ -39,7 +39,7 @@ class FormFieldWidget extends StatelessWidget {
             ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.onBackground,
+                color: Theme.of(context).colorScheme.outline,
                 width: 2.5,
               ),
               borderRadius: const BorderRadius.all(
@@ -50,7 +50,7 @@ class FormFieldWidget extends StatelessWidget {
           style: TextStyle(
             color: Theme.of(context).colorScheme.primary,
             fontSize: 16,
-            fontWeight: FontWeight.w800,
+            fontWeight: FontWeight.normal,
           ),
         ),
       ],

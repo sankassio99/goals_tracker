@@ -52,7 +52,8 @@ ThemeData themeConfig() {
         background: Color(0xfff1f4f8),
         onBackground: Color.fromARGB(255, 183, 183, 183),
         surface: Color(0xFF928163),
-        onSurface: Color.fromARGB(255, 119, 0, 8)),
+        onSurface: Color.fromARGB(255, 119, 0, 8),
+        outline: Colors.black12),
 
     // Define the default font family.
     fontFamily: 'Poppins',
