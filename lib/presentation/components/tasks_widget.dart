@@ -16,7 +16,7 @@ class TasksWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 24.0, 8.0, 0),
+      padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,6 +53,8 @@ class TasksWidget extends StatelessWidget {
                                     border: InputBorder.none,
                                   )),
                             ),
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             value: task.checked.value,
                             onChanged: (value) {
                               task.checked.value = value ?? false;

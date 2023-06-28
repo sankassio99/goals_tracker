@@ -23,7 +23,7 @@ class HeaderGoalWidget extends StatelessWidget {
         color: Colors.white,
       ),
       child: Padding(
-        padding: const EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+        padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
