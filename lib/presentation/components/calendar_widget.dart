@@ -26,28 +26,48 @@ class GoalCalendarWidget extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Container(
-            height: 400,
-            width: 500,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black12,
-                width: 2.0,
+          Center(
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black12,
+                  width: 2.0,
+                ),
+                borderRadius: BorderRadius.circular(10),
               ),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: TableCalendar(
-              focusedDay: _focusedDay,
-              firstDay: kFirstDay,
-              lastDay: kLastDay,
-              calendarFormat: _calendarFormat,
-              selectedDayPredicate: (day) {
-                return isSameDay(
-                    day, DateTime(kToday.year, kToday.month + 3, kToday.day));
-              },
-              headerStyle: const HeaderStyle(
-                titleCentered: true,
-                formatButtonVisible: false,
+              child: TableCalendar(
+                focusedDay: _focusedDay,
+                firstDay: kFirstDay,
+                lastDay: kLastDay,
+                calendarFormat: _calendarFormat,
+                selectedDayPredicate: (day) {
+                  return isSameDay(
+                      day, DateTime(kToday.year, kToday.month + 3, kToday.day));
+                },
+                headerStyle: const HeaderStyle(
+                  titleCentered: true,
+                  formatButtonVisible: false,
+                  titleTextStyle:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                ),
+                availableGestures: AvailableGestures.horizontalSwipe,
+                calendarStyle: const CalendarStyle(
+                  defaultTextStyle:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  weekendTextStyle:
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  outsideTextStyle: TextStyle(fontSize: 0),
+                ),
+                daysOfWeekStyle: const DaysOfWeekStyle(
+                  weekdayStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      color: Colors.black54),
+                  weekendStyle: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      color: Colors.black54),
+                ),
               ),
             ),
           ),
