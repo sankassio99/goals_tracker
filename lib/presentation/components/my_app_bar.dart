@@ -15,7 +15,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Theme.of(context).colorScheme.onPrimary,
+      // backgroundColor: Theme.of(context).colorScheme.onPrimary,
       automaticallyImplyLeading: false,
       leading: leading,
       title: Text(
@@ -41,5 +41,5 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size(200, 40);
+  Size get preferredSize => const Size(200, 46);
 }
