@@ -14,7 +14,7 @@ class GoalCalendarWidget extends StatelessWidget {
     final kLastDay = DateTime(kToday.year, kToday.month + 3, kToday.day);
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(8.0, 24.0, 8.0, 0),
+      padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
