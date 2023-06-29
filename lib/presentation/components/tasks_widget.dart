@@ -6,6 +6,7 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class TasksWidget extends StatelessWidget {
   final RxList<TaskModel> tasks;
+  final RxBool editMode = false.obs;
   final controller = Get.find<MainGoalController>();
 
   TasksWidget({
@@ -21,9 +22,20 @@ class TasksWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "My tasks",
-            style: Theme.of(context).textTheme.headlineSmall,
+          Row(
+            children: [
+              Text(
+                "My tasks",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              TextButton(
+                key: const Key("editModeTasksButton"),
+                onPressed: () {
+                  editMode.value = !editMode.value;
+                },
+                child: editMode.isTrue ? const Text("Edit") : const Text("Ok"),
+              )
+            ],
           ),
           const SizedBox(
             height: 8,
@@ -60,22 +72,26 @@ class TasksWidget extends StatelessWidget {
                               task.checked.value = value ?? false;
                               controller.onTaskCheck();
                             },
-                            secondary: InkWell(
-                              onTap: () {
-                                controller.onDeleteTask(index);
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: const Text('Task deleted!'),
-                                  backgroundColor:
-                                      Theme.of(context).colorScheme.background,
-                                ));
-                              },
-                              child: Icon(
-                                key: const Key("taskItemIcon"),
-                                PhosphorIcons.regular.trash,
-                                color: Theme.of(context).colorScheme.error,
-                              ),
-                            ),
+                            secondary: editMode.isTrue
+                                ? InkWell(
+                                    onTap: () {
+                                      controller.onDeleteTask(index);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: const Text('Task deleted!'),
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .background,
+                                      ));
+                                    },
+                                    child: Icon(
+                                      key: const Key("trashTaskIcon"),
+                                      PhosphorIcons.regular.trash,
+                                      color:
+                                          Theme.of(context).colorScheme.error,
+                                    ),
+                                  )
+                                : null,
                             controlAffinity: ListTileControlAffinity.leading,
                           ),
                         ),

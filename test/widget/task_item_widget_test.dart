@@ -212,6 +212,10 @@ void main() {
     await tester.pumpWidget(initMaterialApp(myId));
     await tester.pumpAndSettle();
 
+    var editModeTasksButton = find.byKey(const Key("editModeTasksButton"));
+    await tester.tap(editModeTasksButton);
+    await tester.pumpAndSettle();
+
     //#endregion
 
     //#region Act(When)
@@ -231,13 +235,15 @@ void main() {
 
     var myId = "3";
     var myGoal = MainGoal(myId, "title", "desc");
-    myGoal.tasks = [Task("title"), Task("title")];
+    myGoal.tasks = [Task("title")];
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
 
     await tester.pumpWidget(initMaterialApp(myId));
     await tester.pumpAndSettle();
 
     //#endregion
+    var trashTaskIcon = find.byKey(const Key("trashTaskIcon"));
+    expect(trashTaskIcon, findsNothing);
 
     //#region Act(When)
     var editModeTasksButton = find.byKey(const Key("editModeTasksButton"));
@@ -246,7 +252,7 @@ void main() {
     //#endregion
 
     //#region Assert(Then)
-    var trashTaskIcon = find.byKey(const Key("trashTaskIcon"));
+    trashTaskIcon = find.byKey(const Key("trashTaskIcon"));
     expect(trashTaskIcon, findsOneWidget);
     //#endregion
   });
