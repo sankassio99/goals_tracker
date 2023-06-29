@@ -53,18 +53,21 @@ class TasksWidget extends StatelessWidget {
                           key: Key(index.toString()),
                           onDismissed: (_) {},
                           child: CheckboxListTile(
-                            title: Focus(
-                              onFocusChange: (value) {
-                                if (!value) controller.updateGoal();
-                              },
-                              child: TextFormField(
-                                  key: const Key("inputTask"),
-                                  controller: task.name,
-                                  decoration: const InputDecoration(
-                                    hintText: 'Tap to edit',
-                                    border: InputBorder.none,
-                                  )),
-                            ),
+                            title: editMode.isTrue
+                                ? Focus(
+                                    onFocusChange: (value) {
+                                      if (!value) controller.updateGoal();
+                                    },
+                                    child: TextFormField(
+                                      key: const Key("inputTask"),
+                                      controller: task.name,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Tap to edit',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  )
+                                : Text(task.name.text),
                             contentPadding:
                                 const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             value: task.checked.value,
