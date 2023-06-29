@@ -283,6 +283,26 @@ void main() {
     expect(inputTask, findsOneWidget);
     //#endregion
   });
+
+  testWidgets('When add new task must active edit mode',
+      (WidgetTester tester) async {
+    // arrange
+    var myId = "3";
+    var myGoal = MainGoal(myId, "title", "desc");
+    myGoal.tasks = [];
+
+    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
+    await tester.pumpWidget(initMaterialApp(myId));
+
+    // act
+    var addTaskButton = find.byKey(const Key("addTaskButton"));
+    await tester.tap(addTaskButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var editModeTextButton = find.text("Ok");
+    expect(editModeTextButton, findsOneWidget);
+  });
 }
 
 GetMaterialApp initMaterialApp(String goalId) {
