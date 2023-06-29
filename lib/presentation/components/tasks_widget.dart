@@ -16,6 +16,9 @@ class TasksWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    tasks.listen((task) {
+      editMode.value = true;
+    });
     return Padding(
       padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 0),
       child: Column(
@@ -61,21 +64,19 @@ class TasksWidget extends StatelessWidget {
                           key: Key(index.toString()),
                           onDismissed: (_) {},
                           child: CheckboxListTile(
-                            title: editMode.isTrue
-                                ? Focus(
-                                    onFocusChange: (value) {
-                                      if (!value) controller.updateGoal();
-                                    },
-                                    child: TextFormField(
-                                      key: const Key("inputTask"),
-                                      controller: task.name,
-                                      decoration: const InputDecoration(
-                                        hintText: 'Tap to edit',
-                                        border: InputBorder.none,
-                                      ),
-                                    ),
-                                  )
-                                : Text(task.name.text),
+                            title: Focus(
+                              onFocusChange: (value) {
+                                if (!value) controller.updateGoal();
+                              },
+                              child: TextFormField(
+                                key: const Key("inputTask"),
+                                controller: task.name,
+                                decoration: const InputDecoration(
+                                  hintText: 'Tap to edit',
+                                  border: InputBorder.none,
+                                ),
+                              ),
+                            ),
                             contentPadding: editMode.isTrue
                                 ? const EdgeInsets.all(0)
                                 : const EdgeInsets.fromLTRB(0, 8, 0, 8),
