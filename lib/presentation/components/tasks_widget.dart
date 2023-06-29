@@ -23,6 +23,7 @@ class TasksWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 "My tasks",
@@ -33,7 +34,14 @@ class TasksWidget extends StatelessWidget {
                 onPressed: () {
                   editMode.value = !editMode.value;
                 },
-                child: editMode.isTrue ? const Text("Edit") : const Text("Ok"),
+                child: Obx(
+                  () => Text(
+                    editMode.isTrue ? "Ok" : "Edit",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
               )
             ],
           ),
@@ -68,8 +76,9 @@ class TasksWidget extends StatelessWidget {
                                     ),
                                   )
                                 : Text(task.name.text),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            contentPadding: editMode.isTrue
+                                ? const EdgeInsets.all(0)
+                                : const EdgeInsets.fromLTRB(0, 8, 0, 8),
                             value: task.checked.value,
                             onChanged: (value) {
                               task.checked.value = value ?? false;
