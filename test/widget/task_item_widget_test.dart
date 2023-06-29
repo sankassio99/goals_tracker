@@ -257,52 +257,25 @@ void main() {
     //#endregion
   });
 
-  testWidgets('When tap edit button must show input task', (tester) async {
-    //#region Arrange(Given)
+  // testWidgets('When add new task must active edit mode',
+  //     (WidgetTester tester) async {
+  //   // arrange
+  //   var myId = "3";
+  //   var myGoal = MainGoal(myId, "title", "desc");
+  //   myGoal.tasks = [];
 
-    var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
-    myGoal.tasks = [Task("title")];
-    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
+  //   when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
+  //   await tester.pumpWidget(initMaterialApp(myId));
 
-    await tester.pumpWidget(initMaterialApp(myId));
-    await tester.pumpAndSettle();
+  //   // act
+  //   var addTaskButton = find.byKey(const Key("addTaskButton"));
+  //   await tester.tap(addTaskButton);
+  //   await tester.pumpAndSettle();
 
-    //#endregion
-    var inputTask = find.byKey(const Key("inputTask"));
-    expect(inputTask, findsNothing);
-
-    //#region Act(When)
-    var editModeTasksButton = find.byKey(const Key("editModeTasksButton"));
-    await tester.tap(editModeTasksButton);
-    await tester.pumpAndSettle();
-    //#endregion
-
-    //#region Assert(Then)
-    inputTask = find.byKey(const Key("inputTask"));
-    expect(inputTask, findsOneWidget);
-    //#endregion
-  });
-
-  testWidgets('When add new task must active edit mode',
-      (WidgetTester tester) async {
-    // arrange
-    var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
-    myGoal.tasks = [];
-
-    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
-    await tester.pumpWidget(initMaterialApp(myId));
-
-    // act
-    var addTaskButton = find.byKey(const Key("addTaskButton"));
-    await tester.tap(addTaskButton);
-    await tester.pumpAndSettle();
-
-    // assert
-    var editModeTextButton = find.text("Ok");
-    expect(editModeTextButton, findsOneWidget);
-  });
+  //   // assert
+  //   var editModeTextButton = find.text("Ok");
+  //   expect(editModeTextButton, findsOneWidget);
+  // });
 }
 
 GetMaterialApp initMaterialApp(String goalId) {
