@@ -185,7 +185,7 @@ void main() {
   //   await tester.pumpAndSettle();
 
   //   // act
-  //   var taskItem = find.byKey(const Key("taskItemIcon"));
+  //   var taskItem = find.byKey(const Key("trashTaskIcon"));
 
   //   await tester.tap(taskItem.first);
 
@@ -201,7 +201,7 @@ void main() {
   //   verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
   // });
 
-  testWidgets('When click in trash must delete task', (tester) async {
+  testWidgets('When tap in trash must delete task', (tester) async {
     //#region Arrange(Given)
 
     var myId = "3";
@@ -215,7 +215,7 @@ void main() {
     //#endregion
 
     //#region Act(When)
-    var taskItem = find.byKey(const Key("taskItemIcon"));
+    var taskItem = find.byKey(const Key("trashTaskIcon"));
     await tester.tap(taskItem.first);
     await tester.pumpAndSettle();
     //#endregion
@@ -223,6 +223,31 @@ void main() {
     //#region Assert(Then)
     var tasksWidget = find.byType(CheckboxListTile);
     expect(tasksWidget, findsOneWidget);
+    //#endregion
+  });
+
+  testWidgets('When tap edit button must show trash icon', (tester) async {
+    //#region Arrange(Given)
+
+    var myId = "3";
+    var myGoal = MainGoal(myId, "title", "desc");
+    myGoal.tasks = [Task("title"), Task("title")];
+    when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
+
+    await tester.pumpWidget(initMaterialApp(myId));
+    await tester.pumpAndSettle();
+
+    //#endregion
+
+    //#region Act(When)
+    var editModeTasksButton = find.byKey(const Key("editModeTasksButton"));
+    await tester.tap(editModeTasksButton);
+    await tester.pumpAndSettle();
+    //#endregion
+
+    //#region Assert(Then)
+    var trashTaskIcon = find.byKey(const Key("trashTaskIcon"));
+    expect(trashTaskIcon, findsOneWidget);
     //#endregion
   });
 }
