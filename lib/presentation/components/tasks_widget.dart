@@ -16,9 +16,6 @@ class TasksWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    tasks.listen((task) {
-      editMode.value = true;
-    });
     return Padding(
       padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 0),
       child: Column(
@@ -77,9 +74,8 @@ class TasksWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            contentPadding: editMode.isTrue
-                                ? const EdgeInsets.all(0)
-                                : const EdgeInsets.fromLTRB(0, 8, 0, 8),
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(0, 0, 0, 0),
                             value: task.checked.value,
                             onChanged: (value) {
                               task.checked.value = value ?? false;
