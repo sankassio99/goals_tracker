@@ -37,9 +37,9 @@ class TasksWidget extends StatelessWidget {
                 child: Obx(
                   () => Text(
                     editMode.isTrue ? "Ok" : "Edit",
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Theme.of(context).colorScheme.onSecondary),
                   ),
                 ),
               )
