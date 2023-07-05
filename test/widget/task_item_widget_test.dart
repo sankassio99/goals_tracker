@@ -257,6 +257,25 @@ void main() {
     //#endregion
   });
 
+  testWidgets('When is edit mode task list must be reordenable list view',
+      (WidgetTester tester) async {
+    // arrange
+    var myGoal = MainGoal("myId", "title", "desc");
+    myGoal.tasks = [Task("task1"), Task("task2"), Task("task3")];
+
+    when(goalRepositoryMock.getById(myGoal.id)).thenAnswer((_) async => myGoal);
+    await tester.pumpWidget(initMaterialApp(myGoal.id));
+
+    // act
+    var editModeTasksButton = find.byKey(const Key("editModeTasksButton"));
+    await tester.tap(editModeTasksButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var reordernableList = find.byType(ReorderableListView);
+    expect(reordernableList, findsOneWidget);
+  });
+
   // testWidgets('When add new task must active edit mode',
   //     (WidgetTester tester) async {
   //   // arrange
