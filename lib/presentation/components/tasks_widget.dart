@@ -58,63 +58,30 @@ class TasksWidget extends StatelessWidget {
                     )
                   : Column(
                       children: tasks
-                          .asMap()
-                          .map(
-                            (int index, TaskModel task) => MapEntry(
-                              index,
-                              Dismissible(
-                                key: Key(index.toString()),
-                                onDismissed: (_) {},
-                                child: CheckboxListTile(
-                                  title: Focus(
-                                    onFocusChange: (value) {
-                                      if (!value) controller.updateGoal();
-                                    },
-                                    child: TextFormField(
-                                      key: const Key("inputTask"),
-                                      controller: task.name,
-                                      decoration: const InputDecoration(
-                                        hintText: 'Tap to edit',
-                                        border: InputBorder.none,
-                                      ),
+                          .map((TaskModel task) => CheckboxListTile(
+                                title: Focus(
+                                  onFocusChange: (value) {
+                                    if (!value) controller.updateGoal();
+                                  },
+                                  child: TextFormField(
+                                    key: const Key("inputTask"),
+                                    controller: task.name,
+                                    decoration: const InputDecoration(
+                                      hintText: 'Tap to edit',
+                                      border: InputBorder.none,
                                     ),
                                   ),
-                                  contentPadding:
-                                      const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                  value: task.checked.value,
-                                  onChanged: (value) {
-                                    task.checked.value = value ?? false;
-                                    controller.onTaskCheck();
-                                  },
-                                  secondary: editMode.isTrue
-                                      ? InkWell(
-                                          onTap: () {
-                                            controller.onDeleteTask(index);
-                                            ScaffoldMessenger.of(context)
-                                                .showSnackBar(SnackBar(
-                                              content:
-                                                  const Text('Task deleted!'),
-                                              backgroundColor: Theme.of(context)
-                                                  .colorScheme
-                                                  .background,
-                                            ));
-                                          },
-                                          child: Icon(
-                                            key: const Key("trashTaskIcon"),
-                                            PhosphorIcons.regular.trash,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .error,
-                                          ),
-                                        )
-                                      : null,
-                                  controlAffinity:
-                                      ListTileControlAffinity.leading,
                                 ),
-                              ),
-                            ),
-                          )
-                          .values
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                value: task.checked.value,
+                                onChanged: (value) {
+                                  task.checked.value = value ?? false;
+                                  controller.onTaskCheck();
+                                },
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                              ))
                           .toList(),
                     ),
             ),
