@@ -49,70 +49,108 @@ class TasksWidget extends StatelessWidget {
             height: 8,
           ),
           SizedBox(
-            width: double.infinity,
+            width: 400,
+            height: 300,
             child: Obx(
-              () => Column(
-                children: tasks
-                    .asMap()
-                    .map(
-                      (int index, TaskModel task) => MapEntry(
-                        index,
-                        Dismissible(
-                          key: Key(index.toString()),
-                          onDismissed: (_) {},
-                          child: CheckboxListTile(
-                            title: Focus(
-                              onFocusChange: (value) {
-                                if (!value) controller.updateGoal();
-                              },
-                              child: TextFormField(
-                                key: const Key("inputTask"),
-                                controller: task.name,
-                                decoration: const InputDecoration(
-                                  hintText: 'Tap to edit',
-                                  border: InputBorder.none,
+              () => editMode.isTrue
+                  ? ReorderableTaskList(
+                      key: const Key("reorderTaskList"),
+                      tasks: tasks,
+                    )
+                  : Column(
+                      children: tasks
+                          .asMap()
+                          .map(
+                            (int index, TaskModel task) => MapEntry(
+                              index,
+                              Dismissible(
+                                key: Key(index.toString()),
+                                onDismissed: (_) {},
+                                child: CheckboxListTile(
+                                  title: Focus(
+                                    onFocusChange: (value) {
+                                      if (!value) controller.updateGoal();
+                                    },
+                                    child: TextFormField(
+                                      key: const Key("inputTask"),
+                                      controller: task.name,
+                                      decoration: const InputDecoration(
+                                        hintText: 'Tap to edit',
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                  value: task.checked.value,
+                                  onChanged: (value) {
+                                    task.checked.value = value ?? false;
+                                    controller.onTaskCheck();
+                                  },
+                                  secondary: editMode.isTrue
+                                      ? InkWell(
+                                          onTap: () {
+                                            controller.onDeleteTask(index);
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                              content:
+                                                  const Text('Task deleted!'),
+                                              backgroundColor: Theme.of(context)
+                                                  .colorScheme
+                                                  .background,
+                                            ));
+                                          },
+                                          child: Icon(
+                                            key: const Key("trashTaskIcon"),
+                                            PhosphorIcons.regular.trash,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .error,
+                                          ),
+                                        )
+                                      : null,
+                                  controlAffinity:
+                                      ListTileControlAffinity.leading,
                                 ),
                               ),
                             ),
-                            contentPadding:
-                                const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                            value: task.checked.value,
-                            onChanged: (value) {
-                              task.checked.value = value ?? false;
-                              controller.onTaskCheck();
-                            },
-                            secondary: editMode.isTrue
-                                ? InkWell(
-                                    onTap: () {
-                                      controller.onDeleteTask(index);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: const Text('Task deleted!'),
-                                        backgroundColor: Theme.of(context)
-                                            .colorScheme
-                                            .background,
-                                      ));
-                                    },
-                                    child: Icon(
-                                      key: const Key("trashTaskIcon"),
-                                      PhosphorIcons.regular.trash,
-                                      color:
-                                          Theme.of(context).colorScheme.error,
-                                    ),
-                                  )
-                                : null,
-                            controlAffinity: ListTileControlAffinity.leading,
-                          ),
-                        ),
-                      ),
-                    )
-                    .values
-                    .toList(),
-              ),
+                          )
+                          .values
+                          .toList(),
+                    ),
             ),
           ),
         ],
       ),
     );
+  }
+}
+
+class ReorderableTaskList extends StatelessWidget {
+  final RxList<TaskModel> tasks;
+  final controller = Get.find<MainGoalController>();
+
+  ReorderableTaskList({
+    super.key,
+    required this.tasks,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => ReorderableListView(
+        children: tasks
+            .map((task) => Container(
+                  padding: EdgeInsets.all(16),
+                  key: ValueKey(task),
+                  child: Text(task.name.text),
+                ))
+            .toList(),
+        onReorder: (oldIndex, newIndex) {
+          print("oldIndex");
+          print(oldIndex);
+          print("newIndex");
+          print(newIndex);
+          // controller.reorder(oldIndex, newIndex);
+        }));
   }
 }
