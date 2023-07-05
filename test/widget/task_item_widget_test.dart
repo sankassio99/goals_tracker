@@ -298,7 +298,7 @@ void main() {
     await longPressDrag(
       tester,
       tester.getCenter(firstTaskItem),
-      const Offset(0, 500),
+      const Offset(0, 5000),
     );
     await tester.pumpAndSettle();
 

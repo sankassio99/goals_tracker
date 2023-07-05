@@ -141,11 +141,7 @@ class ReorderableTaskList extends StatelessWidget {
               .values
               .toList(),
           onReorder: (oldIndex, newIndex) {
-            print("oldIndex");
-            print(oldIndex);
-            print("newIndex");
-            print(newIndex);
-            // controller.reorder(oldIndex, newIndex);
+            controller.reorderTasks(oldIndex, newIndex);
           })),
     );
   }

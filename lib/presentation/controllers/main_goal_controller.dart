@@ -46,4 +46,12 @@ class MainGoalController extends GetxController {
     goalModel.value.updateProgress();
     updateGoal();
   }
+
+  void reorderTasks(int oldIndex, int newIndex) {
+    var task = goalModel.value.tasks.removeAt(oldIndex);
+    if (newIndex > 0) {
+      newIndex -= 1;
+    }
+    goalModel.value.tasks.insert(newIndex, task);
+  }
 }
