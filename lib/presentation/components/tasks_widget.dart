@@ -106,16 +106,33 @@ class ReorderableTaskList extends StatelessWidget {
     return SizedBox(
       height: 400,
       child: Obx(() => ReorderableListView(
+          buildDefaultDragHandles: true,
           children: tasks
               .asMap()
               .map((int index, TaskModel task) => MapEntry(
                   index,
                   Container(
-                    padding: const EdgeInsets.fromLTRB(4, 18, 18, 18),
-                    margin: const EdgeInsets.fromLTRB(0, 2, 0, 4),
+                    padding: const EdgeInsets.fromLTRB(4, 17, 18, 17),
+                    margin: const EdgeInsets.fromLTRB(0, 0, 26, 0),
                     key: ValueKey(task.name.text),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Icon(
+                              task.checked.isTrue
+                                  ? Icons.check_box
+                                  : Icons.check_box_outline_blank,
+                              color: Colors.black87,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                              child: Text(task.name.text),
+                            ),
+                          ],
+                        ),
                         InkWell(
                           onTap: () {
                             controller.onDeleteTask(index);
@@ -125,15 +142,15 @@ class ReorderableTaskList extends StatelessWidget {
                                   Theme.of(context).colorScheme.background,
                             ));
                           },
-                          child: Icon(
-                            key: const Key("trashTaskIcon"),
-                            PhosphorIcons.regular.trash,
-                            color: Theme.of(context).colorScheme.error,
+                          child: SizedBox(
+                            width: 30,
+                            height: 30,
+                            child: Icon(
+                              key: const Key("trashTaskIcon"),
+                              PhosphorIcons.regular.trash,
+                              color: Theme.of(context).colorScheme.error,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
-                          child: Text(task.name.text),
                         ),
                       ],
                     ),
