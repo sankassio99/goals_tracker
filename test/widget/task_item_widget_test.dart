@@ -123,29 +123,6 @@ void main() {
     verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
   });
 
-  // testWidgets('When check task must update progress bar percent',
-  //     (WidgetTester tester) async {
-  //   // arrange
-  //   var myId = "3";
-  //   var myGoal = MainGoal(myId, "title", "desc");
-  //   myGoal.tasks = [Task("title"), Task("title")];
-  //   when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
-
-  //   await tester.pumpWidget(initMaterialApp(myId));
-  //   await tester.pumpAndSettle();
-
-  //   // act
-  //   var taskItem = find.byType(CheckboxListTile);
-  //   await tester.tap(taskItem.first);
-
-  //   await tester.pumpAndSettle();
-
-  //   // assert
-  //   var progressBarFinder = find.byKey(const Key("progressBar"));
-  //   LinearPercentIndicator progressBar = tester.widget(progressBarFinder);
-  //   expect(progressBar.percent, 0.5);
-  // });
-
   testWidgets('When add new task must update progress bar percent',
       (WidgetTester tester) async {
     // arrange
@@ -172,41 +149,12 @@ void main() {
     expect(progressBar.percent, 0.33);
   });
 
-  // testWidgets('When check task must update goal', (WidgetTester tester) async {
-  //   // arrange
-  //   var myTask = Task("myTask");
-
-  //   var myId = "3";
-  //   var myGoal = MainGoal(myId, "title", "desc");
-  //   myGoal.tasks = [myTask, Task("title1"), Task("title2")];
-  //   when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
-
-  //   await tester.pumpWidget(initMaterialApp(myId));
-  //   await tester.pumpAndSettle();
-
-  //   // act
-  //   var taskItem = find.byKey(const Key("trashTaskIcon"));
-
-  //   await tester.tap(taskItem.first);
-
-  //   await tester.pumpAndSettle();
-
-  //   // // assert
-  //   var matcher = predicate<MainGoal>((goal) {
-  //     expect(goal.id, myGoal.id);
-  //     expect(goal.tasks.first.title, myTask.title);
-  //     expect(goal.tasks.first.isCompleted, true);
-  //     return true;
-  //   });
-  //   verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
-  // });
-
   testWidgets('When tap in trash must delete task', (tester) async {
     //#region Arrange(Given)
 
     var myId = "3";
     var myGoal = MainGoal(myId, "title", "desc");
-    myGoal.tasks = [Task("title"), Task("title")];
+    myGoal.tasks = [Task("title1"), Task("title2")];
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
 
     await tester.pumpWidget(initMaterialApp(myId));
@@ -315,26 +263,6 @@ void main() {
 
     expect(actualList, orderedEquals(expectedList));
   });
-
-  // testWidgets('When add new task must active edit mode',
-  //     (WidgetTester tester) async {
-  //   // arrange
-  //   var myId = "3";
-  //   var myGoal = MainGoal(myId, "title", "desc");
-  //   myGoal.tasks = [];
-
-  //   when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
-  //   await tester.pumpWidget(initMaterialApp(myId));
-
-  //   // act
-  //   var addTaskButton = find.byKey(const Key("addTaskButton"));
-  //   await tester.tap(addTaskButton);
-  //   await tester.pumpAndSettle();
-
-  //   // assert
-  //   var editModeTextButton = find.text("Ok");
-  //   expect(editModeTextButton, findsOneWidget);
-  // });
 }
 
 Future<void> longPressDrag(
