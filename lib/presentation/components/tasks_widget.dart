@@ -49,8 +49,7 @@ class TasksWidget extends StatelessWidget {
             height: 8,
           ),
           SizedBox(
-            width: 400,
-            height: 300,
+            width: double.infinity,
             child: Obx(
               () => editMode.isTrue
                   ? ReorderableTaskList(
@@ -137,20 +136,23 @@ class ReorderableTaskList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => ReorderableListView(
-        children: tasks
-            .map((task) => Container(
-                  padding: EdgeInsets.all(16),
-                  key: ValueKey(task),
-                  child: Text(task.name.text),
-                ))
-            .toList(),
-        onReorder: (oldIndex, newIndex) {
-          print("oldIndex");
-          print(oldIndex);
-          print("newIndex");
-          print(newIndex);
-          // controller.reorder(oldIndex, newIndex);
-        }));
+    return SizedBox(
+      height: 400,
+      child: Obx(() => ReorderableListView(
+          children: tasks
+              .map((task) => Container(
+                    padding: EdgeInsets.all(16),
+                    key: ValueKey(task),
+                    child: Text(task.name.text),
+                  ))
+              .toList(),
+          onReorder: (oldIndex, newIndex) {
+            print("oldIndex");
+            print(oldIndex);
+            print("newIndex");
+            print(newIndex);
+            // controller.reorder(oldIndex, newIndex);
+          })),
+    );
   }
 }
