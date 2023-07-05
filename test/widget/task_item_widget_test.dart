@@ -277,6 +277,45 @@ void main() {
     expect(reorderableList, findsOneWidget);
   });
 
+  testWidgets('When reorder first item to bottom must mantain order',
+      (WidgetTester tester) async {
+    // arrange
+    var myGoal = MainGoal("myId", "title", "desc");
+    var task1 = Task("task1");
+    var task2 = Task("task2");
+    myGoal.tasks = [task1, task2];
+
+    when(goalRepositoryMock.getById(myGoal.id)).thenAnswer((_) async => myGoal);
+    await tester.pumpWidget(initMaterialApp(myGoal.id));
+    await tester.pumpAndSettle();
+
+    var editModeTasksButton = find.byKey(const Key("editModeTasksButton"));
+    await tester.tap(editModeTasksButton);
+    await tester.pumpAndSettle();
+
+    // act
+    var firstTaskItem = find.text("task1");
+    await longPressDrag(
+      tester,
+      tester.getCenter(firstTaskItem),
+      const Offset(0, 500),
+    );
+    await tester.pumpAndSettle();
+
+    // assert
+    var reorderableFinder = find.byKey(const Key("reorderTaskList"));
+    ReorderableTaskList reorderableWidget = tester.widget(reorderableFinder);
+
+    var actualList = [];
+    for (var task in reorderableWidget.tasks) {
+      actualList.add(task.name.text);
+    }
+
+    var expectedList = ["task2", "task1"];
+
+    expect(actualList, orderedEquals(expectedList));
+  });
+
   // testWidgets('When add new task must active edit mode',
   //     (WidgetTester tester) async {
   //   // arrange
@@ -296,6 +335,15 @@ void main() {
   //   var editModeTextButton = find.text("Ok");
   //   expect(editModeTextButton, findsOneWidget);
   // });
+}
+
+Future<void> longPressDrag(
+    WidgetTester tester, Offset start, Offset end) async {
+  final TestGesture drag = await tester.startGesture(start);
+  await tester.pump(const Duration(seconds: 5));
+  await drag.moveTo(end);
+  await tester.pump(const Duration(seconds: 5));
+  await drag.up();
 }
 
 GetMaterialApp initMaterialApp(String goalId) {

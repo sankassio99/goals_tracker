@@ -113,7 +113,7 @@ class ReorderableTaskList extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.fromLTRB(4, 18, 18, 18),
                     margin: const EdgeInsets.fromLTRB(0, 2, 0, 4),
-                    key: ValueKey(task),
+                    key: ValueKey(task.name.text),
                     child: Row(
                       children: [
                         InkWell(
