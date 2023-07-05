@@ -140,11 +140,38 @@ class ReorderableTaskList extends StatelessWidget {
       height: 400,
       child: Obx(() => ReorderableListView(
           children: tasks
-              .map((task) => Container(
-                    padding: EdgeInsets.all(16),
+              .asMap()
+              .map((int index, TaskModel task) => MapEntry(
+                  index,
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(4, 18, 18, 18),
+                    margin: const EdgeInsets.fromLTRB(0, 2, 0, 4),
                     key: ValueKey(task),
-                    child: Text(task.name.text),
-                  ))
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            controller.onDeleteTask(index);
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: const Text('Task deleted!'),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.background,
+                            ));
+                          },
+                          child: Icon(
+                            key: const Key("trashTaskIcon"),
+                            PhosphorIcons.regular.trash,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),
+                          child: Text(task.name.text),
+                        ),
+                      ],
+                    ),
+                  )))
+              .values
               .toList(),
           onReorder: (oldIndex, newIndex) {
             print("oldIndex");

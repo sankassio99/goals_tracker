@@ -225,7 +225,7 @@ void main() {
     //#endregion
 
     //#region Assert(Then)
-    var tasksWidget = find.byType(CheckboxListTile);
+    var tasksWidget = find.byKey(const Key("trashTaskIcon"));
     expect(tasksWidget, findsOneWidget);
     //#endregion
   });
