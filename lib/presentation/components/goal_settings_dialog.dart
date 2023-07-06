@@ -72,7 +72,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 FormFieldWidget(
                   key: const Key("goalName"),
                   label: "Name",
-                  controller: goalModel.nameController,
+                  controller: goalModel.name,
                   maxLines: 1,
                 ),
                 const SizedBox(
@@ -81,7 +81,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 FormFieldWidget(
                   key: const Key("goalDescription"),
                   label: "Description",
-                  controller: goalModel.descriptionController,
+                  controller: goalModel.description,
                 ),
                 const SizedBox(
                   height: 18,

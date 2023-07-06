@@ -50,7 +50,7 @@ class GoalCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       key: const Key("goalCardTitle"),
-                      (model.name == "" ? "Tap to edit" : model.name),
+                      (model.name.text == "" ? "Tap to edit" : model.name.text),
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     SizedBox(height: 36, child: ProgressBar(goalModel: model)),

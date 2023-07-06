@@ -8,8 +8,8 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class GoalModel {
   String id;
-  final TextEditingController _name = TextEditingController(text: "");
-  final TextEditingController _description = TextEditingController(text: "");
+  final TextEditingController name = TextEditingController(text: "");
+  final TextEditingController description = TextEditingController(text: "");
   List<GoalModel> subGoals = [];
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completePercentage = 0.0.obs;
@@ -26,30 +26,14 @@ class GoalModel {
     PhosphorIconData? iconData,
     this.finalDate,
   }) {
-    _name.text = name;
-    _description.text = description;
+    this.name.text = name;
+    this.description.text = description;
     tasks.value = taskList ?? [];
     completePercentage.value = progress ?? 0;
     icon.value = iconData ?? PhosphorIcons.fill.notePencil;
   }
 
   setFinalDate(DateTime? date) => finalDate = date;
-
-  addSubGoal(GoalModel subGoal) {
-    subGoals.add(subGoal);
-  }
-
-  setSubGoalList(List<GoalModel> subGoals) {
-    this.subGoals = subGoals;
-  }
-
-  String get name => _name.text;
-  set name(String name) => _name.text = name;
-  TextEditingController get nameController => _name;
-
-  String get description => _description.text;
-  set description(String description) => _description.text = description;
-  TextEditingController get descriptionController => _description;
 
   void addTask() {
     tasks.add(TaskModel(""));
@@ -81,8 +65,8 @@ class GoalModel {
     var tasks = _mapToTaskListEntity();
     return MainGoal(
       id,
-      name,
-      description,
+      name.text,
+      description.text,
       taskList: tasks,
       completePercentage: completePercentage.value,
       icon: icon.value,
