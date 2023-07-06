@@ -14,6 +14,7 @@ class GoalModel {
   RxDouble completePercentage = 0.0.obs;
   Rx<PhosphorIconData> icon =
       Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
+  DateTime? finalDate;
 
   GoalModel(
     this.id, {
@@ -22,6 +23,7 @@ class GoalModel {
     List<TaskModel>? taskList,
     double? progress,
     PhosphorIconData? iconData,
+    this.finalDate,
   }) {
     _name.text = name;
     _description.text = description;

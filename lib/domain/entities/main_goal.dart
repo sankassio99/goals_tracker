@@ -7,6 +7,7 @@ class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
   PhosphorIconData? icon;
+  DateTime? finalDate;
 
   MainGoal(
     super.id,
@@ -16,6 +17,7 @@ class MainGoal extends Goal {
     super.isCompleted,
     this.icon,
     List<Task>? taskList,
+    this.finalDate,
   }) : tasks = taskList ?? [];
 
   @override

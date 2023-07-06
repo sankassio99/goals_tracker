@@ -183,5 +183,28 @@ void main() {
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
       //#endregion
     });
+
+    test('update goal when final date is selected', () async {
+      //#region Arrange(Given)
+      var goalModel = GoalModel(goalId);
+      mainGoalController.goalModel.value = goalModel;
+
+      //#endregion
+
+      //#region Act(When)
+      var selectedDateTime = DateTime(2024, 01, 01);
+      goalModel.finalDate = selectedDateTime;
+      mainGoalController.updateGoal();
+
+      //#endregion
+      //#region Assert(Then)
+      var matcher = predicate<MainGoal>((goal) {
+        expect(goal.id, goalId);
+        expect(goal.finalDate, selectedDateTime);
+        return true;
+      });
+      verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+      //#endregion
+    });
   });
 }
