@@ -106,7 +106,6 @@ class ReorderableTaskList extends StatelessWidget {
     return SizedBox(
       height: 400,
       child: Obx(() => ReorderableListView(
-          buildDefaultDragHandles: true,
           children: tasks
               .asMap()
               .map((int index, TaskModel task) => MapEntry(
