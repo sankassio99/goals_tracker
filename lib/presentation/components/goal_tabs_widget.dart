@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
-import 'package:goals_tracker/presentation/components/goalTabs/calendar_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/tasks_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/deposit_entry_model.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -141,17 +141,42 @@ class DepositEntriesWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: controller.goalModel.value.depositEntries
                   .map(
-                    (deposit) => Container(
-                      key: const Key("depositEntry"),
-                      width: 100,
-                      height: 100,
-                    ),
+                    (deposit) => DepositEntryWidget(
+                        key: ValueKey(deposit), model: deposit),
                   )
                   .toList(),
             ),
           ),
         ],
       ),
+    );
+  }
+}
+
+class DepositEntryWidget extends StatelessWidget {
+  final DepositEntryModel model;
+  const DepositEntryWidget({
+    super.key,
+    required this.model,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: const Key("depositEntry"),
+      height: 48,
+      margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+      padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black12,
+          width: 2.5,
+        ),
+        borderRadius: BorderRadius.circular(13),
+      ),
+      width: double.infinity,
+      alignment: AlignmentDirectional.centerStart,
+      child: Text("${model.value.toStringAsFixed(2)} Reais"),
     );
   }
 }

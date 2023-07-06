@@ -57,6 +57,7 @@ class MainGoalController extends GetxController {
   }
 
   void addDepositEntry(String value) {
+    // TODO: use double intead string, please
     var monetaryValue = double.parse(value);
     var depositEntry = DepositEntryModel(monetaryValue);
     goalModel.value.addDepositEntry(depositEntry);

@@ -5,6 +5,7 @@ import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
+import 'package:goals_tracker/presentation/components/goal_tabs_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/mockito.dart';
@@ -94,7 +95,7 @@ void main() {
     //#endregion
 
     //#region Assert(Then)
-    var deposit = find.byKey(const Key("depositEntry"));
+    var deposit = find.byType(DepositEntryWidget);
     expect(deposit, findsOneWidget);
     //#endregion
   });
