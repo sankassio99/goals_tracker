@@ -111,7 +111,7 @@ void main() {
     await tester.pumpWidget(initMainGoalPage(myGoal, goalRepositoryMock));
     await tester.pumpAndSettle();
 
-    var depositvalue = "1001";
+    var depositvalue = 10.0;
     //#endregion
 
     //#region Act(When)
@@ -120,7 +120,7 @@ void main() {
     await tester.pumpAndSettle();
 
     var depositValueInput = find.byKey(const Key("depositValueInput"));
-    await tester.enterText(depositValueInput, depositvalue);
+    await tester.enterText(depositValueInput, depositvalue.toString());
     await tester.pumpAndSettle();
 
     var confirmAddDeposit = find.byKey(const Key("confirmAddDeposit"));
@@ -130,7 +130,7 @@ void main() {
     //#endregion
 
     //#region Assert(Then)
-    var depositValueAdded = find.text(depositvalue);
+    var depositValueAdded = find.byType(DepositEntryWidget);
     expect(depositValueAdded, findsOneWidget);
     //#endregion
   });
