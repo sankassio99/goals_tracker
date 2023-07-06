@@ -80,6 +80,7 @@ class GoalModel {
       taskList: tasks,
       completePercentage: completePercentage.value,
       icon: icon.value,
+      finalDate: finalDate,
     );
   }
 
