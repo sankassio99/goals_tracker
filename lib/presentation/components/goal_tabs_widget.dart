@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
-import 'package:goals_tracker/presentation/components/calendar_widget.dart';
-import 'package:goals_tracker/presentation/components/tasks_widget.dart';
+import 'package:goals_tracker/presentation/components/goalTabs/calendar_widget.dart';
+import 'package:goals_tracker/presentation/components/goalTabs/tasks_widget.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
