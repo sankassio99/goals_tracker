@@ -5,7 +5,7 @@ import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainGoalController extends GetxController {
-  Rx<GoalModel> goalModel = Rx<GoalModel>(GoalModel("id"));
+  Rx<GoalModel> goalModel = Rx<GoalModel>(GoalModel("id", "100"));
   late final GetGoalDetails _getGoalDetails;
   late final UpdateGoal _updateGoal;
 

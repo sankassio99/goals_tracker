@@ -166,7 +166,7 @@ void main() {
 
     test('update goal when icon is updated', () async {
       //#region Arrange(Given)
-      var goalModel = GoalModel(goalId);
+      var goalModel = GoalModel(goalId, "100");
       mainGoalController.goalModel.value = goalModel;
 
       //#endregion
@@ -188,7 +188,7 @@ void main() {
 
     test('update goal when final date is selected', () async {
       //#region Arrange(Given)
-      var goalModel = GoalModel(goalId);
+      var goalModel = GoalModel(goalId, "100");
       mainGoalController.goalModel.value = goalModel;
 
       //#endregion
@@ -211,7 +211,7 @@ void main() {
 
     test('update goal when goal type is selected', () async {
       //#region Arrange(Given)
-      var goalModel = GoalModel(goalId);
+      var goalModel = GoalModel(goalId, "100");
       mainGoalController.goalModel.value = goalModel;
 
       //#endregion

@@ -25,7 +25,7 @@ void main() {
     await tester.pumpWidget(
       GetMaterialApp(
         home: Scaffold(
-          body: HeaderGoalWidget(model: GoalModel("")),
+          body: HeaderGoalWidget(model: GoalModel("", "100")),
         ),
       ),
     );
@@ -42,7 +42,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: HeaderGoalWidget(model: GoalModel("")),
+          body: HeaderGoalWidget(model: GoalModel("", "100")),
         ),
       ),
     );
@@ -65,6 +65,7 @@ void main() {
           body: HeaderGoalWidget(
               model: GoalModel(
             "",
+            "100",
             name: title,
             description: description,
           )),
@@ -91,7 +92,7 @@ void main() {
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
-          body: HeaderGoalWidget(model: GoalModel("")),
+          body: HeaderGoalWidget(model: GoalModel("", "100")),
         ),
       ),
     );

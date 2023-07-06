@@ -8,7 +8,7 @@ void main() {
   testWidgets('Goal card should show icon, title and percentage of goal',
       (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("");
+    var model = GoalModel("", "100");
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -36,7 +36,7 @@ void main() {
   testWidgets('Goal card should display current percentage value of goal',
       (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("");
+    var model = GoalModel("", "100");
     const percentageValue = 0.2;
 
     await tester.pumpWidget(

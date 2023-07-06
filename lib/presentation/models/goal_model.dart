@@ -23,11 +23,11 @@ class GoalModel {
   GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
 
   GoalModel(
-    this.id, {
+    this.id,
+    String target, {
     GoalType goalType = GoalType.tasks,
     String description = "",
     String name = "",
-    String target = "",
     List<TaskModel>? taskList,
     double? progress,
     PhosphorIconData? iconData,
@@ -55,6 +55,7 @@ class GoalModel {
 
     return GoalModel(
       goal.id,
+      goal.target,
       description: goal.desc,
       name: goal.title,
       taskList: tasks,
