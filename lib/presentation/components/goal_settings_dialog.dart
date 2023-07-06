@@ -112,6 +112,7 @@ class GoalSettingsDialog extends StatelessWidget {
                   key: const Key("goalTarget"),
                   label: "Target",
                   controller: goalModel.target,
+                  typeNumber: true,
                 ),
               ],
             ),

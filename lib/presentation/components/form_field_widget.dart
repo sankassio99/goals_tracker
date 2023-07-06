@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class FormFieldWidget extends StatelessWidget {
   final String label;
   final TextEditingController controller;
   final int? maxLines;
+  final bool typeNumber;
 
   const FormFieldWidget({
     required this.label,
     required this.controller,
+    this.typeNumber = false,
     this.maxLines,
     super.key,
   });
@@ -28,6 +31,10 @@ class FormFieldWidget extends StatelessWidget {
           ),
         ),
         TextField(
+          keyboardType: typeNumber ? TextInputType.number : TextInputType.text,
+          inputFormatters: typeNumber
+              ? <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]
+              : null,
           controller: controller,
           maxLines: maxLines,
           decoration: InputDecoration(
