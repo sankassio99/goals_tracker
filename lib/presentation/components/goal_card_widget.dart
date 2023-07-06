@@ -26,7 +26,7 @@ class GoalCardWidget extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(18, 0, 24, 0),
+          padding: const EdgeInsets.fromLTRB(8, 0, 24, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
