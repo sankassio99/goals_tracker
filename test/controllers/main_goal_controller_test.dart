@@ -29,7 +29,7 @@ void main() {
     mainGoalController = MainGoalController(getGoalDetails, updateGoal);
     Get.parameters = {"goalId": goalId};
 
-    myGoal = MainGoal(goalId, "title", "desc");
+    myGoal = MainGoal(goalId, "title", "desc", "100");
     when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
   });
   group('Main Goal Controller should', () {
@@ -119,8 +119,7 @@ void main() {
 
       //#endregion
       //#region Assert(Then)
-      var progress =
-          mainGoalController.goalModel.value.completePercentage.value;
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
       expect(progress, isNot(0));
       //#endregion
     });
@@ -137,8 +136,7 @@ void main() {
 
       //#endregion
       //#region Assert(Then)
-      var progress =
-          mainGoalController.goalModel.value.completePercentage.value;
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
       expect(progress, myGoal.completePercentage);
       //#endregion
     });
@@ -158,15 +156,38 @@ void main() {
 
       //#endregion
       //#region Assert(Then)
-      var progress =
-          mainGoalController.goalModel.value.completePercentage.value;
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
       expect(progress, isNot(initialProgress));
+      //#endregion
+    });
+
+    test(
+        'update goal progress when deposit entry value is added on goals type monetary',
+        () async {
+      //#region Arrange(Given)
+      var initialProgress = 0.0;
+      myGoal.completePercentage = initialProgress;
+      myGoal.target = "1000";
+      myGoal.type = GoalType.monetary;
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+
+      mainGoalController.addDepositEntry("600");
+
+      //#endregion
+      //#region Assert(Then)
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
+      expect(progress, 0.6);
       //#endregion
     });
 
     test('update goal when icon is updated', () async {
       //#region Arrange(Given)
-      var goalModel = GoalModel(goalId);
+      var goalModel = GoalModel(goalId, "100");
       mainGoalController.goalModel.value = goalModel;
 
       //#endregion
@@ -188,7 +209,7 @@ void main() {
 
     test('update goal when final date is selected', () async {
       //#region Arrange(Given)
-      var goalModel = GoalModel(goalId);
+      var goalModel = GoalModel(goalId, "100");
       mainGoalController.goalModel.value = goalModel;
 
       //#endregion
@@ -211,7 +232,7 @@ void main() {
 
     test('update goal when goal type is selected', () async {
       //#region Arrange(Given)
-      var goalModel = GoalModel(goalId);
+      var goalModel = GoalModel(goalId, "100");
       mainGoalController.goalModel.value = goalModel;
 
       //#endregion

@@ -19,7 +19,7 @@ void main() {
   group('Update Goal use case should', () {
     test('update existing goal in repository', () async {
       //#region Arrange(Given)
-      var goal = MainGoal("1", "Buy a car", "");
+      var goal = MainGoal("1", "Buy a car", "", "100");
       //#endregion
 
       //#region Act(When)

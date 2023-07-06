@@ -20,8 +20,8 @@ void main() {
   group('Get Goals use case should', () {
     test('get all goals saved on repository', () async {
       //#region Arrange(Given)
-      var goal1 = MainGoal("1", "Buy a car", "");
-      var goal2 = MainGoal("2", "Build muscles", "");
+      var goal1 = MainGoal("1", "Buy a car", "", "100");
+      var goal2 = MainGoal("2", "Build muscles", "", "100");
       goalRepositoryMock.save(goal1);
       goalRepositoryMock.save(goal2);
 

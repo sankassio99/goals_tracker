@@ -22,7 +22,7 @@ void main() {
   testWidgets('Icon Picker Dialog Widget should display all 16 icons',
       (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("");
+    var model = GoalModel("", "100");
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -46,7 +46,7 @@ void main() {
 
   testWidgets('When tap in a icon must be selected', (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("");
+    var model = GoalModel("", "100");
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(
@@ -76,7 +76,7 @@ void main() {
   testWidgets('When dialog is loaded must show current icon selected',
       (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("", iconData: PhosphorIcons.fill.notePencil);
+    var model = GoalModel("", "100", iconData: PhosphorIcons.fill.notePencil);
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(

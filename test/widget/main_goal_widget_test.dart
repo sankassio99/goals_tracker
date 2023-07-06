@@ -39,8 +39,8 @@ void main() {
     goalRepositoryMock = MockIGoalRepository();
     bindingFake = MainGoalBindingFake(goalRepositoryMock);
 
-    mainGoal = MainGoal(
-        "111100000", "Goals Tracker App", "Finish until the end of the year");
+    mainGoal = MainGoal("111100000", "Goals Tracker App",
+        "Finish until the end of the year", "100");
     when(goalRepositoryMock.getById(mainGoal.id))
         .thenAnswer((_) async => mainGoal);
   });
@@ -74,7 +74,7 @@ void main() {
     var goalId2 = "2";
     var title = "Buy new car";
     var desc = "Lorem ipsum";
-    var myGoal = MainGoal(goalId2, title, desc);
+    var myGoal = MainGoal(goalId2, title, desc, "100");
 
     when(goalRepositoryMock.getById(goalId2)).thenAnswer((_) async => myGoal);
 

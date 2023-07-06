@@ -16,7 +16,7 @@ void main() {
     var addNewGoal = AddNewGoal(goalRepository);
     var getGoals = GetGoals(goalRepository);
 
-    goalRepository.save(MainGoal("id", "title", "desc"));
+    goalRepository.save(MainGoal("id", "title", "desc", "100"));
 
     homeController = HomeController(addNewGoal, getGoals);
   });
@@ -37,8 +37,8 @@ void main() {
 
     test('load goals already saved', () async {
       //#region Arrange(Given)
-      var goal1 = MainGoal("1", "title", "desc");
-      var goal2 = MainGoal("2", "title", "desc");
+      var goal1 = MainGoal("1", "title", "desc", "100");
+      var goal2 = MainGoal("2", "title", "desc", "100");
       List<MainGoal> mainGoalList = [goal1, goal2];
 
       when(goalRepository.getAll()).thenAnswer((_) async => mainGoalList);

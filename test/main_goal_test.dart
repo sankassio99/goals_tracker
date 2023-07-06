@@ -11,7 +11,7 @@ void main() {
       String desc = "I need is motivated everyday";
 
       String mainGoalId = "random";
-      MainGoal mainGoal = MainGoal(mainGoalId, title, desc);
+      MainGoal mainGoal = MainGoal(mainGoalId, title, desc, "100");
 
       String id = "random";
       String subGoalTitle = "Learn english";
@@ -36,7 +36,7 @@ void main() {
       String desc = "I need is motivated everyday";
 
       String mainGoalId = "random";
-      MainGoal mainGoal = MainGoal(mainGoalId, title, desc);
+      MainGoal mainGoal = MainGoal(mainGoalId, title, desc, "100");
 
       String subGoalId = "random";
       String subGoalTitle = "Learn english";

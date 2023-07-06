@@ -19,7 +19,7 @@ void main() {
     goalRepositoryMock = MockIGoalRepository();
     Get.lazyPut<IGoalRepository>(() => goalRepositoryMock);
 
-    var myGoal = MainGoal("goalId", "title", "desc");
+    var myGoal = MainGoal("goalId", "title", "desc", "100");
     when(goalRepositoryMock.getById(any)).thenAnswer((_) async => myGoal);
 
     List<MainGoal> mainGoalList = [];
@@ -81,7 +81,7 @@ void main() {
       'When user return from main goal page the goals already registred must be displayed',
       (WidgetTester tester) async {
     // arrange
-    var goal1 = MainGoal("1", "title", "desc");
+    var goal1 = MainGoal("1", "title", "desc", "100");
     List<MainGoal> mainGoalList = [goal1];
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
 
@@ -107,8 +107,8 @@ void main() {
   testWidgets('When home widget loads must show all goals list saved',
       (WidgetTester tester) async {
     // arrange
-    var goal1 = MainGoal("1", "title", "desc");
-    var goal2 = MainGoal("2", "title", "desc");
+    var goal1 = MainGoal("1", "title", "desc", "100");
+    var goal2 = MainGoal("2", "title", "desc", "100");
     List<MainGoal> mainGoalList = [goal1, goal2];
 
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
@@ -127,8 +127,8 @@ void main() {
       'When redirected to main goal page must be show the current goal icon',
       (WidgetTester tester) async {
     // arrange
-    var goal1 =
-        MainGoal("1", "title", "desc", icon: PhosphorIcons.fill.notePencil);
+    var goal1 = MainGoal("1", "title", "desc", "100",
+        icon: PhosphorIcons.fill.notePencil);
     List<MainGoal> mainGoalList = [goal1];
 
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
