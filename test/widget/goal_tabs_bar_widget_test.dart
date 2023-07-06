@@ -75,6 +75,29 @@ void main() {
     expect(calendarIconTab, findsNothing);
     //#endregion
   });
+
+  testWidgets('When tap in add deposit entry button must be added deposit',
+      (tester) async {
+    //#region Arrange(Given)
+    var myGoal = MainGoal("myId", "title", "desc", "100");
+
+    myGoal.type = GoalType.monetary;
+
+    await tester.pumpWidget(initMainGoalPage(myGoal, goalRepositoryMock));
+    await tester.pumpAndSettle();
+    //#endregion
+
+    //#region Act(When)
+    var addDepositButton = find.byKey(const Key("addDepositButton"));
+    await tester.tap(addDepositButton);
+    await tester.pumpAndSettle();
+    //#endregion
+
+    //#region Assert(Then)
+    var deposit = find.byKey(const Key("depositEntry"));
+    expect(deposit, findsOneWidget);
+    //#endregion
+  });
 }
 
 // TODO: pass to utils test files
