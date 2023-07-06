@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
+import 'package:goals_tracker/presentation/models/deposit_entry_model.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -62,9 +63,4 @@ class MainGoalController extends GetxController {
     goalModel.value.updateProgress();
     updateGoal();
   }
-}
-
-class DepositEntryModel {
-  final double value;
-  DepositEntryModel(this.value);
 }
