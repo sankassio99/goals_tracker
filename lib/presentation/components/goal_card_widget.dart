@@ -26,7 +26,7 @@ class GoalCardWidget extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(18, 0, 24, 0),
+          padding: const EdgeInsets.fromLTRB(8, 0, 24, 0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +50,7 @@ class GoalCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       key: const Key("goalCardTitle"),
-                      (model.name == "" ? "Tap to edit" : model.name),
+                      (model.name.text == "" ? "Tap to edit" : model.name.text),
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     SizedBox(height: 36, child: ProgressBar(goalModel: model)),

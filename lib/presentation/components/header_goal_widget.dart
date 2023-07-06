@@ -63,7 +63,7 @@ class GoalDescWidget extends StatelessWidget {
         },
         child: TextField(
             key: const Key("descInput"),
-            controller: model.descriptionController,
+            controller: model.description,
             maxLines: null,
             decoration: const InputDecoration(
               fillColor: Colors.white,
@@ -113,7 +113,7 @@ class GoalTitleWidget extends StatelessWidget {
             child: TextField(
                 maxLines: 1,
                 key: const Key("titleInput"),
-                controller: model.nameController,
+                controller: model.name,
                 decoration: const InputDecoration(
                   hintText: 'Goal name',
                   border: InputBorder.none,

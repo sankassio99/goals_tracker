@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
+import 'package:goals_tracker/presentation/models/task_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class GoalModel {
   String id;
-  final TextEditingController _name = TextEditingController(text: "");
-  final TextEditingController _description = TextEditingController(text: "");
-  List<GoalModel> subGoals = [];
+  final TextEditingController name = TextEditingController(text: "");
+  final TextEditingController description = TextEditingController(text: "");
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completePercentage = 0.0.obs;
   Rx<PhosphorIconData> icon =
       Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
   DateTime? finalDate;
+  GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
 
   GoalModel(
     this.id, {
+    GoalType goalType = GoalType.tasks,
     String description = "",
     String name = "",
     List<TaskModel>? taskList,
@@ -25,30 +29,17 @@ class GoalModel {
     PhosphorIconData? iconData,
     this.finalDate,
   }) {
-    _name.text = name;
-    _description.text = description;
+    meansureType = GoalMeansureType(goalType);
+    this.description.text = description;
     tasks.value = taskList ?? [];
     completePercentage.value = progress ?? 0;
     icon.value = iconData ?? PhosphorIcons.fill.notePencil;
+    this.name.text = name;
   }
 
   setFinalDate(DateTime? date) => finalDate = date;
 
-  addSubGoal(GoalModel subGoal) {
-    subGoals.add(subGoal);
-  }
-
-  setSubGoalList(List<GoalModel> subGoals) {
-    this.subGoals = subGoals;
-  }
-
-  String get name => _name.text;
-  set name(String name) => _name.text = name;
-  TextEditingController get nameController => _name;
-
-  String get description => _description.text;
-  set description(String description) => _description.text = description;
-  TextEditingController get descriptionController => _description;
+  setMeansureType(GoalMeansureType newType) => meansureType = newType;
 
   void addTask() {
     tasks.add(TaskModel(""));
@@ -65,6 +56,7 @@ class GoalModel {
       progress: goal.completePercentage,
       iconData: goal.icon,
       finalDate: goal.finalDate,
+      goalType: goal.type,
     );
   }
 
@@ -80,12 +72,13 @@ class GoalModel {
     var tasks = _mapToTaskListEntity();
     return MainGoal(
       id,
-      name,
-      description,
+      name.text,
+      description.text,
       taskList: tasks,
       completePercentage: completePercentage.value,
       icon: icon.value,
       finalDate: finalDate,
+      type: meansureType.type,
     );
   }
 
@@ -113,24 +106,5 @@ class GoalModel {
 
   void changeIcon(Rx<PhosphorIconData> icon) {
     this.icon.value = icon.value;
-  }
-}
-
-class TaskModel {
-  final TextEditingController name = TextEditingController(text: "");
-  RxBool checked = false.obs;
-  Icon icon = const Icon(Icons.task_alt);
-
-  TaskModel(String name, {bool? isChecked}) {
-    this.name.text = name;
-    checked.value = isChecked ?? false;
-  }
-
-  static toModel(Task task) {
-    return TaskModel(task.title, isChecked: task.isCompleted);
-  }
-
-  Task toTaskEntity() {
-    return Task(name.text, isCompleted: checked.value);
   }
 }

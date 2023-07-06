@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/presentation/components/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalSettingsDialog extends StatelessWidget {
@@ -72,7 +74,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 FormFieldWidget(
                   key: const Key("goalName"),
                   label: "Name",
-                  controller: goalModel.nameController,
+                  controller: goalModel.name,
                   maxLines: 1,
                 ),
                 const SizedBox(
@@ -81,7 +83,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 FormFieldWidget(
                   key: const Key("goalDescription"),
                   label: "Description",
-                  controller: goalModel.descriptionController,
+                  controller: goalModel.description,
                 ),
                 const SizedBox(
                   height: 18,
@@ -90,12 +92,93 @@ class GoalSettingsDialog extends StatelessWidget {
                   key: const Key("goalFinalDate"),
                   selectedDate: goalModel.finalDate.obs,
                   onSelectDate: goalModel.setFinalDate,
-                )
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                DropdownFormField(
+                    goalTypeSelected: goalModel.meansureType.obs,
+                    goalTypes: [
+                      GoalMeansureType(GoalType.monetary),
+                      GoalMeansureType(GoalType.tasks),
+                      GoalMeansureType(GoalType.days),
+                    ],
+                    onSelected: goalModel.setMeansureType),
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class DropdownFormField extends StatelessWidget {
+  final Rx<GoalMeansureType> goalTypeSelected;
+  final List<GoalMeansureType> goalTypes;
+  final Function(GoalMeansureType newType) onSelected;
+
+  const DropdownFormField({
+    super.key,
+    required this.goalTypeSelected,
+    required this.goalTypes,
+    required this.onSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
+          child: Text(
+            "Meansure Type",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSecondary,
+            ),
+          ),
+        ),
+        Obx(
+          () => Container(
+            width: double.infinity,
+            height: 48,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black12,
+                width: 2.5,
+              ),
+              borderRadius: BorderRadius.circular(13),
+            ),
+            child: DropdownButton(
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+              underline: Container(),
+              enableFeedback: false,
+              style: TextStyle(),
+              focusColor: Colors.transparent,
+              value: goalTypeSelected.value.name,
+              items: goalTypes
+                  .map<DropdownMenuItem<String>>((GoalMeansureType type) {
+                return DropdownMenuItem(
+                  value: type.name,
+                  child: Text(type.name),
+                );
+              }).toList(),
+              onChanged: (String? goalType) {
+                var selected =
+                    goalTypes.firstWhereOrNull((type) => type.name == goalType);
+
+                goalTypeSelected.value = selected!;
+
+                onSelected(selected);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
