@@ -111,8 +111,12 @@ class GoalModel {
     if (meansureType.type == GoalType.monetary) {
       var totalEntries = _getTotalEntries();
       var targetValue = double.parse(target.text);
-      var progress = (totalEntries / targetValue).toStringAsFixed(2);
-      completeProgress.value = double.parse(progress);
+      if (totalEntries > targetValue) {
+        completeProgress.value = 1;
+      } else {
+        var progress = (totalEntries / targetValue).toStringAsFixed(2);
+        completeProgress.value = double.parse(progress);
+      }
     }
   }
 
