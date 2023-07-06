@@ -18,13 +18,13 @@ class ProgressBar extends StatelessWidget {
         return Obx(
           () => LinearPercentIndicator(
             key: const Key("progressBar"),
-            percent: goalModel.completePercentage.value,
+            percent: goalModel.completeProgress.value,
             lineHeight: 24,
             animation: true,
             progressColor: Theme.of(context).colorScheme.onSecondary,
             backgroundColor: Theme.of(context).colorScheme.background,
             center: Text(
-              "${goalModel.completePercentage.value * 100}%",
+              "${goalModel.completeProgress.value * 100}%",
               style: const TextStyle(
                 color: Colors.black87,
               ),

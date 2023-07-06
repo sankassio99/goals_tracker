@@ -50,7 +50,7 @@ void main() {
     //#endregion
 
     //#region Act(When)
-    model.completePercentage.value = percentageValue;
+    model.completeProgress.value = percentageValue;
     await tester.pumpAndSettle();
     //#endregion
 

@@ -119,8 +119,7 @@ void main() {
 
       //#endregion
       //#region Assert(Then)
-      var progress =
-          mainGoalController.goalModel.value.completePercentage.value;
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
       expect(progress, isNot(0));
       //#endregion
     });
@@ -137,8 +136,7 @@ void main() {
 
       //#endregion
       //#region Assert(Then)
-      var progress =
-          mainGoalController.goalModel.value.completePercentage.value;
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
       expect(progress, myGoal.completePercentage);
       //#endregion
     });
@@ -158,8 +156,7 @@ void main() {
 
       //#endregion
       //#region Assert(Then)
-      var progress =
-          mainGoalController.goalModel.value.completePercentage.value;
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
       expect(progress, isNot(initialProgress));
       //#endregion
     });
@@ -183,8 +180,7 @@ void main() {
 
       //#endregion
       //#region Assert(Then)
-      var progress =
-          mainGoalController.goalModel.value.completePercentage.value;
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
       expect(progress, 0.6);
       //#endregion
     });

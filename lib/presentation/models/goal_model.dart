@@ -16,8 +16,7 @@ class GoalModel {
   final TextEditingController target = TextEditingController(text: "");
 
   RxList<TaskModel> tasks = RxList<TaskModel>();
-  // TODO: refactor name
-  RxDouble completePercentage = 0.0.obs;
+  RxDouble completeProgress = 0.0.obs;
   Rx<PhosphorIconData> icon =
       Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
 
@@ -40,7 +39,7 @@ class GoalModel {
     meansureType = GoalMeansureType(goalType);
     this.description.text = description;
     tasks.value = taskList ?? [];
-    completePercentage.value = progress ?? 0;
+    completeProgress.value = progress ?? 0;
     icon.value = iconData ?? PhosphorIcons.fill.notePencil;
     this.name.text = name;
     this.target.text = target;
@@ -86,7 +85,7 @@ class GoalModel {
       description.text,
       target.text,
       taskList: tasks,
-      completePercentage: completePercentage.value,
+      completePercentage: completeProgress.value,
       icon: icon.value,
       finalDate: finalDate,
       type: meansureType.type,
@@ -105,14 +104,14 @@ class GoalModel {
     if (meansureType.type == GoalType.tasks) {
       var checkedTasks = _countCheckedTasks();
       var progress = (checkedTasks / tasks.length).toStringAsFixed(2);
-      completePercentage.value = double.parse(progress);
+      completeProgress.value = double.parse(progress);
     }
 
     if (meansureType.type == GoalType.monetary) {
       var totalEntries = _getTotalEntries();
       var targetValue = double.parse(target.text);
       var progress = (totalEntries / targetValue).toStringAsFixed(2);
-      completePercentage.value = double.parse(progress);
+      completeProgress.value = double.parse(progress);
     }
   }
 
