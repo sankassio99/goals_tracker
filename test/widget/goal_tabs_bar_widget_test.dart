@@ -45,7 +45,7 @@ void main() {
     //#region Arrange(Given)
     var myGoal = MainGoal("myId", "title", "desc", "100");
 
-    myGoal.type = GoalType.tasks;
+    myGoal.type = GoalType.monetary;
 
     await tester.pumpWidget(initMainGoalPage(myGoal, goalRepositoryMock));
     await tester.pumpAndSettle();
@@ -64,6 +64,9 @@ void main() {
 
     var tasksIconTab = find.byKey(const Key("tasksIconTab"));
     expect(tasksIconTab, findsNothing);
+
+    var calendarIconTab = find.byKey(const Key("calendarIconTab"));
+    expect(calendarIconTab, findsNothing);
     //#endregion
   });
 }
