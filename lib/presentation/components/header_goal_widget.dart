@@ -94,7 +94,7 @@ class GoalTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
@@ -115,6 +115,7 @@ class GoalTitleWidget extends StatelessWidget {
                 key: const Key("titleInput"),
                 controller: model.name,
                 decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.all(0),
                   hintText: 'Goal name',
                   border: InputBorder.none,
                 ),
