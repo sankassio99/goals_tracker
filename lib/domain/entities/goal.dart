@@ -6,7 +6,7 @@ abstract class Goal {
   String desc;
   double completePercentage;
   bool isCompleted;
-  GoalType type = GoalType.tasks;
+  GoalType type;
 
   Goal(
     this.id,
@@ -14,6 +14,7 @@ abstract class Goal {
     this.desc, {
     this.completePercentage = 0,
     this.isCompleted = false,
+    this.type = GoalType.tasks,
   });
 
   double getCompletePercentage();

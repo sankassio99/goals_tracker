@@ -52,6 +52,7 @@ class GoalModel {
       progress: goal.completePercentage,
       iconData: goal.icon,
       finalDate: goal.finalDate,
+      meansureType: goal.type,
     );
   }
 
@@ -73,6 +74,7 @@ class GoalModel {
       completePercentage: completePercentage.value,
       icon: icon.value,
       finalDate: finalDate,
+      type: meansureType,
     );
   }
 

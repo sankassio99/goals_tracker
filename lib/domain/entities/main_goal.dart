@@ -15,6 +15,7 @@ class MainGoal extends Goal {
     super.desc, {
     super.completePercentage,
     super.isCompleted,
+    super.type,
     this.icon,
     List<Task>? taskList,
     this.finalDate,
