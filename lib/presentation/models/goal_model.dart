@@ -101,6 +101,7 @@ class GoalModel {
   }
 
   void updateProgress() {
+    // TODO: Refactor to Strategy pattern
     if (meansureType.type == GoalType.tasks) {
       var checkedTasks = _countCheckedTasks();
       var progress = (checkedTasks / tasks.length).toStringAsFixed(2);
