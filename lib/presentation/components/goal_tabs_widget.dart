@@ -62,6 +62,18 @@ class GoalTabsBar extends StatelessWidget {
       ];
     }
 
+    if (meansureType.type == GoalType.tasks) {
+      length = 1;
+      tabs = [
+        Tab(
+            key: const Key("tasksIconTab"),
+            icon: Icon(PhosphorIcons.bold.check)),
+      ];
+      widgets = [
+        TasksWidget(key: const Key("myTasksTab"), tasks: model.tasks),
+      ];
+    }
+
     // List<Tab> tabs = [
     //   Tab(key: const Key("tasksIconTab"), icon: Icon(PhosphorIcons.bold.check)),
     //   Tab(
