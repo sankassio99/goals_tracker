@@ -34,6 +34,7 @@ class GoalModel {
     tasks.value = taskList ?? [];
     completePercentage.value = progress ?? 0;
     icon.value = iconData ?? PhosphorIcons.fill.notePencil;
+    this.name.text = name;
   }
 
   setFinalDate(DateTime? date) => finalDate = date;
