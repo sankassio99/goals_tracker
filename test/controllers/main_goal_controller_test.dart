@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
@@ -201,6 +202,29 @@ void main() {
       var matcher = predicate<MainGoal>((goal) {
         expect(goal.id, goalId);
         expect(goal.finalDate, selectedDateTime);
+        return true;
+      });
+      verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+      //#endregion
+    });
+
+    test('update goal when goal type is selected', () async {
+      //#region Arrange(Given)
+      var goalModel = GoalModel(goalId);
+      mainGoalController.goalModel.value = goalModel;
+
+      //#endregion
+
+      //#region Act(When)
+      var selectedType = GoalType.monetary;
+      goalModel.meansureType = selectedType;
+      mainGoalController.updateGoal();
+
+      //#endregion
+      //#region Assert(Then)
+      var matcher = predicate<MainGoal>((goal) {
+        expect(goal.id, goalId);
+        expect(goal.type, selectedType);
         return true;
       });
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);

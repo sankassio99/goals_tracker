@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/models/task_model.dart';
@@ -15,9 +16,11 @@ class GoalModel {
   Rx<PhosphorIconData> icon =
       Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
   DateTime? finalDate;
+  GoalType meansureType;
 
   GoalModel(
     this.id, {
+    this.meansureType = GoalType.tasks,
     String description = "",
     String name = "",
     List<TaskModel>? taskList,
