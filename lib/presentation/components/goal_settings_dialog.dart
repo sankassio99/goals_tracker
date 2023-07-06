@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
+import 'package:goals_tracker/presentation/components/date_form_field.dart';
+import 'package:goals_tracker/presentation/components/dropdown_form_field.dart';
 import 'package:goals_tracker/presentation/components/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
@@ -120,140 +122,5 @@ class GoalSettingsDialog extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class DropdownFormField extends StatelessWidget {
-  final Rx<GoalMeansureType> goalTypeSelected;
-  final List<GoalMeansureType> goalTypes;
-  final Function(GoalMeansureType newType) onSelected;
-
-  const DropdownFormField({
-    super.key,
-    required this.goalTypeSelected,
-    required this.goalTypes,
-    required this.onSelected,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
-          child: Text(
-            "Meansure Type",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSecondary,
-            ),
-          ),
-        ),
-        Obx(
-          () => Container(
-            width: double.infinity,
-            height: 48,
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black12,
-                width: 2.5,
-              ),
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: DropdownButton(
-              padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-              underline: Container(),
-              enableFeedback: false,
-              style: const TextStyle(),
-              focusColor: Colors.transparent,
-              value: goalTypeSelected.value.name,
-              items: goalTypes
-                  .map<DropdownMenuItem<String>>((GoalMeansureType type) {
-                return DropdownMenuItem(
-                  value: type.name,
-                  child: Text(type.name),
-                );
-              }).toList(),
-              onChanged: (String? goalType) {
-                var selected =
-                    goalTypes.firstWhereOrNull((type) => type.name == goalType);
-
-                goalTypeSelected.value = selected!;
-
-                onSelected(selected);
-              },
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class DateFormField extends StatelessWidget {
-  final Rx<DateTime?> selectedDate;
-  final Function(DateTime? date) onSelectDate;
-
-  const DateFormField({
-    super.key,
-    required this.selectedDate,
-    required this.onSelectDate,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
-          child: Text(
-            "Final Countdown",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSecondary,
-            ),
-          ),
-        ),
-        InkWell(
-          onTap: () async {
-            selectedDate.value = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now(),
-                lastDate: DateTime(2025));
-            onSelectDate(selectedDate.value);
-          },
-          child: Container(
-            width: double.infinity,
-            height: 48,
-            padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.black12,
-                width: 2.5,
-              ),
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: Obx(
-              () => Text(dateToString(selectedDate.value)),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  dateToString(DateTime? value) {
-    if (value != null) {
-      return "${value.day}/${value.month}/${value.year}";
-    }
-
-    return "";
   }
 }
