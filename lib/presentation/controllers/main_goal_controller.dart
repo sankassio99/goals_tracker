@@ -54,4 +54,6 @@ class MainGoalController extends GetxController {
     }
     goalModel.value.tasks.insert(newIndex, task);
   }
+
+  void addDepositEntry(String s) {}
 }

@@ -164,6 +164,30 @@ void main() {
       //#endregion
     });
 
+    test(
+        'update goal progress when deposit entry value is added on goals type monetary',
+        () async {
+      //#region Arrange(Given)
+      var initialProgress = 0.0;
+      myGoal.completePercentage = initialProgress;
+      myGoal.target = "1000";
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+
+      mainGoalController.addDepositEntry("600");
+
+      //#endregion
+      //#region Assert(Then)
+      var progress =
+          mainGoalController.goalModel.value.completePercentage.value;
+      expect(progress, 0.6);
+      //#endregion
+    });
+
     test('update goal when icon is updated', () async {
       //#region Arrange(Given)
       var goalModel = GoalModel(goalId, "100");
