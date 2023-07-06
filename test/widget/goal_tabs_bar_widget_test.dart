@@ -100,6 +100,40 @@ void main() {
     expect(addDepositEntryDialog, findsOneWidget);
     //#endregion
   });
+
+  testWidgets('When tap in add inside dialog entry must add new deposit entry',
+      (tester) async {
+    //#region Arrange(Given)
+    var myGoal = MainGoal("myId", "title", "desc", "100");
+
+    myGoal.type = GoalType.monetary;
+
+    await tester.pumpWidget(initMainGoalPage(myGoal, goalRepositoryMock));
+    await tester.pumpAndSettle();
+
+    var depositvalue = "1001";
+    //#endregion
+
+    //#region Act(When)
+    var addDepositButton = find.byKey(const Key("addDepositButton"));
+    await tester.tap(addDepositButton);
+    await tester.pumpAndSettle();
+
+    var depositValueInput = find.byKey(const Key("depositValueInput"));
+    await tester.enterText(depositValueInput, depositvalue);
+    await tester.pumpAndSettle();
+
+    var confirmAddDeposit = find.byKey(const Key("confirmAddDeposit"));
+    await tester.tap(confirmAddDeposit);
+    await tester.pumpAndSettle();
+
+    //#endregion
+
+    //#region Assert(Then)
+    var depositValueAdded = find.text(depositvalue);
+    expect(depositValueAdded, findsOneWidget);
+    //#endregion
+  });
 }
 
 // TODO: pass to utils test files
