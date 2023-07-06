@@ -40,7 +40,7 @@ void main() {
     //#endregion
   });
 
-  testWidgets('When goal is monetary type must show deposit entry tab',
+  testWidgets('When goal is monetary type must show deposit entry tab only',
       (tester) async {
     //#region Arrange(Given)
     var myGoal = MainGoal("myId", "title", "desc", "100");
@@ -52,14 +52,18 @@ void main() {
     //#endregion
 
     //#region Act(When)
+    var depositsIconTab = find.byKey(const Key("depositsIconTab"));
+    await tester.tap(depositsIconTab);
+    await tester.pumpAndSettle();
     //#endregion
 
     //#region Assert(Then)
-    var depositEntryIconTab = find.byKey(const Key("depositEntryIconTab"));
-    expect(depositEntryIconTab, findsOneWidget);
 
     var myDepositsTab = find.byKey(const Key("myDepositsTab"));
     expect(myDepositsTab, findsOneWidget);
+
+    var tasksIconTab = find.byKey(const Key("tasksIconTab"));
+    expect(tasksIconTab, findsNothing);
     //#endregion
   });
 }
