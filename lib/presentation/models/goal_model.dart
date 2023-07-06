@@ -10,7 +10,6 @@ class GoalModel {
   String id;
   final TextEditingController name = TextEditingController(text: "");
   final TextEditingController description = TextEditingController(text: "");
-  List<GoalModel> subGoals = [];
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completePercentage = 0.0.obs;
   Rx<PhosphorIconData> icon =
