@@ -23,12 +23,12 @@ class GoalModel {
   DateTime? finalDate;
   GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
 
-  List<DepositEntryModel> depositEntries = [];
+  RxList<DepositEntryModel> depositEntries = RxList<DepositEntryModel>();
 
   GoalModel(
     this.id,
     String target, {
-    GoalType goalType = GoalType.tasks,
+    GoalType goalType = GoalType.monetary,
     String description = "",
     String name = "",
     List<TaskModel>? taskList,

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/calendar_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/tasks_widget.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -97,7 +99,9 @@ class GoalTabsBar extends StatelessWidget {
 }
 
 class DepositEntriesWidget extends StatelessWidget {
-  const DepositEntriesWidget({super.key});
+  final controller = Get.find<MainGoalController>();
+
+  DepositEntriesWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +120,9 @@ class DepositEntriesWidget extends StatelessWidget {
               ),
               TextButton(
                 key: const Key("addDepositButton"),
-                onPressed: () {},
+                onPressed: () {
+                  controller.addDepositEntry("100");
+                },
                 child: Text(
                   "Add",
                   style: TextStyle(
@@ -128,6 +134,21 @@ class DepositEntriesWidget extends StatelessWidget {
           ),
           const SizedBox(
             height: 8,
+          ),
+          Obx(
+            () => Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: controller.goalModel.value.depositEntries
+                  .map(
+                    (deposit) => Container(
+                      key: const Key("depositEntry"),
+                      width: 100,
+                      height: 100,
+                    ),
+                  )
+                  .toList(),
+            ),
           ),
         ],
       ),
