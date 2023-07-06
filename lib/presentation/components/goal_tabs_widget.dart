@@ -120,8 +120,14 @@ class DepositEntriesWidget extends StatelessWidget {
               ),
               TextButton(
                 key: const Key("addDepositButton"),
-                onPressed: () {
-                  controller.addDepositEntry("100");
+                onPressed: () async {
+                  return showDialog(
+                    context: context,
+                    builder: (BuildContext context) => Dialog(
+                      key: const Key("addDepositEntryDialog"),
+                      child: Container(color: Colors.amber),
+                    ),
+                  );
                 },
                 child: Text(
                   "Add",

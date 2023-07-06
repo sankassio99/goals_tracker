@@ -77,7 +77,8 @@ void main() {
     //#endregion
   });
 
-  testWidgets('When tap in add deposit entry button must be added deposit',
+  testWidgets(
+      'When tap in add deposit entry button must show dialog to add deposit',
       (tester) async {
     //#region Arrange(Given)
     var myGoal = MainGoal("myId", "title", "desc", "100");
@@ -95,8 +96,8 @@ void main() {
     //#endregion
 
     //#region Assert(Then)
-    var deposit = find.byType(DepositEntryWidget);
-    expect(deposit, findsOneWidget);
+    var addDepositEntryDialog = find.byKey(const Key("addDepositEntryDialog"));
+    expect(addDepositEntryDialog, findsOneWidget);
     //#endregion
   });
 }
