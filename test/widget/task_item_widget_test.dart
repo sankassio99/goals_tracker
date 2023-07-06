@@ -7,7 +7,7 @@ import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/components/tasks_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
-import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:goals_tracker/presentation/models/task_model.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/mockito.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:goals_tracker/presentation/models/task_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class GoalModel {
@@ -113,24 +114,5 @@ class GoalModel {
 
   void changeIcon(Rx<PhosphorIconData> icon) {
     this.icon.value = icon.value;
-  }
-}
-
-class TaskModel {
-  final TextEditingController name = TextEditingController(text: "");
-  RxBool checked = false.obs;
-  Icon icon = const Icon(Icons.task_alt);
-
-  TaskModel(String name, {bool? isChecked}) {
-    this.name.text = name;
-    checked.value = isChecked ?? false;
-  }
-
-  static toModel(Task task) {
-    return TaskModel(task.title, isChecked: task.isCompleted);
-  }
-
-  Task toTaskEntity() {
-    return Task(name.text, isCompleted: checked.value);
   }
 }
