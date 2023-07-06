@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/presentation/components/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 
 class GoalSettingsDialog extends StatelessWidget {
@@ -90,11 +92,55 @@ class GoalSettingsDialog extends StatelessWidget {
                   key: const Key("goalFinalDate"),
                   selectedDate: goalModel.finalDate.obs,
                   onSelectDate: goalModel.setFinalDate,
-                )
+                ),
+                DropdownFormField(
+                    goalTypeSelected: goalModel.meansureType.obs,
+                    goalTypes: [
+                      GoalMeansureType(GoalType.monetary),
+                      GoalMeansureType(GoalType.tasks),
+                      GoalMeansureType(GoalType.days),
+                    ],
+                    onSelected: goalModel.setMeansureType),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class DropdownFormField extends StatelessWidget {
+  final Rx<GoalMeansureType> goalTypeSelected;
+  final List<GoalMeansureType> goalTypes;
+  final Function(GoalMeansureType newType) onSelected;
+
+  const DropdownFormField({
+    super.key,
+    required this.goalTypeSelected,
+    required this.goalTypes,
+    required this.onSelected,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(
+      () => DropdownButton(
+        value: goalTypeSelected.value.name,
+        items: goalTypes.map<DropdownMenuItem<String>>((GoalMeansureType type) {
+          return DropdownMenuItem(
+            value: type.name,
+            child: Text(type.name),
+          );
+        }).toList(),
+        onChanged: (String? goalType) {
+          var selected =
+              goalTypes.firstWhereOrNull((type) => type.name == goalType);
+
+          goalTypeSelected.value = selected!;
+
+          onSelected(selected);
+        },
       ),
     );
   }

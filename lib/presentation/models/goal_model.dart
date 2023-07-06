@@ -38,6 +38,8 @@ class GoalModel {
 
   setFinalDate(DateTime? date) => finalDate = date;
 
+  setMeansureType(GoalMeansureType newType) => meansureType = newType;
+
   void addTask() {
     tasks.add(TaskModel(""));
   }
