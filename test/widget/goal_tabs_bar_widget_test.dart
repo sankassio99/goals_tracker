@@ -37,6 +37,12 @@ void main() {
 
     var myTasksTab = find.byKey(const Key("myTasksTab"));
     expect(myTasksTab, findsOneWidget);
+
+    var calendarIconTab = find.byKey(const Key("calendarIconTab"));
+    expect(calendarIconTab, findsNothing);
+
+    var myDepositsTab = find.byKey(const Key("myDepositsTab"));
+    expect(myDepositsTab, findsNothing);
     //#endregion
   });
 
