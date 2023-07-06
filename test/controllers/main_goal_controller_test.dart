@@ -6,6 +6,7 @@ import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:mockito/mockito.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -216,7 +217,7 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      var selectedType = GoalType.monetary;
+      var selectedType = GoalMeansureType(GoalType.monetary);
       goalModel.meansureType = selectedType;
       mainGoalController.updateGoal();
 
@@ -224,7 +225,7 @@ void main() {
       //#region Assert(Then)
       var matcher = predicate<MainGoal>((goal) {
         expect(goal.id, goalId);
-        expect(goal.type, selectedType);
+        expect(goal.type, selectedType.type);
         return true;
       });
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);

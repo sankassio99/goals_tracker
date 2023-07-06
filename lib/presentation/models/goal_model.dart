@@ -4,6 +4,7 @@ import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/task_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
@@ -16,11 +17,11 @@ class GoalModel {
   Rx<PhosphorIconData> icon =
       Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
   DateTime? finalDate;
-  GoalType meansureType;
+  GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
 
   GoalModel(
     this.id, {
-    this.meansureType = GoalType.tasks,
+    GoalType goalType = GoalType.tasks,
     String description = "",
     String name = "",
     List<TaskModel>? taskList,
@@ -28,7 +29,7 @@ class GoalModel {
     PhosphorIconData? iconData,
     this.finalDate,
   }) {
-    this.name.text = name;
+    meansureType = GoalMeansureType(goalType);
     this.description.text = description;
     tasks.value = taskList ?? [];
     completePercentage.value = progress ?? 0;
@@ -52,7 +53,7 @@ class GoalModel {
       progress: goal.completePercentage,
       iconData: goal.icon,
       finalDate: goal.finalDate,
-      meansureType: goal.type,
+      goalType: goal.type,
     );
   }
 
@@ -74,7 +75,7 @@ class GoalModel {
       completePercentage: completePercentage.value,
       icon: icon.value,
       finalDate: finalDate,
-      type: meansureType,
+      type: meansureType.type,
     );
   }
 
