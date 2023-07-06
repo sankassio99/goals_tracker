@@ -9,6 +9,7 @@ import 'package:goals_tracker/presentation/models/goal_model.dart';
 class GoalSettingsDialog extends StatelessWidget {
   final GoalModel goalModel;
   final controller = Get.find<MainGoalController>();
+  final Rx<String> selectedDateTime = "Select a date".obs;
 
   GoalSettingsDialog({
     required this.goalModel,
@@ -82,6 +83,52 @@ class GoalSettingsDialog extends StatelessWidget {
                   label: "Description",
                   controller: goalModel.descriptionController,
                 ),
+                const SizedBox(
+                  height: 18,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
+                      child: Text(
+                        "Final Countdown",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.onSecondary,
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () async {
+                        var selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2025));
+                        selectedDateTime.value =
+                            "${selectedDate?.day}/${selectedDate?.month}/${selectedDate?.year}";
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        height: 48,
+                        padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black12,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(13),
+                        ),
+                        child: Obx(
+                          () => Text(selectedDateTime.value),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
               ],
             ),
           ),
