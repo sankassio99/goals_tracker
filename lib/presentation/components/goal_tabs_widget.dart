@@ -101,9 +101,36 @@ class DepositEntriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
-      child: Text("Deposity Entries"),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "My deposit entries",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              TextButton(
+                key: const Key("addDepositButton"),
+                onPressed: () {},
+                child: Text(
+                  "Add",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.onSecondary),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+        ],
+      ),
     );
   }
 }

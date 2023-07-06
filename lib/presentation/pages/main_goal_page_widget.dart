@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/presentation/components/goal_settings_dialog.dart';
 import 'package:goals_tracker/presentation/components/goal_tabs_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
@@ -73,11 +74,15 @@ class MainGoalPageWidget extends StatelessWidget {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          key: const Key("addTaskButton"),
-          child: const Icon(Icons.add),
-          onPressed: () => controller.addTask(),
-        ),
+        // TODO: remove this and put on tasks list widget
+        floatingActionButton:
+            (controller.goalModel.value.meansureType.type == GoalType.tasks)
+                ? FloatingActionButton(
+                    key: const Key("addTaskButton"),
+                    child: const Icon(Icons.add),
+                    onPressed: () => controller.addTask(),
+                  )
+                : null,
       );
     });
   }
