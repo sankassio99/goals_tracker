@@ -40,7 +40,28 @@ void main() {
     //#endregion
   });
 
-  // TODO: When goal is monetary type must show deposit entry tab
+  testWidgets('When goal is monetary type must show deposit entry tab',
+      (tester) async {
+    //#region Arrange(Given)
+    var myGoal = MainGoal("myId", "title", "desc", "100");
+
+    myGoal.type = GoalType.tasks;
+
+    await tester.pumpWidget(initMainGoalPage(myGoal, goalRepositoryMock));
+    await tester.pumpAndSettle();
+    //#endregion
+
+    //#region Act(When)
+    //#endregion
+
+    //#region Assert(Then)
+    var depositEntryIconTab = find.byKey(const Key("depositEntryIconTab"));
+    expect(depositEntryIconTab, findsOneWidget);
+
+    var myDepositsTab = find.byKey(const Key("myDepositsTab"));
+    expect(myDepositsTab, findsOneWidget);
+    //#endregion
+  });
 }
 
 // TODO: pass to utils test files
