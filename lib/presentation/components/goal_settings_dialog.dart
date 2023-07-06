@@ -93,6 +93,9 @@ class GoalSettingsDialog extends StatelessWidget {
                   selectedDate: goalModel.finalDate.obs,
                   onSelectDate: goalModel.setFinalDate,
                 ),
+                const SizedBox(
+                  height: 18,
+                ),
                 DropdownFormField(
                     goalTypeSelected: goalModel.meansureType.obs,
                     goalTypes: [
@@ -124,24 +127,58 @@ class DropdownFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => DropdownButton(
-        value: goalTypeSelected.value.name,
-        items: goalTypes.map<DropdownMenuItem<String>>((GoalMeansureType type) {
-          return DropdownMenuItem(
-            value: type.name,
-            child: Text(type.name),
-          );
-        }).toList(),
-        onChanged: (String? goalType) {
-          var selected =
-              goalTypes.firstWhereOrNull((type) => type.name == goalType);
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
+          child: Text(
+            "Meansure Type",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.onSecondary,
+            ),
+          ),
+        ),
+        Obx(
+          () => Container(
+            width: double.infinity,
+            height: 48,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Colors.black12,
+                width: 2.5,
+              ),
+              borderRadius: BorderRadius.circular(13),
+            ),
+            child: DropdownButton(
+              padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+              underline: Container(),
+              enableFeedback: false,
+              style: TextStyle(),
+              focusColor: Colors.transparent,
+              value: goalTypeSelected.value.name,
+              items: goalTypes
+                  .map<DropdownMenuItem<String>>((GoalMeansureType type) {
+                return DropdownMenuItem(
+                  value: type.name,
+                  child: Text(type.name),
+                );
+              }).toList(),
+              onChanged: (String? goalType) {
+                var selected =
+                    goalTypes.firstWhereOrNull((type) => type.name == goalType);
 
-          goalTypeSelected.value = selected!;
+                goalTypeSelected.value = selected!;
 
-          onSelected(selected);
-        },
-      ),
+                onSelected(selected);
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
