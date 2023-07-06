@@ -171,6 +171,7 @@ void main() {
       var initialProgress = 0.0;
       myGoal.completePercentage = initialProgress;
       myGoal.target = "1000";
+      myGoal.type = GoalType.monetary;
 
       await mainGoalController.getGoal();
 

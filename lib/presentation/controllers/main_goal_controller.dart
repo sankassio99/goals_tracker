@@ -55,5 +55,16 @@ class MainGoalController extends GetxController {
     goalModel.value.tasks.insert(newIndex, task);
   }
 
-  void addDepositEntry(String s) {}
+  void addDepositEntry(String value) {
+    var monetaryValue = double.parse(value);
+    var depositEntry = DepositEntryModel(monetaryValue);
+    goalModel.value.addDepositEntry(depositEntry);
+    goalModel.value.updateProgress();
+    updateGoal();
+  }
+}
+
+class DepositEntryModel {
+  final double value;
+  DepositEntryModel(this.value);
 }

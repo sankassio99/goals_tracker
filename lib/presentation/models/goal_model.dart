@@ -4,6 +4,7 @@ import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/task_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -15,12 +16,15 @@ class GoalModel {
   final TextEditingController target = TextEditingController(text: "");
 
   RxList<TaskModel> tasks = RxList<TaskModel>();
+  // TODO: refactor name
   RxDouble completePercentage = 0.0.obs;
   Rx<PhosphorIconData> icon =
       Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
 
   DateTime? finalDate;
   GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
+
+  List<DepositEntryModel> depositEntries = [];
 
   GoalModel(
     this.id,
@@ -98,9 +102,26 @@ class GoalModel {
   }
 
   void updateProgress() {
-    var checkedTasks = _countCheckedTasks();
-    var progress = (checkedTasks / tasks.length).toStringAsFixed(2);
-    completePercentage.value = double.parse(progress);
+    if (meansureType.type == GoalType.tasks) {
+      var checkedTasks = _countCheckedTasks();
+      var progress = (checkedTasks / tasks.length).toStringAsFixed(2);
+      completePercentage.value = double.parse(progress);
+    }
+
+    if (meansureType.type == GoalType.monetary) {
+      var totalEntries = _getTotalEntries();
+      var targetValue = double.parse(target.text);
+      var progress = (totalEntries / targetValue).toStringAsFixed(2);
+      completePercentage.value = double.parse(progress);
+    }
+  }
+
+  double _getTotalEntries() {
+    var total = 0.0;
+    for (var entry in depositEntries) {
+      total += entry.value;
+    }
+    return total;
   }
 
   int _countCheckedTasks() {
@@ -113,5 +134,9 @@ class GoalModel {
 
   void changeIcon(Rx<PhosphorIconData> icon) {
     this.icon.value = icon.value;
+  }
+
+  void addDepositEntry(DepositEntryModel depositEntry) {
+    depositEntries.add(depositEntry);
   }
 }
