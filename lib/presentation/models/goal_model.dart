@@ -12,10 +12,13 @@ class GoalModel {
   String id;
   final TextEditingController name = TextEditingController(text: "");
   final TextEditingController description = TextEditingController(text: "");
+  final TextEditingController target = TextEditingController(text: "");
+
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completePercentage = 0.0.obs;
   Rx<PhosphorIconData> icon =
       Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
+
   DateTime? finalDate;
   GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
 
@@ -24,6 +27,7 @@ class GoalModel {
     GoalType goalType = GoalType.tasks,
     String description = "",
     String name = "",
+    String target = "",
     List<TaskModel>? taskList,
     double? progress,
     PhosphorIconData? iconData,
@@ -35,6 +39,7 @@ class GoalModel {
     completePercentage.value = progress ?? 0;
     icon.value = iconData ?? PhosphorIcons.fill.notePencil;
     this.name.text = name;
+    this.target.text = target;
   }
 
   setFinalDate(DateTime? date) => finalDate = date;
@@ -74,6 +79,7 @@ class GoalModel {
       id,
       name.text,
       description.text,
+      target.text,
       taskList: tasks,
       completePercentage: completePercentage.value,
       icon: icon.value,

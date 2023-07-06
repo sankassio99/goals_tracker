@@ -58,7 +58,7 @@ void main() {
       (WidgetTester tester) async {
     // arrange
     var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
+    var myGoal = MainGoal(myId, "title", "desc", "100");
     myGoal.tasks = [Task("title"), Task("title"), Task("title")];
 
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
@@ -76,7 +76,7 @@ void main() {
       (WidgetTester tester) async {
     // arrange
     var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
+    var myGoal = MainGoal(myId, "title", "desc", "100");
     myGoal.tasks = [];
 
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
@@ -97,7 +97,7 @@ void main() {
       (WidgetTester tester) async {
     // arrange
     var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
+    var myGoal = MainGoal(myId, "title", "desc", "100");
     myGoal.tasks = [Task("title"), Task("title"), Task("title")];
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
 
@@ -130,7 +130,7 @@ void main() {
     var myTask2 = Task("myTask2");
     myTask2.markAsCompleted();
     var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
+    var myGoal = MainGoal(myId, "title", "desc", "100");
     myGoal.tasks = [myTask1, myTask2];
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
 
@@ -153,7 +153,7 @@ void main() {
     //#region Arrange(Given)
 
     var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
+    var myGoal = MainGoal(myId, "title", "desc", "100");
     myGoal.tasks = [Task("title1"), Task("title2")];
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
 
@@ -182,7 +182,7 @@ void main() {
     //#region Arrange(Given)
 
     var myId = "3";
-    var myGoal = MainGoal(myId, "title", "desc");
+    var myGoal = MainGoal(myId, "title", "desc", "100");
     myGoal.tasks = [Task("title")];
     when(goalRepositoryMock.getById(myId)).thenAnswer((_) async => myGoal);
 
@@ -208,7 +208,7 @@ void main() {
   testWidgets('When is edit mode task list must be reorderable list view',
       (WidgetTester tester) async {
     // arrange
-    var myGoal = MainGoal("myId", "title", "desc");
+    var myGoal = MainGoal("myId", "title", "desc", "100");
     myGoal.tasks = [Task("task1"), Task("task2"), Task("task3")];
 
     when(goalRepositoryMock.getById(myGoal.id)).thenAnswer((_) async => myGoal);
@@ -228,7 +228,7 @@ void main() {
   testWidgets('When reorder first item to bottom must mantain order',
       (WidgetTester tester) async {
     // arrange
-    var myGoal = MainGoal("myId", "title", "desc");
+    var myGoal = MainGoal("myId", "title", "desc", "100");
     var task1 = Task("task1");
     var task2 = Task("task2");
     myGoal.tasks = [task1, task2];

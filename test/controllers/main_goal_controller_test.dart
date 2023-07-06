@@ -29,7 +29,7 @@ void main() {
     mainGoalController = MainGoalController(getGoalDetails, updateGoal);
     Get.parameters = {"goalId": goalId};
 
-    myGoal = MainGoal(goalId, "title", "desc");
+    myGoal = MainGoal(goalId, "title", "desc", "100");
     when(goalRepositoryMock.getById(goalId)).thenAnswer((_) async => myGoal);
   });
   group('Main Goal Controller should', () {

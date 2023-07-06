@@ -8,11 +8,13 @@ class MainGoal extends Goal {
   List<Task> tasks = [];
   PhosphorIconData? icon;
   DateTime? finalDate;
+  String target;
 
   MainGoal(
     super.id,
     super.title,
-    super.desc, {
+    super.desc,
+    this.target, {
     super.completePercentage,
     super.isCompleted,
     super.type,

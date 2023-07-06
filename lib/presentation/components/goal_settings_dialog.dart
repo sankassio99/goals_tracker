@@ -97,13 +97,22 @@ class GoalSettingsDialog extends StatelessWidget {
                   height: 18,
                 ),
                 DropdownFormField(
-                    goalTypeSelected: goalModel.meansureType.obs,
-                    goalTypes: [
-                      GoalMeansureType(GoalType.monetary),
-                      GoalMeansureType(GoalType.tasks),
-                      GoalMeansureType(GoalType.days),
-                    ],
-                    onSelected: goalModel.setMeansureType),
+                  goalTypeSelected: goalModel.meansureType.obs,
+                  goalTypes: [
+                    GoalMeansureType(GoalType.monetary),
+                    GoalMeansureType(GoalType.tasks),
+                    GoalMeansureType(GoalType.days),
+                  ],
+                  onSelected: goalModel.setMeansureType,
+                ),
+                const SizedBox(
+                  height: 18,
+                ),
+                FormFieldWidget(
+                  key: const Key("goalTarget"),
+                  label: "Target",
+                  controller: goalModel.target,
+                ),
               ],
             ),
           ),
@@ -157,7 +166,7 @@ class DropdownFormField extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
               underline: Container(),
               enableFeedback: false,
-              style: TextStyle(),
+              style: const TextStyle(),
               focusColor: Colors.transparent,
               value: goalTypeSelected.value.name,
               items: goalTypes

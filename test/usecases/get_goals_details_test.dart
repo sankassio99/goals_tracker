@@ -19,7 +19,7 @@ void main() {
   group('Get Goal Details usecase should', () {
     test('get goal details by id saved on repository', () async {
       //#region Arrange(Given)
-      var myGoal = MainGoal("1", "Buy a car", "");
+      var myGoal = MainGoal("1", "Buy a car", "", "100");
       goalRepositoryMock.save(myGoal);
 
       when(goalRepositoryMock.getById(myGoal.id))
