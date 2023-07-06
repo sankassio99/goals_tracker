@@ -1,3 +1,4 @@
+import 'package:goals_tracker/domain/entities/deposit_entry.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
@@ -6,6 +7,8 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
+  List<DepositEntry>? depositEntries = [];
+
   PhosphorIconData? icon;
   DateTime? finalDate;
   String target;
@@ -19,6 +22,7 @@ class MainGoal extends Goal {
     super.isCompleted,
     super.type,
     this.icon,
+    this.depositEntries,
     List<Task>? taskList,
     this.finalDate,
   }) : tasks = taskList ?? [];
