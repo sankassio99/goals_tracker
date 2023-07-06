@@ -32,6 +32,8 @@ class GoalModel {
     icon.value = iconData ?? PhosphorIcons.fill.notePencil;
   }
 
+  setFinalDate(DateTime? date) => finalDate = date;
+
   addSubGoal(GoalModel subGoal) {
     subGoals.add(subGoal);
   }
@@ -55,12 +57,15 @@ class GoalModel {
   static toModel(MainGoal goal) {
     List<TaskModel> tasks = _mapToTaskModelList(goal.tasks);
 
-    return GoalModel(goal.id,
-        description: goal.desc,
-        name: goal.title,
-        taskList: tasks,
-        progress: goal.completePercentage,
-        iconData: goal.icon);
+    return GoalModel(
+      goal.id,
+      description: goal.desc,
+      name: goal.title,
+      taskList: tasks,
+      progress: goal.completePercentage,
+      iconData: goal.icon,
+      finalDate: goal.finalDate,
+    );
   }
 
   static List<TaskModel> _mapToTaskModelList(List<Task> tasks) {

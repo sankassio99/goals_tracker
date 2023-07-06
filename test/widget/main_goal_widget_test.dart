@@ -240,6 +240,50 @@ void main() {
   });
 
   testWidgets(
+      'When tap in ready button on dialog settings must update final date goal',
+      (WidgetTester tester) async {
+    // arrange
+
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    var dateNow = DateTime.now();
+    var dateTap = (dateNow.day + 1).toString();
+    var newFinalDate = DateTime(dateNow.year, dateNow.month, dateNow.day + 1);
+
+    // act
+    var dateInput = find.byKey(const Key("goalFinalDate"));
+    await tester.tap(dateInput);
+    await tester.pumpAndSettle();
+
+    var dateSelected = find.text(dateTap);
+    await tester.tap(dateSelected);
+    await tester.pumpAndSettle();
+
+    var confirmButton = find.text('OK');
+    await tester.tap(confirmButton);
+    await tester.pumpAndSettle();
+
+    var readyButton = find.byKey(const Key("readyEditing"));
+    await tester.tap(readyButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var matcher = predicate<MainGoal>((goal) {
+      expect(goal.id, mainGoal.id);
+      expect(goal.finalDate, newFinalDate);
+      return true;
+    });
+    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+  });
+
+  testWidgets(
       'When come back from dialog settings the goal must be with new title value',
       (WidgetTester tester) async {
     // arrange
