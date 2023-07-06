@@ -131,6 +131,7 @@ class DepositEntriesWidget extends StatelessWidget {
                         key: const Key("addDepositEntryDialog"),
                         child: Container(
                           width: 400,
+                          height: 300,
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(13),
