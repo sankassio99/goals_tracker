@@ -128,7 +128,7 @@ void main() {
       (WidgetTester tester) async {
     // arrange
     var goal1 = MainGoal("1", "title", "desc", "100",
-        icon: PhosphorIcons.fill.notePencil);
+        icon: PhosphorIcons.regular.target);
     List<MainGoal> mainGoalList = [goal1];
 
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);

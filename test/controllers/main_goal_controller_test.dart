@@ -193,7 +193,7 @@ void main() {
       //#endregion
 
       //#region Act(When)
-      var selectedIcon = PhosphorIcons.fill.notePencil.obs;
+      var selectedIcon = PhosphorIcons.regular.target.obs;
       mainGoalController.updateIcon(selectedIcon);
 
       //#endregion

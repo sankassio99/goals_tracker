@@ -19,7 +19,7 @@ class GoalModel {
   RxList<TaskModel> tasks = RxList<TaskModel>();
   RxDouble completeProgress = 0.0.obs;
   Rx<PhosphorIconData> icon =
-      Rx<PhosphorIconData>(PhosphorIcons.fill.notePencil);
+      Rx<PhosphorIconData>(PhosphorIcons.regular.target);
 
   DateTime? finalDate;
   GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
@@ -43,7 +43,7 @@ class GoalModel {
     tasks.value = taskList ?? [];
     depositEntries.value = deposits ?? [];
     completeProgress.value = progress ?? 0;
-    icon.value = iconData ?? PhosphorIcons.fill.notePencil;
+    icon.value = iconData ?? PhosphorIcons.regular.target;
     this.name.text = name;
     this.target.text = target;
   }
