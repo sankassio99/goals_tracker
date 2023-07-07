@@ -27,6 +27,7 @@ class GoalSettingsDialog extends StatelessWidget {
       child: Scaffold(
         appBar: MyAppBar(
           title: "Goals settings",
+          backgroundColor: Theme.of(context).primaryColor,
           actions: [
             TextButton(
               key: const Key("readyEditing"),
@@ -37,7 +38,7 @@ class GoalSettingsDialog extends StatelessWidget {
               child: Text(
                 "READY",
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSecondary,
+                  color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),

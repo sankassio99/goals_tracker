@@ -27,6 +27,7 @@ class ProgressBar extends StatelessWidget {
               "${goalModel.completeProgress.value * 100}%",
               style: const TextStyle(
                 color: Colors.black87,
+                fontWeight: FontWeight.bold,
               ),
             ),
             barRadius: const Radius.circular(8),
