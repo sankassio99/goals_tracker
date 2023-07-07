@@ -8,7 +8,7 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
-  List<DepositEntry>? depositEntries = [];
+  List<DepositEntry> depositEntries = [];
 
   PhosphorIconData? icon;
   DateTime? finalDate;
@@ -23,10 +23,13 @@ class MainGoal extends Goal {
     super.isCompleted,
     super.type,
     this.icon,
-    this.depositEntries,
     List<Task>? taskList,
+    List<DepositEntry>? deposits,
     this.finalDate,
-  }) : tasks = taskList ?? [];
+  }) {
+    tasks = taskList ?? [];
+    depositEntries = deposits ?? [];
+  }
 
   @override
   double getCompletePercentage() {
@@ -79,7 +82,7 @@ class MainGoal extends Goal {
       // 'icon': icon?.toJson(),
       'finalDate': finalDate?.toIso8601String(),
       'tasks': tasks.map((task) => task.toJson()).toList(),
-      // 'depositEntries': depositEntries?.map((entry) => entry.toJson()).toList(),
+      'depositEntries': depositEntries?.map((entry) => entry.toJson()).toList(),
     };
   }
 
@@ -103,12 +106,12 @@ class MainGoal extends Goal {
         tasks.add(Task.fromJson(taskJson));
       }
     }
-    // if (json['depositEntries'] != null) {
-    //   depositEntries = [];
-    //   for (var entryJson in json['depositEntries']) {
-    //     depositEntries.add(DepositEntry.fromJson(entryJson));
-    //   }
-    // }
+    if (json['depositEntries'] != null) {
+      depositEntries = [];
+      for (var entryJson in json['depositEntries']) {
+        depositEntries.add(DepositEntry.fromJson(entryJson));
+      }
+    }
   }
 
   static GoalType getGoalType(String value) {

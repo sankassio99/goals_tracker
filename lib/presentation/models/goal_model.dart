@@ -109,7 +109,7 @@ class GoalModel {
       icon: icon.value,
       finalDate: finalDate,
       type: meansureType.type,
-      depositEntries: newDepositEntries,
+      deposits: newDepositEntries,
     );
   }
 
