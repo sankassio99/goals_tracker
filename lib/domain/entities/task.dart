@@ -20,4 +20,11 @@ class Task {
       'isCompleted': isCompleted,
     };
   }
+
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      json['title'],
+      isCompleted: json['isCompleted'] ?? false,
+    );
+  }
 }

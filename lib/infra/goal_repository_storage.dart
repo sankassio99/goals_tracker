@@ -17,7 +17,6 @@ class GoalRepositoryStorage implements IGoalRepository {
   void save(Goal goal) {
     // ignore: avoid_print
     print("SAVING NEW GOAL ON STORAGE: ${goal.id}");
-    goalsData.add(goal);
     _localStorage[goal.id.toString()] = jsonEncode(goal.toJson());
   }
 
@@ -31,15 +30,18 @@ class GoalRepositoryStorage implements IGoalRepository {
   @override
   void update(Goal goal) {
     // ignore: avoid_print
-    print("UPDATING GOAL");
-    var goalIndex = goalsData.indexWhere((data) => data.id == goal.id);
-    goalsData[goalIndex] = goal;
+    print("UPDATING GOAL ON STORAGE ${goal.id}");
+    _localStorage[goal.id.toString()] = jsonEncode(goal.toJson());
   }
 
   @override
   Future<MainGoal> getById(String id) async {
     // ignore: avoid_print
-    print("GETTING BY ID:$id");
-    return goalsData.firstWhere((data) => data.id == id) as MainGoal;
+    print("GETTING BY ID ON STORAGE: $id");
+
+    var goalStorage = _localStorage[id.toString()];
+    var goalJson = jsonDecode(goalStorage!);
+    MainGoal myGoal = MainGoal.fromJson(goalJson);
+    return myGoal;
   }
 }
