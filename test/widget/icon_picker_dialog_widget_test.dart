@@ -76,7 +76,7 @@ void main() {
   testWidgets('When dialog is loaded must show current icon selected',
       (tester) async {
     //#region Arrange(Given)
-    var model = GoalModel("", "100", iconData: PhosphorIcons.fill.notePencil);
+    var model = GoalModel("", "100", iconData: PhosphorIcons.regular.target);
     await tester.pumpWidget(
       MaterialApp(
         home: Scaffold(

@@ -40,23 +40,23 @@ ThemeData themeConfig() {
   return ThemeData(
     // Define the default brightness and colors.
     brightness: Brightness.light,
-    primaryColor: const Color(0xFF928163),
+    primaryColor: const Color(0xFF56B947),
     colorScheme: const ColorScheme(
-        brightness: Brightness.light,
         primary: Color(0xff14181b),
-        onPrimary: Color(0xfff1f4f8),
-        secondary: Color(0xff14181b),
-        onSecondary: Color.fromARGB(255, 102, 99, 146),
-        error: Color(0xFF928163),
+        secondary: Color(0xFF2C9F42), // Duolingo secondary color
+        error: Color(0xFFEF5350), // Duolingo error color
+        surface: Color(0xFF56B947), // Duolingo surface color
+        brightness: Brightness.light,
+        onPrimary: Color(0xFFF1F4F8),
+        onSecondary: Color(0xFF0079D3),
         onError: Color(0xFF928163),
-        background: Color(0xfff1f4f8),
+        background: Color(0xFFF1F4F8),
         onBackground: Color.fromARGB(255, 183, 183, 183),
-        surface: Color(0xFF928163),
         onSurface: Color.fromARGB(255, 119, 0, 8),
         outline: Colors.black12),
 
     // Define the default font family.
-    fontFamily: 'Poppins',
+    fontFamily: 'Nunito',
 
     useMaterial3: true,
     // Define the default `TextTheme`. Use this to specify the default

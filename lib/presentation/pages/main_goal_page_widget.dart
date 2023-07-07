@@ -20,6 +20,7 @@ class MainGoalPageWidget extends StatelessWidget {
       return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         appBar: MyAppBar(
+          backgroundColor: Theme.of(context).primaryColor,
           leading: IconButton(
             key: const Key("backIconButton"),
             icon: Icon(
@@ -78,6 +79,7 @@ class MainGoalPageWidget extends StatelessWidget {
         floatingActionButton:
             (controller.goalModel.value.meansureType.type == GoalType.tasks)
                 ? FloatingActionButton(
+                    backgroundColor: Theme.of(context).colorScheme.onSecondary,
                     key: const Key("addTaskButton"),
                     child: const Icon(Icons.add),
                     onPressed: () => controller.addTask(),

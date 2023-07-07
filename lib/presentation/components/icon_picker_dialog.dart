@@ -20,7 +20,7 @@ class IconPickerDialog extends StatelessWidget {
       onTap: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => PickerDialog(
-                currentIcon: currentIcon.value,
+                selectedIcon: currentIcon.value.obs,
               )),
       child: Obx(
         () => Icon(
@@ -35,17 +35,16 @@ class IconPickerDialog extends StatelessWidget {
 }
 
 class PickerDialog extends StatelessWidget {
-  final PhosphorIconData? currentIcon;
-  final Rx<PhosphorIconData> selectedIcon = PhosphorIcons.fill.notePencil.obs;
+  final Rx<PhosphorIconData> selectedIcon;
   final controller = Get.find<MainGoalController>();
 
   PickerDialog({
-    this.currentIcon,
+    required this.selectedIcon,
     super.key,
   });
 
   final List<PhosphorIconData> iconsData = [
-    PhosphorIcons.fill.notePencil,
+    PhosphorIcons.regular.target,
     PhosphorIcons.regular.airplaneTakeoff,
     PhosphorIcons.regular.alien,
     PhosphorIcons.regular.alignBottom,
@@ -70,7 +69,6 @@ class PickerDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    selectedIcon.value = currentIcon ?? PhosphorIcons.fill.notePencil;
     return AlertDialog(
       key: const Key("iconPickerDialog"),
       backgroundColor: Colors.white,

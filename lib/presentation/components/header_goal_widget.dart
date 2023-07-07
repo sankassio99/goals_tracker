@@ -94,10 +94,12 @@ class GoalTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Padding(
-          padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+        Container(
+          width: 42,
+          height: 48,
+          alignment: AlignmentDirectional.centerStart,
           child: IconPickerDialog(
             currentIcon: model.icon,
           ),
@@ -110,18 +112,19 @@ class GoalTitleWidget extends StatelessWidget {
           },
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
-            child: TextField(
+            child: TextFormField(
                 maxLines: 1,
                 key: const Key("titleInput"),
                 controller: model.name,
+                textAlignVertical: TextAlignVertical.center,
                 decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.all(12),
+                  contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
                   hintText: 'Goal name',
                   border: InputBorder.none,
                 ),
                 style: const TextStyle(
                   color: Colors.black87,
-                  fontSize: 25,
+                  fontSize: 24,
                   fontWeight: FontWeight.w800,
                 )),
           ),
