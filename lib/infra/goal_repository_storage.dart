@@ -6,12 +6,9 @@ import 'package:goals_tracker/domain/entities/main_goal.dart';
 // ignore: avoid_print
 
 class GoalRepositoryStorage implements IGoalRepository {
-  late List<Goal> goalsData;
   final Storage _localStorage = window.localStorage;
 
-  GoalRepositoryStorage() {
-    goalsData = [];
-  }
+  GoalRepositoryStorage();
 
   @override
   void save(Goal goal) {
@@ -23,7 +20,16 @@ class GoalRepositoryStorage implements IGoalRepository {
   @override
   Future<List<Goal>> getAll() async {
     // ignore: avoid_print
-    print("GETTING ALL");
+    print("GETTING ALL ON STORAGE");
+    List<Goal> goalsData = [];
+
+    var goalListStorage = _localStorage.values.toList();
+
+    for (var goalString in goalListStorage) {
+      MainGoal myGoal = MainGoal.fromJson(jsonDecode(goalString));
+      goalsData.add(myGoal);
+    }
+
     return goalsData;
   }
 
