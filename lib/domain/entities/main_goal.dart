@@ -79,7 +79,8 @@ class MainGoal extends Goal {
       'completePercentage': completePercentage,
       'isCompleted': isCompleted,
       'type': type.toString(),
-      // 'icon': icon?.toJson(),
+      'icon': icon?.codePoint.toString(),
+      'iconStyle': icon?.fontFamily.toString(),
       'finalDate': finalDate?.toIso8601String(),
       'tasks': tasks.map((task) => task.toJson()).toList(),
       'depositEntries': depositEntries?.map((entry) => entry.toJson()).toList(),
@@ -88,7 +89,7 @@ class MainGoal extends Goal {
 
   MainGoal.fromJson(Map<String, dynamic> json)
       : target = json['target'],
-        // icon = PhosphorIconData.fromJson(json['icon']),
+        icon = getIconFromJson(json['icon'], json['iconStyle']),
         finalDate = json['finalDate'] != null
             ? DateTime.parse(json['finalDate'])
             : null,
@@ -112,6 +113,18 @@ class MainGoal extends Goal {
         depositEntries.add(DepositEntry.fromJson(entryJson));
       }
     }
+  }
+
+  static PhosphorIconData? getIconFromJson(String? json, String? style) {
+    if (json != null && style != null) {
+      var fontStyle = style.replaceAll("Phosphor", "");
+      var iconData = PhosphorIconData(
+        int.parse(json),
+        fontStyle,
+      );
+      return iconData;
+    }
+    return null;
   }
 
   static GoalType getGoalType(String value) {
