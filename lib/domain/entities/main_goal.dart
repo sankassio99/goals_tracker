@@ -1,4 +1,6 @@
+import 'package:goals_tracker/domain/entities/deposit_entry.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -6,6 +8,8 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
+  List<DepositEntry> depositEntries = [];
+
   PhosphorIconData? icon;
   DateTime? finalDate;
   String target;
@@ -20,8 +24,12 @@ class MainGoal extends Goal {
     super.type,
     this.icon,
     List<Task>? taskList,
+    List<DepositEntry>? deposits,
     this.finalDate,
-  }) : tasks = taskList ?? [];
+  }) {
+    tasks = taskList ?? [];
+    depositEntries = deposits ?? [];
+  }
 
   @override
   double getCompletePercentage() {
@@ -59,5 +67,54 @@ class MainGoal extends Goal {
 
   List<Task> getTasks() {
     return tasks;
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'desc': desc,
+      'target': target,
+      'completePercentage': completePercentage,
+      'isCompleted': isCompleted,
+      'type': type.toString(),
+      // 'icon': icon?.toJson(),
+      'finalDate': finalDate?.toIso8601String(),
+      'tasks': tasks.map((task) => task.toJson()).toList(),
+      'depositEntries': depositEntries?.map((entry) => entry.toJson()).toList(),
+    };
+  }
+
+  MainGoal.fromJson(Map<String, dynamic> json)
+      : target = json['target'],
+        // icon = PhosphorIconData.fromJson(json['icon']),
+        finalDate = json['finalDate'] != null
+            ? DateTime.parse(json['finalDate'])
+            : null,
+        super(
+          json['id'],
+          json['title'],
+          json['desc'],
+          completePercentage: json['completePercentage'],
+          isCompleted: json['isCompleted'],
+          type: getGoalType(json['type']),
+        ) {
+    if (json['tasks'] != null) {
+      tasks = [];
+      for (var taskJson in json['tasks']) {
+        tasks.add(Task.fromJson(taskJson));
+      }
+    }
+    if (json['depositEntries'] != null) {
+      depositEntries = [];
+      for (var entryJson in json['depositEntries']) {
+        depositEntries.add(DepositEntry.fromJson(entryJson));
+      }
+    }
+  }
+
+  static GoalType getGoalType(String value) {
+    return GoalType.values.firstWhere((type) => type.toString() == value);
   }
 }

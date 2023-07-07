@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/domain/entities/deposit_entry.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
@@ -32,6 +33,7 @@ class GoalModel {
     String description = "",
     String name = "",
     List<TaskModel>? taskList,
+    List<DepositEntryModel>? deposits,
     double? progress,
     PhosphorIconData? iconData,
     this.finalDate,
@@ -39,6 +41,7 @@ class GoalModel {
     meansureType = GoalMeansureType(goalType);
     this.description.text = description;
     tasks.value = taskList ?? [];
+    depositEntries.value = deposits ?? [];
     completeProgress.value = progress ?? 0;
     icon.value = iconData ?? PhosphorIcons.fill.notePencil;
     this.name.text = name;
@@ -55,6 +58,10 @@ class GoalModel {
 
   static toModel(MainGoal goal) {
     List<TaskModel> tasks = _mapToTaskModelList(goal.tasks);
+    print(goal.depositEntries);
+    List<DepositEntryModel> depositEntriesModel = goal.depositEntries != null
+        ? _mapToDepositEntriesModelList(goal.depositEntries!)
+        : [];
 
     return GoalModel(
       goal.id,
@@ -66,7 +73,17 @@ class GoalModel {
       iconData: goal.icon,
       finalDate: goal.finalDate,
       goalType: goal.type,
+      deposits: depositEntriesModel,
     );
+  }
+
+  static List<DepositEntryModel> _mapToDepositEntriesModelList(
+      List<DepositEntry> deposits) {
+    List<DepositEntryModel> newDeposits = [];
+    for (var deposit in deposits) {
+      newDeposits.add(DepositEntryModel(deposit.value));
+    }
+    return newDeposits;
   }
 
   static List<TaskModel> _mapToTaskModelList(List<Task> tasks) {
@@ -77,8 +94,11 @@ class GoalModel {
     return newTasks;
   }
 
+  // TODO: Remove this mappers from here, please
   Goal toMainGoalEntity() {
     var tasks = _mapToTaskListEntity();
+    var newDepositEntries = _mapToDepositEntriesListEntity();
+
     return MainGoal(
       id,
       name.text,
@@ -89,7 +109,16 @@ class GoalModel {
       icon: icon.value,
       finalDate: finalDate,
       type: meansureType.type,
+      deposits: newDepositEntries,
     );
+  }
+
+  List<DepositEntry> _mapToDepositEntriesListEntity() {
+    List<DepositEntry> newDeposits = [];
+    for (var deposit in depositEntries) {
+      newDeposits.add(deposit.toEntity());
+    }
+    return newDeposits;
   }
 
   List<Task> _mapToTaskListEntity() {

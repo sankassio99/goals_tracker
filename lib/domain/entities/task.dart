@@ -13,4 +13,18 @@ class Task {
   void markOff() {
     isCompleted = false;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'isCompleted': isCompleted,
+    };
+  }
+
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      json['title'],
+      isCompleted: json['isCompleted'] ?? false,
+    );
+  }
 }

@@ -18,4 +18,6 @@ abstract class Goal {
   });
 
   double getCompletePercentage();
+
+  Map<String, dynamic> toJson();
 }
