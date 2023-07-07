@@ -94,7 +94,7 @@ class GoalTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           width: 42,
@@ -112,7 +112,7 @@ class GoalTitleWidget extends StatelessWidget {
           },
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
-            child: TextFormField(
+            child: TextField(
                 maxLines: 1,
                 key: const Key("titleInput"),
                 controller: model.name,
