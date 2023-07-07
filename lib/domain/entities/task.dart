@@ -13,4 +13,11 @@ class Task {
   void markOff() {
     isCompleted = false;
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'isCompleted': isCompleted,
+    };
+  }
 }

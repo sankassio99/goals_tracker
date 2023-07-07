@@ -64,4 +64,21 @@ class MainGoal extends Goal {
   List<Task> getTasks() {
     return tasks;
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'desc': desc,
+      'target': target,
+      'completePercentage': completePercentage,
+      'isCompleted': isCompleted,
+      'type': type.toString(),
+      // 'icon': icon?.toJson(),
+      'finalDate': finalDate?.toIso8601String(),
+      'tasks': tasks.map((task) => task.toJson()).toList(),
+      // 'depositEntries': depositEntries?.map((entry) => entry.toJson()).toList(),
+    };
+  }
 }

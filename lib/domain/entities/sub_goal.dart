@@ -40,4 +40,10 @@ class SubGoal extends Goal {
   List<Task> getTasks() {
     return tasks;
   }
+
+  @override
+  Map<String, dynamic> toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }
