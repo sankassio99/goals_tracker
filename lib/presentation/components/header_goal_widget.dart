@@ -112,21 +112,29 @@ class GoalTitleWidget extends StatelessWidget {
           },
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
-            child: TextField(
-                maxLines: 1,
-                key: const Key("titleInput"),
-                controller: model.name,
-                textAlignVertical: TextAlignVertical.center,
-                decoration: const InputDecoration(
-                  contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
-                  hintText: 'Goal name',
-                  border: InputBorder.none,
-                ),
-                style: const TextStyle(
-                  color: Colors.black87,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800,
-                )),
+            child: Text(
+              model.name.text,
+              style: const TextStyle(
+                color: Colors.black87,
+                fontSize: 24,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            // TextField(
+            //     maxLines: 1,
+            //     key: const Key("titleInput"),
+            //     controller: model.name,
+            //     textAlignVertical: TextAlignVertical.center,
+            //     decoration: const InputDecoration(
+            //       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
+            //       hintText: 'Goal name',
+            //       border: InputBorder.none,
+            //     ),
+            //     style: const TextStyle(
+            //       color: Colors.black87,
+            //       fontSize: 24,
+            //       fontWeight: FontWeight.w800,
+            //     )),
           ),
         ),
       ],
