@@ -29,7 +29,7 @@ class GoalModel {
   GoalModel(
     this.id,
     String target, {
-    GoalType goalType = GoalType.monetary,
+    GoalType goalType = GoalType.tasks,
     String description = "",
     String name = "",
     List<TaskModel>? taskList,
