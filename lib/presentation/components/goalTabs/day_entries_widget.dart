@@ -48,12 +48,6 @@ class DayEntriesWidget extends StatelessWidget {
                                 style:
                                     Theme.of(context).textTheme.headlineSmall,
                               ),
-                              FormFieldWidget(
-                                key: const Key("dayValueInput"),
-                                label: "",
-                                controller: textEditingController,
-                                typeNumber: true,
-                              ),
                               DateFormField(
                                   selectedDate: DateTime.now().obs,
                                   onSelectDate: (date) {
@@ -110,17 +104,17 @@ class DayEntriesWidget extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Obx(
-            () => Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: controller.goalModel.value.dayEntries
-                  .map(
-                    (day) => DayEntryWidget(key: ValueKey(day), model: day),
-                  )
-                  .toList(),
-            ),
-          ),
+          // Obx(
+          //   () => Column(
+          //     mainAxisAlignment: MainAxisAlignment.start,
+          //     crossAxisAlignment: CrossAxisAlignment.start,
+          //     children: controller.goalModel.value.dayEntries
+          //         .map(
+          //           (day) => DayEntryWidget(key: ValueKey(day), model: day),
+          //         )
+          //         .toList(),
+          //   ),
+          // ),
         ],
       ),
     );
