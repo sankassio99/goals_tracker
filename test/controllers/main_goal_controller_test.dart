@@ -253,9 +253,9 @@ void main() {
       //#endregion
     });
 
-    test('get left days to complete goal as text formatted', () async {
+    test('get left days to complete goal', () async {
       //#region Arrange(Given)
-      myGoal.finalDate = DateTime(1, 1, 2024);
+      myGoal.finalDate = DateTime(2024, 1, 1);
       myGoal.type = GoalType.monetary;
 
       await mainGoalController.getGoal();
@@ -264,11 +264,12 @@ void main() {
 
       //#region Act(When)
 
-      var leftDaysFormatted = mainGoalController.getLeftDays();
+      var today = DateTime(2023, 12, 8);
+      var leftDaysFormatted = mainGoalController.getLeftDays(today);
 
       //#endregion
       //#region Assert(Then)
-      var matcher = "24 dias";
+      var matcher = 24;
       expect(leftDaysFormatted, matcher);
       //#endregion
     });
