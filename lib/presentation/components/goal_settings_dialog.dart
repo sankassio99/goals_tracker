@@ -93,6 +93,7 @@ class GoalSettingsDialog extends StatelessWidget {
                 ),
                 DateFormField(
                   key: const Key("goalFinalDate"),
+                  label: "Final Countdown",
                   selectedDate: goalModel.finalDate.obs,
                   onSelectDate: goalModel.setFinalDate,
                 ),
