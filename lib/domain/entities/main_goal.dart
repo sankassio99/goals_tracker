@@ -87,7 +87,8 @@ class MainGoal extends Goal {
       'iconStyle': icon?.fontFamily.toString(),
       'finalDate': finalDate?.toIso8601String(),
       'tasks': tasks.map((task) => task.toJson()).toList(),
-      'depositEntries': depositEntries?.map((entry) => entry.toJson()).toList(),
+      'depositEntries': depositEntries.map((entry) => entry.toJson()).toList(),
+      'dayEntries': dayEntries.map((entry) => entry.toJson()).toList(),
     };
   }
 
@@ -115,6 +116,12 @@ class MainGoal extends Goal {
       depositEntries = [];
       for (var entryJson in json['depositEntries']) {
         depositEntries.add(DepositEntry.fromJson(entryJson));
+      }
+    }
+    if (json['dayEntries'] != null) {
+      dayEntries = [];
+      for (var entryJson in json['dayEntries']) {
+        dayEntries.add(DayEntryModel.fromJson(entryJson));
       }
     }
   }
