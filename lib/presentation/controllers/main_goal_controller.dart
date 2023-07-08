@@ -70,4 +70,6 @@ class MainGoalController extends GetxController {
     var difference = finalDate?.difference(today).inDays;
     return difference;
   }
+
+  void addDayEntry(String text) {}
 }

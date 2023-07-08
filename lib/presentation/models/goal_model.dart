@@ -26,6 +26,8 @@ class GoalModel {
 
   RxList<DepositEntryModel> depositEntries = RxList<DepositEntryModel>();
 
+  var dayEntries;
+
   GoalModel(
     this.id,
     String target, {
@@ -58,7 +60,6 @@ class GoalModel {
 
   static toModel(MainGoal goal) {
     List<TaskModel> tasks = _mapToTaskModelList(goal.tasks);
-    print(goal.depositEntries);
     List<DepositEntryModel> depositEntriesModel = goal.depositEntries != null
         ? _mapToDepositEntriesModelList(goal.depositEntries!)
         : [];
