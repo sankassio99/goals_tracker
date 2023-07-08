@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
-import 'package:goals_tracker/presentation/components/date_form_field.dart';
-import 'package:goals_tracker/presentation/components/dropdown_form_field.dart';
-import 'package:goals_tracker/presentation/components/form_field_widget.dart';
+import 'package:goals_tracker/presentation/components/formFields/date_form_field.dart';
+import 'package:goals_tracker/presentation/components/formFields/dropdown_form_field.dart';
+import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
