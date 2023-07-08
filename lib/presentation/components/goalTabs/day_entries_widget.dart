@@ -11,7 +11,7 @@ class DayEntriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var dateTimeSelected;
+    DateTime dateTimeSelected = DateTime.now();
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 0),
@@ -49,9 +49,11 @@ class DayEntriesWidget extends StatelessWidget {
                                     Theme.of(context).textTheme.headlineSmall,
                               ),
                               DateFormField(
+                                  lastDate: DateTime.now(),
+                                  firstDate: DateTime(2020, 1, 1),
                                   selectedDate: DateTime.now().obs,
                                   onSelectDate: (date) {
-                                    dateTimeSelected = date;
+                                    dateTimeSelected = date ?? DateTime.now();
                                   }),
                               const SizedBox(
                                 height: 24,
@@ -104,17 +106,17 @@ class DayEntriesWidget extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          // Obx(
-          //   () => Column(
-          //     mainAxisAlignment: MainAxisAlignment.start,
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: controller.goalModel.value.dayEntries
-          //         .map(
-          //           (day) => DayEntryWidget(key: ValueKey(day), model: day),
-          //         )
-          //         .toList(),
-          //   ),
-          // ),
+          Obx(
+            () => Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: controller.goalModel.value.dayEntries
+                  .map(
+                    (day) => DayEntryWidget(key: ValueKey(day), model: day),
+                  )
+                  .toList(),
+            ),
+          ),
         ],
       ),
     );

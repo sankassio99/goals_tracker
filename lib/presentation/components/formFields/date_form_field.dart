@@ -5,7 +5,7 @@ class DateFormField extends StatelessWidget {
   final Rx<DateTime?> selectedDate;
   final Function(DateTime? date) onSelectDate;
   final String? label;
-  final DateTime? initialDate;
+  final DateTime? firstDate;
   final DateTime? lastDate;
 
   const DateFormField({
@@ -13,7 +13,7 @@ class DateFormField extends StatelessWidget {
     required this.selectedDate,
     required this.onSelectDate,
     this.label,
-    this.initialDate,
+    this.firstDate,
     this.lastDate,
   });
 
@@ -38,8 +38,8 @@ class DateFormField extends StatelessWidget {
           onTap: () async {
             selectedDate.value = await showDatePicker(
               context: context,
-              initialDate: initialDate ?? DateTime.now(),
-              firstDate: DateTime.now(),
+              initialDate: DateTime.now(),
+              firstDate: firstDate ?? DateTime.now(),
               lastDate: lastDate ?? DateTime(2026),
             );
             onSelectDate(selectedDate.value);
