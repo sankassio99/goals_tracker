@@ -293,5 +293,29 @@ void main() {
       expect(actual.first.value, today);
       //#endregion
     });
+
+    test(
+        'update goal progress when day entry value is added on goals type days',
+        () async {
+      //#region Arrange(Given)
+      var initialProgress = 0.0;
+      myGoal.completePercentage = initialProgress;
+      myGoal.target = "10";
+      myGoal.type = GoalType.days;
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+      var today = DateTime(2023, 12, 8);
+      mainGoalController.addDayEntry(today);
+
+      //#endregion
+      //#region Assert(Then)
+      var progress = mainGoalController.goalModel.value.completeProgress.value;
+      expect(progress, 0.1);
+      //#endregion
+    });
   });
 }
