@@ -4,6 +4,7 @@ import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class HeaderGoalWidget extends StatelessWidget {
   final GoalModel model;
@@ -18,7 +19,7 @@ class HeaderGoalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 213,
+      height: 229,
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
@@ -33,7 +34,50 @@ class HeaderGoalWidget extends StatelessWidget {
             Expanded(
                 flex: 3,
                 child: GoalDescWidget(controller: controller, model: model)),
-            Expanded(flex: 1, child: ProgressBar(goalModel: model)),
+            const SizedBox(
+              height: 8,
+            ),
+            Expanded(
+              flex: 3,
+              child: Container(
+                padding: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black12,
+                    width: 2.5,
+                  ),
+                  borderRadius: BorderRadius.circular(13),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      textBaseline: TextBaseline.alphabetic,
+                      children: [
+                        Icon(
+                          PhosphorIcons.bold.hourglass,
+                          size: 14,
+                          color: Colors.grey,
+                        ),
+                        const Text(
+                          "26 dias",
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    ProgressBar(goalModel: model),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -94,12 +138,13 @@ class GoalTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: [
         Container(
           width: 42,
           height: 48,
-          alignment: AlignmentDirectional.centerStart,
+          alignment: AlignmentDirectional.bottomStart,
           child: IconPickerDialog(
             currentIcon: model.icon,
           ),
@@ -112,29 +157,29 @@ class GoalTitleWidget extends StatelessWidget {
           },
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
-            child: Text(
-              model.name.text,
-              style: const TextStyle(
-                color: Colors.black87,
-                fontSize: 24,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            // TextField(
-            //     maxLines: 1,
-            //     key: const Key("titleInput"),
-            //     controller: model.name,
-            //     textAlignVertical: TextAlignVertical.center,
-            //     decoration: const InputDecoration(
-            //       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
-            //       hintText: 'Goal name',
-            //       border: InputBorder.none,
-            //     ),
-            //     style: const TextStyle(
-            //       color: Colors.black87,
-            //       fontSize: 24,
-            //       fontWeight: FontWeight.w800,
-            //     )),
+            // child: Text(
+            //   key: const Key("titleInput"),
+            //   model.name.text,
+            //   style: const TextStyle(
+            //     color: Colors.black87,
+            //     fontSize: 24,
+            //     fontWeight: FontWeight.w800,
+            //   ),
+            // ),
+            child: TextField(
+                maxLines: 1,
+                key: const Key("titleInput"),
+                controller: model.name,
+                textAlignVertical: TextAlignVertical.center,
+                decoration: const InputDecoration(
+                  hintText: 'Goal name',
+                  border: InputBorder.none,
+                ),
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                )),
           ),
         ),
       ],

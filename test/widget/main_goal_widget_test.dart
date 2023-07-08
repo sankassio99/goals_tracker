@@ -11,7 +11,6 @@ import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-
 import '../add_new_goal_test.mocks.dart';
 
 class MainGoalBindingFake extends Bindings {
@@ -82,36 +81,10 @@ void main() {
     await tester.pumpWidget(initMaterialApp(goalId: goalId2));
     // act
     await tester.pumpAndSettle();
-    var inputTitle = find.byKey(const Key("titleInput"));
 
     // assert
-    TextField inputTitleWidget = tester.widget(inputTitle);
-    expect(inputTitleWidget.controller!.text, title);
-  });
-
-  testWidgets('When focus out title must update goal',
-      (WidgetTester tester) async {
-    // arrange
-    await tester.pumpWidget(initMaterialApp());
-    var newTitle = "Teste";
-
-    // act
-    var inputTitle = find.byKey(const Key("titleInput"));
-    await tester.tap(inputTitle);
-    await tester.enterText(inputTitle, newTitle);
-
-    var inputDesc = find.byKey(const Key("descInput"));
-    await tester.tap(inputDesc);
-
-    await tester.pumpAndSettle();
-
-    // assert
-    var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, mainGoal.id);
-      expect(goal.title, newTitle);
-      return true;
-    });
-    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+    var titleFinder = find.text(title);
+    expect(titleFinder, findsOneWidget);
   });
 
   testWidgets('When focus out description input must update goal',
@@ -204,6 +177,31 @@ void main() {
     expect(title.controller.text, mainGoal.title);
     expect(description.controller.text, mainGoal.desc);
     // expect(desc, findsOneWidget);
+  });
+
+  testWidgets('When focus out title must update goal',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(initMaterialApp());
+    var newTitle = "Teste";
+
+    // act
+    var inputTitle = find.byKey(const Key("titleInput"));
+    await tester.tap(inputTitle);
+    await tester.enterText(inputTitle, newTitle);
+
+    var inputDesc = find.byKey(const Key("descInput"));
+    await tester.tap(inputDesc);
+
+    await tester.pumpAndSettle();
+
+    // assert
+    var matcher = predicate<MainGoal>((goal) {
+      expect(goal.id, mainGoal.id);
+      expect(goal.title, newTitle);
+      return true;
+    });
+    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
   });
 
   testWidgets('When tap in ready button on dialog settings must update goal',
