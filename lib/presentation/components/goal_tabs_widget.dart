@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
+import 'package:goals_tracker/presentation/components/goalTabs/day_entries_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/deposit_entries_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/calendar_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/tasks_widget.dart';
@@ -80,6 +81,24 @@ class GoalTabsBar extends StatelessWidget {
       ];
     }
 
+    if (meansureType.type == GoalType.days) {
+      length = 2;
+      tabs = [
+        Tab(
+          key: const Key("daysIconTab"),
+          icon: Icon(PhosphorIcons.bold.sun),
+        ),
+        Tab(
+            key: const Key("calendarIconTab"),
+            icon: Icon(PhosphorIcons.bold.calendar)),
+      ];
+      widgets = [
+        DayEntriesWidget(
+          key: const Key("myDaysTab"),
+        ),
+        GoalCalendarWidget(key: const Key("myCalendarTab")),
+      ];
+    }
     // List<Tab> tabs = [
     //   Tab(key: const Key("tasksIconTab"), icon: Icon(PhosphorIcons.bold.check)),
     //   Tab(
