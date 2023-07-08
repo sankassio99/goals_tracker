@@ -76,6 +76,37 @@ void main() {
     //#endregion
   });
 
+  testWidgets('When goal is days type must show days entry tab and calendar',
+      (tester) async {
+    //#region Arrange(Given)
+    var myGoal = MainGoal("myId", "title", "desc", "100");
+
+    myGoal.type = GoalType.days;
+
+    await tester.pumpWidget(initMainGoalPage(myGoal, goalRepositoryMock));
+    await tester.pumpAndSettle();
+    //#endregion
+
+    //#region Act(When)
+    var daysIconTab = find.byKey(const Key("daysIconTab"));
+    await tester.tap(daysIconTab);
+    await tester.pumpAndSettle();
+    //#endregion
+
+    //#region Assert(Then)
+
+    var myDaysTab = find.byKey(const Key("myDaysTab"));
+    expect(myDaysTab, findsOneWidget);
+
+    var calendarIconTab = find.byKey(const Key("calendarIconTab"));
+    expect(calendarIconTab, findsOneWidget);
+
+    var tasksIconTab = find.byKey(const Key("tasksIconTab"));
+    expect(tasksIconTab, findsNothing);
+
+    //#endregion
+  });
+
   testWidgets(
       'When tap in add deposit entry button must show dialog to add deposit',
       (tester) async {
