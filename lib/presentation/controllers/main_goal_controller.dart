@@ -71,5 +71,5 @@ class MainGoalController extends GetxController {
     return difference;
   }
 
-  void addDayEntry(String text) {}
+  void addDayEntry(DateTime? dateTime) {}
 }

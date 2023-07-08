@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/formFields/date_form_field.dart';
-import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/models/day_entry_model.dart';
 
 class DayEntriesWidget extends StatelessWidget {
   final controller = Get.find<MainGoalController>();
@@ -11,7 +11,7 @@ class DayEntriesWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var textEditingController = TextEditingController(text: "");
+    var dateTimeSelected;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(18.0, 24.0, 18.0, 0),
@@ -51,7 +51,7 @@ class DayEntriesWidget extends StatelessWidget {
                               DateFormField(
                                   selectedDate: DateTime.now().obs,
                                   onSelectDate: (date) {
-                                    print(date);
+                                    dateTimeSelected = date;
                                   }),
                               const SizedBox(
                                 height: 24,
@@ -71,8 +71,8 @@ class DayEntriesWidget extends StatelessWidget {
                                   TextButton(
                                       onPressed: () {
                                         Navigator.pop(context);
-                                        controller.addDayEntry(
-                                            textEditingController.text);
+                                        controller
+                                            .addDayEntry(dateTimeSelected);
                                       },
                                       child: const Text(
                                         key: Key("confirmAddDay"),
@@ -144,9 +144,7 @@ class DayEntryWidget extends StatelessWidget {
       ),
       width: double.infinity,
       alignment: AlignmentDirectional.centerStart,
-      child: Text("model.value.toStringAsFixed(2)"),
+      child: Text(model.value.toIso8601String()),
     );
   }
 }
-
-class DayEntryModel {}

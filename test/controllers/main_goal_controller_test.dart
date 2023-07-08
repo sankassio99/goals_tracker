@@ -273,5 +273,25 @@ void main() {
       expect(leftDaysFormatted, matcher);
       //#endregion
     });
+
+    test('add new day entry', () async {
+      //#region Arrange(Given)
+      myGoal.type = GoalType.days;
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+      var today = DateTime(2023, 12, 8);
+      mainGoalController.addDayEntry(today);
+
+      //#endregion
+      //#region Assert(Then)
+      var actual = mainGoalController.goalModel.value.dayEntries;
+      expect(actual.length, 1);
+      expect(actual.first.value, today);
+      //#endregion
+    });
   });
 }

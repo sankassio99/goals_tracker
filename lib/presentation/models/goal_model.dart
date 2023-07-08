@@ -5,6 +5,7 @@ import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:goals_tracker/presentation/models/day_entry_model.dart';
 import 'package:goals_tracker/presentation/models/deposit_entry_model.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/task_model.dart';
@@ -25,8 +26,7 @@ class GoalModel {
   GoalMeansureType meansureType = GoalMeansureType(GoalType.tasks);
 
   RxList<DepositEntryModel> depositEntries = RxList<DepositEntryModel>();
-
-  var dayEntries;
+  RxList<DayEntryModel> dayEntries = RxList<DayEntryModel>();
 
   GoalModel(
     this.id,

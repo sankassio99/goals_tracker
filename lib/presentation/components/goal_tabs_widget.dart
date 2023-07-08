@@ -99,23 +99,6 @@ class GoalTabsBar extends StatelessWidget {
         GoalCalendarWidget(key: const Key("myCalendarTab")),
       ];
     }
-    // List<Tab> tabs = [
-    //   Tab(key: const Key("tasksIconTab"), icon: Icon(PhosphorIcons.bold.check)),
-    //   Tab(
-    //       key: const Key("calendarIconTab"),
-    //       icon: Icon(PhosphorIcons.bold.calendar)),
-    //   Tab(
-    //       key: const Key("depositsIconTab"),
-    //       icon: Icon(PhosphorIcons.bold.money)),
-    // ];
-
-    // List<Widget> widgets = [
-    //   TasksWidget(key: const Key("myTasksTab"), tasks: model.tasks),
-    //   GoalCalendarWidget(key: const Key("myCalendarTab")),
-    //   DepositEntriesWidget(
-    //     key: const Key("myDepositsTab"),
-    //   )
-    // ];
 
     return TabsModel(length, tabs, widgets);
   }
