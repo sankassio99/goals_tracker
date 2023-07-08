@@ -317,5 +317,32 @@ void main() {
       expect(progress, 0.1);
       //#endregion
     });
+
+    test('update goal when new day entry is added', () async {
+      //#region Arrange(Given)
+      var initialProgress = 0.0;
+      myGoal.completePercentage = initialProgress;
+      myGoal.target = "10";
+      myGoal.type = GoalType.days;
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+      var today = DateTime(2023, 12, 8);
+      mainGoalController.addDayEntry(today);
+
+      //#endregion
+      //#region Assert(Then)
+
+      var matcher = predicate<MainGoal>((goal) {
+        expect(goal.id, goalId);
+        expect(goal.dayEntries.first.value, today);
+        return true;
+      });
+      verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+      //#endregion
+    });
   });
 }

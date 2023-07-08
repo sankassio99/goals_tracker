@@ -36,6 +36,7 @@ class GoalModel {
     String name = "",
     List<TaskModel>? taskList,
     List<DepositEntryModel>? deposits,
+    List<DayEntryModel>? days,
     double? progress,
     PhosphorIconData? iconData,
     this.finalDate,
@@ -44,6 +45,7 @@ class GoalModel {
     this.description.text = description;
     tasks.value = taskList ?? [];
     depositEntries.value = deposits ?? [];
+    dayEntries.value = days ?? [];
     completeProgress.value = progress ?? 0;
     icon.value = iconData ?? PhosphorIcons.regular.target;
     this.name.text = name;
@@ -75,6 +77,7 @@ class GoalModel {
       finalDate: goal.finalDate,
       goalType: goal.type,
       deposits: depositEntriesModel,
+      days: goal.dayEntries,
     );
   }
 
@@ -111,6 +114,7 @@ class GoalModel {
       finalDate: finalDate,
       type: meansureType.type,
       deposits: newDepositEntries,
+      days: dayEntries,
     );
   }
 
