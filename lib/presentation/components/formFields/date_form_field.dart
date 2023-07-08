@@ -4,11 +4,13 @@ import 'package:get/get.dart';
 class DateFormField extends StatelessWidget {
   final Rx<DateTime?> selectedDate;
   final Function(DateTime? date) onSelectDate;
+  final String? label;
 
   const DateFormField({
     super.key,
     required this.selectedDate,
     required this.onSelectDate,
+    this.label,
   });
 
   @override
@@ -20,7 +22,7 @@ class DateFormField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
           child: Text(
-            "Final Countdown",
+            label ?? "",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
