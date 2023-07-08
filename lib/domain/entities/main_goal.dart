@@ -3,12 +3,14 @@ import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/domain/entities/sub_goal.dart';
 import 'package:goals_tracker/domain/entities/task.dart';
+import 'package:goals_tracker/presentation/models/day_entry_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class MainGoal extends Goal {
   List<SubGoal> subGoals = [];
   List<Task> tasks = [];
   List<DepositEntry> depositEntries = [];
+  List<DayEntryModel> dayEntries = [];
 
   PhosphorIconData? icon;
   DateTime? finalDate;
@@ -25,10 +27,12 @@ class MainGoal extends Goal {
     this.icon,
     List<Task>? taskList,
     List<DepositEntry>? deposits,
+    List<DayEntryModel>? days,
     this.finalDate,
   }) {
     tasks = taskList ?? [];
     depositEntries = deposits ?? [];
+    dayEntries = days ?? [];
   }
 
   @override
