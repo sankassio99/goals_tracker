@@ -39,47 +39,66 @@ class HeaderGoalWidget extends StatelessWidget {
             ),
             Expanded(
               flex: 3,
-              child: Container(
-                padding: EdgeInsets.all(8),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black12,
-                    width: 2.5,
-                  ),
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Icon(
-                          PhosphorIcons.bold.hourglass,
-                          size: 14,
-                          color: Colors.grey,
-                        ),
-                        const Text(
-                          "26 dias",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    ProgressBar(goalModel: model),
-                  ],
-                ),
-              ),
+              child: ProgressBarBox(model: model),
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ProgressBarBox extends StatelessWidget {
+  final controller = Get.find<MainGoalController>();
+
+  ProgressBarBox({
+    super.key,
+    required this.model,
+  });
+
+  final GoalModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black12,
+          width: 2.5,
+        ),
+        borderRadius: BorderRadius.circular(13),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Icon(
+                PhosphorIcons.bold.hourglass,
+                size: 14,
+                color: Colors.grey,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
+                child: Text(
+                  "${controller.getLeftDays(DateTime.now())} days",
+                  textAlign: TextAlign.start,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          ProgressBar(goalModel: model),
+        ],
       ),
     );
   }

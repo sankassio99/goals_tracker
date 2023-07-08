@@ -64,4 +64,10 @@ class MainGoalController extends GetxController {
     goalModel.value.updateProgress();
     updateGoal();
   }
+
+  int? getLeftDays(DateTime today) {
+    var finalDate = goalModel.value.finalDate;
+    var difference = finalDate?.difference(today).inDays;
+    return difference;
+  }
 }
