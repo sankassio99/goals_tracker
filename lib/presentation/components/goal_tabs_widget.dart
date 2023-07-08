@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
-import 'package:goals_tracker/presentation/components/deposit_entries_widget.dart';
+import 'package:goals_tracker/presentation/components/goalTabs/day_entries_widget.dart';
+import 'package:goals_tracker/presentation/components/goalTabs/deposit_entries_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/calendar_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/tasks_widget.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
@@ -80,23 +81,24 @@ class GoalTabsBar extends StatelessWidget {
       ];
     }
 
-    // List<Tab> tabs = [
-    //   Tab(key: const Key("tasksIconTab"), icon: Icon(PhosphorIcons.bold.check)),
-    //   Tab(
-    //       key: const Key("calendarIconTab"),
-    //       icon: Icon(PhosphorIcons.bold.calendar)),
-    //   Tab(
-    //       key: const Key("depositsIconTab"),
-    //       icon: Icon(PhosphorIcons.bold.money)),
-    // ];
-
-    // List<Widget> widgets = [
-    //   TasksWidget(key: const Key("myTasksTab"), tasks: model.tasks),
-    //   GoalCalendarWidget(key: const Key("myCalendarTab")),
-    //   DepositEntriesWidget(
-    //     key: const Key("myDepositsTab"),
-    //   )
-    // ];
+    if (meansureType.type == GoalType.days) {
+      length = 2;
+      tabs = [
+        Tab(
+          key: const Key("daysIconTab"),
+          icon: Icon(PhosphorIcons.bold.sun),
+        ),
+        Tab(
+            key: const Key("calendarIconTab"),
+            icon: Icon(PhosphorIcons.bold.calendar)),
+      ];
+      widgets = [
+        DayEntriesWidget(
+          key: const Key("myDaysTab"),
+        ),
+        GoalCalendarWidget(key: const Key("myCalendarTab")),
+      ];
+    }
 
     return TabsModel(length, tabs, widgets);
   }

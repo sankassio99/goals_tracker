@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:goals_tracker/presentation/components/form_field_widget.dart';
+import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/deposit_entry_model.dart';
 
@@ -44,7 +44,7 @@ class DepositEntriesWidget extends StatelessWidget {
                           child: Column(
                             children: [
                               Text(
-                                "What is the value?",
+                                "What's the value?",
                                 style:
                                     Theme.of(context).textTheme.headlineSmall,
                               ),

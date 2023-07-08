@@ -4,11 +4,17 @@ import 'package:get/get.dart';
 class DateFormField extends StatelessWidget {
   final Rx<DateTime?> selectedDate;
   final Function(DateTime? date) onSelectDate;
+  final String? label;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
 
   const DateFormField({
     super.key,
     required this.selectedDate,
     required this.onSelectDate,
+    this.label,
+    this.firstDate,
+    this.lastDate,
   });
 
   @override
@@ -20,7 +26,7 @@ class DateFormField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(2, 0, 0, 5),
           child: Text(
-            "Final Countdown",
+            label ?? "",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -31,10 +37,11 @@ class DateFormField extends StatelessWidget {
         InkWell(
           onTap: () async {
             selectedDate.value = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now(),
-                lastDate: DateTime(2025));
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: firstDate ?? DateTime.now(),
+              lastDate: lastDate ?? DateTime(2026),
+            );
             onSelectDate(selectedDate.value);
           },
           child: Container(
