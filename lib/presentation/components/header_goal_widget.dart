@@ -138,12 +138,13 @@ class GoalTitleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.max,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
       children: [
         Container(
           width: 42,
           height: 48,
-          alignment: AlignmentDirectional.centerStart,
+          alignment: AlignmentDirectional.bottomStart,
           child: IconPickerDialog(
             currentIcon: model.icon,
           ),
@@ -156,30 +157,29 @@ class GoalTitleWidget extends StatelessWidget {
           },
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
-            child: Text(
-              key: const Key("titleInput"),
-              model.name.text,
-              style: const TextStyle(
-                color: Colors.black87,
-                fontSize: 24,
-                fontWeight: FontWeight.w800,
-              ),
-            ),
-            // child: TextField(
-            //     maxLines: 1,
-            //     key: const Key("titleInput"),
-            //     controller: model.name,
-            //     textAlignVertical: TextAlignVertical.center,
-            //     decoration: const InputDecoration(
-            //       contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 11),
-            //       hintText: 'Goal name',
-            //       border: InputBorder.none,
-            //     ),
-            //     style: const TextStyle(
-            //       color: Colors.black87,
-            //       fontSize: 24,
-            //       fontWeight: FontWeight.w800,
-            //     )),
+            // child: Text(
+            //   key: const Key("titleInput"),
+            //   model.name.text,
+            //   style: const TextStyle(
+            //     color: Colors.black87,
+            //     fontSize: 24,
+            //     fontWeight: FontWeight.w800,
+            //   ),
+            // ),
+            child: TextField(
+                maxLines: 1,
+                key: const Key("titleInput"),
+                controller: model.name,
+                textAlignVertical: TextAlignVertical.center,
+                decoration: const InputDecoration(
+                  hintText: 'Goal name',
+                  border: InputBorder.none,
+                ),
+                style: const TextStyle(
+                  color: Colors.black87,
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                )),
           ),
         ),
       ],

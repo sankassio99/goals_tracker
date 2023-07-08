@@ -179,6 +179,31 @@ void main() {
     // expect(desc, findsOneWidget);
   });
 
+  testWidgets('When focus out title must update goal',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(initMaterialApp());
+    var newTitle = "Teste";
+
+    // act
+    var inputTitle = find.byKey(const Key("titleInput"));
+    await tester.tap(inputTitle);
+    await tester.enterText(inputTitle, newTitle);
+
+    var inputDesc = find.byKey(const Key("descInput"));
+    await tester.tap(inputDesc);
+
+    await tester.pumpAndSettle();
+
+    // assert
+    var matcher = predicate<MainGoal>((goal) {
+      expect(goal.id, mainGoal.id);
+      expect(goal.title, newTitle);
+      return true;
+    });
+    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+  });
+
   testWidgets('When tap in ready button on dialog settings must update goal',
       (WidgetTester tester) async {
     // arrange
