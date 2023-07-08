@@ -65,7 +65,9 @@ class GoalTabsBar extends StatelessWidget {
         DepositEntriesWidget(
           key: const Key("myDepositsTab"),
         ),
-        GoalCalendarWidget(key: const Key("myCalendarTab")),
+        GoalCalendarWidget(
+          key: const Key("myCalendarTab"),
+        ),
       ];
     }
 
@@ -96,7 +98,10 @@ class GoalTabsBar extends StatelessWidget {
         DayEntriesWidget(
           key: const Key("myDaysTab"),
         ),
-        GoalCalendarWidget(key: const Key("myCalendarTab")),
+        GoalCalendarWidget(
+          key: const Key("myCalendarTab"),
+          days: model.dayEntries.map((entry) => entry.value).toList(),
+        ),
       ];
     }
 
