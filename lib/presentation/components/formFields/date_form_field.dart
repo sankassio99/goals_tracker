@@ -5,12 +5,16 @@ class DateFormField extends StatelessWidget {
   final Rx<DateTime?> selectedDate;
   final Function(DateTime? date) onSelectDate;
   final String? label;
+  final DateTime? initialDate;
+  final DateTime? lastDate;
 
   const DateFormField({
     super.key,
     required this.selectedDate,
     required this.onSelectDate,
     this.label,
+    this.initialDate,
+    this.lastDate,
   });
 
   @override
@@ -33,10 +37,11 @@ class DateFormField extends StatelessWidget {
         InkWell(
           onTap: () async {
             selectedDate.value = await showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime.now(),
-                lastDate: DateTime(2025));
+              context: context,
+              initialDate: initialDate ?? DateTime.now(),
+              firstDate: DateTime.now(),
+              lastDate: lastDate ?? DateTime(2026),
+            );
             onSelectDate(selectedDate.value);
           },
           child: Container(
