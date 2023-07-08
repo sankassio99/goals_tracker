@@ -252,5 +252,25 @@ void main() {
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
       //#endregion
     });
+
+    test('get left days to complete goal as text formatted', () async {
+      //#region Arrange(Given)
+      myGoal.finalDate = DateTime(1, 1, 2024);
+      myGoal.type = GoalType.monetary;
+
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+
+      var leftDaysFormatted = mainGoalController.getLeftDays();
+
+      //#endregion
+      //#region Assert(Then)
+      var matcher = "24 dias";
+      expect(leftDaysFormatted, matcher);
+      //#endregion
+    });
   });
 }
