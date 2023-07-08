@@ -1,4 +1,5 @@
 import 'dart:convert';
+// ignore: avoid_web_libraries_in_flutter
 import 'dart:html';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
