@@ -111,6 +111,7 @@ class GoalModel {
       finalDate: finalDate,
       type: meansureType.type,
       deposits: newDepositEntries,
+      days: dayEntries,
     );
   }
 
