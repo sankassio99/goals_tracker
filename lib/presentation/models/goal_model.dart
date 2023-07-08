@@ -148,6 +148,12 @@ class GoalModel {
         completeProgress.value = double.parse(progress);
       }
     }
+
+    if (meansureType.type == GoalType.days) {
+      var targetValue = double.parse(target.text);
+      var progress = (dayEntries.length / targetValue).toStringAsFixed(2);
+      completeProgress.value = double.parse(progress);
+    }
   }
 
   double _getTotalEntries() {

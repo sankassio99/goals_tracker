@@ -75,5 +75,6 @@ class MainGoalController extends GetxController {
   void addDayEntry(DateTime dateTime) {
     var dayEntry = DayEntryModel(dateTime);
     goalModel.value.dayEntries.add(dayEntry);
+    goalModel.value.updateProgress();
   }
 }
