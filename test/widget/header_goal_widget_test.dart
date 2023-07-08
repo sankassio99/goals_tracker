@@ -6,7 +6,6 @@ import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
-
 import '../add_new_goal_test.mocks.dart';
 
 void main() {
@@ -76,11 +75,10 @@ void main() {
     // act
 
     // assert
-    var inputTitle = find.byKey(const Key("titleInput"));
-    var inputDesc = find.byKey(const Key("descInput"));
+    var titleFinder = find.text(title);
+    expect(titleFinder, findsOneWidget);
 
-    TextField inputTitleWidget = tester.widget(inputTitle);
-    expect(inputTitleWidget.controller!.text, title);
+    var inputDesc = find.byKey(const Key("descInput"));
 
     TextField inputDescWidget = tester.widget(inputDesc);
     expect(inputDescWidget.controller!.text, description);

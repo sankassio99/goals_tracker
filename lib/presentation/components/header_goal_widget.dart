@@ -113,6 +113,7 @@ class GoalTitleWidget extends StatelessWidget {
           child: SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             child: Text(
+              key: const Key("titleInput"),
               model.name.text,
               style: const TextStyle(
                 color: Colors.black87,
@@ -120,7 +121,7 @@ class GoalTitleWidget extends StatelessWidget {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            // TextField(
+            // child: TextField(
             //     maxLines: 1,
             //     key: const Key("titleInput"),
             //     controller: model.name,
