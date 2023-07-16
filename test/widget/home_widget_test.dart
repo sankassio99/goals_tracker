@@ -68,6 +68,7 @@ void main() {
     await tester.pumpAndSettle();
 
     var addGoalButton = find.byKey(const Key("addGoalButton"));
+    await tester.ensureVisible(addGoalButton);
     await tester.tap(addGoalButton);
     await tester.pumpAndSettle();
     // assert
@@ -78,10 +79,11 @@ void main() {
   testWidgets('When a goal card is tapped must be redirect to main goal page',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    var goal1 = MainGoal("1", "title", "desc", "100");
+    List<MainGoal> mainGoalList = [goal1];
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
 
-    var buttonFinder = find.byKey(const Key("dialogAddGoal"));
-    await tester.tap(buttonFinder);
+    await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle();
 
     // act

@@ -96,56 +96,58 @@ class AddGoalDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
-      child: SizedBox(
-        width: double.infinity,
-        key: const Key("addGoalDialog"),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Create Goal",
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            FormFieldWidget(
-              key: const Key("goalName"),
-              label: "Name",
-              controller: goalModel.name,
-              maxLines: 1,
-            ),
-            DropdownFormField(
-              goalTypeSelected: goalModel.meansureType.obs,
-              goalTypes: [
-                GoalMeansureType(GoalType.monetary),
-                GoalMeansureType(GoalType.tasks),
-                GoalMeansureType(GoalType.days),
-              ],
-              onSelected: goalModel.setMeansureType,
-            ),
-            FormFieldWidget(
-              key: const Key("goalTarget"),
-              label: "Target",
-              controller: goalModel.target,
-              maxLines: 1,
-              typeNumber: true,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Row(
-              children: [
-                ElevatedButton(
-                    key: const Key("addGoalButton"),
-                    child: const Text("CREATE"),
-                    onPressed: () {
-                      controller.addGoal(goalModel);
-                      Navigator.pop(context);
-                    }),
-              ],
-            ),
-          ],
+      child: SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          key: const Key("addGoalDialog"),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Create Goal",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              FormFieldWidget(
+                key: const Key("goalName"),
+                label: "Name",
+                controller: goalModel.name,
+                maxLines: 1,
+              ),
+              DropdownFormField(
+                goalTypeSelected: goalModel.meansureType.obs,
+                goalTypes: [
+                  GoalMeansureType(GoalType.monetary),
+                  GoalMeansureType(GoalType.tasks),
+                  GoalMeansureType(GoalType.days),
+                ],
+                onSelected: goalModel.setMeansureType,
+              ),
+              FormFieldWidget(
+                key: const Key("goalTarget"),
+                label: "Target",
+                controller: goalModel.target,
+                maxLines: 1,
+                typeNumber: true,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Row(
+                children: [
+                  ElevatedButton(
+                      key: const Key("addGoalButton"),
+                      child: const Text("CREATE"),
+                      onPressed: () {
+                        controller.addGoal(goalModel);
+                        Navigator.pop(context);
+                      }),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
