@@ -75,7 +75,10 @@ class HomePageWidget extends StatelessWidget {
               width: 100,
               height: 100,
               key: const Key("addGoalDialog"),
-              child: Text("Teste novo dialog"),
+              child: ElevatedButton(
+                  key: const Key("addGoalButton"),
+                  child: Text("Add new goal"),
+                  onPressed: () => controller.addNewGoal()),
             ),
           ),
         ),

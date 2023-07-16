@@ -67,6 +67,9 @@ void main() {
     await tester.tap(buttonFinder);
     await tester.pumpAndSettle();
 
+    var addGoalButton = find.byKey(const Key("addGoalButton"));
+    await tester.tap(addGoalButton);
+    await tester.pumpAndSettle();
     // assert
     var goalCard = find.byType(GoalCardWidget);
     expect(goalCard, findsOneWidget);
