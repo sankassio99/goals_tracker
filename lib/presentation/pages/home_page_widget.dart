@@ -4,7 +4,6 @@ import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/presentation/components/formFields/dropdown_form_field.dart';
 import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
-import 'package:goals_tracker/presentation/components/goal_settings_dialog.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
@@ -74,6 +73,7 @@ class HomePageWidget extends StatelessWidget {
           key: const Key("dialogAddGoal"),
           label: "ADD GOAL",
           action: () => showModalBottomSheet(
+            showDragHandle: true,
             backgroundColor: Theme.of(context).colorScheme.background,
             context: context,
             builder: (BuildContext context) => AddGoalDialog(),
