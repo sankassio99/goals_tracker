@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/components/goal_settings_dialog.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
@@ -69,20 +70,68 @@ class HomePageWidget extends StatelessWidget {
         BottomButton(
           key: const Key("dialogAddGoal"),
           label: "ADD GOAL",
-          action: () => showDialog(
+          action: () => showModalBottomSheet(
+            backgroundColor: Theme.of(context).colorScheme.background,
             context: context,
-            builder: (BuildContext context) => Container(
-              width: 100,
-              height: 100,
-              key: const Key("addGoalDialog"),
-              child: ElevatedButton(
-                  key: const Key("addGoalButton"),
-                  child: Text("Add new goal"),
-                  onPressed: () => controller.addNewGoal()),
-            ),
+            builder: (BuildContext context) => AddGoalDialog(),
           ),
         ),
       ],
+    );
+  }
+}
+
+class AddGoalDialog extends StatelessWidget {
+  final controller = Get.find<HomeController>();
+  final GoalModel goalModel = GoalModel("", "");
+
+  AddGoalDialog({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        width: double.infinity,
+        key: const Key("addGoalDialog"),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Add Goal",
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            FormFieldWidget(
+              key: const Key("goalName"),
+              label: "Name",
+              controller: goalModel.name,
+              maxLines: 1,
+            ),
+            FormFieldWidget(
+              key: const Key("goalTarget"),
+              label: "Target",
+              controller: goalModel.target,
+              maxLines: 1,
+              typeNumber: true,
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            ElevatedButton(
+                key: const Key("addGoalButton"),
+                child: const Text("Add goal"),
+                onPressed: () {
+                  controller.addNewGoal();
+                  Navigator.pop(context);
+                }),
+          ],
+        ),
+      ),
     );
   }
 }
