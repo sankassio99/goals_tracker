@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:goals_tracker/infra/dependecy_binds.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init("GoalsTracker");
   runApp(
     const MyApp(),
   );
