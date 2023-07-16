@@ -9,7 +9,6 @@ import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/mockito.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-
 import '../add_new_goal_test.mocks.dart';
 
 void main() {
@@ -40,6 +39,21 @@ void main() {
 
     expect(titleFinder, findsOneWidget);
     expect(buttonFinder, findsOneWidget);
+  });
+
+  testWidgets('When is add goal button is tapped must open dialog',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(const MyApp());
+    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
+
+    // act
+    await tester.tap(buttonFinder);
+    await tester.pumpAndSettle();
+
+    // assert
+    var addGoalDialog = find.byKey(const Key("addGoalDialog"));
+    expect(addGoalDialog, findsOneWidget);
   });
 
   testWidgets('When is add new goal must update goal list view with goal card',
