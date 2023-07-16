@@ -73,7 +73,7 @@ class HomePageWidget extends StatelessWidget {
           key: const Key("dialogAddGoal"),
           label: "ADD GOAL",
           action: () => showModalBottomSheet(
-            showDragHandle: true,
+            enableDrag: false,
             backgroundColor: Theme.of(context).colorScheme.background,
             context: context,
             builder: (BuildContext context) => AddGoalDialog(),

@@ -11,14 +11,12 @@ class HomeController extends GetxController {
 
   HomeController(this._addNewGoal, this._getGoals);
 
-  void addNewGoal() {
-    var goalId = _addNewGoal.execute();
-    var newGoal = GoalModel(goalId, "100");
-    goalList.add(newGoal);
-  }
-
   void addGoal(GoalModel model) {
-    var goalId = _addNewGoal.execute();
+    var goalId = _addNewGoal.create(
+      model.name.text,
+      model.target.text,
+      model.meansureType.type,
+    );
     model.id = goalId;
     goalList.add(model);
   }
