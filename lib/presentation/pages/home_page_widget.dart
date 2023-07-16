@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
+import 'package:goals_tracker/presentation/components/goal_settings_dialog.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_model.dart';
 import '../components/bottom_button.dart';
 
 class HomePageWidget extends StatelessWidget {
@@ -66,7 +68,15 @@ class HomePageWidget extends StatelessWidget {
       persistentFooterButtons: [
         BottomButton(
           label: "ADD GOAL",
-          action: () => controller.addNewGoal(),
+          action: () => showDialog(
+            context: context,
+            builder: (BuildContext context) => Container(
+              width: 100,
+              height: 100,
+              key: const Key("addGoalDialog"),
+              child: Text("Teste novo dialog"),
+            ),
+          ),
         ),
       ],
     );
