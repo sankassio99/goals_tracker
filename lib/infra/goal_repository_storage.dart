@@ -1,13 +1,11 @@
-import 'dart:convert';
-// ignore: avoid_web_libraries_in_flutter
-import 'dart:html';
+import 'package:get_storage/get_storage.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/domain/entities/goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 // ignore: avoid_print
 
 class GoalRepositoryStorage implements IGoalRepository {
-  final Storage _localStorage = window.localStorage;
+  final GetStorage _storage = GetStorage("GoalsTracker");
 
   GoalRepositoryStorage();
 
@@ -15,7 +13,9 @@ class GoalRepositoryStorage implements IGoalRepository {
   void save(Goal goal) {
     // ignore: avoid_print
     print("SAVING NEW GOAL ON STORAGE: ${goal.id}");
-    _localStorage[goal.id.toString()] = jsonEncode(goal.toJson());
+    // _localStorage[goal.id.toString()] = jsonEncode(goal.toJson());
+    // _storage.setItem(goal.id.toString(), goal.toJson());
+    _storage.write(goal.id.toString(), goal.toJson());
   }
 
   @override
@@ -24,10 +24,10 @@ class GoalRepositoryStorage implements IGoalRepository {
     print("GETTING ALL ON STORAGE");
     List<Goal> goalsData = [];
 
-    var goalListStorage = _localStorage.values.toList();
+    var goalListStorage = _storage.getValues();
 
     for (var goalString in goalListStorage) {
-      MainGoal myGoal = MainGoal.fromJson(jsonDecode(goalString));
+      MainGoal myGoal = MainGoal.fromJson(goalString);
       goalsData.add(myGoal);
     }
 
@@ -38,7 +38,8 @@ class GoalRepositoryStorage implements IGoalRepository {
   void update(Goal goal) {
     // ignore: avoid_print
     print("UPDATING GOAL ON STORAGE ${goal.id}");
-    _localStorage[goal.id.toString()] = jsonEncode(goal.toJson());
+    // _localStorage[goal.id.toString()] = jsonEncode(goal.toJson());
+    _storage.write(goal.id.toString(), goal.toJson());
   }
 
   @override
@@ -46,8 +47,9 @@ class GoalRepositoryStorage implements IGoalRepository {
     // ignore: avoid_print
     print("GETTING BY ID ON STORAGE: $id");
 
-    var goalStorage = _localStorage[id.toString()];
-    var goalJson = jsonDecode(goalStorage!);
+    // var goalStorage = _localStorage[id.toString()];
+    var goalStorage = _storage.read(id.toString());
+    var goalJson = goalStorage;
     MainGoal myGoal = MainGoal.fromJson(goalJson);
     return myGoal;
   }
