@@ -17,6 +17,12 @@ class HomeController extends GetxController {
     goalList.add(newGoal);
   }
 
+  void addGoal(GoalModel model) {
+    var goalId = _addNewGoal.execute();
+    model.id = goalId;
+    goalList.add(model);
+  }
+
   Future<void> loadGoals() async {
     List<GoalModel> goalModelList = [];
     var mainGoals = await _getGoals.getAll();

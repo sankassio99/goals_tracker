@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
+import 'package:goals_tracker/presentation/components/formFields/dropdown_form_field.dart';
 import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/components/goal_settings_dialog.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
+import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import '../components/bottom_button.dart';
 
@@ -100,7 +103,7 @@ class AddGoalDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Add Goal",
+              "Create Goal",
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(
@@ -112,6 +115,15 @@ class AddGoalDialog extends StatelessWidget {
               controller: goalModel.name,
               maxLines: 1,
             ),
+            DropdownFormField(
+              goalTypeSelected: goalModel.meansureType.obs,
+              goalTypes: [
+                GoalMeansureType(GoalType.monetary),
+                GoalMeansureType(GoalType.tasks),
+                GoalMeansureType(GoalType.days),
+              ],
+              onSelected: goalModel.setMeansureType,
+            ),
             FormFieldWidget(
               key: const Key("goalTarget"),
               label: "Target",
@@ -122,13 +134,17 @@ class AddGoalDialog extends StatelessWidget {
             const SizedBox(
               height: 16,
             ),
-            ElevatedButton(
-                key: const Key("addGoalButton"),
-                child: const Text("Add goal"),
-                onPressed: () {
-                  controller.addNewGoal();
-                  Navigator.pop(context);
-                }),
+            Row(
+              children: [
+                ElevatedButton(
+                    key: const Key("addGoalButton"),
+                    child: const Text("CREATE"),
+                    onPressed: () {
+                      controller.addGoal(goalModel);
+                      Navigator.pop(context);
+                    }),
+              ],
+            ),
           ],
         ),
       ),
