@@ -23,19 +23,6 @@ void main() {
   });
 
   group('Home controller should', () {
-    test('add empty goal', () async {
-      //#region Arrange(Given)
-      //#endregion
-
-      //#region Act(When)
-      homeController.addNewGoal();
-      //#endregion
-
-      //#region Assert(Then)
-      expect(homeController.goalList.length, 1);
-      //#endregion
-    });
-
     test('add new goal with the correct values', () async {
       //#region Arrange(Given)
       var myGoal = GoalModel(

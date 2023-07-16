@@ -4,7 +4,6 @@ import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
-import 'package:goals_tracker/infra/goal_repository_memory.dart';
 import 'package:goals_tracker/infra/goal_repository_storage.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
