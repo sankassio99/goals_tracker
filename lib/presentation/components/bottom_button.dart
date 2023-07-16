@@ -14,7 +14,6 @@ class BottomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-        key: const Key("addNewGoalButton"),
         onPressed: () => action.call(),
         style: ElevatedButton.styleFrom(
           minimumSize: const Size(400, 60),
@@ -36,8 +35,8 @@ class BottomButton extends StatelessWidget {
             ),
             Text(
               label,
-              style:
-                  const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ],
         ),

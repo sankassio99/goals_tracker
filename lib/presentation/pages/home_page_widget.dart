@@ -67,6 +67,7 @@ class HomePageWidget extends StatelessWidget {
       ),
       persistentFooterButtons: [
         BottomButton(
+          key: const Key("dialogAddGoal"),
           label: "ADD GOAL",
           action: () => showDialog(
             context: context,

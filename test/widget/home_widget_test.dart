@@ -35,7 +35,7 @@ void main() {
 
     // assert
     var titleFinder = find.byKey(const Key("homeTitle"));
-    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
+    var buttonFinder = find.byKey(const Key("dialogAddGoal"));
 
     expect(titleFinder, findsOneWidget);
     expect(buttonFinder, findsOneWidget);
@@ -45,7 +45,7 @@ void main() {
       (WidgetTester tester) async {
     // arrange
     await tester.pumpWidget(const MyApp());
-    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
+    var buttonFinder = find.byKey(const Key("dialogAddGoal"));
 
     // act
     await tester.tap(buttonFinder);
@@ -61,7 +61,7 @@ void main() {
     // arrange
     await tester.pumpWidget(const MyApp());
 
-    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
+    var buttonFinder = find.byKey(const Key("dialogAddGoal"));
 
     // act
     await tester.tap(buttonFinder);
@@ -77,7 +77,7 @@ void main() {
     // arrange
     await tester.pumpWidget(const MyApp());
 
-    var buttonFinder = find.byKey(const Key("addNewGoalButton"));
+    var buttonFinder = find.byKey(const Key("dialogAddGoal"));
     await tester.tap(buttonFinder);
     await tester.pumpAndSettle();
 
