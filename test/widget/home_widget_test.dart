@@ -76,6 +76,34 @@ void main() {
     expect(goalCard, findsOneWidget);
   });
 
+  testWidgets('When is add new goal must show the correct title',
+      (WidgetTester tester) async {
+    // arrange
+    await tester.pumpWidget(const MyApp());
+
+    var buttonFinder = find.byKey(const Key("dialogAddGoal"));
+    String title = "My new title";
+
+    await tester.tap(buttonFinder);
+    await tester.pumpAndSettle();
+
+    // act
+    var goalTitleField = find.byKey(const Key("goalName"));
+    await tester.enterText(goalTitleField, title);
+
+    var addGoalButton = find.byKey(const Key("addGoalButton"));
+    await tester.ensureVisible(addGoalButton);
+    await tester.tap(addGoalButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var goalCard = find.byType(GoalCardWidget);
+    expect(goalCard, findsOneWidget);
+
+    var titleActual = find.text(title);
+    expect(titleActual, findsOneWidget);
+  });
+
   testWidgets('When a goal card is tapped must be redirect to main goal page',
       (WidgetTester tester) async {
     // arrange
