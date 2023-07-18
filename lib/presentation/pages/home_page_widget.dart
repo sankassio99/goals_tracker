@@ -73,6 +73,7 @@ class HomePageWidget extends StatelessWidget {
           key: const Key("dialogAddGoal"),
           label: "ADD GOAL",
           action: () => showModalBottomSheet(
+            isScrollControlled: true,
             enableDrag: false,
             backgroundColor: Theme.of(context).colorScheme.background,
             context: context,
@@ -98,9 +99,9 @@ class AddGoalDialog extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: SingleChildScrollView(
         child: SizedBox(
-          width: double.infinity,
           key: const Key("addGoalDialog"),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
@@ -116,6 +117,9 @@ class AddGoalDialog extends StatelessWidget {
                 controller: goalModel.name,
                 maxLines: 1,
               ),
+              const SizedBox(
+                height: 8,
+              ),
               DropdownFormField(
                 goalTypeSelected: goalModel.meansureType.obs,
                 goalTypes: [
@@ -124,6 +128,9 @@ class AddGoalDialog extends StatelessWidget {
                   GoalMeansureType(GoalType.days),
                 ],
                 onSelected: goalModel.setMeansureType,
+              ),
+              const SizedBox(
+                height: 8,
               ),
               FormFieldWidget(
                 key: const Key("goalTarget"),
