@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
+import 'package:goals_tracker/application/usecases/add_new_goal.dart';
 import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
+import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
+import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
@@ -25,11 +28,14 @@ class MainGoalBindingFake extends Bindings {
     var getGoalDetails = GetGoalDetails(goalRepository);
     var updateGoal = UpdateGoal(goalRepository);
     var deleteGoal = DeleteGoal(goalRepository);
+    var addNewGoal = AddNewGoal(goalRepository);
+    var getGoals = GetGoals(goalRepository);
     Get.lazyPut(() => MainGoalController(
           getGoalDetails,
           updateGoal,
           deleteGoal,
         ));
+    Get.lazyPut(() => HomeController(addNewGoal, getGoals));
   }
 }
 
@@ -54,6 +60,11 @@ void main() {
     return GetMaterialApp(
       initialRoute: '/mainGoalDetails/$goalId',
       getPages: [
+        GetPage(
+          name: '/home',
+          page: () => HomePageWidget(),
+          binding: bindingFake,
+        ),
         GetPage(
           name: '/mainGoalDetails/:goalId',
           page: () => MainGoalPageWidget(),
@@ -344,6 +355,8 @@ void main() {
     // arrange
     when(goalRepositoryMock.getById(mainGoal.id))
         .thenAnswer((_) async => mainGoal);
+
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => []);
 
     await tester.pumpWidget(initMaterialApp());
 

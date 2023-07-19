@@ -122,6 +122,7 @@ class GoalSettingsDialog extends StatelessWidget {
                   key: const Key("deleteGoalButton"),
                   onPressed: () {
                     controller.delete(goalModel.id);
+                    Get.toNamed("/home");
                   },
                   child: Text("Delete goal"),
                 ),
