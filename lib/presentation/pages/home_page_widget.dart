@@ -97,7 +97,7 @@ class AddGoalDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: SingleChildScrollView(
           child: SizedBox(
             key: const Key("addGoalDialog"),
