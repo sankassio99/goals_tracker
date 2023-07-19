@@ -344,5 +344,21 @@ void main() {
       verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
       //#endregion
     });
+
+    test('delete goal', () async {
+      //#region Arrange(Given)
+      await mainGoalController.getGoal();
+
+      //#endregion
+
+      //#region Act(When)
+      mainGoalController.delete(myGoal.id);
+
+      //#endregion
+      //#region Assert(Then)
+      verify(goalRepositoryMock.delete(myGoal.id)).called(1);
+
+      //#endregion
+    });
   });
 }

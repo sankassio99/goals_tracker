@@ -315,7 +315,6 @@ void main() {
   testWidgets('When goal delete button is tapped must delete goal',
       (WidgetTester tester) async {
     // arrange
-
     when(goalRepositoryMock.getById(mainGoal.id))
         .thenAnswer((_) async => mainGoal);
 

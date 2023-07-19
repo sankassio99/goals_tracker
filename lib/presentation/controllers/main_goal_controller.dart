@@ -78,4 +78,8 @@ class MainGoalController extends GetxController {
     goalModel.value.updateProgress();
     updateGoal();
   }
+
+  void delete(String id) {
+    
+  }
 }
