@@ -53,4 +53,9 @@ class GoalRepositoryStorage implements IGoalRepository {
     MainGoal myGoal = MainGoal.fromJson(goalJson);
     return myGoal;
   }
+
+  @override
+  void delete(String id) {
+    // TODO: implement delete
+  }
 }

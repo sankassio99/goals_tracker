@@ -311,4 +311,26 @@ void main() {
 
     expect(title.controller?.text, newTitle);
   });
+
+  testWidgets('When goal delete button is tapped must delete goal',
+      (WidgetTester tester) async {
+    // arrange
+
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    // act
+    var deleteGoalButton = find.byKey(const Key("deleteGoalButton"));
+    await tester.tap(deleteGoalButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    verify(goalRepositoryMock.delete(mainGoal.id)).called(1);
+  });
 }

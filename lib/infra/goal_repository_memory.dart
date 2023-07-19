@@ -38,4 +38,9 @@ class GoalRepositoryMemory implements IGoalRepository {
     print("GETTING BY ID:$id");
     return goalsData.firstWhere((data) => data.id == id) as MainGoal;
   }
+
+  @override
+  void delete(String id) {
+    // TODO: implement delete
+  }
 }

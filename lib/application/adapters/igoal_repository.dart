@@ -6,4 +6,5 @@ abstract class IGoalRepository {
   Future<List<Goal>> getAll();
   Future<MainGoal> getById(String id);
   void update(Goal goal);
+  void delete(String id);
 }
