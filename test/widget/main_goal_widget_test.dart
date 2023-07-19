@@ -9,6 +9,7 @@ import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -336,5 +337,27 @@ void main() {
 
     // assert
     verify(goalRepositoryMock.delete(mainGoal.id)).called(1);
+  });
+
+  testWidgets('When goal delete button is tapped must redirect to home',
+      (WidgetTester tester) async {
+    // arrange
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    // act
+    var deleteGoalButton = find.byKey(const Key("deleteGoalButton"));
+    await tester.tap(deleteGoalButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var homePage = find.byType(HomePageWidget);
+    expect(homePage, findsOneWidget);
   });
 }
