@@ -335,6 +335,8 @@ void main() {
     when(goalRepositoryMock.getById(mainGoal.id))
         .thenAnswer((_) async => mainGoal);
 
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => []);
+
     await tester.pumpWidget(initMaterialApp());
 
     var settingIcon = find.byKey(const Key("goalSettings"));

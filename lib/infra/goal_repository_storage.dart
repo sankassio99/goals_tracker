@@ -56,6 +56,6 @@ class GoalRepositoryStorage implements IGoalRepository {
 
   @override
   void delete(String id) {
-    // TODO: implement delete
+    _storage.remove(id);
   }
 }
