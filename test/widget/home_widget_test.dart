@@ -9,7 +9,7 @@ import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/mockito.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import '../add_new_goal_test.mocks.dart';
+import 'main_goal_widget_test.mocks.dart';
 
 void main() {
   late MockIGoalRepository goalRepositoryMock;

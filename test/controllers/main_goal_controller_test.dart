@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
@@ -10,8 +11,7 @@ import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:mockito/mockito.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-
-import '../add_new_goal_test.mocks.dart';
+import '../usecases/get_goals_test.mocks.dart';
 
 void main() {
   late MainGoalController mainGoalController;
@@ -24,9 +24,12 @@ void main() {
     goalRepositoryMock = MockIGoalRepository();
     getGoalDetails = GetGoalDetails(goalRepositoryMock);
     var updateGoal = UpdateGoal(goalRepositoryMock);
+    var deleteGoal = DeleteGoal(goalRepositoryMock);
+
     goalId = "1";
 
-    mainGoalController = MainGoalController(getGoalDetails, updateGoal);
+    mainGoalController =
+        MainGoalController(getGoalDetails, updateGoal, deleteGoal);
     Get.parameters = {"goalId": goalId};
 
     myGoal = MainGoal(goalId, "title", "desc", "100");

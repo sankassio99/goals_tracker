@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
-import '../add_new_goal_test.mocks.dart';
+import 'main_goal_widget_test.mocks.dart';
 
 void main() {
   setUp(() {
@@ -14,8 +15,13 @@ void main() {
 
     var getGoalDetails = GetGoalDetails(goalRepository);
     var updateGoal = UpdateGoal(goalRepository);
+    var deleteGoal = DeleteGoal(goalRepository);
 
-    Get.lazyPut(() => MainGoalController(getGoalDetails, updateGoal));
+    Get.lazyPut(() => MainGoalController(
+          getGoalDetails,
+          updateGoal,
+          deleteGoal,
+        ));
   });
 
   testWidgets('When Header Goal Widget is loaded must show input title',

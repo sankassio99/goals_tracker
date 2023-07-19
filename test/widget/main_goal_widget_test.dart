@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
+import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
@@ -11,7 +12,7 @@ import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import '../add_new_goal_test.mocks.dart';
+import 'main_goal_widget_test.mocks.dart';
 
 class MainGoalBindingFake extends Bindings {
   late IGoalRepository goalRepository;
@@ -22,8 +23,12 @@ class MainGoalBindingFake extends Bindings {
   void dependencies() {
     var getGoalDetails = GetGoalDetails(goalRepository);
     var updateGoal = UpdateGoal(goalRepository);
-
-    Get.lazyPut(() => MainGoalController(getGoalDetails, updateGoal));
+    var deleteGoal = DeleteGoal(goalRepository);
+    Get.lazyPut(() => MainGoalController(
+          getGoalDetails,
+          updateGoal,
+          deleteGoal,
+        ));
   }
 }
 
