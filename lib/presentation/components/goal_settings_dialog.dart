@@ -119,7 +119,10 @@ class GoalSettingsDialog extends StatelessWidget {
                   typeNumber: true,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  key: const Key("deleteGoalButton"),
+                  onPressed: () {
+                    controller.delete(goalModel.id);
+                  },
                   child: Text("Delete goal"),
                 ),
               ],
