@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
@@ -9,7 +10,7 @@ import 'package:goals_tracker/presentation/components/goalTabs/deposit_entries_w
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/mockito.dart';
-import '../add_new_goal_test.mocks.dart';
+import 'main_goal_widget_test.mocks.dart';
 
 void main() {
   late MockIGoalRepository goalRepositoryMock;
@@ -171,10 +172,12 @@ GetMaterialApp initMainGoalPage(
     MainGoal myGoal, MockIGoalRepository goalRepositoryMock) {
   var getGoalDetails = GetGoalDetails(goalRepositoryMock);
   var updateGoal = UpdateGoal(goalRepositoryMock);
+  var deleteGoal = DeleteGoal(goalRepositoryMock);
 
   Get.lazyPut(() => MainGoalController(
         getGoalDetails,
         updateGoal,
+        deleteGoal,
       ));
 
   when(goalRepositoryMock.getById(myGoal.id)).thenAnswer((_) async => myGoal);

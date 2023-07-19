@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/presentation/models/day_entry_model.dart';
@@ -10,8 +11,9 @@ class MainGoalController extends GetxController {
   Rx<GoalModel> goalModel = Rx<GoalModel>(GoalModel("id", "100"));
   late final GetGoalDetails _getGoalDetails;
   late final UpdateGoal _updateGoal;
+  late final DeleteGoal _deleteGoal;
 
-  MainGoalController(this._getGoalDetails, this._updateGoal);
+  MainGoalController(this._getGoalDetails, this._updateGoal, this._deleteGoal);
 
   getGoal() async {
     var goalId = Get.parameters['goalId'];
@@ -77,5 +79,9 @@ class MainGoalController extends GetxController {
     goalModel.value.dayEntries.add(dayEntry);
     goalModel.value.updateProgress();
     updateGoal();
+  }
+
+  void delete(String id) {
+    _deleteGoal.execute(id);
   }
 }

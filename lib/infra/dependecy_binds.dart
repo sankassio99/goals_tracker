@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
 import 'package:goals_tracker/application/usecases/add_new_goal.dart';
+import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
 import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
@@ -19,8 +20,10 @@ class MainGoalBinding extends Bindings {
 
     var getGoalDetails = GetGoalDetails(goalRepository);
     var updateGoal = UpdateGoal(goalRepository);
+    var deleteGoal = DeleteGoal(goalRepository);
 
-    Get.lazyPut(() => MainGoalController(getGoalDetails, updateGoal));
+    Get.lazyPut(
+        () => MainGoalController(getGoalDetails, updateGoal, deleteGoal));
   }
 }
 

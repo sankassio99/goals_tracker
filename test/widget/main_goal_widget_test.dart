@@ -2,16 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:goals_tracker/application/adapters/igoal_repository.dart';
+import 'package:goals_tracker/application/usecases/add_new_goal.dart';
+import 'package:goals_tracker/application/usecases/delete_goal.dart';
 import 'package:goals_tracker/application/usecases/get_goal_details.dart';
+import 'package:goals_tracker/application/usecases/get_goals.dart';
 import 'package:goals_tracker/application/usecases/update_goal.dart';
 import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/presentation/components/formFields/form_field_widget.dart';
 import 'package:goals_tracker/presentation/components/header_goal_widget.dart';
+import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
+import 'package:goals_tracker/presentation/pages/home_page_widget.dart';
 import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import '../add_new_goal_test.mocks.dart';
+import 'main_goal_widget_test.mocks.dart';
 
 class MainGoalBindingFake extends Bindings {
   late IGoalRepository goalRepository;
@@ -22,8 +27,15 @@ class MainGoalBindingFake extends Bindings {
   void dependencies() {
     var getGoalDetails = GetGoalDetails(goalRepository);
     var updateGoal = UpdateGoal(goalRepository);
-
-    Get.lazyPut(() => MainGoalController(getGoalDetails, updateGoal));
+    var deleteGoal = DeleteGoal(goalRepository);
+    var addNewGoal = AddNewGoal(goalRepository);
+    var getGoals = GetGoals(goalRepository);
+    Get.lazyPut(() => MainGoalController(
+          getGoalDetails,
+          updateGoal,
+          deleteGoal,
+        ));
+    Get.lazyPut(() => HomeController(addNewGoal, getGoals));
   }
 }
 
@@ -48,6 +60,11 @@ void main() {
     return GetMaterialApp(
       initialRoute: '/mainGoalDetails/$goalId',
       getPages: [
+        GetPage(
+          name: '/home',
+          page: () => HomePageWidget(),
+          binding: bindingFake,
+        ),
         GetPage(
           name: '/mainGoalDetails/:goalId',
           page: () => MainGoalPageWidget(),
@@ -310,5 +327,52 @@ void main() {
     TextField title = tester.widget(find.byKey(const Key("titleInput")));
 
     expect(title.controller?.text, newTitle);
+  });
+
+  testWidgets('When goal delete button is tapped must delete goal',
+      (WidgetTester tester) async {
+    // arrange
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
+
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => []);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    // act
+    var deleteGoalButton = find.byKey(const Key("deleteGoalButton"));
+    await tester.tap(deleteGoalButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    verify(goalRepositoryMock.delete(mainGoal.id)).called(1);
+  });
+
+  testWidgets('When goal delete button is tapped must redirect to home',
+      (WidgetTester tester) async {
+    // arrange
+    when(goalRepositoryMock.getById(mainGoal.id))
+        .thenAnswer((_) async => mainGoal);
+
+    when(goalRepositoryMock.getAll()).thenAnswer((_) async => []);
+
+    await tester.pumpWidget(initMaterialApp());
+
+    var settingIcon = find.byKey(const Key("goalSettings"));
+    await tester.tap(settingIcon);
+    await tester.pumpAndSettle();
+
+    // act
+    var deleteGoalButton = find.byKey(const Key("deleteGoalButton"));
+    await tester.tap(deleteGoalButton);
+    await tester.pumpAndSettle();
+
+    // assert
+    var homePage = find.byType(HomePageWidget);
+    expect(homePage, findsOneWidget);
   });
 }

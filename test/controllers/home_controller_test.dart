@@ -7,7 +7,7 @@ import 'package:goals_tracker/domain/entities/main_goal.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:mockito/mockito.dart';
-import '../add_new_goal_test.mocks.dart';
+import '../usecases/get_goals_test.mocks.dart';
 
 void main() {
   late HomeController homeController;
