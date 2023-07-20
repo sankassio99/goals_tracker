@@ -72,34 +72,50 @@ class ProgressBarBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Icon(
-                PhosphorIcons.bold.hourglass,
-                size: 14,
-                color: Colors.grey,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-                child: Text(
-                  "${controller.getLeftDays(DateTime.now())} days",
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          model.finalDate != null
+              ? DaysCountdown(controller: controller)
+              : Container(),
           const SizedBox(
             height: 8,
           ),
           ProgressBar(goalModel: model),
         ],
       ),
+    );
+  }
+}
+
+class DaysCountdown extends StatelessWidget {
+  const DaysCountdown({
+    super.key,
+    required this.controller,
+  });
+
+  final MainGoalController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        Icon(
+          PhosphorIcons.bold.clockCountdown,
+          size: 16,
+          color: Colors.grey,
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
+          child: Text(
+            "${controller.getLeftDays(DateTime.now())} days",
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
