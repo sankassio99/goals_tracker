@@ -19,7 +19,7 @@ class HeaderGoalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 229,
+      height: 251,
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
@@ -27,6 +27,7 @@ class HeaderGoalWidget extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
                 flex: 1,
@@ -34,6 +35,10 @@ class HeaderGoalWidget extends StatelessWidget {
             Expanded(
                 flex: 3,
                 child: GoalDescWidget(controller: controller, model: model)),
+            Expanded(
+              flex: 1,
+              child: GoalTypeTag(model: model),
+            ),
             const SizedBox(
               height: 8,
             ),
@@ -42,6 +47,37 @@ class HeaderGoalWidget extends StatelessWidget {
               child: ProgressBarBox(model: model),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class GoalTypeTag extends StatelessWidget {
+  const GoalTypeTag({
+    super.key,
+    required this.model,
+  });
+
+  final GoalModel model;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 20,
+      width: 100,
+      alignment: Alignment.center,
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.onBackground,
+        borderRadius: BorderRadius.circular(13.0),
+      ),
+      child: Text(
+        model.meansureType.name,
+        style: const TextStyle(
+          fontSize: 12,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
       ),
     );
