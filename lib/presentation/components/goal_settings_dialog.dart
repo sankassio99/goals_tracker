@@ -9,6 +9,7 @@ import 'package:goals_tracker/presentation/components/my_app_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class GoalSettingsDialog extends StatelessWidget {
   final GoalModel goalModel;
@@ -118,18 +119,41 @@ class GoalSettingsDialog extends StatelessWidget {
                   controller: goalModel.target,
                   typeNumber: true,
                 ),
-                ElevatedButton(
-                  key: const Key("deleteGoalButton"),
-                  onPressed: () {
-                    controller.delete(goalModel.id);
-                    Get.toNamed("/home");
-                  },
-                  child: Text("Delete goal"),
+                const SizedBox(
+                  height: 24,
                 ),
               ],
             ),
           ),
         ),
+        persistentFooterButtons: [
+          TextButton(
+            key: const Key("deleteGoalButton"),
+            onPressed: () {
+              controller.delete(goalModel.id);
+              Get.toNamed("/home");
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(
+                    PhosphorIcons.bold.trash,
+                    size: 16,
+                    color: Theme.of(context).colorScheme.error,
+                  ),
+                ),
+                Text(
+                  "Delete",
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.error),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

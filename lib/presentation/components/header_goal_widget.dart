@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:goals_tracker/presentation/components/goal_type_tag.dart';
 import 'package:goals_tracker/presentation/components/icon_picker_dialog.dart';
 import 'package:goals_tracker/presentation/components/progress_bar.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
@@ -19,7 +20,7 @@ class HeaderGoalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 229,
+      height: 251,
       decoration: const BoxDecoration(
         color: Colors.white,
       ),
@@ -27,6 +28,7 @@ class HeaderGoalWidget extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
                 flex: 1,
@@ -34,6 +36,10 @@ class HeaderGoalWidget extends StatelessWidget {
             Expanded(
                 flex: 3,
                 child: GoalDescWidget(controller: controller, model: model)),
+            Expanded(
+              flex: 1,
+              child: GoalTypeTag(model: model),
+            ),
             const SizedBox(
               height: 8,
             ),
@@ -72,34 +78,50 @@ class ProgressBarBox extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
-            children: [
-              Icon(
-                PhosphorIcons.bold.hourglass,
-                size: 14,
-                color: Colors.grey,
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-                child: Text(
-                  "${controller.getLeftDays(DateTime.now())} days",
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          model.finalDate != null
+              ? DaysCountdown(controller: controller)
+              : Container(),
           const SizedBox(
             height: 8,
           ),
           ProgressBar(goalModel: model),
         ],
       ),
+    );
+  }
+}
+
+class DaysCountdown extends StatelessWidget {
+  const DaysCountdown({
+    super.key,
+    required this.controller,
+  });
+
+  final MainGoalController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.baseline,
+      textBaseline: TextBaseline.alphabetic,
+      children: [
+        Icon(
+          PhosphorIcons.bold.clockCountdown,
+          size: 16,
+          color: Colors.grey,
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
+          child: Text(
+            "${controller.getLeftDays(DateTime.now())} days",
+            textAlign: TextAlign.start,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
