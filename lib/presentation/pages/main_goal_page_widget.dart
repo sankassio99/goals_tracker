@@ -25,7 +25,7 @@ class MainGoalPageWidget extends StatelessWidget {
             key: const Key("backIconButton"),
             icon: Icon(
               PhosphorIcons.bold.arrowLeft,
-              color: Colors.black87,
+              color: Theme.of(context).colorScheme.primary,
               size: 20,
             ),
             onPressed: () {
@@ -37,7 +37,7 @@ class MainGoalPageWidget extends StatelessWidget {
               key: const Key("goalSettings"),
               icon: Icon(
                 PhosphorIcons.bold.gear,
-                color: Colors.black87,
+                color: Theme.of(context).colorScheme.primary,
               ),
               tooltip: 'Edit',
               onPressed: () => showDialog(
@@ -52,8 +52,8 @@ class MainGoalPageWidget extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: 1000,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.background,
             ),
             child: SingleChildScrollView(
               child: Column(

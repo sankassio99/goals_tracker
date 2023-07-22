@@ -20,7 +20,7 @@ class GoalCardWidget extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.outline,
               width: 2.0,
             ),
           ),
@@ -37,7 +37,7 @@ class GoalCardWidget extends StatelessWidget {
                 child: PhosphorIcon(
                   key: const Key("goalCardIcon"),
                   model.icon.value,
-                  color: Colors.black87,
+                  color: Theme.of(context).colorScheme.primary,
                   size: 34,
                 ),
               ),

@@ -30,7 +30,7 @@ class DateFormField extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSecondary,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ),
@@ -50,7 +50,7 @@ class DateFormField extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.outline,
                 width: 2.5,
               ),
               borderRadius: BorderRadius.circular(13),

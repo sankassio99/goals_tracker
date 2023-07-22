@@ -30,13 +30,11 @@ class BottomButton extends StatelessWidget {
             const Icon(
               key: Key("goalCardIcon"),
               Icons.add,
-              color: Colors.white,
               size: 24,
             ),
             Text(
               label,
-              style: const TextStyle(
-                  color: Colors.white, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ],
         ),

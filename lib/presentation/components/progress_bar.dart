@@ -22,7 +22,7 @@ class ProgressBar extends StatelessWidget {
             lineHeight: 24,
             animation: true,
             progressColor: Theme.of(context).colorScheme.onSecondary,
-            backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.outlineVariant,
             center: Text(
               "${goalModel.completeProgress.value * 100}%",
               style: const TextStyle(

@@ -139,7 +139,7 @@ class DayEntryWidget extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.black12,
+          color: Theme.of(context).colorScheme.primary,
           width: 2.5,
         ),
         borderRadius: BorderRadius.circular(13),

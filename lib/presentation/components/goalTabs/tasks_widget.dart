@@ -126,7 +126,7 @@ class ReorderableTaskList extends StatelessWidget {
                               task.checked.isTrue
                                   ? Icons.check_box
                                   : Icons.check_box_outline_blank,
-                              color: Colors.black87,
+                              color: Theme.of(context).colorScheme.primary,
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(14, 0, 0, 0),

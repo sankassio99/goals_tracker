@@ -27,7 +27,7 @@ class DropdownFormField extends StatelessWidget {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
-              color: Theme.of(context).colorScheme.onSecondary,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
         ),
@@ -37,7 +37,7 @@ class DropdownFormField extends StatelessWidget {
             height: 48,
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.black12,
+                color: Theme.of(context).colorScheme.outline,
                 width: 2.5,
               ),
               borderRadius: BorderRadius.circular(13),
@@ -53,7 +53,14 @@ class DropdownFormField extends StatelessWidget {
                   .map<DropdownMenuItem<String>>((GoalMeansureType type) {
                 return DropdownMenuItem(
                   value: type.name,
-                  child: Text(type.name),
+                  child: Text(
+                    type.name,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                  ),
                 );
               }).toList(),
               onChanged: (String? goalType) {

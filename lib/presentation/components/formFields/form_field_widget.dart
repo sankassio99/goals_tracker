@@ -27,7 +27,7 @@ class FormFieldWidget extends StatelessWidget {
             style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).colorScheme.onSecondary),
+                color: Theme.of(context).colorScheme.primary),
           ),
         ),
         TextField(

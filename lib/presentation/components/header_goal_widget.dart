@@ -21,9 +21,7 @@ class HeaderGoalWidget extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: 251,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-      ),
+      decoration: const BoxDecoration(),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
         child: Column(
@@ -70,7 +68,7 @@ class ProgressBarBox extends StatelessWidget {
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.black12,
+          color: Theme.of(context).colorScheme.outline,
           width: 2.5,
         ),
         borderRadius: BorderRadius.circular(13),
@@ -151,12 +149,11 @@ class GoalDescWidget extends StatelessWidget {
             controller: model.description,
             maxLines: null,
             decoration: const InputDecoration(
-              fillColor: Colors.white,
               hintText: 'Tap to type goal description...',
               border: InputBorder.none,
             ),
-            style: const TextStyle(
-              color: Colors.black87,
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
               fontSize: 14,
               fontWeight: FontWeight.normal,
             )),
@@ -216,8 +213,8 @@ class GoalTitleWidget extends StatelessWidget {
                   hintText: 'Goal name',
                   border: InputBorder.none,
                 ),
-                style: const TextStyle(
-                  color: Colors.black87,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
                   fontSize: 24,
                   fontWeight: FontWeight.w800,
                 )),
