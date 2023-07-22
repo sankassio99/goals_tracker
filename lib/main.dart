@@ -8,19 +8,21 @@ import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 void main() async {
   await GetStorage.init("GoalsTracker");
   runApp(
-    const MyApp(),
+    MyApp(),
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo',
-      theme: themeConfig(),
+      theme: themeConfig,
+      darkTheme: themeConfigDark,
+      themeMode: ThemeMode.system,
       initialRoute: '/home',
       getPages: [
         GetPage(
@@ -36,10 +38,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-}
 
-ThemeData themeConfig() {
-  return ThemeData(
+  final ThemeData themeConfig = ThemeData(
     // Define the default brightness and colors.
     brightness: Brightness.light,
     primaryColor: const Color(0xFF56B947),
@@ -85,5 +85,13 @@ ThemeData themeConfig() {
         color: Colors.black87,
       ),
     ),
+  );
+
+  final ThemeData themeConfigDark = ThemeData.dark(
+    // Define the default brightness and colors.
+
+    useMaterial3: true,
+    // Define the default `TextTheme`. Use this to specify the default
+    // text styling for headlines, titles, bodies of text, and more.
   );
 }

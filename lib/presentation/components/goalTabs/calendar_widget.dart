@@ -34,7 +34,7 @@ class GoalCalendarWidget extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.black12,
+                  color: Theme.of(context).colorScheme.primary,
                   width: 2.0,
                 ),
                 borderRadius: BorderRadius.circular(10),
@@ -70,15 +70,15 @@ class GoalCalendarWidget extends StatelessWidget {
                               fontWeight: FontWeight.bold, fontSize: 14),
                           outsideTextStyle: TextStyle(fontSize: 0),
                         ),
-                        daysOfWeekStyle: const DaysOfWeekStyle(
+                        daysOfWeekStyle: DaysOfWeekStyle(
                           weekdayStyle: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
-                              color: Colors.black54),
+                              color: Theme.of(context).colorScheme.primary),
                           weekendStyle: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
-                              color: Colors.black54),
+                              color: Theme.of(context).colorScheme.primary),
                         ),
                       )
                     : Container(),

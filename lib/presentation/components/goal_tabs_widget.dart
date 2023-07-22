@@ -31,7 +31,7 @@ class GoalTabsBar extends StatelessWidget {
       length: _tabsModel.length,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.background,
           toolbarHeight: 0,
           automaticallyImplyLeading: false,
           bottom: TabBar(

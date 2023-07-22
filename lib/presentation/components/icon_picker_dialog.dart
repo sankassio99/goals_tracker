@@ -26,7 +26,7 @@ class IconPickerDialog extends StatelessWidget {
         () => Icon(
           key: const Key("goalIcon"),
           currentIcon.value,
-          color: Colors.black87,
+          color: Theme.of(context).colorScheme.primary,
           size: size ?? 24,
         ),
       ),
@@ -71,7 +71,6 @@ class PickerDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       key: const Key("iconPickerDialog"),
-      backgroundColor: Colors.white,
       content: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -102,7 +101,7 @@ class PickerDialog extends StatelessWidget {
                           child: Icon(
                             key: const Key("iconItemChoice"),
                             iconData,
-                            color: Colors.black87,
+                            color: Theme.of(context).colorScheme.primary,
                             size: 24,
                           ),
                         );
@@ -156,7 +155,7 @@ class SelectedIcon extends StatelessWidget {
       child: Icon(
         key: const Key("iconItemChoice"),
         iconData,
-        color: Colors.black87,
+        color: Theme.of(context).colorScheme.primary,
         size: 24,
       ),
     );

@@ -7,6 +7,7 @@ import 'package:goals_tracker/presentation/components/goal_card_widget.dart';
 import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../components/bottom_button.dart';
 
 class HomePageWidget extends StatelessWidget {
@@ -33,12 +34,14 @@ class HomePageWidget extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),
-                const Divider(
-                  height: 10,
-                  thickness: 1,
-                  indent: 50,
-                  endIndent: 50,
-                  color: Colors.black12,
+                TextButton(
+                  key: const Key("changeThemeButton"),
+                  onPressed: () {
+                    Get.changeThemeMode(
+                      Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
+                    );
+                  },
+                  child: Icon(PhosphorIcons.bold.moon),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height - 200,
@@ -47,11 +50,11 @@ class HomePageWidget extends StatelessWidget {
                       () => Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Colors.black12,
+                            color: Theme.of(context).colorScheme.outline,
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.circular(10),
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.background,
                         ),
                         child: Column(
                           children: controller.goalList
