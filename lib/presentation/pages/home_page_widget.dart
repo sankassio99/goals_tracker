@@ -45,6 +45,7 @@ class HomePageWidget extends StatelessWidget {
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height - 200,
+                  width: MediaQuery.of(context).size.width,
                   child: SingleChildScrollView(
                     child: Obx(
                       () => Container(

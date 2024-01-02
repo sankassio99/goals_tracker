@@ -28,7 +28,7 @@ void main() {
   testWidgets('When is loaded must be show a title and button to add new goals',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
 
     // act
     await tester.pumpAndSettle();
@@ -44,7 +44,7 @@ void main() {
   testWidgets('When is add goal button is tapped must open dialog',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
     var buttonFinder = find.byKey(const Key("dialogAddGoal"));
 
     // act
@@ -59,7 +59,7 @@ void main() {
   testWidgets('When is add new goal must update goal list view with goal card',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
 
     var buttonFinder = find.byKey(const Key("dialogAddGoal"));
 
@@ -79,7 +79,7 @@ void main() {
   testWidgets('When is add new goal must show the correct title',
       (WidgetTester tester) async {
     // arrange
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
 
     var buttonFinder = find.byKey(const Key("dialogAddGoal"));
     String title = "My new title";
@@ -111,7 +111,7 @@ void main() {
     List<MainGoal> mainGoalList = [goal1];
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
     await tester.pumpAndSettle();
 
     // act
@@ -132,7 +132,7 @@ void main() {
     List<MainGoal> mainGoalList = [goal1];
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
     await tester.pumpAndSettle();
 
     var goalCard = find.byType(GoalCardWidget);
@@ -160,7 +160,7 @@ void main() {
 
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
 
     // act
     await tester.pumpAndSettle();
@@ -181,7 +181,7 @@ void main() {
     when(goalRepositoryMock.getAll()).thenAnswer((_) async => mainGoalList);
     when(goalRepositoryMock.getById(any)).thenAnswer((_) async => goal1);
 
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(MyApp());
     await tester.pumpAndSettle();
 
     // act
