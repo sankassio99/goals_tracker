@@ -37,7 +37,7 @@ class GoalCardWidget extends StatelessWidget {
                 child: PhosphorIcon(
                   key: const Key("goalCardIcon"),
                   model.icon.value,
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.secondary,
                   size: 34,
                 ),
               ),

@@ -214,7 +214,7 @@ class GoalTitleWidget extends StatelessWidget {
                   border: InputBorder.none,
                 ),
                 style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
+                  color: Theme.of(context).colorScheme.onPrimary,
                   fontSize: 24,
                   fontWeight: FontWeight.w800,
                 )),

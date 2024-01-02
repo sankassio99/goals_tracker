@@ -26,7 +26,7 @@ class IconPickerDialog extends StatelessWidget {
         () => Icon(
           key: const Key("goalIcon"),
           currentIcon.value,
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.onPrimary,
           size: size ?? 24,
         ),
       ),

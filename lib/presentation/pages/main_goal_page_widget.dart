@@ -81,7 +81,10 @@ class MainGoalPageWidget extends StatelessWidget {
                 ? FloatingActionButton(
                     backgroundColor: Theme.of(context).colorScheme.onSecondary,
                     key: const Key("addTaskButton"),
-                    child: const Icon(Icons.add),
+                    child: Icon(
+                      Icons.add,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
                     onPressed: () => controller.addTask(),
                   )
                 : null,
