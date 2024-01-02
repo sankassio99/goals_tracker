@@ -3,6 +3,7 @@ import 'package:goals_tracker/domain/entities/goal_types_enum.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/day_entries_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/deposit_entries_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/calendar_widget.dart';
+import 'package:goals_tracker/presentation/components/goalTabs/goal_desc_widget.dart';
 import 'package:goals_tracker/presentation/components/goalTabs/tasks_widget.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
@@ -52,7 +53,7 @@ class GoalTabsBar extends StatelessWidget {
     List<Widget> widgets = [];
 
     if (meansureType.type == GoalType.monetary) {
-      length = 2;
+      length = 3;
       tabs = [
         Tab(
             key: const Key("depositsIconTab"),
@@ -60,6 +61,9 @@ class GoalTabsBar extends StatelessWidget {
         Tab(
             key: const Key("calendarIconTab"),
             icon: Icon(PhosphorIcons.bold.calendar)),
+        Tab(
+            key: const Key("descIconTab"),
+            icon: Icon(PhosphorIcons.bold.article)),
       ];
       widgets = [
         DepositEntriesWidget(
@@ -67,6 +71,11 @@ class GoalTabsBar extends StatelessWidget {
         ),
         GoalCalendarWidget(
           key: const Key("myCalendarTab"),
+          days: model.dayEntries.map((entry) => entry.value).toList(),
+        ),
+        GoalDescWidget(
+          key: const Key("myDescTab"),
+          model: model,
         ),
       ];
     }

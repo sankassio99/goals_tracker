@@ -15,6 +15,7 @@ class GoalTypeTag extends StatelessWidget {
       height: 20,
       width: 100,
       alignment: Alignment.center,
+      margin: const EdgeInsets.fromLTRB(0, 12, 0, 0),
       padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.secondary,

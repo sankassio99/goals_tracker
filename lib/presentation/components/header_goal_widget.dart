@@ -20,20 +20,17 @@ class HeaderGoalWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 251,
+      height: 200,
       decoration: const BoxDecoration(),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
+        padding: const EdgeInsets.fromLTRB(18, 0, 18, 20),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-                flex: 1,
+                flex: 2,
                 child: GoalTitleWidget(model: model, controller: controller)),
-            Expanded(
-                flex: 3,
-                child: GoalDescWidget(controller: controller, model: model)),
             Expanded(
               flex: 1,
               child: GoalTypeTag(model: model),
@@ -42,7 +39,7 @@ class HeaderGoalWidget extends StatelessWidget {
               height: 8,
             ),
             Expanded(
-              flex: 3,
+              flex: 2,
               child: ProgressBarBox(model: model),
             ),
           ],
@@ -120,44 +117,6 @@ class DaysCountdown extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
-}
-
-class GoalDescWidget extends StatelessWidget {
-  const GoalDescWidget({
-    super.key,
-    required this.controller,
-    required this.model,
-  });
-
-  final MainGoalController controller;
-  final GoalModel model;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Focus(
-        onFocusChange: (value) {
-          if (!value) {
-            controller.updateGoal();
-          }
-        },
-        child: TextField(
-            key: const Key("descInput"),
-            controller: model.description,
-            maxLines: null,
-            decoration: const InputDecoration(
-              hintText: 'Tap to type goal description...',
-              border: InputBorder.none,
-            ),
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.primary,
-              fontSize: 14,
-              fontWeight: FontWeight.normal,
-            )),
-      ),
     );
   }
 }
