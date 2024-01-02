@@ -86,9 +86,16 @@ class GoalTabsBar extends StatelessWidget {
         Tab(
             key: const Key("tasksIconTab"),
             icon: Icon(PhosphorIcons.bold.check)),
+        Tab(
+            key: const Key("descIconTab"),
+            icon: Icon(PhosphorIcons.bold.article)),
       ];
       widgets = [
         TasksWidget(key: const Key("myTasksTab"), tasks: model.tasks),
+        GoalDescWidget(
+          key: const Key("myDescTab"),
+          model: model,
+        ),
       ];
     }
 
@@ -102,6 +109,9 @@ class GoalTabsBar extends StatelessWidget {
         Tab(
             key: const Key("calendarIconTab"),
             icon: Icon(PhosphorIcons.bold.calendar)),
+        Tab(
+            key: const Key("descIconTab"),
+            icon: Icon(PhosphorIcons.bold.article)),
       ];
       widgets = [
         DayEntriesWidget(
@@ -110,6 +120,10 @@ class GoalTabsBar extends StatelessWidget {
         GoalCalendarWidget(
           key: const Key("myCalendarTab"),
           days: model.dayEntries.map((entry) => entry.value).toList(),
+        ),
+        GoalDescWidget(
+          key: const Key("myDescTab"),
+          model: model,
         ),
       ];
     }
