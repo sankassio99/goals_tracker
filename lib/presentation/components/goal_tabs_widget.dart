@@ -81,7 +81,7 @@ class GoalTabsBar extends StatelessWidget {
     }
 
     if (meansureType.type == GoalType.tasks) {
-      length = 1;
+      length = 2;
       tabs = [
         Tab(
             key: const Key("tasksIconTab"),
@@ -100,7 +100,7 @@ class GoalTabsBar extends StatelessWidget {
     }
 
     if (meansureType.type == GoalType.days) {
-      length = 2;
+      length = 3;
       tabs = [
         Tab(
           key: const Key("daysIconTab"),
