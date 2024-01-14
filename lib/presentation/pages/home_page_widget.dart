@@ -8,7 +8,6 @@ import 'package:goals_tracker/presentation/controllers/home_controller.dart';
 import 'package:goals_tracker/presentation/models/goal_meansure_type.dart';
 import 'package:goals_tracker/presentation/models/goal_model.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
-import '../components/bottom_button.dart';
 
 class HomePageWidget extends StatelessWidget {
   HomePageWidget({super.key});
@@ -38,15 +37,30 @@ class HomePageWidget extends StatelessWidget {
                           key: const Key("homeTitle"),
                           style: Theme.of(context).textTheme.headlineLarge,
                         ),
-                        TextButton(
-                          key: const Key("changeThemeButton"),
-                          onPressed: () {
-                            Get.changeThemeMode(
-                              Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
-                            );
-                          },
-                          child: Icon(PhosphorIcons.bold.moon),
-                        ),
+                        Row(
+                          children: [
+                            TextButton(
+                              key: const Key("changeThemeButton"),
+                              onPressed: () {
+                                Get.changeThemeMode(
+                                  Get.isDarkMode
+                                      ? ThemeMode.light
+                                      : ThemeMode.dark,
+                                );
+                              },
+                              child: Icon(PhosphorIcons.bold.moon),
+                            ),
+                            TextButton(
+                              key: const Key("dialogAddGoal"),
+                              onPressed: () => showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    AddGoalDialog(),
+                              ),
+                              child: Icon(PhosphorIcons.bold.plusCircle),
+                            ),
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -74,19 +88,6 @@ class HomePageWidget extends StatelessWidget {
           ),
         ),
       ),
-      persistentFooterButtons: [
-        BottomButton(
-          key: const Key("dialogAddGoal"),
-          label: "Add Goal",
-          action: () => showDialog(
-            // isScrollControlled: true,
-            // enableDrag: false,
-            // backgroundColor: Theme.of(context).colorScheme.background,
-            context: context,
-            builder: (BuildContext context) => AddGoalDialog(),
-          ),
-        ),
-      ],
     );
   }
 }
