@@ -7,6 +7,7 @@ import 'package:goals_tracker/presentation/pages/main_goal_page_widget.dart';
 
 void main() async {
   await GetStorage.init("GoalsTracker");
+
   runApp(
     MyApp(),
   );

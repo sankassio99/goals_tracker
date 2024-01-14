@@ -47,6 +47,7 @@ dependencies:
   phosphor_flutter: ^2.0.0
   table_calendar: ^3.0.9
   get_storage: ^2.1.1
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:

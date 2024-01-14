@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:goals_tracker/presentation/components/formFields/date_form_field.dart';
 import 'package:goals_tracker/presentation/controllers/main_goal_controller.dart';
 import 'package:goals_tracker/presentation/models/day_entry_model.dart';
+import 'package:intl/intl.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 class DayEntriesWidget extends StatelessWidget {
   final controller = Get.find<MainGoalController>();
@@ -132,6 +134,8 @@ class DayEntryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var formatter = DateFormat('dd/MM/yyyy');
+
     return Container(
       key: const Key("dayEntry"),
       height: 48,
@@ -139,14 +143,25 @@ class DayEntryWidget extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.outline,
           width: 2.5,
         ),
         borderRadius: BorderRadius.circular(13),
       ),
       width: double.infinity,
       alignment: AlignmentDirectional.centerStart,
-      child: Text(model.value.toIso8601String()),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(PhosphorIcons.bold.heart),
+          Text(
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            formatter.format(model.value),
+          ),
+        ],
+      ),
     );
   }
 }

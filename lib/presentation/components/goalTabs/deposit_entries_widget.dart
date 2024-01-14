@@ -139,7 +139,7 @@ class DepositEntryWidget extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
       decoration: BoxDecoration(
         border: Border.all(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.outline,
           width: 2.5,
         ),
         borderRadius: BorderRadius.circular(13),
