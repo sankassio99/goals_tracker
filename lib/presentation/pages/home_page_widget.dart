@@ -28,21 +28,27 @@ class HomePageWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 24.0),
-                    child: Text(
-                      "Your Goals",
-                      key: const Key("homeTitle"),
-                      style: Theme.of(context).textTheme.headlineLarge,
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Your Goals",
+                          key: const Key("homeTitle"),
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                        TextButton(
+                          key: const Key("changeThemeButton"),
+                          onPressed: () {
+                            Get.changeThemeMode(
+                              Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
+                            );
+                          },
+                          child: Icon(PhosphorIcons.bold.moon),
+                        ),
+                      ],
                     ),
-                  ),
-                  TextButton(
-                    key: const Key("changeThemeButton"),
-                    onPressed: () {
-                      Get.changeThemeMode(
-                        Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
-                      );
-                    },
-                    child: Icon(PhosphorIcons.bold.moon),
                   ),
                   Obx(
                     () => Container(
