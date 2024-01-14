@@ -22,52 +22,48 @@ class HomePageWidget extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 24, 8.0, 0),
           child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 24.0),
-                  child: Text(
-                    "Your Goals",
-                    key: const Key("homeTitle"),
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                ),
-                TextButton(
-                  key: const Key("changeThemeButton"),
-                  onPressed: () {
-                    Get.changeThemeMode(
-                      Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
-                    );
-                  },
-                  child: Icon(PhosphorIcons.bold.moon),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height - 200,
-                  width: MediaQuery.of(context).size.width,
-                  child: SingleChildScrollView(
-                    child: Obx(
-                      () => Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Theme.of(context).colorScheme.outline,
-                            width: 2.0,
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                          color: Theme.of(context).colorScheme.background,
-                        ),
-                        child: Column(
-                          children: controller.goalList
-                              .map((goalModel) =>
-                                  GoalCardWidget(model: goalModel))
-                              .toList(),
-                        ),
-                      ),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 24.0),
+                    child: Text(
+                      "Your Goals",
+                      key: const Key("homeTitle"),
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
-                )
-              ],
+                  TextButton(
+                    key: const Key("changeThemeButton"),
+                    onPressed: () {
+                      Get.changeThemeMode(
+                        Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
+                      );
+                    },
+                    child: Icon(PhosphorIcons.bold.moon),
+                  ),
+                  Obx(
+                    () => Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).colorScheme.outline,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: Theme.of(context).colorScheme.background,
+                      ),
+                      child: Column(
+                        children: controller.goalList
+                            .map(
+                                (goalModel) => GoalCardWidget(model: goalModel))
+                            .toList(),
+                      ),
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ),
