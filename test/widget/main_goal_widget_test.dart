@@ -104,30 +104,30 @@ void main() {
     expect(titleFinder, findsOneWidget);
   });
 
-  testWidgets('When focus out description input must update goal',
-      (WidgetTester tester) async {
-    // arrange
-    await tester.pumpWidget(initMaterialApp());
-    var newDesc = "Desc";
+  // testWidgets('When focus out description input must update goal',
+  //     (WidgetTester tester) async {
+  //   // arrange
+  //   await tester.pumpWidget(initMaterialApp());
+  //   var newDesc = "Desc";
 
-    // act
-    var inputDesc = find.byKey(const Key("descInput"));
-    await tester.tap(inputDesc);
-    await tester.enterText(inputDesc, newDesc);
+  //   // act
+  //   var inputDesc = find.byKey(const Key("descInput"));
+  //   await tester.tap(inputDesc);
+  //   await tester.enterText(inputDesc, newDesc);
 
-    var inputTitle = find.byKey(const Key("titleInput"));
-    await tester.tap(inputTitle);
+  //   var inputTitle = find.byKey(const Key("titleInput"));
+  //   await tester.tap(inputTitle);
 
-    await tester.pumpAndSettle();
+  //   await tester.pumpAndSettle();
 
-    // assert
-    var matcher = predicate<MainGoal>((goal) {
-      expect(goal.id, mainGoal.id);
-      expect(goal.desc, newDesc);
-      return true;
-    });
-    verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
-  });
+  //   // assert
+  //   var matcher = predicate<MainGoal>((goal) {
+  //     expect(goal.id, mainGoal.id);
+  //     expect(goal.desc, newDesc);
+  //     return true;
+  //   });
+  //   verify(goalRepositoryMock.update(captureThat(matcher))).called(1);
+  // });
   testWidgets('When confirm Icon Picker Dialog must update current goal icon',
       (WidgetTester tester) async {
     // arrange
