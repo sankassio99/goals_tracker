@@ -39,7 +39,7 @@ class HeaderGoalWidget extends StatelessWidget {
               height: 8,
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: ProgressBarBox(model: model),
             ),
           ],
