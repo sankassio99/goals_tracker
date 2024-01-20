@@ -20,70 +20,70 @@ class HomePageWidget extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(8.0, 24, 8.0, 0),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Your Goals",
-                          key: const Key("homeTitle"),
-                          style: Theme.of(context).textTheme.headlineLarge,
-                        ),
-                        Row(
-                          children: [
-                            TextButton(
-                              key: const Key("changeThemeButton"),
-                              onPressed: () {
-                                Get.changeThemeMode(
-                                  Get.isDarkMode
-                                      ? ThemeMode.light
-                                      : ThemeMode.dark,
-                                );
-                              },
-                              child: Icon(PhosphorIcons.bold.moon),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Your Goals",
+                        key: const Key("homeTitle"),
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                      Row(
+                        children: [
+                          TextButton(
+                            key: const Key("changeThemeButton"),
+                            onPressed: () {
+                              Get.changeThemeMode(
+                                Get.isDarkMode
+                                    ? ThemeMode.light
+                                    : ThemeMode.dark,
+                              );
+                            },
+                            child: Icon(PhosphorIcons.bold.moon),
+                          ),
+                          TextButton(
+                            key: const Key("dialogAddGoal"),
+                            onPressed: () => showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  AddGoalDialog(),
                             ),
-                            TextButton(
-                              key: const Key("dialogAddGoal"),
-                              onPressed: () => showDialog(
-                                context: context,
-                                builder: (BuildContext context) =>
-                                    AddGoalDialog(),
-                              ),
-                              child: Icon(PhosphorIcons.bold.plusCircle),
+                            child: Icon(
+                              PhosphorIcons.bold.plusCircle,
+                              color: Theme.of(context).primaryColor,
                             ),
-                          ],
-                        )
-                      ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Obx(
+                  () => Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Theme.of(context).colorScheme.outline,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                      color: Theme.of(context).colorScheme.background,
+                    ),
+                    child: Column(
+                      children: controller.goalList
+                          .map((goalModel) => GoalCardWidget(model: goalModel))
+                          .toList(),
                     ),
                   ),
-                  Obx(
-                    () => Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).colorScheme.outline,
-                          width: 2.0,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                        color: Theme.of(context).colorScheme.background,
-                      ),
-                      child: Column(
-                        children: controller.goalList
-                            .map(
-                                (goalModel) => GoalCardWidget(model: goalModel))
-                            .toList(),
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ),
